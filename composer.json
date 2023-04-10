@@ -20,6 +20,7 @@
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
+        "nunomaduro/larastan": "^2.5",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -48,7 +49,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "fix": "vendor/bin/pint",
+        "stan": "vendor/bin/phpstan analyse --memory-limit 2G"
     },
     "extra": {
         "laravel": {
