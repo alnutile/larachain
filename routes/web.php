@@ -32,4 +32,21 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::controller(\App\Http\Controllers\ProjectController::class)
+        ->group(function () {
+            Route::get('/projects', 'index')
+                ->name('projects.index');
+            Route::get('/projects/create', 'create')
+                ->name('projects.create');
+            Route::post('/projects/create', 'store')
+                ->name('projects.store');
+            Route::get('/projects/{project}', 'show')
+                ->name('projects.show');
+            Route::get('/projects/{project}/edit', 'edit')
+                ->name('projects.edit');
+            Route::put('/projects/{project}', 'update')
+                ->name('projects.update');
+        });
 });
+
