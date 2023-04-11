@@ -20,7 +20,7 @@ class ProjectControllerTest extends TestCase
 
         Sanctum::actingAs(
             $user = User::factory()->create([
-                'current_team_id' => $team->id
+                'current_team_id' => $team->id,
             ]),
             ['view-tasks']
         );
@@ -28,16 +28,16 @@ class ProjectControllerTest extends TestCase
         Project::factory()
             ->count(3)
             ->create([
-                'team_id' => $user->current_team_id
+                'team_id' => $user->current_team_id,
             ]);
 
         Project::factory()->create();
 
         $this->get(route('projects.index'))
             ->assertStatus(200)
-            ->assertInertia(fn(Assert $page) => $page
+            ->assertInertia(fn (Assert $page) => $page
                 ->component('Projects/Index')
-                ->has("projects.data", 3)
+                ->has('projects.data', 3)
             );
     }
 
@@ -47,42 +47,45 @@ class ProjectControllerTest extends TestCase
 
         Sanctum::actingAs(
             $user = User::factory()->create([
-                'current_team_id' => $team->id
+                'current_team_id' => $team->id,
             ]),
             ['view-tasks']
         );
 
         $model = Project::factory()->create([
-            'team_id' => $user->current_team_id
+            'team_id' => $user->current_team_id,
         ]);
 
         $this->get(route('projects.show', [
             'project' => $model->id,
         ]))
             ->assertStatus(200)
-            ->assertInertia(fn(Assert $page) => $page
+            ->assertInertia(fn (Assert $page) => $page
                 ->component('Projects/Show'));
     }
 
     public function test_edit()
     {
+        $team = Team::factory()->create();
+
         Sanctum::actingAs(
-            $user = User::factory()->create(),
+            $user = User::factory()->create([
+                'current_team_id' => $team->id,
+            ]),
             ['view-tasks']
         );
 
         $model = Project::factory()->create([
-            'team_id' => Team::factory()->create()->id
+            'team_id' => $team->id,
         ]);
 
         $this->get(route('projects.edit', [
             'project' => $model->id,
         ]))
             ->assertStatus(200)
-            ->assertInertia(fn(Assert $page) => $page
+            ->assertInertia(fn (Assert $page) => $page
                 ->component('Projects/Edit'));
     }
-
 
     public function test_update()
     {
@@ -90,13 +93,13 @@ class ProjectControllerTest extends TestCase
 
         Sanctum::actingAs(
             $user = User::factory()->create([
-                'current_team_id' => $team->id
+                'current_team_id' => $team->id,
             ]),
             ['view-tasks']
         );
 
         $model = Project::factory()->create([
-            'team_id' => $team->id
+            'team_id' => $team->id,
         ]);
 
         $this->actingAs($user)->put(route('projects.update', [
@@ -104,7 +107,7 @@ class ProjectControllerTest extends TestCase
         ]), [
             'name' => 'foobar',
             'active' => 1,
-            'team_id' => $team->id
+            'team_id' => $team->id,
         ])
             ->assertStatus(302)
             ->assertRedirect(route('projects.edit', [
@@ -120,14 +123,14 @@ class ProjectControllerTest extends TestCase
 
         Sanctum::actingAs(
             $user = User::factory()->create([
-                'current_team_id' => $team->id
+                'current_team_id' => $team->id,
             ]),
             ['view-tasks']
         );
 
         $this->get(route('projects.create'))
             ->assertStatus(200)
-            ->assertInertia(fn(Assert $page) => $page
+            ->assertInertia(fn (Assert $page) => $page
                 ->component('Projects/Create'));
     }
 
@@ -137,7 +140,7 @@ class ProjectControllerTest extends TestCase
 
         Sanctum::actingAs(
             $user = User::factory()->create([
-                'current_team_id' => $team->id
+                'current_team_id' => $team->id,
             ]),
             ['view-tasks']
         );

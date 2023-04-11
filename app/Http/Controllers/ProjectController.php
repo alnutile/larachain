@@ -12,7 +12,7 @@ class ProjectController extends Controller
     {
         return Inertia::render('Projects/Index', [
             'projects' => Project::query()
-                ->where("team_id",
+                ->where('team_id',
                 auth()->user()->current_team_id)
                 ->orderBy('updated_at', 'DESC')
                 ->simplePaginate(10)
@@ -43,9 +43,8 @@ class ProjectController extends Controller
         return redirect()->route('projects.edit', ['project' => $model->id]);
     }
 
-
     public function show(Project $project)
-{
+    {
     return Inertia::render('Projects/Show', [
         'project' => $project,
     ]);

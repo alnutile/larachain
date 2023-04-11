@@ -49,4 +49,3 @@ Route::middleware([
                 ->name('projects.update');
         });
 });
-

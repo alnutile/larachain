@@ -16,7 +16,6 @@ class ProjectPolicy
         return false;
     }
 
-
     public function edit(User $user, Project $project): Response
     {
         return $user->current_team_id === $project->team_id
