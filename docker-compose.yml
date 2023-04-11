@@ -25,7 +25,7 @@ services:
             - pgsql
             - redis
     pgsql:
-        image: 'postgres:15'
+        image: 'ankane/pgvector:latest'
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
