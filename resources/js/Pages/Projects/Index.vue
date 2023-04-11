@@ -44,7 +44,11 @@
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
                                             <tr v-for="project in projects.data" :key="project.id">
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ project.id }}</td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                    <Link class="underline" :href="route('projects.show', {
+                                                        project: project.id
+                                                    })">{{ project.id }}</Link>
+                                                </td>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ project.name }}</td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <Active :active="project.active"/>
