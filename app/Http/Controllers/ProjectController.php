@@ -53,6 +53,10 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
+        if (request()->user()->cannot('edit', $project)) {
+            abort(403);
+        }
+
         return Inertia::render('Projects/Edit', [
             'project' => $project,
         ]);
@@ -60,12 +64,15 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
+        if ($request->user()->cannot('update', $project)) {
+            abort(403);
+        }
+
         $validated = request()->validate(
             [
-                'subject' => 'required',
-                'message' => 'required',
-                'active' => 'required',
-                'campaign_id' => 'required',
+                'name' => 'required',
+                'active' => 'nullable',
+                'team_id' => 'required',
             ]
         );
 

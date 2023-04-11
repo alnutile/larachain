@@ -15,17 +15,18 @@
                         </template>
 
                     </SectionTitle>
-
-                    <form @submit.prevent="submit">
+                    <div class="max-w-2xl  border-gray-300 border rounded-lg p-5">
+                        <form @submit.prevent="submit">
                         <ResourceForm
                         v-model="form">
                         </ResourceForm>
-                        <div>
-                            <button class="btn"
+                        <div class="flex justify-end">
+                            <PrimaryButton
                             type="submit"
-                            >Save</button>
+                            >Save</PrimaryButton>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,10 +39,12 @@ import SectionTitle from "@/Components/SectionTitle.vue"
 import ResourceForm from "@/Pages/Projects/Components/ResourceForm.vue";
 import { useForm } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 export default {
     name: "Edit",
     components: {
+        PrimaryButton,
         SectionTitle,
         ResourceForm,
         AppLayout
@@ -68,7 +71,9 @@ export default {
         return {
             toast: useToast(),
             form: useForm({
-                subject: this.project.subject,
+                name: this.project.name,
+                active: this.project.active,
+                team_id: this.project.team_id,
             })
         }
     }

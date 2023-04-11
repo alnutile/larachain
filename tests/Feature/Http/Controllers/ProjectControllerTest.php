@@ -71,7 +71,9 @@ class ProjectControllerTest extends TestCase
             ['view-tasks']
         );
 
-        $model = Project::factory()->create();
+        $model = Project::factory()->create([
+            'team_id' => Team::factory()->create()->id
+        ]);
 
         $this->get(route('projects.edit', [
             'project' => $model->id,
@@ -84,27 +86,32 @@ class ProjectControllerTest extends TestCase
 
     public function test_update()
     {
+        $team = Team::factory()->create();
+
         Sanctum::actingAs(
-            $user = User::factory()->create(),
+            $user = User::factory()->create([
+                'current_team_id' => $team->id
+            ]),
             ['view-tasks']
         );
 
-        $model = Project::factory()->create();
+        $model = Project::factory()->create([
+            'team_id' => $team->id
+        ]);
 
-        $this->put(route('projects.update', [
+        $this->actingAs($user)->put(route('projects.update', [
             'project' => $model->id,
         ]), [
-            'subject' => 'foobar',
-            'message' => 'foobar',
+            'name' => 'foobar',
             'active' => 1,
+            'team_id' => $team->id
         ])
             ->assertStatus(302)
             ->assertRedirect(route('projects.edit', [
                 'project' => $model->id,
             ]));
 
-        $this->assertEquals('foobar', $model->refresh()->subject);
-        $this->assertEquals('foobar', $model->refresh()->message);
+        $this->assertEquals('foobar', $model->refresh()->name);
     }
 
     public function test_create()
