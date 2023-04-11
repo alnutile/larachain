@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "380d0b2f49f6e25ac13989fc36dd389a",
+    "content-hash": "a18d5b8baec0ae52496f572d3fd35d72",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6095,6 +6095,76 @@
     ],
     "packages-dev": [
         {
+            "name": "alnutile/inertia-crud",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alnutile/inertia-crud.git",
+                "reference": "bc6f4f1eb5d4014b873f79a53f8f7ca4267a3c6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alnutile/inertia-crud/zipball/bc6f4f1eb5d4014b873f79a53f8f7ca4267a3c6a",
+                "reference": "bc6f4f1eb5d4014b873f79a53f8f7ca4267a3c6a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0|^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.4",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SundanceSolutions\\InertiaCrud\\InertiaCrudServiceProvider"
+                    ],
+                    "aliases": {
+                        "InertiaCrud": "SundanceSolutions\\InertiaCrud\\Facades\\InertiaCrud"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SundanceSolutions\\InertiaCrud\\": "src",
+                    "SundanceSolutions\\InertiaCrud\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alfred Nutile",
+                    "email": "me@alfrednutile.info",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Help with some basic CRUD and UI using Inertia, Tailwind",
+            "homepage": "https://github.com/alnutile/inertia-crud",
+            "keywords": [
+                "alnutile",
+                "crud",
+                "inertia",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/alnutile/inertia-crud/issues",
+                "source": "https://github.com/alnutile/inertia-crud/tree/1.0.0"
+            },
+            "time": "2023-03-30T16:08:19+00:00"
+        },
+        {
             "name": "fakerphp/faker",
             "version": "v1.21.0",
             "source": {
@@ -8619,6 +8689,66 @@
                 }
             ],
             "time": "2023-01-24T07:20:39+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.14.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/bab62023a4745a61170ad5424184533685e73c2d",
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-03-14T16:41:21+00:00"
         },
         {
             "name": "symfony/yaml",
