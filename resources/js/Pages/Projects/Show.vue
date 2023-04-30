@@ -16,27 +16,28 @@
                         <div>
                             <Active :active="project.active"/>
                         </div>
-                    </div>
-                    <div>
-                        This is where you can build your connections. You can take a <span class="font-bold">Source</span>, add some <span class="font-bold">Actions</span> then <span class="font-bold">Retrieve</span> it.
-                    </div>
-                    <div>
-                        For example, so you have a site with historical data. Let's say it has no api so you need to send the data to us.
-                        Then you choose a "Source" call "Push" and it will give you and API and format to push the data to.
-                        Then you can create and "Action" in this example "Embed" to convert it using OpenAI API Embedding.
-                        Lastly you choose a "Retrieve" to create an API to get your data. It is here you can add "Prompt"
-                        a prefix and suffix to assist the api in giving a great answer like
-                    </div>
-                    <div class="italic text-gray-500 p-4">
-                        "You are a historian and
-                        are going to reply to the question _______ with suggestions of other possible interests. Please limit the options to the data we are
-                        giving you with this question."
-                    </div>
-                    <div>
-                        The api create for this project will then return the results for you to use on your site or on ours.
+
+
+
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 mt-4 justify-items-center">
+                    <div class="mt-10">
+                        <div class="flex justify-center items-center gap-4">
+                            <div class="w-full">
+                                <InputLabel>Search your data and chat to an AI</InputLabel>
+                                <div>
+                                    <TextInput
+                                        class="w-[400px]"
+                                        type="text" placeholder="Ask the AI about data related to your Project"></TextInput>
+                                    <PrimaryButton>Ask</PrimaryButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="grid grid-cols-3 gap-4 mt-12 justify-items-center" v-if="false">
                         <div class="text-lg font-semibold">
                             <div>Related Source</div>
                             <div>
@@ -61,29 +62,21 @@
     </AppLayout>
 </template>
 
-<script>
+<script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SectionTitle from "@/Components/SectionTitle.vue"
 import { useForm } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
 import Active from "@/Components/Active.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+const toast = useToast();
 
-export default {
-    name: "Show",
-    components: {
-        SecondaryButton,
-        Active,
-        SectionTitle,
-        AppLayout
-    },
-    props: ['project'],
-    data() {
-        return {
-            toast: useToast()
-        }
-    }
-}
+const props = defineProps({
+    project: Object,
+})
 </script>
 
 <style scoped>
