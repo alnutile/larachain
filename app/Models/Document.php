@@ -12,6 +12,7 @@ use Pgvector\Laravel\Vector;
  * @property string $content
  * @property int $token_count;
  * @property array $embedding
+ * @property array $meta_data
  */
 class Document extends Model
 {
