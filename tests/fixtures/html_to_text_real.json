@@ -1,0 +1,19 @@
+{
+    "id": "cmpl-7B5Z8URgikCSUXnIdSvja1nMXH43Z",
+    "object": "text_completion",
+    "created": 1682877358,
+    "model": "text-davinci-003",
+    "choices": [
+        {
+            "text": "\nLink to share this object record",
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1118,
+        "completion_tokens": 7,
+        "total_tokens": 1125
+    }
+}

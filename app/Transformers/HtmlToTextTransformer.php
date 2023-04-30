@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use Alnutile\LaravelChatgpt\Facades\TextClientFacade;
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
@@ -24,15 +25,15 @@ info for me:
 Content: {content}
 Labels:
 {labels}
+
+###
+
+
 EOL;
             $input_variables = [
-                [
-                    new PromptToken('labels',
-                        implode("\n", $document->meta_data))
-                ],
-                [
-                    new PromptToken('content', $document->content)
-                ]
+                new PromptToken('labels',
+                    implode("\n", $document->meta_data)),
+                new PromptToken('content', $document->content)
             ];
             $prompt = new PromptTemplate($input_variables, $template);
 
@@ -41,6 +42,10 @@ EOL;
             $template = <<<EOL
 This is HTML can you please convert it to markdown text
 Content: {content}
+
+###
+
+
 EOL;
             $input_variables = [
                 new PromptToken('content', $document->content)
@@ -49,9 +54,10 @@ EOL;
 
         }
 
-        $results = ClientWrapper::setTemperature(0.3)
-            ->completions($prompt);
 
+        $results = ClientWrapper::setTemperature(0.7)
+            ->setTokens(2047)
+            ->completions($prompt->format());
         $document->content = $results;
         $document->save();
 

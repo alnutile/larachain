@@ -21,7 +21,7 @@ class CollectionSpiderTest extends TestCase
         Queue::fake();
 
         $project = Project::factory()->create();
-        $this->artisan('larachain:run_collection', [
+        $this->artisan('larachain:source', [
             'project_id' => $project->id,
         ]);
         $this->runner->assertRunWasStarted(CollectionSpider::class);

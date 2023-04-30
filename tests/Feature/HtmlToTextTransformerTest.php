@@ -30,7 +30,7 @@ Tags: flowers; abstract; symbolism
 EOL;
 
         $htmlVersion = File::get(base_path('tests/fixtures/example_content.txt'));
-        ClientWrapper::shouldReceive("setTemperature->completions")
+        ClientWrapper::shouldReceive("setTemperature->setTokens->completions")
             ->once()
             ->andReturn($results);
 

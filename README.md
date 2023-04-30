@@ -82,6 +82,8 @@ It will dump a demo file `storage/pages`
 
 ## TODO
   * Setup Horizon and document
+  * Add DocumentContent table for small chunks of data since 
+    * they can be too large for prompts
   * Embedding flow with vector
   * UI to easily take in data to embed
   * a 💩load more

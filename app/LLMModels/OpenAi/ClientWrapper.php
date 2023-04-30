@@ -120,6 +120,7 @@ EOD;
         $result = OpenAI::completions()->create([
             'model' => 'text-davinci-003',
             'prompt' => $prompt,
+            "top_p" => 1,
             'max_tokens' => $this->tokens,
             'temperature' => $this->temperature,
         ]);
