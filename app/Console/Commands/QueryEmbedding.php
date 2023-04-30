@@ -6,6 +6,7 @@ use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use App\Models\Document;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use OpenAI\Laravel\Facades\OpenAI;
 use Pgvector\Laravel\Vector;
 use Sundance\LarachainPromptTemplates\Prompts\PromptToken;
 use Sundance\LarachainPromptTemplates\PromptTemplate;
@@ -31,10 +32,7 @@ class QueryEmbedding extends Command
         $combinedContent = "";
 
         foreach ($documents as $document) {
-            // Append the document content
-            var_dump(strlen($document->content));
             $combinedContent .= $document->content;
-
             if (strlen($combinedContent) >= 750) {
                 break;
             }
@@ -44,10 +42,7 @@ class QueryEmbedding extends Command
 As a helpful historian, I have been asked the question below. I will provide some context found in a local historical art
 collection database using a vector query. Please help me reply with a well-formatted answer and offer to get more information
 if needed.
-
-Question: {question}
 Context: {context}
-
 ###
 
 
@@ -55,18 +50,44 @@ EOL;
 
 
         $input_variables = [
-            new PromptToken('question', $question),
             new PromptToken('context', $combinedContent)
         ];
 
         $prompt = new PromptTemplate($input_variables, $template);
 
-        $results = ClientWrapper::setTemperature(0.7)
-            ->setTokens(1000)
-            ->completions($prompt->format());
+//        $results = ClientWrapper::setTemperature(0.7)
+//            ->setTokens(1000)
+//            ->completions($prompt->format());
+//        $this->info($results);
 
+        $stream = OpenAI::chat()->createStreamed([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => 0.7,
+            'messages' => [
+                [
+                    'role' => "system",
+                    'content' => $prompt->format()
+                ],
+                [
+                    'role' => "user",
+                    'content' => $question
+                ]
+            ]
+        ]);
 
-        $this->info($results);
+        $count = 0;
+        $reply = "";
+        foreach($stream as $response){
+                $step = $response->choices[0]->toArray();
+                $reply = $reply . " " . data_get($step, 'delta.content');
+                if($count >= 20) {
+                    $this->info($reply);
+                    $count = 0;
+                    $reply = '';
+                }  else {
+                    $count = $count + 1;
+                }
+        }
 
 
     }
