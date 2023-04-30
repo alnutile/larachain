@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "roach-php/core": "^2.0",
         "roach-php/laravel": "^2.0",
+        "spatie/laravel-data": "^3.4",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

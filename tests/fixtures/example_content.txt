@@ -1,0 +1,30 @@
+
+  <tr>
+    <td valign="top" width="400">
+<table border="0" width="100%">
+<tr><td valign="top"><b>Maker(s):</b></td><td valign="top"><b>O'Keeffe, Georgia<br></b></td></tr><tr><td valign="top"><b>Culture:</b></td><td valign="top">American (1887-1986)<br></td></tr><tr><td valign="top"><b>Title:</b></td><td valign="top"><i>Red Snapdragons<br></i></td></tr><tr><td valign="top"><b>Date Made:</b></td><td valign="top">ca. 1923<br></td></tr><tr><td valign="top"><b>Type:</b></td><td valign="top">Painting<br></td></tr><tr><td valign="top"><b>Materials:</b></td><td valign="top">oil on canvas<br></td></tr><tr><td valign="top"><b>Measurements:</b></td><td valign="top">whole: 20 1/4 x 10 1/4 in.; 51.435 x 26.035 cm<br></td></tr><tr><td valign="top"><b>Accession Number:  </b></td><td valign="top">AC 1.1990<br></td></tr><tr><td valign="top"><b>Credit Line:</b></td><td valign="top">Anonymous loan<br></td></tr><tr><td valign="top"><b>Museum Collection:  </b></td><td valign="top"><a href="https://www.amherst.edu/museums/mead" target="_blank">Mead Art Museum at Amherst College</a> 
+<!-- Google Analytics -->
+<script>
+gtag('config', 'G-4KNN5S6E5X',{'content_group': 'AC'});
+</script>
+<!-- End Google Analytics -->
+</td></tr></table>
+    </td>
+    <td align="right" valign="top" width="200">
+      <a href="javascript:openWin('browser.php?m=objects&amp;kv=157645&amp;i=3052092','Media','toolbar=0,location=0,status=0,menubar=0,scrollbars=0,resizable=1,width=800,height=600')"><img src="grabimg.php?kv=3052092" height="200" width="99.6875" alt="1-1990.jpg" border="0"><br></a></td>
+
+  </tr>
+  <tr>
+    <td colspan="2">
+	  <br>
+      <p align="justify" class="show_html">
+	  	 	  
+	     </p><p align="justify"><b>Label Text:</b><br>O’Keeffe is considered a pioneer of American modernism. She was among the earliest artists in the United States to explore abstraction, developing her own style that centered on the precise use of line, natural forms, and distinctions of color. In 1915 the acclaimed photographer Alfred Stieglitz (American, 1864–1946) debuted her abstract charcoal drawings at his vanguard 291 gallery in New York, proclaiming, “Finally, a woman on paper.” O’Keeffe, however, did not remain “on paper” and soon began to create oil paintings, including Red Snapdragons. In 1946 she became the first woman to have a major solo exhibition at the Museum of Modern Art, where she was praised for her “highly individual artistic expression.”<br> <br>Lisa Crossman, 2020<br></p><p align="justify"><b>Tags:</b><br><a href="info.php?f=option7&amp;type=browse&amp;t=objects&amp;s=flowers">flowers</a>; <a href="info.php?f=option7&amp;type=browse&amp;t=objects&amp;s=abstract">abstract</a>; <a href="info.php?f=option7&amp;type=browse&amp;t=objects&amp;s=symbolism">symbolism</a></p><p><b>Link to share this object record</b>:<br> <a href="https://museums.fivecolleges.edu/detail.php?t=objects&amp;type=ext&amp;id_number=AC+1.1990">https://museums.fivecolleges.edu/detail.php?t=objects&amp;type=ext&amp;id_number=AC+1.1990</a></p></td>
+  </tr>
+  <tr>
+  <td colspan="2">
+<p> <i> Research on objects in the collections, including provenance, is ongoing and may be incomplete. If you have additional information 
+  or would like to learn more about a particular object, please email <a href="mailto:fc-museums-web@fivecolleges.edu?subject=Information%20query:%20AC%201.1990">fc-museums-web@fivecolleges.edu</a>.</i>
+ </p>
+  </td>
+  </tr>
