@@ -76,6 +76,9 @@ EOL;
 
         $count = 0;
         $reply = '';
+
+
+
         foreach ($stream as $response) {
                 $step = $response->choices[0]->toArray();
                 $reply = $reply.' '.data_get($step, 'delta.content');

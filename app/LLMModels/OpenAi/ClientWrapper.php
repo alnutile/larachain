@@ -106,6 +106,40 @@ EOD;
         return $content;
     }
 
+
+    public function chat(array $messages) : string
+    {
+        if (config('openai.mock')) {
+            $data = get_fixture('completion_response.json');
+            return data_get($data, 'choices.0.text');
+        }
+
+        $stream = OpenAI::chat()->createStreamed([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => $this->temperature,
+            'messages' => $messages,
+        ]);
+
+        $count = 0;
+        $reply = '';
+        $data = [];
+        foreach ($stream as $response) {
+            $step = $response->choices[0]->toArray();
+            $content = data_get($step, 'delta.content');
+            $data[] = $content;
+            $reply = $reply.' '.$content;
+            if ($count >= 20) {
+                logger($reply); //make this pusher
+                $count = 0;
+                $reply = '';
+            } else {
+                $count = $count + 1;
+            }
+        }
+
+        return implode("\n", $data);
+    }
+
     public function completions($prompt): string
     {
         if (config('openai.mock')) {

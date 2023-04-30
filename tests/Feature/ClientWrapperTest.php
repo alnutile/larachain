@@ -8,6 +8,36 @@ use Tests\TestCase;
 
 class ClientWrapperTest extends TestCase
 {
+
+    public function test_chat()
+    {
+
+        $response = ClientWrapper::chat(
+            [
+                [
+                    'role' => "system",
+                    'content' => "You are an AI Historian assistant...",
+                ],
+                [
+                    'role' => "user",
+                    'content' => "What other makers are around the time of O'Keeffe, Georgia?",
+                ],
+                [
+                    'role' => "assistant",
+                    'content' => "yup",
+                ],
+                [
+                    'role' => "user",
+                    'content' => "What influenced O'Keeffe's art style?",
+                ],
+            ]
+        );
+
+        $this->assertNotNull($response);
+
+    }
+
+
     public function test_embeddings()
     {
 
