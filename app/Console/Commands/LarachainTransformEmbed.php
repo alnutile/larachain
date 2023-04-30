@@ -21,8 +21,8 @@ class LarachainTransformEmbed extends Command
          * we can just run those.
          * In this POC I will manually choose the transformers
          */
-        $project = Project::findOrFail($this->argument("project_id"));
-        $this->info("Starting Embed Process");
+        $project = Project::findOrFail($this->argument('project_id'));
+        $this->info('Starting Embed Process');
 
         $documents = $project->documents;
 
@@ -35,7 +35,7 @@ class LarachainTransformEmbed extends Command
                 EmbedContent::handle($document);
                 $bar->advance();
             } catch (\Exception $e) {
-                logger("Error with embedding");
+                logger('Error with embedding');
                 logger($e->getMessage());
                 $bar->advance();
             }

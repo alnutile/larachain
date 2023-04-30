@@ -27,10 +27,10 @@ class TurnQuestionIntoEmbedding extends Command
      */
     public function handle()
     {
-        $this->info("Getting embedding");
-        $results = ClientWrapper::getEmbedding($this->argument("question"));
-        $path = storage_path("questions/embedding_" . md5($this->argument("question") . ".json"));
+        $this->info('Getting embedding');
+        $results = ClientWrapper::getEmbedding($this->argument('question'));
+        $path = storage_path('questions/embedding_'.md5($this->argument('question').'.json'));
         File::put($path, json_encode($results->embedding, 128));
-        $this->info("Results in file " . $path);
+        $this->info('Results in file '.$path);
     }
 }

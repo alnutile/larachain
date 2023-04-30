@@ -5,16 +5,14 @@ namespace Tests\Feature;
 use App\Models\Document;
 use App\Transformers\HtmlToTextTransformer;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
 class HtmlToTextTransformerTest extends TestCase
 {
-
-    public function test_html_to_text() {
-        $results = <<<EOL
+    public function test_html_to_text()
+    {
+        $results = <<<'EOL'
 Maker: O'Keeffe, Georgia
 Culture: American (1887-1986)
 Title: Red Snapdragons
@@ -30,12 +28,12 @@ Tags: flowers; abstract; symbolism
 EOL;
 
         $htmlVersion = File::get(base_path('tests/fixtures/example_content.txt'));
-        ClientWrapper::shouldReceive("setTemperature->setTokens->completions")
+        ClientWrapper::shouldReceive('setTemperature->setTokens->completions')
             ->once()
             ->andReturn($results);
 
         $document = Document::factory()->create([
-            'content' => $htmlVersion
+            'content' => $htmlVersion,
         ]);
 
         $transformer = new HtmlToTextTransformer();

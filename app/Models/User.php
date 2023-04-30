@@ -61,7 +61,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function messages() {
+    public function messages()
+    {
         return $this->hasMany(Message::class);
     }
 }

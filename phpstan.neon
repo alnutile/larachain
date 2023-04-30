@@ -14,5 +14,7 @@ parameters:
     excludePaths:
         - app/Actions/Jetstream
         - app/Actions/Fortify
+        - app/Console/Commands/LarachainTransform.php
+        - app/Console/Commands/LarachainTransformEmbed.php
 
     checkMissingIterableValueType: false

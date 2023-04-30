@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Document;
 use App\Models\Project;
 use Facades\App\Transformers\HtmlToTextTransformer;
 use Illuminate\Console\Command;
@@ -22,9 +21,8 @@ class LarachainTransform extends Command
          * we can just run those.
          * In this POC I will manually choose the transformers
          */
-
-        $project = Project::findOrFail($this->argument("project_id"));
-        $this->info("Starting the Html to Text Process");
+        $project = Project::findOrFail($this->argument('project_id'));
+        $this->info('Starting the Html to Text Process');
 
         $documents = $project->documents;
 
@@ -37,7 +35,7 @@ class LarachainTransform extends Command
                 HtmlToTextTransformer::handle($document);
                 $bar->advance();
             } catch (\Exception $e) {
-                logger("Error with transformation");
+                logger('Error with transformation');
                 logger($e);
                 $bar->advance();
             }

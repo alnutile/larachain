@@ -19,10 +19,10 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'role' => "system", //user, agent
+            'role' => 'system', //user, agent
             'content' => fake()->sentence(4, true),
             'user_id' => User::factory(),
-            'project_id' => Project::factory()
+            'project_id' => Project::factory(),
         ];
     }
 }

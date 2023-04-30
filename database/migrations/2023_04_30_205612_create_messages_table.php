@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string("role");
+            $table->string('role');
             $table->foreignIdFor(Project::class);
             $table->foreignIdFor(User::class);
-            $table->longText("content");
+            $table->longText('content');
             $table->timestamps();
         });
     }

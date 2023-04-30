@@ -11,11 +11,13 @@ class Message extends Model
 
     protected $guarded = [];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
 }
