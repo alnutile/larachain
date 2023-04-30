@@ -16,12 +16,7 @@ class PullDataOutOfHtmlUsingLabelJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(
-        public string $content,
-        public mixed $unique_id,
-        public mixed $project_id,
-        public array $labels
-    )
+    public function __construct()
     {
         //
     }

@@ -5,14 +5,12 @@ namespace App\Spiders;
 use App\Jobs\SaveItemToDocumentsTableJob;
 use Illuminate\Support\Str;
 use RoachPHP\ItemPipeline\ItemInterface;
+use RoachPHP\Support\Configurable;
 
 class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInterface
 {
 
-    public function configure(array $options): void
-    {
-        // TODO: Implement configure() method.
-    }
+    use Configurable;
 
     public function processItem(ItemInterface $item): ItemInterface
     {
@@ -22,7 +20,6 @@ class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInte
          * could be a batch
          * save to db
          * then batch
-         *
          */
         SaveItemToDocumentsTableJob::dispatch(
             $item->get("content"),
@@ -41,5 +38,7 @@ class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInte
                 'Tags',
             ]
         );
+
+        return $item;
     }
 }
