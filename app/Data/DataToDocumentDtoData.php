@@ -13,5 +13,6 @@ class DataToDocumentDtoData extends Data
         public mixed $external_id,
         public mixed $project_id,
         public array $meta_data
-    ) {}
+    ) {
+    }
 }

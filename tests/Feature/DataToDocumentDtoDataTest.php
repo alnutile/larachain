@@ -3,18 +3,18 @@
 namespace Tests\Feature;
 
 use App\Data\DataToDocumentDtoData;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Ingress\IngressTypeEnum;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class DataToDocumentDtoDataTest extends TestCase
 {
-
-    public function test_dto() {
+    public function test_dto()
+    {
         $dto = new DataToDocumentDtoData(
-            "foobar",
-            "foobaz",
+            'foobar',
+            IngressTypeEnum::WebScrape,
+            'foobaz',
             'project_id_'.Str::random(),
             [
                 'Maker',

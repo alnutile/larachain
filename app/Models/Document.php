@@ -6,7 +6,13 @@ use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Pgvector\Laravel\Vector;
 
+/**
+ * @property string $content
+ * @property int $token_count;
+ * @property array $embedding
+ */
 class Document extends Model
 {
     use HasFactory;
@@ -17,6 +23,7 @@ class Document extends Model
         'status' => StatusEnum::class,
         'type' => IngressTypeEnum::class,
         'meta_data' => 'array',
+        'embedding' => Vector::class,
     ];
 
     public function project()

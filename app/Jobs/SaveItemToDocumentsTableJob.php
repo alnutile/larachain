@@ -35,7 +35,7 @@ class SaveItemToDocumentsTableJob implements ShouldQueue
             'guid' => $this->dataToDocumentDtoData->external_id,
             'project_id' => $this->dataToDocumentDtoData->project_id,
             'meta_data' => $this->dataToDocumentDtoData->meta_data,
-            'content' => $this->dataToDocumentDtoData->content
+            'content' => $this->dataToDocumentDtoData->content,
         ]);
     }
 }

@@ -26,5 +26,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="OPENAI_API_KEY" value="foobar"/>
+        <env name="OPENAI_MOCK" value="true"/>
     </php>
 </phpunit>

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->longText('content')->nullable();
-            $table->integer('token_count')->nullable()->change();
+
+            $table->vector('embedding', 2048)->nullable()->change();
         });
     }
 

@@ -6,7 +6,6 @@ use App\Data\DataToDocumentDtoData;
 use App\Ingress\IngressTypeEnum;
 use App\Jobs\SaveItemToDocumentsTableJob;
 use App\Models\Project;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class SaveItemToDocumentsTableJobTest extends TestCase
@@ -18,9 +17,9 @@ class SaveItemToDocumentsTableJobTest extends TestCase
     {
         $project = Project::factory()->create();
         $dto = new DataToDocumentDtoData(
-            "foobar",
+            'foobar',
             IngressTypeEnum::WebScrape,
-            "foobaz",
+            'foobaz',
             $project->id,
             [
                 'Maker',
@@ -34,11 +33,10 @@ class SaveItemToDocumentsTableJobTest extends TestCase
                 'Label Text',
                 'Tags',
             ]);
-        $this->assertDatabaseCount("documents", 0);
+        $this->assertDatabaseCount('documents', 0);
         $job = new SaveItemToDocumentsTableJob($dto);
         $job->handle();
-        $this->assertDatabaseCount("documents", 1);
-
+        $this->assertDatabaseCount('documents', 1);
 
     }
 }
