@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Ingress\IngressTypeEnum;
+use App\Ingress\StatusEnum;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,23 @@ class DocumentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "token_count" => fake()->randomDigitNotZero(),
+            "status" => StatusEnum::Pending,
+            "type" => IngressTypeEnum::WebScrape,
+            "guid" => fake()->uuid(),
+            'project_id' => Project::factory(),
+            'meta_data' => [
+                'Maker',
+                'Culture',
+                'Title',
+                'Date Made',
+                'Materials',
+                'Measurements',
+                'Accession Number',
+                'Museum Collection',
+                'Label Text',
+                'Tags',
+            ],
         ];
     }
 }

@@ -35,3 +35,11 @@ sail artisan db:seed --class=UserSeeder
   * Embedding flow with vector 
   * UI to easily take in data to embed
   * a 💩load more
+
+
+## Migration Note
+
+```php 
+$table->integer('token_count');
+$table->vector('embedding', 1536)->nullable(); 
+```

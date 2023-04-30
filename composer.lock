@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d684047b16574a79eccff9edd6cd476d",
+    "content-hash": "38aa937d84ed5a8f93d1b8a9e5a38b6d",
     "packages": [
+        {
+            "name": "ankane/pgvector",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pgvector/pgvector-php.git",
+                "reference": "7be4ae12c3a4f1ae7a2a95940ed4d8ac85656596"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pgvector/pgvector-php/zipball/7be4ae12c3a4f1ae7a2a95940ed4d8ac85656596",
+                "reference": "7be4ae12c3a4f1ae7a2a95940ed4d8ac85656596",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.4"
+            },
+            "require-dev": {
+                "illuminate/database": ">= 9.0",
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pgvector\\Laravel\\PgvectorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pgvector\\": "src/",
+                    "Pgvector\\Laravel\\": "src/laravel/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Kane",
+                    "email": "andrew@ankane.org"
+                }
+            ],
+            "description": "pgvector support for PHP",
+            "support": {
+                "issues": "https://github.com/pgvector/pgvector-php/issues",
+                "source": "https://github.com/pgvector/pgvector-php"
+            },
+            "time": "2023-04-11T23:44:13+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "2.0.8",

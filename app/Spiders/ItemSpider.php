@@ -25,7 +25,7 @@ class ItemSpider extends BasicSpider
     ];
 
     public array $itemProcessors = [
-        //
+        ProcessPage::class
     ];
 
     public array $extensions = [
@@ -48,15 +48,6 @@ class ItemSpider extends BasicSpider
             'content' => $content,
             "uri" => $response->getUri()
         ];
-
-
-        //When can I dispatch this job
-        //  this will get list from openai
-        //  this will make embed from that list
-        //  this will then save to db as a component
-        //    save the url as well
-        //try catch so they do not fail
-        //
 
         yield $this->item($data);
     }
