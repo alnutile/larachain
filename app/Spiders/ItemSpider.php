@@ -42,13 +42,21 @@ class ItemSpider extends BasicSpider
      */
     public function parse(Response $response): Generator
     {
-        $topSection = $response->filterXPath("//html/body/div[1]/div[3]/table[2]")->html();
+        $content = $response->filterXPath("//html/body/div[1]/div[3]/table[2]")->html();
 
         $data = [
-            'topArea' => $topSection
+            'content' => $content,
+            "uri" => $response->getUri()
         ];
 
-        dd($topSection);
+
+        //When can I dispatch this job
+        //  this will get list from openai
+        //  this will make embed from that list
+        //  this will then save to db as a component
+        //    save the url as well
+        //try catch so they do not fail
+        //
 
         yield $this->item($data);
     }
