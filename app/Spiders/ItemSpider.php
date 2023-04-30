@@ -3,19 +3,15 @@
 namespace App\Spiders;
 
 use Generator;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
 use RoachPHP\Downloader\Middleware\RequestDeduplicationMiddleware;
 use RoachPHP\Extensions\LoggerExtension;
 use RoachPHP\Extensions\StatsCollectorExtension;
 use RoachPHP\Http\Response;
 use RoachPHP\Spider\BasicSpider;
 use RoachPHP\Spider\ParseResult;
-use Symfony\Component\DomCrawler\Crawler;
 
 class ItemSpider extends BasicSpider
 {
-
     public array $downloaderMiddleware = [
         RequestDeduplicationMiddleware::class,
     ];
@@ -25,7 +21,7 @@ class ItemSpider extends BasicSpider
     ];
 
     public array $itemProcessors = [
-        ProcessPage::class
+        ProcessPage::class,
     ];
 
     public array $extensions = [
@@ -42,15 +38,13 @@ class ItemSpider extends BasicSpider
      */
     public function parse(Response $response): Generator
     {
-        $content = $response->filterXPath("//html/body/div[1]/div[3]/table[2]")->html();
+        $content = $response->filterXPath('//html/body/div[1]/div[3]/table[2]')->html();
 
         $data = [
             'content' => $content,
-            "uri" => $response->getUri()
+            'uri' => $response->getUri(),
         ];
 
         yield $this->item($data);
     }
-
-
 }

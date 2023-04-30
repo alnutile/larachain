@@ -9,7 +9,6 @@ use RoachPHP\Support\Configurable;
 
 class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInterface
 {
-
     use Configurable;
 
     public function processItem(ItemInterface $item): ItemInterface
@@ -22,9 +21,9 @@ class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInte
          * then batch
          */
         SaveItemToDocumentsTableJob::dispatch(
-            $item->get("content"),
-            $item->get("uri"),
-            "project_id_" . Str::random(),
+            $item->get('content'),
+            $item->get('uri'),
+            'project_id_'.Str::random(),
             [
                 'Maker',
                 'Culture',

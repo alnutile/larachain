@@ -16,11 +16,11 @@ class Document extends Model
     protected $casts = [
         'status' => StatusEnum::class,
         'type' => IngressTypeEnum::class,
-        'meta_data' => 'array'
+        'meta_data' => 'array',
     ];
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
-
 }

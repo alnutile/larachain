@@ -20,10 +20,10 @@ class DocumentFactory extends Factory
     public function definition(): array
     {
         return [
-            "token_count" => fake()->randomDigitNotZero(),
-            "status" => StatusEnum::Pending,
-            "type" => IngressTypeEnum::WebScrape,
-            "guid" => fake()->uuid(),
+            'token_count' => fake()->randomDigitNotZero(),
+            'status' => StatusEnum::Pending,
+            'type' => IngressTypeEnum::WebScrape,
+            'guid' => fake()->uuid(),
             'project_id' => Project::factory(),
             'meta_data' => [
                 'Maker',

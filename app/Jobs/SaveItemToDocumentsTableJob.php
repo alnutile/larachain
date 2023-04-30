@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -21,8 +20,7 @@ class SaveItemToDocumentsTableJob implements ShouldQueue
         public mixed $unique_id,
         public mixed $project_id,
         public array $labels
-    )
-    {
+    ) {
         //
     }
 

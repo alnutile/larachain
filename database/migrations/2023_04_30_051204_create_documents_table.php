@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->integer('token_count');
-            $table->string("status")->default("pending"); //complete,running
-            $table->string("type")->default("web_scrape"); //pdf_scrape
-            $table->string("guid")->nullable();
+            $table->string('status')->default('pending'); //complete,running
+            $table->string('type')->default('web_scrape'); //pdf_scrape
+            $table->string('guid')->nullable();
             $table->foreignIdFor(Project::class);
-            $table->json("meta_data")->nullable();
+            $table->json('meta_data')->nullable();
             $table->vector('embedding', 1536)->nullable();
             $table->timestamps();
         });
