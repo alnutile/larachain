@@ -2,16 +2,15 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Document;
 use App\Models\Project;
-use Facades\App\Transformers\HtmlToTextTransformer;
+use Facades\App\Transformers\EmbedContent;
 use Illuminate\Console\Command;
 
-class LarachainTransform extends Command
+class LarachainTransformEmbed extends Command
 {
-    protected $signature = 'larachain:transform {project_id}';
+    protected $signature = 'larachain:transform:embed {project_id}';
 
-    protected $description = 'Using the project and related Transformers, it will know how to tranform it';
+    protected $description = 'This would be on a chain but for demo purposes I will run it here';
 
     public function handle()
     {
@@ -22,9 +21,8 @@ class LarachainTransform extends Command
          * we can just run those.
          * In this POC I will manually choose the transformers
          */
-
         $project = Project::findOrFail($this->argument("project_id"));
-        $this->info("Starting the Html to Text Process");
+        $this->info("Starting Embed Process");
 
         $documents = $project->documents;
 
@@ -34,11 +32,11 @@ class LarachainTransform extends Command
 
         foreach ($documents as $document) {
             try {
-                HtmlToTextTransformer::handle($document);
+                EmbedContent::handle($document);
                 $bar->advance();
             } catch (\Exception $e) {
-                logger("Error with transformation");
-                logger($e);
+                logger("Error with embedding");
+                logger($e->getMessage());
                 $bar->advance();
             }
         }

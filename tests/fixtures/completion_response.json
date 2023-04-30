@@ -1,0 +1,19 @@
+{
+    "id": "cmpl-71xqlCN3VKaEP1xAB18fSrHnrXpAX",
+    "object": "text_completion",
+    "created": 1680702747,
+    "model": "text-davinci-003",
+    "choices": [
+        {
+            "text": "Answer: Ah, it seems like the artists from that time period were really \"brushing\" up on their skills! \uD83D\uDD8C️\uD83D\uDE09 O'Keeffe, Georgia had many contemporaries like Sargent, John Singer and the mysterious \"Unknown\" artist. They were all dabbling in different styles and techniques, leaving a legacy that still \"paints\" a vivid picture of their time. If you're interested in more pun-tastic art history, just let me know! \uD83C\uDFA8\uD83D\uDE04",
+            "index": 0,
+            "logprobs": null,
+            "finishReason": "stop"
+        }
+    ],
+    "usage": {
+        "promptTokens": 57,
+        "completionTokens": 269,
+        "totalTokens": 326
+    }
+}

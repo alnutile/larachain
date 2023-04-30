@@ -87,3 +87,44 @@ It will dump a demo file `storage/pages`
   * Embedding flow with vector
   * UI to easily take in data to embed
   * a 💩load more
+
+
+
+### Demo 
+
+Getting data from https://museums.fivecolleges.edu/info.php?f=option7&type=browse&t=objects&s=abstract
+
+#### Get Data from SOURCE
+Using the Project 1 as our over all grouping of the data
+
+```bash 
+sail artisan larachain:source 1
+```
+#### Transform the content
+
+> Use OpenAI to parse the HTML for the data we want
+
+```bash 
+sail artisan larachain:transform 1
+```
+
+> Use OpenAI to embed the data to make it searchable
+
+```bash 
+sail artisan larachain:transform:embed 1
+```
+
+> Now we can ask a question keeping it focused around the 
+> data for project 1
+
+
+```bash 
+sail artisan larachain:question 1 "What other makers are around the time of O'Keeffe, Georgia" 
+```
+
+
+## Cheats
+
+```bash 
+sail artisan larachain:turn_question_into_embedding "What other makers are around the time of O'Keeffe, Georgia"
+```

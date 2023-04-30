@@ -50,10 +50,8 @@ class ClientWrapper
             'input' => $content,
         ]);
 
-        $embeddings = Arr::first($response->embeddings);
-
         return new EmbeddingsResponseDto(
-            $embeddings,
+            data_get($response, 'data.0.embedding'),
             $response->usage->totalTokens,
         );
 
@@ -112,7 +110,7 @@ EOD;
     public function completions($prompt): string
     {
         if (config('openai.mock')) {
-            $data = get_fixture('chapter_response.json');
+            $data = get_fixture('completion_response.json');
 
             return data_get($data, 'choices.0.text');
         }
