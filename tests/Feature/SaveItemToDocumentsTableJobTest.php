@@ -2,6 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Data\DataToDocumentDtoData;
+use App\Ingress\IngressTypeEnum;
+use App\Jobs\SaveItemToDocumentsTableJob;
+use App\Models\Project;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class SaveItemToDocumentsTableJobTest extends TestCase
@@ -11,8 +16,29 @@ class SaveItemToDocumentsTableJobTest extends TestCase
      */
     public function test_job_adds_to_db(): void
     {
-        //after this
-        // i need to get embed
-        // then all the rest
+        $project = Project::factory()->create();
+        $dto = new DataToDocumentDtoData(
+            "foobar",
+            IngressTypeEnum::WebScrape,
+            "foobaz",
+            $project->id,
+            [
+                'Maker',
+                'Culture',
+                'Title',
+                'Date Made',
+                'Materials',
+                'Measurements',
+                'Accession Number',
+                'Museum Collection',
+                'Label Text',
+                'Tags',
+            ]);
+        $this->assertDatabaseCount("documents", 0);
+        $job = new SaveItemToDocumentsTableJob($dto);
+        $job->handle();
+        $this->assertDatabaseCount("documents", 1);
+
+
     }
 }

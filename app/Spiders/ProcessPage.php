@@ -2,6 +2,7 @@
 
 namespace App\Spiders;
 
+use App\Data\DataToDocumentDtoData;
 use App\Jobs\SaveItemToDocumentsTableJob;
 use Illuminate\Support\Str;
 use RoachPHP\ItemPipeline\ItemInterface;
@@ -21,21 +22,22 @@ class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInte
          * then batch
          */
         SaveItemToDocumentsTableJob::dispatch(
-            $item->get('content'),
-            $item->get('uri'),
-            'project_id_'.Str::random(),
-            [
-                'Maker',
-                'Culture',
-                'Title',
-                'Date Made',
-                'Materials',
-                'Measurements',
-                'Accession Number',
-                'Museum Collection',
-                'Label Text',
-                'Tags',
-            ]
+            new DataToDocumentDtoData(
+                $item->get('content'),
+                $item->get('uri'),
+                'project_id_'.Str::random(),
+                [
+                    'Maker',
+                    'Culture',
+                    'Title',
+                    'Date Made',
+                    'Materials',
+                    'Measurements',
+                    'Accession Number',
+                    'Museum Collection',
+                    'Label Text',
+                    'Tags',
+                ])
         );
 
         return $item;

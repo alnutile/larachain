@@ -24,6 +24,7 @@ class DocumentFactory extends Factory
             'status' => StatusEnum::Pending,
             'type' => IngressTypeEnum::WebScrape,
             'guid' => fake()->uuid(),
+            'content' => fake()->sentence(10),
             'project_id' => Project::factory(),
             'meta_data' => [
                 'Maker',

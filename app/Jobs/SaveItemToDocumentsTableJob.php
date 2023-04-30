@@ -2,6 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Data\DataToDocumentDtoData;
+use App\Ingress\StatusEnum;
+use App\Models\Document;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -16,10 +19,7 @@ class SaveItemToDocumentsTableJob implements ShouldQueue
      * Create a new job instance.
      */
     public function __construct(
-        public string $content,
-        public mixed $unique_id,
-        public mixed $project_id,
-        public array $labels
+        public DataToDocumentDtoData $dataToDocumentDtoData
     ) {
         //
     }
@@ -29,6 +29,13 @@ class SaveItemToDocumentsTableJob implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        Document::create([
+            'status' => StatusEnum::Pending,
+            'type' => $this->dataToDocumentDtoData->type,
+            'guid' => $this->dataToDocumentDtoData->external_id,
+            'project_id' => $this->dataToDocumentDtoData->project_id,
+            'meta_data' => $this->dataToDocumentDtoData->meta_data,
+            'content' => $this->dataToDocumentDtoData->content
+        ]);
     }
 }
