@@ -54,11 +54,6 @@ EOL;
 
         $prompt = new PromptTemplate($input_variables, $template);
 
-//        $results = ClientWrapper::setTemperature(0.7)
-//            ->setTokens(1000)
-//            ->completions($prompt->format());
-//        $this->info($results);
-
         $stream = OpenAI::chat()->createStreamed([
             'model' => 'gpt-3.5-turbo',
             'temperature' => 0.7,
