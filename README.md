@@ -2,6 +2,8 @@
 
 ## Reading over LangChain
 
+[LaraChain.io](https://alfrednutile.notion.site/LaraChain-561a674345df4087b8902368ae89f90b)
+
 And just thinking how to make some of those flows work in a Laravel environment
 
 [https://github.com/hwchase17/langchain](https://github.com/hwchase17/langchain)

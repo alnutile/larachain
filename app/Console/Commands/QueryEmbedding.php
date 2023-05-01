@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Document;
-use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use OpenAI\Laravel\Facades\OpenAI;
@@ -71,8 +70,6 @@ EOL;
 
         $count = 0;
         $reply = '';
-
-
 
         foreach ($stream as $response) {
                 $step = $response->choices[0]->toArray();

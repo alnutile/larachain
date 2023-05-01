@@ -11,13 +11,16 @@
         "@vitejs/plugin-vue": "^4.0.0",
         "autoprefixer": "^10.4.7",
         "axios": "^1.1.2",
+        "laravel-echo": "^1.15.1",
         "laravel-vite-plugin": "^0.7.2",
         "postcss": "^8.4.14",
+        "pusher-js": "^8.0.2",
         "tailwindcss": "^3.1.0",
         "vite": "^4.0.0",
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "lodash": "^4.17.21",
         "vue-toastification": "^2.0.0-rc.5"
     }
 }

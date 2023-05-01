@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $team_id
+ * @property int $id
  */
 class Project extends Model
 {

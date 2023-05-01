@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Project;
+use Facades\App\Tools\ChatRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,11 +22,38 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function chat(Project $project)
+    {
+        $validated = request()->validate([
+            'question' => ['required', 'max:5000'],
+        ]);
+
+        try {
+            ChatRepository::handle($project, auth()->user(), $validated['question']);
+
+            return response()->json([], 200);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            logger($e);
+
+            return response()->json('Please try again later', 429);
+        }
+    }
+
     public function create()
     {
         return Inertia::render('Projects/Create', [
             'project' => new Project(),
         ]);
+    }
+
+    public function deleteMessages(Project $project)
+    {
+        Message::where('project_id', $project->id)
+            ->where('user_id', auth()->user()->id)
+            ->delete();
+
+        return response('', 200);
     }
 
     public function store(Request $request)
@@ -46,7 +75,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
     return Inertia::render('Projects/Show', [
-        'project' => $project,
+        'project' => $project->load('documents')->loadCount('documents'),
     ]);
 }
 

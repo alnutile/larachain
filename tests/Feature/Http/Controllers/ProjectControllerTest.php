@@ -5,6 +5,7 @@ namespace Tests\Feature\Http\Controllers;
 use App\Models\Project;
 use App\Models\Team;
 use App\Models\User;
+use Facades\App\Tools\ChatRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 use Laravel\Sanctum\Sanctum;
@@ -39,6 +40,18 @@ class ProjectControllerTest extends TestCase
                 ->component('Projects/Index')
                 ->has('projects.data', 3)
             );
+    }
+
+    public function test_chat_controller()
+    {
+        ChatRepository::shouldReceive('handle')->once();
+        $user = User::factory()->create();
+        $project = Project::factory()->create();
+        $this->actingAs($user)->post(route('projects.chat', [
+            'project' => $project->id,
+        ]), [
+            'question' => 'foobar',
+        ])->assertStatus(200);
     }
 
     public function test_show()

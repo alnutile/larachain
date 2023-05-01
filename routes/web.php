@@ -47,5 +47,9 @@ Route::middleware([
                 ->name('projects.edit');
             Route::put('/projects/{project}', 'update')
                 ->name('projects.update');
+            Route::post('/projects/{project}/chat', 'chat')
+                ->name('projects.chat');
+            Route::delete('/projects/{project}/messages', 'deleteMessages')
+                ->name('projects.messages.delete');
         });
 });
