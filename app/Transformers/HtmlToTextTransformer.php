@@ -11,11 +11,6 @@ class HtmlToTextTransformer
 {
     public function handle(Document $document): Document
     {
-        /**
-         * @NOTE I could use php to strip the HTML and save tokens 🤔
-         * guess I assume it gives it more context.
-         * At least that is what ChatGPT told me
-         */
         if ($document->meta_data) {
             $template = <<<'EOL'
 The is content in HTML that I would like you to grab the following
