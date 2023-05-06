@@ -58,14 +58,6 @@ jobs:
         run: |
           composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Prepare the application
-        run: |
-          php -r "file_exists('.env') || copy('.env.example', '.env');"
-          php artisan key:generate
-
-      - name: Clear Config
-        run: php artisan config:clear
-
       - name: PHP Code Style (phpcs)
         run: |
           composer fix
@@ -74,7 +66,7 @@ jobs:
         run: |
           composer stan
 
-      - name: Migrations
+      - name: Setup application
         run: |
           sudo cp .env.github .env
           php artisan storage:link
