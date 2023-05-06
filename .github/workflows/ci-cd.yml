@@ -2,26 +2,26 @@ name: CI-CD
 
 on: [push]
 
-# Thanks to https://github.com/shivammathur/setup-php/blob/master/examples/laravel-mysql.yml
 jobs:
   ci:
     runs-on: ubuntu-latest
     env:
-      DB_DATABASE: test
-      DB_USERNAME: root
-      DB_PASSWORD: password
       APP_ENV: testing
       BROADCAST_DRIVER: log
     services:
-      mysql:
-        image: mysql:5.7
+      database:
+        image: ankane/pgvector:latest
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: root
+          POSTGRES_DB: testing
         ports:
-          - 3306/tcp
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     strategy:
       fail-fast: false
       matrix:
@@ -34,11 +34,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpmd
-          extensions: mbstring, dom, fileinfo, mysql, grpc
+          extensions: mbstring, dom, fileinfo, grpc
           coverage: xdebug #optional
-
-      - name: Start mysql service
-        run: sudo /etc/init.d/mysql start
 
       - name: Get composer cache directory
         id: composer-cache
@@ -57,14 +54,6 @@ jobs:
         run: |
           composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Prepare the application
-        run: |
-          php -r "file_exists('.env') || copy('.env.example', '.env');"
-          php artisan key:generate
-
-      - name: Clear Config
-        run: php artisan config:clear
-
       - name: PHP Code Style (phpcs)
         run: |
           composer fix
@@ -73,17 +62,15 @@ jobs:
         run: |
           composer stan
 
-      - name: Migrations
+      - name: Setup application
         run: |
-          sudo cp .env.github .env
+          cp .env.github .env
           php artisan storage:link
 
       - name: Test with phpunit
         run: |
           npm install && npm run build
           XDEBUG_MODE=coverage php artisan test --coverage  --min=50
-        env:
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
 
 #  cd:
 #    runs-on: ubuntu-latest
