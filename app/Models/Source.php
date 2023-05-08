@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property array|null $meta_data
  * @property int $project_id
  * @property int $order
- * @property string $type
+ * @property SourceTypeEnum $type
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
@@ -37,12 +37,13 @@ class Source extends Model
     /**
      * @throws SourceTypeMissingException
      */
-    public function run() {
+    public function run()
+    {
         $statusType = $this->type->label();
-        $sourceTypeFile = sprintf("%s.php", $statusType);
+        $sourceTypeFile = sprintf('%s.php', $statusType);
         try {
             app("App\Source\Types\\".$statusType, [
-                'source' => $this
+                'source' => $this,
             ])->handle();
         } catch (\Exception $e) {
             logger($e);

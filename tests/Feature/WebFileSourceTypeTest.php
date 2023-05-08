@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Source;
 use App\Source\Types\WebFile;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
@@ -13,8 +11,8 @@ use Tests\TestCase;
 
 class WebFileSourceTypeTest extends TestCase
 {
-
-    public function test_gets_file() {
+    public function test_gets_file()
+    {
         $source = Source::factory()->webFileMetaData()->create();
 
         Storage::fake('projects');
@@ -24,7 +22,7 @@ class WebFileSourceTypeTest extends TestCase
 
         // Fake the file_get_contents function to return the test file contents
         Http::fake([
-            'wikipedia.com/*' => Http::response("foo", 200)
+            'wikipedia.com/*' => Http::response('foo', 200),
         ]);
 
         $webFileSourceType->handle();
@@ -32,9 +30,8 @@ class WebFileSourceTypeTest extends TestCase
         ///var/www/html/storage/projects/1/source/1/foo.pdf
         ///var/www/html/storage/projects/1/source/1/foo.pdf
         Storage::disk('projects')->assertExists(
-            sprintf("%d/sources/%d/%s",
+            sprintf('%d/sources/%d/%s',
             $source->project_id, $source->id, $fileName));
-
 
     }
 

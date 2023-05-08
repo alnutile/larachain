@@ -10,7 +10,7 @@ enum SourceTypeEnum: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             static::WebFile => 'WebFile',
             static::Web => 'Web',
             static::S3Dir => 'S3Dir',

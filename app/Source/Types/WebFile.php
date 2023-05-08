@@ -3,25 +3,22 @@
 namespace App\Source\Types;
 
 use App\Exceptions\SourceMissingRequiredMetaDataException;
-use App\Models\Source;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class WebFile extends BaseSourceType
 {
-
     public function handle()
     {
-        $url = data_get($this->source->meta_data, "url");
+        $url = data_get($this->source->meta_data, 'url');
 
-        $fileName = str($url)->afterLast("/");
+        $fileName = str($url)->afterLast('/');
 
-        if(!$url) {
+        if (! $url) {
             throw new SourceMissingRequiredMetaDataException();
         }
 
         $fileContents = Http::get($url)->body();
-
 
         Storage::disk('projects')->put($this->getPath($fileName), $fileContents);
 
@@ -29,8 +26,9 @@ class WebFile extends BaseSourceType
 
     }
 
-    protected function getPath($fileName) {
-        return sprintf("%d/sources/%d/%s",
+    protected function getPath($fileName)
+    {
+        return sprintf('%d/sources/%d/%s',
         $this->source->project_id, $this->source->id, $fileName);
     }
 }

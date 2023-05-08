@@ -6,7 +6,6 @@ use App\Models\Source;
 
 abstract class BaseSourceType
 {
-
     protected Source $source;
 
     public function __construct(Source $source)
