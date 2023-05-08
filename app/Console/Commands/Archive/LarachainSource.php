@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Archive;
 
 use App\Spiders\CollectionSpider;
 use Illuminate\Console\Command;

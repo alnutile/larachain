@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Archive;
 
 use App\Models\Project;
 use Facades\App\Transformers\HtmlToTextTransformer;
