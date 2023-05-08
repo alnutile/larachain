@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Document;
 use App\Models\Source;
+use App\Models\Transformer;
 use App\Transformers\Types\PdfTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
@@ -54,21 +55,22 @@ class PdfTransformerTest extends TestCase
 
     public function test_gets_data_from_pdf()
     {
-
+        $transformerModel = Transformer::factory()->create();
         $this->assertDatabaseCount('document_chunks', 0);
         $transformer = new PdfTransformer($this->document);
-        $transformer->handle();
+        $transformer->handle($transformerModel);
         $this->assertDatabaseCount('document_chunks', 10);
 
     }
 
     public function test_does_not_repeat()
     {
+        $transformerModel = Transformer::factory()->create();
         $this->assertDatabaseCount('document_chunks', 0);
         $transformer = new PdfTransformer($this->document);
-        $transformer->handle();
+        $transformer->handle($transformerModel);
         $this->assertDatabaseCount('document_chunks', 10);
-        $transformer->handle();
+        $transformer->handle($transformerModel);
         $this->assertDatabaseCount('document_chunks', 10);
     }
 }

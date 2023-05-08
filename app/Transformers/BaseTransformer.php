@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Models\Document;
+use App\Models\Transformer;
 
 abstract class BaseTransformer
 {
@@ -10,5 +11,5 @@ abstract class BaseTransformer
     {
     }
 
-    abstract public function handle(): Document;
+    abstract public function handle(Transformer $transformer): Document;
 }

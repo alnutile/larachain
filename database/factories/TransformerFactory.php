@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class TransformerFactory extends Factory
         return [
             'order' => fake()->randomDigitNotZero(),
             'prompt_token' => [],
+            'type' => TransformerTypeEnum::PdfTransformer,
             'project_id' => Project::factory(),
         ];
     }
