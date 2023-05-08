@@ -29,6 +29,11 @@ class Project extends Model
         return $this->hasManyThrough(Document::class, Source::class);
     }
 
+    public function transformers()
+    {
+        return $this->hasMany(Transformer::class)->orderBy('order');
+    }
+
     public function sources()
     {
         return $this->hasMany(Source::class)->orderBy('order');
