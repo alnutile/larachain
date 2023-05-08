@@ -2,14 +2,16 @@
 
 namespace App\Source\Types;
 
+use App\Data\DataToDocumentDtoData;
 use App\Exceptions\SourceMissingRequiredMetaDataException;
 use App\Models\Document;
+use App\Source\Dtos\SourceToDocumentDto;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class WebFile extends BaseSourceType
 {
-    public function handle() : Document
+    public function handle()
     {
         $url = data_get($this->source->meta_data, 'url');
 
@@ -23,7 +25,13 @@ class WebFile extends BaseSourceType
 
         Storage::disk('projects')->put($this->getPath($fileName), $fileContents);
 
-        return true;
+        $dto = SourceToDocumentDto::from([
+            null,
+            $fileName,
+            $this->source->id
+        ]);
+
+
 
     }
 

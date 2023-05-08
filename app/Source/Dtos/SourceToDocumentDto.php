@@ -8,10 +8,9 @@ use Spatie\LaravelData\Data;
 class SourceToDocumentDto extends Data
 {
     public function __construct(
-        public string $content,
-        public IngressTypeEnum $type,
+        public mixed $content,
         public mixed $external_id,
-        public mixed $project_id
+        public mixed $source_id
     ) {
     }
 }

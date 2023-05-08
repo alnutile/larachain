@@ -13,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->dropColumn("project_id");
+            $table->dropColumn('project_id');
             $table->foreignIdFor(Source::class);
-            $table->longText("original_content")->nullable();
+            $table->longText('original_content')->nullable();
         });
     }
 

@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
-use App\Models\Project;
 use App\Models\Source;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
