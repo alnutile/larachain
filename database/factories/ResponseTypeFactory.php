@@ -35,6 +35,15 @@ class ResponseTypeFactory extends Factory
         });
     }
 
+    public function chatUi()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::ChatUi,
+            ];
+        });
+    }
+
     public function apiTranformer()
     {
         return $this->state(function (array $attributes) {
