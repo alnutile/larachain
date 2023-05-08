@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class MessageFactory extends Factory
 {
+    use HasEmbedDataTrait;
+
     /**
      * Define the model's default state.
      *
@@ -23,6 +25,8 @@ class MessageFactory extends Factory
             'content' => fake()->sentence(4, true),
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
+            'token_count' => fake()->randomDigitNotZero(),
         ];
     }
+
 }

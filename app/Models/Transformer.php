@@ -39,6 +39,9 @@ class Transformer extends Model
     public function run()
     {
         try {
+            /**
+             * @TODO move this to a queue
+             */
             $transformerType = $this->type->label();
 
             foreach ($this->project->documents as $document) {

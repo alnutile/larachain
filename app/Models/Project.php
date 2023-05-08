@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $updated_at
  *
  * @property Collection $documents
+ * @property Collection $response_types
  */
 class Project extends Model
 {
@@ -40,5 +41,10 @@ class Project extends Model
     public function sources()
     {
         return $this->hasMany(Source::class)->orderBy('order');
+    }
+
+    public function response_types()
+    {
+        return $this->hasMany(ResponseType::class)->orderBy('order');
     }
 }

@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DocumentChunkFactory extends Factory
 {
+    use HasEmbedDataTrait;
+
     /**
      * Define the model's default state.
      *
@@ -24,4 +26,7 @@ class DocumentChunkFactory extends Factory
             'document_id' => Document::factory(),
         ];
     }
+
+
+
 }

@@ -9,10 +9,12 @@ class MessageTest extends TestCase
 {
     public function test_message_factory()
     {
-        $model = Message::factory()->create();
+        $model = Message::factory()->withEmbedData()->create();
         $this->assertNotNull($model->user->id);
+        $this->assertNotNull($model->embedding);
         $this->assertNotNull($model->project->id);
         $this->assertNotNull($model->user->messages->first()->id);
+
 
     }
 }
