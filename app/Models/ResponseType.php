@@ -41,7 +41,6 @@ class ResponseType extends Model
     {
         try {
 
-
             $message = new Message([
                 'role' => 'user',
                 'content' => $request,

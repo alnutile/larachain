@@ -4,7 +4,6 @@ namespace Tests\Feature\Models;
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
-use App\Models\Message;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
