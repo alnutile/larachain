@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Document;
-use App\Models\Source;
 use App\Models\Transformer;
 use App\Transformers\Types\PdfTransformer;
 use Illuminate\Support\Facades\File;
@@ -11,8 +9,6 @@ use Tests\TestCase;
 
 class PdfTransformerTest extends TestCase
 {
-
-
     use SharedSetupForPdfFile;
 
     protected function tearDown(): void

@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Exceptions\SourceTypeMissingException;
 use App\Exceptions\TranformerTypeMissingException;
-use App\Source\Types\BaseSourceType;
 use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Collection\Collection;
 
 /**
  * @property int $id;
@@ -27,7 +25,7 @@ class Transformer extends Model
 
     protected $casts = [
         'prompt_token' => 'encrypted:array',
-        'type' => TransformerTypeEnum::class
+        'type' => TransformerTypeEnum::class,
     ];
 
     public function project()
@@ -43,7 +41,7 @@ class Transformer extends Model
         try {
             $transformerType = $this->type->label();
 
-            foreach($this->project->documents as $document) {
+            foreach ($this->project->documents as $document) {
                 $transformerType = app("App\Transformers\Types\\".$transformerType, [
                     'document' => $document,
                 ]);

@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\Project;
-use App\Models\Source;
 use App\Models\Transformer;
 use App\Transformers\TransformerTypeEnum;
 use Tests\Feature\SharedSetupForPdfFile;
@@ -11,7 +9,6 @@ use Tests\TestCase;
 
 class TransformerTest extends TestCase
 {
-
     use SharedSetupForPdfFile;
 
     public function test_transformer_factory()
@@ -22,10 +19,11 @@ class TransformerTest extends TestCase
         $this->assertEquals(TransformerTypeEnum::PdfTransformer, $model->type);
     }
 
-    public function test_runs_transformers() {
+    public function test_runs_transformers()
+    {
 
         $model = Transformer::factory()->pdfTranformer()->create([
-            'project_id' => $this->source->project_id
+            'project_id' => $this->source->project_id,
         ]);
         $this->assertDatabaseCount('document_chunks', 0);
         $model->run();

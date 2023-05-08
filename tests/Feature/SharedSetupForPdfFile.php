@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 trait SharedSetupForPdfFile
 {
     public Document $document;
+
     public Source $source;
 
     protected function setUp(): void

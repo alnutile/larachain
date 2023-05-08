@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Project;
-use App\Source\SourceTypeEnum;
 use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

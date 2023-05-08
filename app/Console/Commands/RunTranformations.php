@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Project;
 use App\Models\Transformer;
 use Illuminate\Console\Command;
 
@@ -20,16 +19,25 @@ class RunTranformations extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Run all the transformations related to a project';
 
     public function handle()
     {
-        $transformations = Transformer::where("project_id", $this->argument("project_id"))->get();
+        $transformations = Transformer::where('project_id', $this->argument('project_id'))->get();
 
-        $this->info("Going to run " . count($transformations) . " transformations");
+        $this->info('Going to run '.count($transformations).' transformations');
 
-        foreach($transformations as $transformation) {
-
+        foreach ($transformations as $transformation) {
+            try {
+                $this->info('Running '.$transformation->id);
+                $transformation->run();
+                $this->info('Done running '.$transformation->id);
+            } catch (\Exception $e) {
+                logger('Error running '.$transformation->id);
+                logger($e->getMessage());
+            }
         }
+
+        $this->info('DONE');
     }
 }

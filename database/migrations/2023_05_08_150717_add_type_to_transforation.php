@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transformers', function (Blueprint $table) {
-            $table->string("type")->default(TransformerTypeEnum::PdfTransformer->value);
+            $table->string('type')->default(TransformerTypeEnum::PdfTransformer->value);
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transformers', function (Blueprint $table) {
-            $table->dropColumn("type");
+            $table->dropColumn('type');
         });
     }
 };
