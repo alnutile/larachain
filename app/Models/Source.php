@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\SourceTypeMissingException;
 use App\Source\SourceTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,5 +32,22 @@ class Source extends Model
     protected function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * @throws SourceTypeMissingException
+     */
+    public function run() {
+        $statusType = $this->type->label();
+        $sourceTypeFile = sprintf("%s.php", $statusType);
+        try {
+            app("App\Source\Types\\".$statusType, [
+                'source' => $this
+            ])->handle();
+        } catch (\Exception $e) {
+            logger($e);
+            throw new SourceTypeMissingException();
+        }
+
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Feature\Models;
 
 use App\Models\Source;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class SourceTest extends TestCase
@@ -20,5 +21,14 @@ class SourceTest extends TestCase
     {
         $model = Source::factory()->create();
         $this->assertNotNull($model->project->sources()->first()->id);
+    }
+
+    public function test_run_source_type() {
+        Http::fake();
+        $source = Source::factory()->webFileMetaData()->create();
+
+        $source->run();
+        Http::assertSentCount(1);
+
     }
 }

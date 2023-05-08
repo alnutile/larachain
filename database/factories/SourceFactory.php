@@ -41,8 +41,9 @@ class SourceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
+                'type' => SourceTypeEnum::WebFile,
                 'meta_data' => [
-                    'url' => 'https://foo.bar/foo.pdf',
+                    'url' => 'https://wikipedia.com/foo.pdf',
                     'username' => 'foo',
                     'password' => 'bar',
                     'auth' => 'basic',
