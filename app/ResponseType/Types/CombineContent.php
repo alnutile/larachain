@@ -5,7 +5,6 @@ namespace App\ResponseType\Types;
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
-use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Illuminate\Support\Arr;
 
 class CombineContent extends BaseResponseType

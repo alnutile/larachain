@@ -82,7 +82,6 @@ class ResponseTypeTest extends TestCase
             'order' => 4,
         ]);
 
-
         $dto = new EmbeddingsResponseDto(
             data_get($embeddings, 'data.0.embedding'),
             1000
