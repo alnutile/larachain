@@ -12,6 +12,7 @@ use Pgvector\Laravel\Vector;
  * @property int $project_id
  * @property int $user_id
  * @property string $content
+ * @property array $embedding
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  *

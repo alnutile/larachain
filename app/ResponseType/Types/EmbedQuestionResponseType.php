@@ -12,16 +12,13 @@ class EmbedQuestionResponseType extends BaseResponseType
 
     function handle(ResponseType $responseType): ResponseDto
     {
-        //Get the question from message
         $results = ClientWrapper::getEmbedding($this->response_dto->message->content);
-        //turn it into embedding
-        //save it to a new ???
-        //make a new dto
-        //$this->response_dto->message->embedding =  $results->embedding;
+        $this->response_dto->message->embedding =  $results->embedding;
+        $this->response_dto->message->save();
 
         return ResponseDto::from(
             [
-                'message' => $this->response_dto->message,
+                'message' => $this->response_dto->message->refresh(),
                 'response' => null
             ]
         );

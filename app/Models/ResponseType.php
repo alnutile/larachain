@@ -41,8 +41,6 @@ class ResponseType extends Model
      */
     public function run(User $user, string $request)
     {
-        //make a message
-        //make a responseLinkDto
         try {
             /**
              * @TODO move this to a queue
