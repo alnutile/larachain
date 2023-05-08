@@ -26,6 +26,10 @@ class WebFileTest extends TestCase
 
         Http::assertSentCount(1);
 
+        $to = sprintf('%d/sources/%d/foo.pdf',
+            $source->project_id, $source->id);
+        Storage::disk('projects')->assertExists($to);
+
     }
 
     public function test_makes_document()

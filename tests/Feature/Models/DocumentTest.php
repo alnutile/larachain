@@ -3,6 +3,7 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Document;
+use App\Models\Source;
 use Tests\TestCase;
 
 class DocumentTest extends TestCase
@@ -21,5 +22,19 @@ class DocumentTest extends TestCase
         $model = Document::factory()->create();
 
         $this->assertNotNull($model->project->id);
+    }
+
+    public function test_path_to_file()
+    {
+        $source = Source::factory()->webFileMetaData()->create();
+        $model = Document::factory()->create([
+            'source_id' => $source->id,
+        ]);
+        $expected = sprintf(
+            storage_path('app/projects/%d/sources/%d/%s'),
+            $source->project_id,
+            $source->id,
+            $model->guid);
+        $this->assertEquals($expected, $model->pathToFile());
     }
 }
