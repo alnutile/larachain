@@ -133,6 +133,7 @@ EOL;
         $questionEmbedded = ClientWrapper::getEmbedding($question);
         $query = new Vector($questionEmbedded->embedding);
 
+        /** @phpstan-ignore-next-line */
         return Document::query()
             ->whereHas('source', function ($query) {
                 $query->where('project_id', $this->project->id);

@@ -2,7 +2,7 @@
 
 namespace App\Spiders;
 
-use App\Models\Project;
+use App\Models\Source;
 use Generator;
 use Illuminate\Support\Collection;
 use RoachPHP\Http\Request;
@@ -31,7 +31,7 @@ class CollectionSpider extends ItemSpider
 
     public function parseOverview(Response $response): Generator
     {
-        $this->project = Project::findOrFail($this->context['project_id']);
+        $this->source = Source::findOrFail($this->context['source_id']);
 
         $this->links = collect([]);
 

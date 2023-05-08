@@ -2,7 +2,6 @@
 
 namespace App\Data;
 
-use App\Ingress\IngressTypeEnum;
 use Spatie\LaravelData\Data;
 
 class DataToDocumentDtoData extends Data

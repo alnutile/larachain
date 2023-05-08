@@ -3,7 +3,6 @@
 namespace App\Spiders;
 
 use App\Data\DataToDocumentDtoData;
-use App\Ingress\IngressTypeEnum;
 use App\Jobs\SaveItemToDocumentsTableJob;
 use RoachPHP\ItemPipeline\ItemInterface;
 use RoachPHP\Support\Configurable;
@@ -24,21 +23,8 @@ class ProcessPage implements \RoachPHP\ItemPipeline\Processors\ItemProcessorInte
         SaveItemToDocumentsTableJob::dispatch(
             new DataToDocumentDtoData(
                 $item->get('content'),
-                IngressTypeEnum::WebScrape,
                 $item->get('uri'),
-                $item->get('project_id'),
-                [
-                    'Maker',
-                    'Culture',
-                    'Title',
-                    'Date Made',
-                    'Materials',
-                    'Measurements',
-                    'Accession Number',
-                    'Museum Collection',
-                    'Label Text',
-                    'Tags',
-                ])
+                $item->get('source_id'))
         );
 
         return $item;

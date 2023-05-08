@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Project;
+use App\Models\Source;
 use App\Spiders\CollectionSpider;
 use Illuminate\Support\Facades\Queue;
 use RoachPHP\Roach;
@@ -20,9 +20,9 @@ class CollectionSpiderTest extends TestCase
     {
         Queue::fake();
 
-        $project = Project::factory()->create();
+        $source = Source::factory()->create();
         $this->artisan('larachain:source', [
-            'project_id' => $project->id,
+            'source_id' => $source->id,
         ]);
         $this->runner->assertRunWasStarted(CollectionSpider::class);
     }

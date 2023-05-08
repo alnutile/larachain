@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use App\Data\DataToDocumentDtoData;
-use App\Ingress\IngressTypeEnum;
 use App\Jobs\SaveItemToDocumentsTableJob;
-use App\Models\Project;
 use App\Models\Source;
 use Tests\TestCase;
 

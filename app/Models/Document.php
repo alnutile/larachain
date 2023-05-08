@@ -6,6 +6,8 @@ use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Pgvector\Laravel\Vector;
 
 /**
@@ -13,6 +15,9 @@ use Pgvector\Laravel\Vector;
  * @property int $token_count;
  * @property array $embedding
  * @property array $meta_data
+ *
+ * @method Source source()
+ * @method Project project()
  */
 class Document extends Model
 {

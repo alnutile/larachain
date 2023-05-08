@@ -8,7 +8,7 @@ use RoachPHP\Roach;
 
 class LarachainSource extends Command
 {
-    protected $signature = 'larachain:source {project_id}';
+    protected $signature = 'larachain:source {source_id}';
 
     protected $description = 'Using the project it will know how to get the source data';
 
@@ -22,7 +22,7 @@ class LarachainSource extends Command
          */
         Roach::startSpider(
             CollectionSpider::class,
-            context: ['project_id' => $this->argument('project_id')]
+            context: ['source_id' => $this->argument('source_id')]
         );
     }
 }

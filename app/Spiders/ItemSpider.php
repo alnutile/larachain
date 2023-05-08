@@ -2,7 +2,7 @@
 
 namespace App\Spiders;
 
-use App\Models\Project;
+use App\Models\Source;
 use Generator;
 use RoachPHP\Downloader\Middleware\RequestDeduplicationMiddleware;
 use RoachPHP\Extensions\LoggerExtension;
@@ -13,7 +13,7 @@ use RoachPHP\Spider\ParseResult;
 
 class ItemSpider extends BasicSpider
 {
-    public Project $project;
+    public Source $source;
 
     public array $downloaderMiddleware = [
         RequestDeduplicationMiddleware::class,
@@ -46,7 +46,7 @@ class ItemSpider extends BasicSpider
         $data = [
             'content' => $content,
             'uri' => $response->getUri(),
-            'project_id' => $this->project->id,
+            'project_id' => $this->source->id,
         ];
 
         yield $this->item($data);
