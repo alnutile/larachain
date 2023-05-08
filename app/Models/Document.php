@@ -27,8 +27,20 @@ class Document extends Model
         'embedding' => Vector::class,
     ];
 
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
+
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->hasOneThrough(
+            Project::class,
+            Source::class,
+            'project_id', // Foreign key on the sources table...
+            'id', // Foreign key on the projects table...
+            'source_id', // Local key on the documents table...
+            'id' // Local key on the sources table...
+        );
     }
 }

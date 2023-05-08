@@ -3,12 +3,13 @@
 namespace App\Source\Types;
 
 use App\Exceptions\SourceMissingRequiredMetaDataException;
+use App\Models\Document;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class WebFile extends BaseSourceType
 {
-    public function handle()
+    public function handle() : Document
     {
         $url = data_get($this->source->meta_data, 'url');
 
