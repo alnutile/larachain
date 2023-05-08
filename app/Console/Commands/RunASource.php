@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Source;
 use Illuminate\Console\Command;
 
 class RunASource extends Command
@@ -22,6 +23,9 @@ class RunASource extends Command
 
     public function handle()
     {
-        //
+        $source = Source::find($this->argument("source_id"));
+        $this->info("Running");
+        $source->run();
+        $this->info("Complete");
     }
 }

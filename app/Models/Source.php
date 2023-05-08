@@ -40,8 +40,8 @@ class Source extends Model
     public function run()
     {
         $statusType = $this->type->label();
-        $sourceTypeFile = sprintf('%s.php', $statusType);
         try {
+            //@TODO make this check in uses BaseSourceType
             app("App\Source\Types\\".$statusType, [
                 'source' => $this,
             ])->handle();
@@ -49,6 +49,5 @@ class Source extends Model
             logger($e);
             throw new SourceTypeMissingException();
         }
-
     }
 }
