@@ -48,4 +48,8 @@ class Document extends Model
             'id' // Local key on the sources table...
         );
     }
+
+    public function document_chunks() {
+        return $this->hasMany(DocumentChunk::class);
+    }
 }
