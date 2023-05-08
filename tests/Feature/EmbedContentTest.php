@@ -26,6 +26,5 @@ class EmbedContentTest extends TestCase
         $embedder = new EmbedContent();
         $documentUpdate = $embedder->handle($document);
         $this->assertNotEmpty($documentUpdate->embedding);
-
     }
 }

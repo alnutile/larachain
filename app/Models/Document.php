@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
 use App\Source\SourceTypeEnum;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
@@ -17,9 +18,11 @@ use Pgvector\Laravel\Vector;
  * @property array $meta_data
  * @property Source $source
  * @property Project $project
+ * @property Collection $document_chunks
  *
  * @method Source source()
  * @method Project project()
+ * @method Collection document_chunks()
  */
 class Document extends Model
 {

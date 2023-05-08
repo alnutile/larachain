@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Document;
 use App\Models\Source;
-use App\Transformers\Types\PdfTransformer;
+use App\Transformers\Types\EmbeddTranformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -30,7 +30,7 @@ class PdfTransformerTest extends TestCase
         );
 
         $this->assertDatabaseCount('document_chunks', 0);
-        $transformer = new PdfTransformer($document);
+        $transformer = new EmbeddTranformer($document);
         $transformer->handle();
         $this->assertDatabaseCount('document_chunks', 10);
 
@@ -55,7 +55,7 @@ class PdfTransformerTest extends TestCase
         );
 
         $this->assertDatabaseCount('document_chunks', 0);
-        $transformer = new PdfTransformer($document);
+        $transformer = new EmbeddTranformer($document);
         $transformer->handle();
         $this->assertDatabaseCount('document_chunks', 10);
         $transformer->handle();
