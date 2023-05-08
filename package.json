@@ -20,6 +20,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "chokidar": "^3.5.3",
         "lodash": "^4.17.21",
         "vue-toastification": "^2.0.0-rc.5"
     }
