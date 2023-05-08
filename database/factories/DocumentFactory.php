@@ -29,6 +29,4 @@ class DocumentFactory extends Factory
             'meta_data' => [],
         ];
     }
-
-
 }

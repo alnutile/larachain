@@ -5,7 +5,6 @@ namespace Tests\Feature\Models;
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
 use App\Models\Message;
-use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\ResponseDto;
@@ -30,13 +29,13 @@ class ResponseTypeTest extends TestCase
     public function test_rt_run()
     {
         $user = User::factory()->create();
-        $request = "Foo bar";
+        $request = 'Foo bar';
 
         $embeddings = get_fixture('embedding_response.json');
 
         /** @var ResponseType $responseType */
         $responseType = ResponseType::factory()->create([
-            'type' => ResponseTypeEnum::EmbedQuestion
+            'type' => ResponseTypeEnum::EmbedQuestion,
         ]);
 
         $dto = new EmbeddingsResponseDto(
@@ -48,16 +47,16 @@ class ResponseTypeTest extends TestCase
             ->once()
             ->andReturn($dto);
 
-        $this->assertDatabaseCount("messages", 0);
+        $this->assertDatabaseCount('messages', 0);
         /** @var ResponseDto $results */
         $responseType->run($user, $request);
-        $this->assertDatabaseCount("messages", 1);
+        $this->assertDatabaseCount('messages', 1);
     }
 
     public function test_runs_embed_then_search()
     {
         $user = User::factory()->create();
-        $request = "Foo bar";
+        $request = 'Foo bar';
 
         $embeddings = get_fixture('embedding_response.json');
 
@@ -66,13 +65,13 @@ class ResponseTypeTest extends TestCase
         /** @var ResponseType $responseType */
         $responseType = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::EmbedQuestion,
-            'order' => 1
+            'order' => 1,
         ]);
 
         /** @var ResponseType $responseType */
         $responseType = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::VectorSearch,
-            'order' => 2
+            'order' => 2,
         ]);
 
         $dto = new EmbeddingsResponseDto(
@@ -83,10 +82,10 @@ class ResponseTypeTest extends TestCase
         ClientWrapper::shouldReceive('getEmbedding')
             ->once()
             ->andReturn($dto);
-        $this->assertDatabaseCount("messages", 0);
+        $this->assertDatabaseCount('messages', 0);
         /** @var ResponseDto $results */
         $results = $responseType->run($user, $request);
-        $this->assertDatabaseCount("messages", 2);
+        $this->assertDatabaseCount('messages', 2);
         $this->assertNotNull($results->response);
         $this->assertEquals(1, Message::whereRole('system')->count());
         $this->assertEquals(1, Message::whereRole('user')->count());

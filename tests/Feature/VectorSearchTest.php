@@ -9,14 +9,12 @@ use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\VectorSearch;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class VectorSearchTest extends TestCase
 {
-
-    public function test_search_vector() {
+    public function test_search_vector()
+    {
         Document::factory()->withEmbedData()->create();
 
         $project = Project::factory()->create();
@@ -27,7 +25,7 @@ class VectorSearchTest extends TestCase
         $message = Message::factory()->withEmbedData()->create();
         $dto = ResponseDto::from([
             'message' => $message,
-            'response' => null
+            'response' => null,
         ]);
 
         $vector = new VectorSearch($project, $dto);
