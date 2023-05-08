@@ -28,5 +28,4 @@ class MessageFactory extends Factory
             'token_count' => fake()->randomDigitNotZero(),
         ];
     }
-
 }

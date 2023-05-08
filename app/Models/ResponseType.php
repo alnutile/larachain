@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use App\Exceptions\ResponseTypeMissingException;
-use App\Exceptions\TranformerTypeMissingException;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
-use App\Transformers\BaseTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,14 +46,14 @@ class ResponseType extends Model
             $responseType = $this->type->label();
 
             $message = new Message([
-                'role' => "user",
-                "content" => $request,
+                'role' => 'user',
+                'content' => $request,
                 'user_id' => $user->id,
-                "project_id" => $this->project_id,
+                'project_id' => $this->project_id,
             ]);
 
             $dto = ResponseDto::from([
-               "message" => $message,
+                'message' => $message,
             ]);
 
             $this->currentResponseDto = $dto;
@@ -63,7 +61,7 @@ class ResponseType extends Model
             foreach ($this->project->response_types as $response_type_model) {
                 $responseType = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
-                    'response_dto' => $dto
+                    'response_dto' => $dto,
                 ]);
                 /** @var BaseResponseType $responseType */
                 $this->currentResponseDto = $responseType->handle($response_type_model);
@@ -73,5 +71,4 @@ class ResponseType extends Model
             throw new ResponseTypeMissingException();
         }
     }
-
 }

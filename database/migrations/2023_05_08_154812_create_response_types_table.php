@@ -2,7 +2,6 @@
 
 use App\Models\Project;
 use App\ResponseType\ResponseTypeEnum;
-use App\ResponseType\TransformerTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

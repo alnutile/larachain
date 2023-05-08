@@ -26,7 +26,4 @@ class DocumentChunkFactory extends Factory
             'document_id' => Document::factory(),
         ];
     }
-
-
-
 }

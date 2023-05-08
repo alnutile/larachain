@@ -7,7 +7,6 @@ use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Collection\Collection;
 
 /**
  * @property int $id;

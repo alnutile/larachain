@@ -15,6 +15,5 @@ class MessageTest extends TestCase
         $this->assertNotNull($model->project->id);
         $this->assertNotNull($model->user->messages->first()->id);
 
-
     }
 }

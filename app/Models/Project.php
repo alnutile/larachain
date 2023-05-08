@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $active
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- *
  * @property Collection $documents
  * @property Collection $response_types
  */

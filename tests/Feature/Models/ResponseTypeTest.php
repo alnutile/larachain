@@ -6,14 +6,14 @@ use App\Models\Project;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ResponseTypeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_factory_rt() {
+    public function test_factory_rt()
+    {
         $model = ResponseType::factory()->create();
         $this->assertEquals(ResponseTypeEnum::ChatUi, $model->type);
 
@@ -21,14 +21,14 @@ class ResponseTypeTest extends TestCase
         $this->assertNotNull($model->project->response_types->first()->id);
     }
 
-    public function test_rt_run() {
+    public function test_rt_run()
+    {
         $project = Project::factory()->create();
 
         $model = ResponseType::factory()->create([
-            "project_id" => $project->id,
-            "order" => 1
+            'project_id' => $project->id,
+            'order' => 1,
         ]);
-
 
     }
 }

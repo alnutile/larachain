@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Project;
 use App\ResponseType\ResponseTypeEnum;
-use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

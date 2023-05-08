@@ -9,14 +9,12 @@ use App\Models\ResponseType;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\EmbedQuestionResponseType;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class EmbedQuestionResponseTypeTest extends TestCase
 {
-
-    public function test_embeds_question() {
+    public function test_embeds_question()
+    {
         $embeddings = get_fixture('embedding_response.json');
 
         $responseType = ResponseType::factory()->create();

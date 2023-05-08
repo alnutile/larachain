@@ -15,7 +15,6 @@ use Pgvector\Laravel\Vector;
  * @property array $embedding
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- *
  * @property-read \App\Models\Project $project
  * @property-read \App\Models\User $user
  */

@@ -7,11 +7,9 @@ use Spatie\LaravelData\Data;
 
 class ResponseDto extends Data
 {
-
     public function __construct(
         public Message $message,
         public mixed $response
-    )
-    {
+    ) {
     }
 }
