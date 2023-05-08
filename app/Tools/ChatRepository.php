@@ -134,7 +134,9 @@ EOL;
         $query = new Vector($questionEmbedded->embedding);
 
         return Document::query()
-            ->where('project_id', $this->project->id)
+            ->whereHas('source', function ($query) {
+                $query->where('project_id', $this->project->id);
+            })
             ->selectRaw('embedding <-> ? as distance, content', [$query])
             ->orderByRaw('distance')
             ->get();

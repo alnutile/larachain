@@ -18,8 +18,6 @@ class WebFileTest extends TestCase
         Storage::fake('projects');
         $webFileSourceType = new WebFile($source);
 
-        $fileName = 'test.pdf';
-
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),
         ]);
@@ -36,8 +34,6 @@ class WebFileTest extends TestCase
 
         Storage::fake('projects');
         $webFileSourceType = new WebFile($source);
-
-        $fileName = 'test.pdf';
 
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),

@@ -31,10 +31,8 @@ class SaveItemToDocumentsTableJob implements ShouldQueue
     {
         Document::create([
             'status' => StatusEnum::Pending,
-            'type' => $this->dataToDocumentDtoData->type,
             'guid' => $this->dataToDocumentDtoData->external_id,
-            'project_id' => $this->dataToDocumentDtoData->project_id,
-            'meta_data' => $this->dataToDocumentDtoData->meta_data,
+            'source_id' => $this->dataToDocumentDtoData->source_id,
             'content' => $this->dataToDocumentDtoData->content,
         ]);
     }

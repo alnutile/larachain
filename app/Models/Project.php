@@ -26,7 +26,7 @@ class Project extends Model
 
     public function documents()
     {
-        return $this->hasMany(Document::class);
+        return $this->hasManyThrough(Document::class, Source::class);
     }
 
     public function sources()
