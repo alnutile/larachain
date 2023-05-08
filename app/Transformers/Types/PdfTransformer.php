@@ -16,5 +16,7 @@ class PdfTransformer extends BaseTransformer
         //get the file
         //get the content out of the file
         //create the document chunks
+
+        return $this->document;
     }
 }
