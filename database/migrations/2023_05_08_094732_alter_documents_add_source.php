@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn('project_id');
             $table->foreignIdFor(Source::class);
-            $table->longText('original_content')->nullable();
         });
     }
 

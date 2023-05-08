@@ -23,7 +23,7 @@ class RunASource extends Command
 
     public function handle()
     {
-        $source = Source::find($this->argument('source_id'));
+        $source = Source::findOrFail($this->argument('source_id'));
         $this->info('Running');
         $source->run();
         $this->info('Complete');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Exceptions\SourceTypeMissingException;
 use App\Source\SourceTypeEnum;
+use App\Source\Types\BaseSourceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,10 +43,13 @@ class Source extends Model
         $statusType = $this->type->label();
         try {
             //@TODO make this check in uses BaseSourceType
-            app("App\Source\Types\\".$statusType, [
+            $sourceType = app("App\Source\Types\\".$statusType, [
                 'source' => $this,
-            ])->handle();
+            ]);
+            /** @var BaseSourceType $sourceType */
+            $sourceType->handle();
         } catch (\Exception $e) {
+            //@TODO This exception needs to be more specific
             logger($e);
             throw new SourceTypeMissingException();
         }
