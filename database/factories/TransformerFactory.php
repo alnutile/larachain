@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Source\SourceTypeEnum;
 use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,5 +25,14 @@ class TransformerFactory extends Factory
             'type' => TransformerTypeEnum::PdfTransformer,
             'project_id' => Project::factory(),
         ];
+    }
+
+    public function pdfTranformer()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => TransformerTypeEnum::PdfTransformer,
+            ];
+        });
     }
 }

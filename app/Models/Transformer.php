@@ -3,11 +3,22 @@
 namespace App\Models;
 
 use App\Exceptions\SourceTypeMissingException;
+use App\Exceptions\TranformerTypeMissingException;
 use App\Source\Types\BaseSourceType;
+use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id;
+ * @property int $order;
+ * @property TransformerTypeEnum $type;
+ * @property Project $project;
+ *
+ * @method Project project()
+ */
 class Transformer extends Model
 {
     use HasFactory;
@@ -25,22 +36,23 @@ class Transformer extends Model
     }
 
     /**
-     * @throws SourceTypeMissingException
+     * @throws TranformerTypeMissingException
      */
     public function run()
     {
         try {
-            //@TODO make this check in uses BaseSourceType
             $transformerType = $this->type->label();
-            $transformerType = app("App\Transformers\Types\\".$transformerType, [
-                'document' => $this,
-            ]);
-            /** @var BaseSourceType $sourceType */
-            $sourceType->handle();
+
+            foreach($this->project->documents as $document) {
+                $transformerType = app("App\Transformers\Types\\".$transformerType, [
+                    'document' => $document,
+                ]);
+                /** @var BaseTransformer $transformerType */
+                $transformerType->handle($this);
+            }
         } catch (\Exception $e) {
-            //@TODO This exception needs to be more specific
             logger($e);
-            throw new SourceTypeMissingException();
+            throw new TranformerTypeMissingException();
         }
     }
 }
