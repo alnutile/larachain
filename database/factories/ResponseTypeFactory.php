@@ -26,6 +26,15 @@ class ResponseTypeFactory extends Factory
         ];
     }
 
+    public function vectorSearch()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::VectorSearch,
+            ];
+        });
+    }
+
     public function apiTranformer()
     {
         return $this->state(function (array $attributes) {

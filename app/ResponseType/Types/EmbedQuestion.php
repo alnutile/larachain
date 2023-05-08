@@ -7,7 +7,7 @@ use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 
-class EmbedQuestionResponseType extends BaseResponseType
+class EmbedQuestion extends BaseResponseType
 {
     public function handle(ResponseType $responseType): ResponseDto
     {

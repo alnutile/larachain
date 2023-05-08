@@ -7,11 +7,11 @@ use App\Models\Message;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseDto;
-use App\ResponseType\Types\EmbedQuestionResponseType;
+use App\ResponseType\Types\EmbedQuestion;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Tests\TestCase;
 
-class EmbedQuestionResponseTypeTest extends TestCase
+class EmbedQuestionTest extends TestCase
 {
     public function test_embeds_question()
     {
@@ -38,7 +38,7 @@ class EmbedQuestionResponseTypeTest extends TestCase
             'message' => $message,
         ]);
 
-        $embedRt = new EmbedQuestionResponseType($project, $dto);
+        $embedRt = new EmbedQuestion($project, $dto);
         $results = $embedRt->handle($responseType);
 
         $this->assertNotNull($results->message->embedding);

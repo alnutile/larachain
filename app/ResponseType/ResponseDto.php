@@ -3,6 +3,7 @@
 namespace App\ResponseType;
 
 use App\Models\Message;
+use App\Models\User;
 use Spatie\LaravelData\Data;
 
 class ResponseDto extends Data

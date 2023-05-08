@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DocumentFactory extends Factory
 {
+    use HasEmbedDataTrait;
+
     /**
      * Define the model's default state.
      *
@@ -28,15 +30,5 @@ class DocumentFactory extends Factory
         ];
     }
 
-    public function withEmbedData()
-    {
 
-        return $this->state(function (array $attributes) {
-            $embeddings = get_fixture('embedding_response.json');
-
-            return [
-                'embedding' => data_get($embeddings, 'data.0.embedding'),
-            ];
-        });
-    }
 }

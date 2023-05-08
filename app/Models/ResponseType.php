@@ -37,7 +37,7 @@ class ResponseType extends Model
     /**
      * @throws ResponseTypeMissingException
      */
-    public function run(User $user, string $request)
+    public function run(User $user, string $request) : ResponseDto
     {
         try {
             /**
@@ -53,7 +53,7 @@ class ResponseType extends Model
             ]);
 
             $dto = ResponseDto::from([
-                'message' => $message,
+                'message' => $message
             ]);
 
             $this->currentResponseDto = $dto;
@@ -61,11 +61,13 @@ class ResponseType extends Model
             foreach ($this->project->response_types as $response_type_model) {
                 $responseType = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
-                    'response_dto' => $dto,
+                    'response_dto' => $dto
                 ]);
                 /** @var BaseResponseType $responseType */
                 $this->currentResponseDto = $responseType->handle($response_type_model);
             }
+
+            return $this->currentResponseDto;
         } catch (\Exception $e) {
             logger($e);
             throw new ResponseTypeMissingException();

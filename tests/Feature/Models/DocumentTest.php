@@ -33,7 +33,7 @@ class DocumentTest extends TestCase
         $expected = sprintf(
             storage_path('app/projects/%d/sources/%d/%s'),
             $source->project_id,
-            $source->id,
+             $source->id,
             $model->guid);
         $this->assertEquals($expected, $model->pathToFile());
     }
