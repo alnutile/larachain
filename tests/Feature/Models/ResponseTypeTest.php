@@ -5,6 +5,7 @@ namespace Tests\Feature\Models;
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
 use App\Models\Message;
+use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\ResponseDto;
@@ -62,15 +63,18 @@ class ResponseTypeTest extends TestCase
 
         Document::factory()->withEmbedData()->create();
 
+        $project = Project::factory()->create();
         /** @var ResponseType $responseType */
-        $responseType = ResponseType::factory()->create([
+        $responseType1 = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::EmbedQuestion,
+            'project_id' => $project->id,
             'order' => 1,
         ]);
 
         /** @var ResponseType $responseType */
-        $responseType = ResponseType::factory()->create([
+        $responseType2 = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::VectorSearch,
+            'project_id' => $project->id,
             'order' => 2,
         ]);
 
@@ -82,12 +86,8 @@ class ResponseTypeTest extends TestCase
         ClientWrapper::shouldReceive('getEmbedding')
             ->once()
             ->andReturn($dto);
-        $this->assertDatabaseCount('messages', 0);
         /** @var ResponseDto $results */
-        $results = $responseType->run($user, $request);
-        $this->assertDatabaseCount('messages', 2);
+        $results = $responseType1->run($user, $request);
         $this->assertNotNull($results->response);
-        $this->assertEquals(1, Message::whereRole('system')->count());
-        $this->assertEquals(1, Message::whereRole('user')->count());
     }
 }

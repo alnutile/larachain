@@ -40,10 +40,7 @@ class ResponseType extends Model
     public function run(User $user, string $request): ResponseDto
     {
         try {
-            /**
-             * @TODO move this to a queue
-             */
-            $responseType = $this->type->label();
+
 
             $message = new Message([
                 'role' => 'user',
@@ -59,12 +56,13 @@ class ResponseType extends Model
             $this->currentResponseDto = $dto;
 
             foreach ($this->project->response_types as $response_type_model) {
-                $responseType = app("App\ResponseType\Types\\".$responseType, [
+                $responseType = $response_type_model->type->label();
+                $responseTypeClass = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
                     'response_dto' => $dto,
                 ]);
-                /** @var BaseResponseType $responseType */
-                $this->currentResponseDto = $responseType->handle($response_type_model);
+                /** @var BaseResponseType $responseTypeClass */
+                $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
             }
 
             return $this->currentResponseDto;

@@ -25,7 +25,8 @@ https://github.com/pgvector/pgvector-php
 
 > Make sure to have .env in place before running `sail up`
 
-Follow the Sail Laravel docs eg `sail up`
+Follow the Sail Laravel docs eg `sail up` for PostGres only the rest is just 
+normal Laravel. The brew install did not work on my M2
 
 Seed the user:
 
