@@ -56,26 +56,32 @@ class ResponseTypeTest extends TestCase
     public function test_runs_embed_then_search()
     {
         $user = User::factory()->create();
-        $request = 'Foo bar';
+        $request = 'History';
 
         $embeddings = get_fixture('embedding_response.json');
 
         Document::factory()->withEmbedData()->create();
 
         $project = Project::factory()->create();
-        /** @var ResponseType $responseType */
+
         $responseType1 = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::EmbedQuestion,
             'project_id' => $project->id,
             'order' => 1,
         ]);
 
-        /** @var ResponseType $responseType */
         $responseType2 = ResponseType::factory()->create([
             'type' => ResponseTypeEnum::VectorSearch,
             'project_id' => $project->id,
             'order' => 2,
         ]);
+
+        $responseType3 = ResponseType::factory()->create([
+            'type' => ResponseTypeEnum::CombineContent,
+            'project_id' => $project->id,
+            'order' => 4,
+        ]);
+
 
         $dto = new EmbeddingsResponseDto(
             data_get($embeddings, 'data.0.embedding'),
