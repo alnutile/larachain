@@ -11,9 +11,8 @@ class DocumentChunk extends Model
 
     protected $guarded = [];
 
-    public function document() {
+    public function document()
+    {
         return $this->belongsTo(Document::class);
     }
-
-
 }

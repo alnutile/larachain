@@ -6,8 +6,6 @@ use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Pgvector\Laravel\Vector;
 
 /**
@@ -49,7 +47,8 @@ class Document extends Model
         );
     }
 
-    public function document_chunks() {
+    public function document_chunks()
+    {
         return $this->hasMany(DocumentChunk::class);
     }
 }

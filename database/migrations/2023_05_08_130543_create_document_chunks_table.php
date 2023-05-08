@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('document_chunks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Document::class);
-            $table->string("guid"); //page number or other
-            $table->longText("content")->nullable();
+            $table->string('guid'); //page number or other
+            $table->longText('content')->nullable();
             $table->vector('embedding', 1536)->nullable();
             $table->timestamps();
         });

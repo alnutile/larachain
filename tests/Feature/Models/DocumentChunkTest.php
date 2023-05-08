@@ -3,14 +3,10 @@
 namespace Tests\Feature\Models;
 
 use App\Models\DocumentChunk;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DocumentChunkTest extends TestCase
 {
-
-
     public function test_dc_factory()
     {
         $model = DocumentChunk::factory()->create();
