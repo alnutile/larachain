@@ -15,4 +15,10 @@ class SourceTest extends TestCase
         $model = Source::factory()->create();
         $this->assertNotNull($model->meta_data);
     }
+
+    public function test_project_rel()
+    {
+        $model = Source::factory()->create();
+        $this->assertNotNull($model->project->sources()->first()->id);
+    }
 }

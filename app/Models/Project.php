@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $team_id
  * @property int $id
+ * @property int $team_id
+ * @property string $name
+ * @property bool $active
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  */
 class Project extends Model
 {
@@ -23,5 +27,10 @@ class Project extends Model
     public function documents()
     {
         return $this->hasMany(Document::class);
+    }
+
+    public function sources()
+    {
+        return $this->hasMany(Source::class)->orderBy('order');
     }
 }

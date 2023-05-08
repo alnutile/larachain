@@ -27,4 +27,9 @@ class Source extends Model
         'meta_data' => 'encrypted:array',
         'type' => SourceTypeEnum::class,
     ];
+
+    protected function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
