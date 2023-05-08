@@ -2,7 +2,7 @@
 
 ## Reading over LangChain
 
-[LaraChain.io](https://alfrednutile.notion.site/LaraChain-561a674345df4087b8902368ae89f90b)
+[LaraChain.io](https://github.com/alnutile/larachain/wiki/LaraChain)
 
 And just thinking how to make some of those flows work in a Laravel environment
 
@@ -13,7 +13,7 @@ And just thinking how to make some of those flows work in a Laravel environment
 > will update below once I get more info and make the plugin system clear 
 > which will just use composer to plugin actions etc
 
-![image](https://user-images.githubusercontent.com/365385/233626512-7611da42-5d89-4b1e-84a6-8a8cdaa38f9e.png)
+![image](docs/images/overview.jpg)
 
 ## Links
 
