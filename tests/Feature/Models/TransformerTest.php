@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Models;
 
-use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Transformer;
 use App\Transformers\TransformerTypeEnum;
-use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Tests\Feature\SharedSetupForPdfFile;
 use Tests\TestCase;
 
@@ -23,15 +21,6 @@ class TransformerTest extends TestCase
 
     public function test_runs_transformers()
     {
-        $data = get_fixture('embedding_response.json');
-
-        $dto = new EmbeddingsResponseDto(
-            data_get($data, 'data.0.embedding'),
-            1000,
-        );
-
-        ClientWrapper::shouldReceive('getEmbedding')->once()->andReturn($dto);
-
         $model = Transformer::factory()->pdfTranformer()->create([
             'project_id' => $this->source->project_id,
         ]);

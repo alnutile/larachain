@@ -7,15 +7,17 @@ use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
-use Illuminate\Support\Arr;
 use Sundance\LarachainPromptTemplates\Prompts\PromptToken;
 use Sundance\LarachainPromptTemplates\PromptTemplate;
 
 class ChatUi extends BaseResponseType
 {
     protected User $user;
+
     protected Message $message;
+
     protected ResponseType $responseType;
+
     protected string $content;
 
     public function handle(ResponseType $responseType): ResponseDto
@@ -25,7 +27,6 @@ class ChatUi extends BaseResponseType
         $this->content = $this->response_dto->response;
 
         $this->responseType = $responseType;
-
 
         if ($this->noSystemMessage()) {
             $content = $this->getFirstQuestionPrompt();
@@ -39,7 +40,7 @@ class ChatUi extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => null
+                'response' => null,
             ]
         );
     }
@@ -65,14 +66,13 @@ class ChatUi extends BaseResponseType
         ]);
     }
 
-    private function noSystemMessage() : bool
+    private function noSystemMessage(): bool
     {
         return ! Message::query()
             ->select(['role', 'content'])
             ->where('user_id', $this->user->id)
             ->where('project_id', $this->project->id)
-            ->where("role", "system")
+            ->where('role', 'system')
             ->exists();
     }
-
 }
