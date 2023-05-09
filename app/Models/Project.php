@@ -46,4 +46,9 @@ class Project extends Model
     {
         return $this->hasMany(ResponseType::class)->orderBy('order');
     }
+
+    public function outbounds()
+    {
+        return $this->hasMany(Outbound::class);
+    }
 }

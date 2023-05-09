@@ -82,7 +82,7 @@ EOL;
         $this->assertDatabaseCount('messages', 2);
         $chatUi = new ChatUi($project, $responseDto);
         $chatUi->handle($rt);
-        $this->assertDatabaseCount('messages', 4);
+        $this->assertDatabaseCount('messages', 3);
         $this->assertNotNull(Message::whereRole('assistant')->first());
     }
 }

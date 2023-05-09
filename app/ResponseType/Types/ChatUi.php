@@ -45,7 +45,6 @@ class ChatUi extends BaseResponseType
 
         } else {
             $content = $this->makeFollowUpQuestionPrompt();
-            $this->makeAssistantMessage($content->format());
             $systemMessage = Message::query()
                 ->select(['role', 'content'])
                 ->where('user_id', $this->user->id)
