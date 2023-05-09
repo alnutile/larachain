@@ -43,17 +43,33 @@ class ChatUi extends BaseResponseType
 
             $messages->prepend($systemMessage);
 
-            $fullResponse = ClientWrapper::projectChat(
-                $this->project,
-                $this->user,
-                $messages->toArray());
-            $this->makeAssistantMessage($fullResponse);
 
         } else {
             $content = $this->makeFollowUpQuestionPrompt();
             $this->makeAssistantMessage($content->format());
-
+            $systemMessage = Message::query()
+                ->select(['role', 'content'])
+                ->where('user_id', $this->user->id)
+                ->where('project_id', $this->project->id)
+                ->whereRole('system')
+                ->first();
+            $messages = Message::query()
+                ->select(['role', 'content'])
+                ->where('user_id', $this->user->id)
+                ->where('project_id', $this->project->id)
+                ->whereIn("role", ['user', 'assistant'])
+                ->latest()
+                ->take(4)
+                ->get();
+            $messages->prepend($systemMessage);
         }
+
+
+        $fullResponse = ClientWrapper::projectChat(
+            $this->project,
+            $this->user,
+            $messages->toArray());
+        $this->makeAssistantMessage($fullResponse);
 
         return ResponseDto::from(
             [
@@ -109,7 +125,8 @@ class ChatUi extends BaseResponseType
     private function noSystemMessage(): bool
     {
         return ! Message::query()
-            ->select(['role', 'content'])
+
+             ->select(['role', 'content'])
             ->where('user_id', $this->user->id)
             ->where('project_id', $this->project->id)
             ->where('role', 'system')

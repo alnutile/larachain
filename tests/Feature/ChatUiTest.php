@@ -53,15 +53,10 @@ EOL;
 
     public function test_makes_assistant_message()
     {
-        $template = <<<'EOL'
-As a helpful historian, I have been asked the question below. I will provide some context found in a local historical art
-collection database using a vector query. Please help me reply with a well-formatted answer and offer to get more information
-if needed.
-Context: {context}
-###
 
-
-EOL;
+        ClientWrapper::shouldReceive('projectChat')
+            ->once()
+            ->andReturn('Foo bar');
 
         $project = Project::factory()->create();
         $message = Message::factory()->create([
@@ -87,7 +82,7 @@ EOL;
         $this->assertDatabaseCount('messages', 2);
         $chatUi = new ChatUi($project, $responseDto);
         $chatUi->handle($rt);
-        $this->assertDatabaseCount('messages', 3);
+        $this->assertDatabaseCount('messages', 4);
         $this->assertNotNull(Message::whereRole('assistant')->first());
     }
 }
