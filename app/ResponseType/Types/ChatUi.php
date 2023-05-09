@@ -43,7 +43,6 @@ class ChatUi extends BaseResponseType
 
             $messages->prepend($systemMessage);
 
-
         } else {
             $content = $this->makeFollowUpQuestionPrompt();
             $this->makeAssistantMessage($content->format());
@@ -57,13 +56,12 @@ class ChatUi extends BaseResponseType
                 ->select(['role', 'content'])
                 ->where('user_id', $this->user->id)
                 ->where('project_id', $this->project->id)
-                ->whereIn("role", ['user', 'assistant'])
+                ->whereIn('role', ['user', 'assistant'])
                 ->latest()
                 ->take(4)
                 ->get();
             $messages->prepend($systemMessage);
         }
-
 
         $fullResponse = ClientWrapper::projectChat(
             $this->project,
