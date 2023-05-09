@@ -7,6 +7,7 @@ use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
+use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Sundance\LarachainPromptTemplates\Prompts\PromptToken;
 use Sundance\LarachainPromptTemplates\PromptTemplate;
 
@@ -32,10 +33,26 @@ class ChatUi extends BaseResponseType
 
         if ($this->noSystemMessage()) {
             $content = $this->getFirstQuestionPrompt();
-            $this->makeSystemMessage($content->format());
+            $systemMessage = $this->makeSystemMessage($content->format());
+            $messages = Message::query()
+                ->select(['role', 'content'])
+                ->where('user_id', $this->user->id)
+                ->where('project_id', $this->project->id)
+                ->whereRole('user')
+                ->get();
+
+            $messages->prepend($systemMessage);
+
+            $fullResponse = ClientWrapper::projectChat(
+                $this->project,
+                $this->user,
+                $messages->toArray());
+            $this->makeAssistantMessage($fullResponse);
+
         } else {
             $content = $this->makeFollowUpQuestionPrompt();
             $this->makeAssistantMessage($content->format());
+
         }
 
         return ResponseDto::from(
@@ -69,9 +86,9 @@ class ChatUi extends BaseResponseType
         return new PromptTemplate($input_variables, $template);
     }
 
-    protected function makeSystemMessage(string $content): void
+    protected function makeSystemMessage(string $content): message
     {
-        Message::create([
+        return Message::create([
             'user_id' => $this->user->id,
             'project_id' => $this->project->id,
             'content' => $content,
@@ -79,9 +96,9 @@ class ChatUi extends BaseResponseType
         ]);
     }
 
-    protected function makeAssistantMessage(string $content): void
+    protected function makeAssistantMessage(string $content): Message
     {
-        Message::create([
+        return Message::create([
             'user_id' => $this->user->id,
             'project_id' => $this->project->id,
             'content' => $content,

@@ -52,6 +52,14 @@ class ChatRepository
             $this->makeUserMessage($question);
         }
 
+        /**
+         * @TODO limit this
+         * System to start
+         * Latest 3 assistant and user results
+         * Latest user one
+         *
+         * So System->User->Assistant/User->user
+         */
         $messages = Message::query()
             ->select(['role', 'content'])
             ->where('user_id', $user->id)
