@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Project::class);
             $table->timestamps();
         });
+
     }
 
     /**

@@ -35,40 +35,5 @@ class ResponseType extends Model
         return $this->belongsTo(Project::class);
     }
 
-    /**
-     * @throws ResponseTypeMissingException
-     */
-    public function run(User $user, string $request): ResponseDto
-    {
-        try {
 
-            $message = new Message([
-                'role' => 'user',
-                'content' => $request,
-                'user_id' => $user->id,
-                'project_id' => $this->project_id,
-            ]);
-
-            $dto = ResponseDto::from([
-                'message' => $message,
-            ]);
-
-            $this->currentResponseDto = $dto;
-
-            foreach ($this->project->response_types as $response_type_model) {
-                $responseType = $response_type_model->type->label();
-                $responseTypeClass = app("App\ResponseType\Types\\".$responseType, [
-                    'project' => $this->project,
-                    'response_dto' => $dto,
-                ]);
-                /** @var BaseResponseType $responseTypeClass */
-                $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
-            }
-
-            return $this->currentResponseDto;
-        } catch (\Exception $e) {
-            logger($e);
-            throw new ResponseTypeMissingException();
-        }
-    }
 }
