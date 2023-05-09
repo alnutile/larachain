@@ -28,13 +28,14 @@ class ChatUi extends BaseResponseType
 
         $this->responseType = $responseType;
 
+        $this->message = $this->response_dto->message;
+
         if ($this->noSystemMessage()) {
             $content = $this->getFirstQuestionPrompt();
             $this->makeSystemMessage($content->format());
         } else {
-//            $content = $this->makeFollowUpQuestionPrompt($combinedContent, $question);
-//            $this->makeAssistantMessage($content->format());
-//            $this->makeUserMessage($question);
+            $content = $this->makeFollowUpQuestionPrompt();
+            $this->makeAssistantMessage($content->format());
         }
 
         return ResponseDto::from(
@@ -56,6 +57,18 @@ class ChatUi extends BaseResponseType
         return new PromptTemplate($input_variables, $template);
     }
 
+    protected function makeFollowUpQuestionPrompt(): PromptTemplate
+    {
+        $template = $this->responseType->prompt_token['assistant'];
+
+        $input_variables = [
+            new PromptToken('context', $this->content),
+            new PromptToken('question', $this->message->content),
+        ];
+
+        return new PromptTemplate($input_variables, $template);
+    }
+
     protected function makeSystemMessage(string $content): void
     {
         Message::create([
@@ -63,6 +76,16 @@ class ChatUi extends BaseResponseType
             'project_id' => $this->project->id,
             'content' => $content,
             'role' => 'system',
+        ]);
+    }
+
+    protected function makeAssistantMessage(string $content): void
+    {
+        Message::create([
+            'user_id' => $this->user->id,
+            'project_id' => $this->project->id,
+            'content' => $content,
+            'role' => 'assistant',
         ]);
     }
 

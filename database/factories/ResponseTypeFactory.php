@@ -40,6 +40,10 @@ class ResponseTypeFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'type' => ResponseTypeEnum::ChatUi,
+                'prompt_token' => [
+                    'assistant' => 'message here',
+                    'system' => 'message here',
+                ],
             ];
         });
     }

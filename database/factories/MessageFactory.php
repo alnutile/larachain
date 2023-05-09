@@ -28,4 +28,22 @@ class MessageFactory extends Factory
             'token_count' => fake()->randomDigitNotZero(),
         ];
     }
+
+    public function assistantMessage()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'assistant',
+            ];
+        });
+    }
+
+    public function systemMessage()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'system',
+            ];
+        });
+    }
 }
