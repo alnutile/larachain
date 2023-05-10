@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebFileSourceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,17 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(WebFileSourceController::class)->group(
+    function() {
+        Route::get("/projects/{project}/sources/web_file/create", "create")
+            ->name("sources.web_file.create");
+    }
+);
 
 Route::middleware([
     'auth:sanctum',
