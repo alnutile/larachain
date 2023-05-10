@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\ResponseTypeMissingException;
-use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property ResponseTypeEnum $type
- * @property int $project_id
- * @property Project $project;
+ * @property int $outbound_id
+ * @property Outbound $outbound;
  * @property array $prompt_token;
  *
- * @method Project project()
+ * @method Outbound outbound()
  */
 class ResponseType extends Model
 {
@@ -30,10 +28,8 @@ class ResponseType extends Model
         'type' => ResponseTypeEnum::class,
     ];
 
-    public function project()
+    public function outbound()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Outbound::class);
     }
-
-
 }

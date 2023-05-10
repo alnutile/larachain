@@ -6,22 +6,41 @@ use App\Exceptions\ResponseTypeMissingException;
 use App\Outbound\OutboundEnum;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
+use App\ResponseType\ResponseTypeEnum;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property ResponseTypeEnum $type
+ * @property int $project_id
+ * @property Project $project;
+ * @property array $prompt_token;
+ * @property Collection $response_types;
+ *
+ * @method Project project()
+ */
 class Outbound extends Model
 {
     use HasFactory;
+
+    protected ResponseDto $currentResponseDto;
 
     protected $guarded = [];
 
     protected $casts = [
         'type' => OutboundEnum::class,
-        'active' => "bool"
+        'active' => 'bool',
     ];
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
+    }
+
+    public function response_types()
+    {
+        return $this->hasMany(ResponseType::class)->orderBy('order');
     }
 
     /**
@@ -29,14 +48,14 @@ class Outbound extends Model
      */
     public function run(User $user, string $request): ResponseDto
     {
-        try {
+        $message = new Message([
+            'role' => 'user',
+            'content' => $request,
+            'user_id' => $user->id,
+            'project_id' => $this->project_id,
+        ]);
 
-            $message = new Message([
-                'role' => 'user',
-                'content' => $request,
-                'user_id' => $user->id,
-                'project_id' => $this->project_id,
-            ]);
+        try {
 
             $dto = ResponseDto::from([
                 'message' => $message,
@@ -44,7 +63,7 @@ class Outbound extends Model
 
             $this->currentResponseDto = $dto;
 
-            foreach ($this->project->response_types as $response_type_model) {
+            foreach ($this->response_types as $response_type_model) {
                 $responseType = $response_type_model->type->label();
                 $responseTypeClass = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
@@ -57,7 +76,12 @@ class Outbound extends Model
             return $this->currentResponseDto;
         } catch (\Exception $e) {
             logger($e);
-            throw new ResponseTypeMissingException();
+
+            return ResponseDto::from([
+                'status' => 500,
+                'message' => $message,
+                'response' => $e->getMessage(),
+            ]);
         }
     }
 }

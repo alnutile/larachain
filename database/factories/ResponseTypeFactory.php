@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
+use App\Models\Outbound;
 use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +22,7 @@ class ResponseTypeFactory extends Factory
             'order' => fake()->randomDigitNotZero(),
             'prompt_token' => [],
             'type' => ResponseTypeEnum::ChatUi,
-            'project_id' => Project::factory(),
+            'outbound_id' => Outbound::factory(),
         ];
     }
 

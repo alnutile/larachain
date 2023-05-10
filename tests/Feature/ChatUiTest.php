@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Message;
+use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseDto;
@@ -44,7 +45,7 @@ EOL;
             ]);
 
         $this->assertDatabaseCount('messages', 1);
-        $chatUi = new ChatUi($rt->project, $responseDto);
+        $chatUi = new ChatUi($rt->outbound->project, $responseDto);
         $chatUi->handle($rt);
         $this->assertDatabaseCount('messages', 3);
         $this->assertNotNull(Message::whereRole('system')->first());
@@ -59,6 +60,9 @@ EOL;
             ->andReturn('Foo bar');
 
         $project = Project::factory()->create();
+        $outbound = Outbound::factory()->create([
+            'project_id' => $project->id,
+        ]);
         $message = Message::factory()->create([
             'project_id' => $project->id,
         ]);
@@ -76,7 +80,7 @@ EOL;
         $rt = ResponseType::factory()
             ->chatUi()
             ->create([
-                'project_id' => $project->id,
+                'outbound_id' => $outbound->id,
             ]);
 
         $this->assertDatabaseCount('messages', 2);

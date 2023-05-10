@@ -42,11 +42,6 @@ class Project extends Model
         return $this->hasMany(Source::class)->orderBy('order');
     }
 
-    public function response_types()
-    {
-        return $this->hasMany(ResponseType::class)->orderBy('order');
-    }
-
     public function outbounds()
     {
         return $this->hasMany(Outbound::class);

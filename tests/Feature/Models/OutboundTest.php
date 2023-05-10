@@ -1,6 +1,5 @@
 <?php
 
-
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
 use App\Models\Outbound;
@@ -12,21 +11,22 @@ use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 
-it("should have factory", function () {
+it('should have factory', function () {
 
     $model = Outbound::factory()->create();
     expect($model->type)->toBeInstanceOf(OutboundEnum::class);
 });
 
-it("has relations to project", function () {
+it('has relations to project', function () {
 
-    $model = Outbound::factory()->create();
+    $model = Outbound::factory()->has(ResponseType::factory(), 'response_types')->create();
 
     expect($model->project->id)->not->toBeNull();
     expect($model->project->outbounds->first()->id)->not->toBeNull();
+    expect($model->response_types->first()->id)->not->toBeNull();
 });
 
-it("should ru the related response types", function () {
+it('should ru the related response types', function () {
     $user = User::factory()->create();
     $request = 'Foo bar';
 
@@ -34,11 +34,12 @@ it("should ru the related response types", function () {
 
     $project = Project::factory()->create();
     $outbound = Outbound::factory()->create([
-        'project_id' => $project->id
+        'project_id' => $project->id,
     ]);
 
     /** @var ResponseType $responseType */
     ResponseType::factory()->create([
+        'outbound_id' => $outbound->id,
         'type' => ResponseTypeEnum::EmbedQuestion,
     ]);
 
@@ -57,7 +58,6 @@ it("should ru the related response types", function () {
     $this->assertDatabaseCount('messages', 1);
 
 });
-
 
 //public function test_runs_embed_then_search()
 //{

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('outbounds', function (Blueprint $table) {
             $table->id();
-            $table->string("type")->default(OutboundEnum::ChatUi->value);
-            $table->boolean("active")->default(1);
+            $table->string('type')->default(OutboundEnum::ChatUi->value);
+            $table->boolean('active')->default(1);
             $table->foreignIdFor(Project::class);
             $table->timestamps();
         });
