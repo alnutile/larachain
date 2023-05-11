@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceTypeEnum;
@@ -13,6 +14,11 @@ class WebFileSourceController extends Controller
         return inertia('Sources/WebFile/Create', [
             'details' => config('larachain.sources.web_file'),
             'project' => $project,
+            "source" => [
+                "meta_data" => [
+                    'url' => 'https://foo.com/some.pdf'
+                ]
+            ]
         ]);
     }
 
@@ -28,7 +34,7 @@ class WebFileSourceController extends Controller
     public function store(Project $project)
     {
         $validated = request()->validate([
-            'url' => ['required', 'url'],
+            'meta_data.url' => ['required', 'url'],
             'name' => ['required'],
             'description' => ['nullable'],
         ]);
@@ -39,9 +45,7 @@ class WebFileSourceController extends Controller
             'description' => $validated['description'],
             'type' => SourceTypeEnum::WebFile,
             'order' => 1,
-            'meta_data' => [
-                'url' => $validated['url'],
-            ],
+            'meta_data' => $validated['meta_data']
         ]);
 
         request()->session()->flash('flash.banner', 'Source Created 🤘');
@@ -54,7 +58,7 @@ class WebFileSourceController extends Controller
     public function update(Project $project, Source $source)
     {
         $validated = request()->validate([
-            'url' => ['required', 'url'],
+            'meta_data.url' => ['required', 'url'],
             'name' => ['required'],
             'description' => ['nullable'],
         ]);
@@ -67,12 +71,20 @@ class WebFileSourceController extends Controller
             'description' => $validated['description'],
             'type' => SourceTypeEnum::WebFile,
             'order' => 1,
-            'meta_data' => [
-                'url' => $validated['url'],
-            ],
+            'meta_data' => $validated['meta_data']
         ]);
 
         request()->session()->flash('flash.banner', 'Source Updated ✅');
+
+        return to_route('projects.show', [
+            'project' => $project->id,
+        ]);
+    }
+
+    public function run(Project $project, Source $source) {
+        ProcessSourceJob::dispatch($source);
+
+        request()->session()->flash('flash.banner', 'Getting file will notify you when done 🗃️');
 
         return to_route('projects.show', [
             'project' => $project->id,

@@ -47,7 +47,7 @@ class Source extends Model
                 'source' => $this,
             ]);
             /** @var BaseSourceType $sourceType */
-            $sourceType->handle();
+            return $sourceType->handle();
         } catch (\Exception $e) {
             //@TODO This exception needs to be more specific
             logger($e);

@@ -64,7 +64,9 @@ it('should allow you to update', function () {
             'source' => $source->id,
         ]), [
             'name' => 'Foo',
-            'url' => 'http://foo.com',
+            'meta_data' => [
+                'url' => 'https://foo.bar'
+            ],
             'description' => 'Bar',
         ])
         ->assertRedirectToRoute('projects.show', [
@@ -92,7 +94,9 @@ it('should create', function () {
         ]), [
             'name' => 'Foo',
             'description' => 'Bar',
-            'url' => 'https://foo.bar',
+            'meta_data' => [
+                'url' => 'https://foo.bar'
+            ],
         ])
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,

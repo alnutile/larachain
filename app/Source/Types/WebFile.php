@@ -27,11 +27,19 @@ class WebFile extends BaseSourceType
         Storage::disk('projects')
             ->put($path, $fileContents);
 
-        return Document::create([
-            'guid' => $fileName,
-            'status' => StatusEnum::Complete,
-            'source_id' => $this->source->id,
-        ]);
+        return Document::where('guid', $fileName)
+            ->where('source_id', $this->source->id)
+            ->firstOrCreate(
+                [
+                    'guid' => $fileName,
+                    'source_id' => $this->source->id,
+                ],
+                [
+                    'status' => StatusEnum::Complete,
+                ]
+            );
+
+
     }
 
     protected function getPath($fileName)

@@ -15,9 +15,9 @@
             class="p-2 border border-gray-300 w-full"
             type="text"
             placeholder="https://somepublicpdf.com/foo.pdf"
-            v-model="modelValue.url"
+            v-model="modelValue.meta_data.url"
         />
-        <InputError :message="modelValue.errors.url" class="mt-2" />
+        <InputError :message="modelValue.errors?.meta_data?.url" class="mt-2" />
     </div>
     <div class="col-span-6 sm:col-span-6 ">
         <InputLabel for="description" >Description</InputLabel>

@@ -49,11 +49,12 @@ const toast = useToast();
 
 const props = defineProps({
     details: Object,
-    project: Object
+    project: Object,
+    source: Object
 })
 
 const form = useForm({
-    url: "",
+    meta_data: props.source.meta_data,
     description: "Some info",
     name: "Web File"
 })

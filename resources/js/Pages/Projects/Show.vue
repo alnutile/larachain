@@ -62,7 +62,9 @@
 
 
                     <div class="grid grid-cols-3 gap-4 mt-12 justify-items-center">
-                        <SourcesToChooseFrom :items="source_types" :project="project"/>
+                        <SourcesToChooseFrom
+                            :items="source_types"
+                            :project="project"/>
                         <div class="text-lg font-semibold text-center">
                             <div>Related Transformations</div>
                             <SecondaryButton>Coming Soon</SecondaryButton>
@@ -93,7 +95,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 const toast = useToast();
 import pickBy from 'lodash/pickBy'
 import {computed, onMounted, ref} from "vue";
-import SourcesToChooseFrom from "./Components/SourcesToChooseFrom.vue";
+import SourcesToChooseFrom from "@/Pages/Sources/WebFile/Partials/SourcesToChooseFrom.vue";
 
 const props = defineProps({
     project: Object,
@@ -107,7 +109,7 @@ const form = useForm({
 const response = ref([]);
 
 onMounted(() => {
-    Echo.channel(`projects.chat.${props.project.id}`)
+    Echo.private(`projects.${props.project.id}`)
         .listen('.chat', (e) => {
             console.log(e.response);
             response.value.push(e.response)

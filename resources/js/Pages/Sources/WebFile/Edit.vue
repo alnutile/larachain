@@ -54,14 +54,15 @@ const props = defineProps({
 })
 
 const form = useForm({
-    url: props.source.url,
+    meta_data: props.source.meta_data,
     description: props.source.description,
     name: props.source.name
 })
 
 const submit = () => {
     form.put(route("sources.web_file.update", {
-        project: props.project.id
+        project: props.project.id,
+        source: props.source.id
     }), {
         preserveScroll: true,
         onError: params => {

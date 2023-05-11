@@ -50,6 +50,25 @@ class WebFileTest extends TestCase
 
     }
 
+    public function test_makes_document_once()
+    {
+        $source = Source::factory()->webFileMetaData()->create();
+
+        Storage::fake('projects');
+        $webFileSourceType = new WebFile($source);
+
+        Http::fake([
+            'wikipedia.com/*' => Http::response('foo', 200),
+        ]);
+
+        $this->assertDatabaseCount('documents', 0);
+        $webFileSourceType->handle();
+
+        $this->assertDatabaseCount('documents', 1);
+        $webFileSourceType->handle();
+        $this->assertDatabaseCount('documents', 1);
+    }
+
     protected function mockFunction($functionName, $returnValue)
     {
         $mock = Mockery::mock();

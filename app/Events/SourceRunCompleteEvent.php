@@ -2,23 +2,23 @@
 
 namespace App\Events;
 
-use App\Models\Project;
-use App\Models\User;
+use App\Models\Source;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatReplyEvent implements ShouldBroadcast
+class SourceRunCompleteEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public Project $project, public User $user, public string $response)
+    public function __construct(public Source $source)
     {
         //
     }
@@ -31,9 +31,10 @@ class ChatReplyEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('projects.chat.'.$this->project->id),
+            new PrivateChannel('projects.' . $this->source->project_id),
         ];
     }
+
 
     /**
      * The event's broadcast name.
@@ -42,6 +43,8 @@ class ChatReplyEvent implements ShouldBroadcast
      */
     public function broadcastAs()
     {
-        return 'chat';
+        return 'sourcesRun';
     }
+
+
 }

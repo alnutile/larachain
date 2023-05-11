@@ -39,6 +39,8 @@ Route::middleware([
             ->name('sources.web_file.store');
         Route::put('/projects/{project}/sources/{source}/web_file/update', 'update')
             ->name('sources.web_file.update');
+        Route::post('/projects/{project}/sources/{source}/web_file/run', 'run')
+            ->name('sources.web_file.run');
     }
 );
 
