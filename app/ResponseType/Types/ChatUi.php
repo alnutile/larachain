@@ -44,7 +44,6 @@ class ChatUi extends BaseResponseType
             $messages->prepend($systemMessage);
 
         } else {
-            $content = $this->makeFollowUpQuestionPrompt();
             $systemMessage = Message::query()
                 ->select(['role', 'content'])
                 ->where('user_id', $this->user->id)
@@ -82,18 +81,6 @@ class ChatUi extends BaseResponseType
 
         $input_variables = [
             new PromptToken('context', $this->content),
-        ];
-
-        return new PromptTemplate($input_variables, $template);
-    }
-
-    protected function makeFollowUpQuestionPrompt(): PromptTemplate
-    {
-        $template = $this->responseType->prompt_token['assistant'];
-
-        $input_variables = [
-            new PromptToken('context', $this->content),
-            new PromptToken('question', $this->message->content),
         ];
 
         return new PromptTemplate($input_variables, $template);
