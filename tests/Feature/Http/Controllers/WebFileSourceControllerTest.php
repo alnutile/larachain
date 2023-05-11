@@ -1,8 +1,10 @@
 <?php
 
+use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Models\User;
+use Illuminate\Support\Facades\Queue;
 use function Pest\Laravel\assertDatabaseCount;
 
 it('should show the form for URL Source type', function () {
@@ -42,6 +44,33 @@ it('should allow you to edit', function () {
             'source' => $source->id,
         ]))
         ->assertOk();
+});
+
+it('should run', function () {
+    Queue::fake();
+    $user = User::factory()->withPersonalTeam()
+        ->create();
+
+    $user = $this->createTeam($user);
+
+    $project = Project::factory()->create([
+        'team_id' => $user->current_team_id,
+    ]);
+
+    $source = Source::factory()->create([
+        'project_id' => $project->id,
+    ]);
+
+    $this->actingAs($user)
+        ->post(route('sources.web_file.run', [
+            'project' => $project->id,
+            'source' => $source->id,
+        ]))
+        ->assertRedirectToRoute('projects.show', [
+            'project' => $project->id,
+        ]);
+
+    Queue::assertPushed(ProcessSourceJob::class);
 });
 
 it('should allow you to update', function () {

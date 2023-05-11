@@ -63,7 +63,7 @@ return [
             'route' => 1,
             'requires' => ['transformers:embed_transformer'],
             'background' => 'bg-sky-500',
-            'active' => 1
+            'active' => 1,
         ],
         'vector_search' => [
             'title' => 'Search Vector Database',
@@ -71,14 +71,14 @@ return [
             'icon' => 'MagnifyingGlassIcon',
             'requires' => ['embed_question'],
             'background' => 'bg-green-500',
-            'active' => 1
+            'active' => 1,
         ],
         'chat_ui' => [
             'title' => 'Integrate with Chat LLM APIs',
             'description' => 'Create a chat system with platforms like OpenAI or others.',
             'icon' => 'ChatBubbleLeftIcon',
             'background' => 'bg-pink-500',
-            'active' => 1
+            'active' => 1,
         ],
     ],
 ];
