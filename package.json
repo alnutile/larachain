@@ -23,6 +23,7 @@
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
         "chokidar": "^3.5.3",
+        "collect.js": "^4.36.1",
         "lodash": "^4.17.21",
         "vue-toastification": "^2.0.0-rc.5"
     }

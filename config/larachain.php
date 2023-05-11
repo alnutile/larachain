@@ -4,30 +4,39 @@ return [
     'sources' => [
         'web_file' => [
             'title' => 'Web File Source Type',
-            'description' => 'Point to one more URLs to download files from the internet for later parsing. All configuration data is encrypted',
+            'description' => 'Points to one or more URLs to download files from the internet for later parsing. All configuration data is encrypted.',
             'icon' => 'ArrowDownTrayIcon',
             'background' => 'bg-indigo-500',
         ],
         'web' => [
-            'description' => 'Another to-do system you’ll try but eventually give up on.',
+            'title' => 'Scrape a Web Page',
+            'description' => 'Simple scraper to fetch the desired data from a web page and pass it to LLM.',
+            'icon' => 'Bars4Icon',
+            'background' => 'bg-sky-500',
+        ],
+        'web_hook' => [
+            'title' => 'Create a Webhook to Send Data',
+            'description' => 'Add a webhook here to send logs or other data.',
             'icon' => 'Bars4Icon',
             'background' => 'bg-sky-500',
         ],
         's3_directory' => [
-            'description' => 'Another to-do system you’ll try but eventually give up on.',
+            'title' => 'S3 Directory to Get Files From',
+            'description' => 'Retrieve files from an S3 directory.',
             'icon' => 'Bars4Icon',
             'background' => 'bg-red-500',
         ],
     ],
     'transformers' => [
         'pdf_transformer' => [
-            'title' => 'Break Pages of PDF info text and Document Chunks',
-            'description' => 'If you have a PDF for a source use this to get to the pages and text',
+            'title' => 'Break Pages of PDF into Text and Document Chunks',
+            'description' => 'If you have a PDF as a source, use this transformer to extract pages and text.',
             'icon' => 'DocumentIcon',
             'background' => 'bg-blue-500',
         ],
         'embed_transformer' => [
-            'description' => 'Created Embeddings out of all your Document Chunks',
+            'title' => 'Vectorize Your Data',
+            'description' => 'Create embeddings out of all your document chunks.',
             'icon' => 'ArrowsRightLeftIcon',
             'background' => 'bg-red-700',
         ],
@@ -35,14 +44,41 @@ return [
     'outbounds' => [
         'chat_ui' => [
             'title' => 'Add a ChatUI to the Project Page',
-            'description' => 'User can use the Chat LLM of your chose to talk to the related data',
+            'description' => 'Users can use the chosen Chat LLM to interact with the related data.',
             'icon' => 'ChatBubbleLeftIcon',
             'background' => 'bg-sky-500',
         ],
         'api' => [
-            'description' => 'Attach a Secure API to talk to your data from any other app',
+            'title' => 'Add an API',
+            'description' => 'Attach a secure API to communicate with your data from any other app.',
             'icon' => 'PhoneIcon',
             'background' => 'bg-green-500',
+        ],
+    ],
+    'response_types' => [
+        'embed_question' => [
+            'title' => 'Convert Incoming Question/Request into an Embedding',
+            'description' => 'This allows you to search the vector database if you have vectorized your data.',
+            'icon' => 'MegaphoneIcon',
+            'route' => 1,
+            'requires' => ['transformers:embed_transformer'],
+            'background' => 'bg-sky-500',
+            'active' => 1
+        ],
+        'vector_search' => [
+            'title' => 'Search Vector Database',
+            'description' => 'Search the vector database with your request.',
+            'icon' => 'MagnifyingGlassIcon',
+            'requires' => ['embed_question'],
+            'background' => 'bg-green-500',
+            'active' => 1
+        ],
+        'chat_ui' => [
+            'title' => 'Integrate with Chat LLM APIs',
+            'description' => 'Create a chat system with platforms like OpenAI or others.',
+            'icon' => 'ChatBubbleLeftIcon',
+            'background' => 'bg-pink-500',
+            'active' => 1
         ],
     ],
 ];

@@ -20,4 +20,6 @@ enum ResponseTypeEnum: string
             static::Api => 'Api',
         };
     }
+
+
 }

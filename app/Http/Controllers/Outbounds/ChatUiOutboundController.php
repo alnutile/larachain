@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Outbounds;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
+use App\ResponseType\ResponseTypeEnum;
 
 class ChatUiOutboundController extends BaseOutboundController
 {
@@ -27,9 +28,12 @@ class ChatUiOutboundController extends BaseOutboundController
 
     public function show(Project $project, Outbound $outbound)
     {
+        $responseTypes = config("larachain.response_types");
         return inertia('Outbounds/ChatUi/Show', [
             'details' => config('larachain.outbounds.chat_ui'),
             'project' => $project,
+            'outbound' => $outbound,
+            "response_types" => $responseTypes
         ]);
     }
 

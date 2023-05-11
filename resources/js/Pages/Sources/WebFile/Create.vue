@@ -39,7 +39,6 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import FormWrapper from "@/Components/FormWrapper.vue";
 import FormSection from "@/Components/FormSection.vue";
-
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 import { useForm } from "@inertiajs/vue3";
