@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Sources;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\ProcessSourceJob;
+use App\Jobs\ProcessOutboundJob;
 use App\Models\Project;
 use App\Models\Source;
 
@@ -19,7 +19,7 @@ abstract class BaseSourceController extends Controller
 
     public function run(Project $project, Source $source)
     {
-        ProcessSourceJob::dispatch($source);
+        ProcessOutboundJob::dispatch($source);
 
         request()->session()->flash('flash.banner', 'Getting file will notify you when done 🗃️');
 

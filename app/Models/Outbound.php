@@ -33,6 +33,15 @@ class Outbound extends Model
         'active' => 'bool',
     ];
 
+    protected $appends = [
+        'type_formatted'
+    ];
+
+    public function getTypeFormattedAttribute()
+    {
+        return str($this->type->value)->headline()->toString();
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);

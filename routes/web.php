@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Sources\WebFileSourceController;
+use App\Http\Controllers\Outbounds\ApiiOutboundController;
+use App\Http\Controllers\Outbounds\ChatUiOutboundController;
+use App\Http\Controllers\Outbounds\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;
 use Illuminate\Foundation\Application;
@@ -83,6 +85,49 @@ Route::middleware([
             ->name('transformers.embed_transformer.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(ChatUiOutboundController::class)->group(
+    function () {
+        Route::get('/projects/{project}/outbounds/chat_ui/create', 'create')
+            ->name('outbounds.chat_ui.create');
+        Route::get('/projects/{project}/outbounds/{outbound}/chat_ui', 'show')
+            ->name('outbounds.chat_ui.show');
+        Route::get('/projects/{project}/outbounds/{outbound}/chat_ui/edit', 'edit')
+            ->name('outbounds.chat_ui.edit');
+        Route::post('/projects/{project}/outbounds/chat_ui/store', 'store')
+            ->name('outbounds.chat_ui.store');
+        Route::put('/projects/{project}/transformers/{outbound}/chat_ui/update', 'update')
+            ->name('outbounds.chat_ui.update');
+        Route::post('/projects/{project}/transformers/{outbound}/chat_ui/run', 'run')
+            ->name('outbounds.chat_ui.run');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(ApiiOutboundController::class)->group(
+    function () {
+        Route::get('/projects/{project}/outbounds/api/create', 'create')
+            ->name('outbounds.api.create');
+        Route::get('/projects/{project}/outbounds/{outbound}/api', 'show')
+            ->name('outbounds.api.show');
+        Route::get('/projects/{project}/outbounds/{outbound}/api/edit', 'edit')
+            ->name('outbounds.api.edit');
+        Route::post('/projects/{project}/outbounds/api/store', 'store')
+            ->name('outbounds.api.store');
+        Route::put('/projects/{project}/transformers/{outbound}/api/update', 'update')
+            ->name('outbounds.api.update');
+        Route::post('/projects/{project}/transformers/{outbound}/api/run', 'run')
+            ->name('outbounds.api.run');
+    }
+);
+
 
 Route::middleware([
     'auth:sanctum',

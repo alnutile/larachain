@@ -24,12 +24,25 @@ return [
             'title' => 'Break Pages of PDF info text and Document Chunks',
             'description' => 'If you have a PDF for a source use this to get to the pages and text',
             'icon' => 'DocumentIcon',
-            'background' => 'bg-indigo-500',
+            'background' => 'bg-blue-500',
         ],
         'embed_transformer' => [
             'description' => 'Created Embeddings out of all your Document Chunks',
             'icon' => 'ArrowsRightLeftIcon',
             'background' => 'bg-red-700',
+        ],
+    ],
+    'outbounds' => [
+        'chat_ui' => [
+            'title' => 'Add a ChatUI to the Project Page',
+            'description' => 'User can use the Chat LLM of your chose to talk to the related data',
+            'icon' => 'ChatBubbleLeftIcon',
+            'background' => 'bg-sky-500',
+        ],
+        'api' => [
+            'description' => 'Attach a Secure API to talk to your data from any other app',
+            'icon' => 'PhoneIcon',
+            'background' => 'bg-green-500',
         ],
     ],
 ];

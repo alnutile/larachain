@@ -34,7 +34,6 @@ enum TransformerTypeEnum: string
                     'background' => config("larachain.transformers.{$case->value}.background"),
                 ];
             }
-
         }
 
         return $result;

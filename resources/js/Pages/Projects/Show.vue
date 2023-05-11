@@ -60,18 +60,16 @@
                     </div>
 
 
-
-                    <div class="grid grid-cols-3 gap-4 mt-12 justify-items-center">
+                    <div class="grid grid-cols-3 gap-2 mt-12 justify-items-center divide-x">
                         <SourcesToChooseFrom
                             :items="source_types"
                             :project="project"/>
                         <TransformersToChooseFrom
                             :items="transformer_types"
                             :project="project"/>
-                        <div class="text-lg font-semibold text-center">
-                            <div>Related Outbound Options</div>
-                            <SecondaryButton>Coming Soon</SecondaryButton>
-                        </div>
+                        <OutboundsToChooseFrom
+                            :items="outbound_types"
+                            :project="project"/>
                     </div>
                 </div>
             </div>
@@ -94,9 +92,11 @@ import pickBy from 'lodash/pickBy'
 import {computed, onMounted, ref} from "vue";
 import SourcesToChooseFrom from "@/Pages/Sources/WebFile/Partials/SourcesToChooseFrom.vue";
 import TransformersToChooseFrom from "@/Pages/Transformers/Partials/TransformersToChooseFrom.vue";
+import OutboundsToChooseFrom from "@/Pages/Outbounds/Partials/OutboundsToChooseFrom.vue";
 
 const props = defineProps({
     project: Object,
+    outbound_types: Array,
     source_types: Array,
     transformer_types: Array,
 })

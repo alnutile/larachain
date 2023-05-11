@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="p-2">
         <h2 class="text-base font-semibold leading-6 text-gray-900 flex items-center">
-            <ArrowsPointingInIcon class="w-5 h-5 text-gray-500"/>
+            <ArrowsRightLeftIcon class="w-5 h-5 text-gray-500"/>
             <div class="ml-2">Transformers</div>
         </h2>
         <p class="mt-1 text-sm text-gray-500">
