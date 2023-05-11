@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
+use App\Http\Controllers\Tranformers\PdfTransformerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,6 +45,26 @@ Route::middleware([
             ->name('sources.web_file.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(PdfTransformerController::class)->group(
+    function () {
+        Route::get('/projects/{project}/transformers/pdf_transformer/create', 'create')
+            ->name('transformers.pdf_transformer.create');
+        Route::get('/projects/{project}/transformers/{transformer}/pdf_transformer/edit', 'edit')
+            ->name('transformers.pdf_transformer.edit');
+        Route::post('/projects/{project}/transformers/pdf_transformer/store', 'store')
+            ->name('transformers.pdf_transformer.store');
+        Route::put('/projects/{project}/transformers/{transformer}/pdf_transformer/update', 'update')
+            ->name('transformers.pdf_transformer.update');
+        Route::post('/projects/{project}/transformers/{transformer}/pdf_transformer/run', 'run')
+            ->name('transformers.pdf_transformer.run');
+    }
+);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -62,6 +83,8 @@ Route::middleware([
             ->name('transformers.embed_transformer.run');
     }
 );
+
+
 
 Route::middleware([
     'auth:sanctum',

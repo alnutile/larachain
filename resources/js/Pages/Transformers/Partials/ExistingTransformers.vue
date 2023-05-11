@@ -15,7 +15,7 @@
                 </Link>
                 <div class="flex justify-end">
                     <SecondaryButton @click="run(transformer)">
-                        <Spinner v-if="formRun.processing"/>
+                        <Spinner v-if="formRun.processing && running === transformer.id"/>
                         run</SecondaryButton>
                 </div>
             </li>
@@ -30,7 +30,7 @@ import {useToast} from "vue-toastification";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
 const toast = useToast();
 
@@ -48,11 +48,14 @@ onMounted(() => {
 
 const formRun = useForm({})
 
+const running = ref()
+
 const emit = defineEmits(['runComplete'])
 
 const run = (transformer) => {
-    toast(`Running Transformer ${transformer.name}`)
-    formRun.post(route('transformers.embed_transformer.run', {
+    running.value = transformer.id;
+    toast(`Running Transformer ${transformer.type_formatted}`)
+    formRun.post(route(`transformers.${transformer.type}.run`, {
         project: props.project.id,
         transformer: transformer.id
     }), {

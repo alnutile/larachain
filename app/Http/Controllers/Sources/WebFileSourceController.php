@@ -8,7 +8,7 @@ use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceTypeEnum;
 
-class WebFileSourceController extends Controller
+class WebFileSourceController extends BaseSourceController
 {
     public function create(Project $project)
     {
@@ -82,14 +82,5 @@ class WebFileSourceController extends Controller
         ]);
     }
 
-    public function run(Project $project, Source $source)
-    {
-        ProcessSourceJob::dispatch($source);
 
-        request()->session()->flash('flash.banner', 'Getting file will notify you when done 🗃️');
-
-        return to_route('projects.show', [
-            'project' => $project->id,
-        ]);
-    }
 }

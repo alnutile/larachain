@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Policies\ProjectPolicy;
 use App\Policies\TeamPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Opcodes\LogViewer\Facades\LogViewer;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        LogViewer::auth(function ($request) {
+            return $request->user()->id === 1;
+        });
     }
 }

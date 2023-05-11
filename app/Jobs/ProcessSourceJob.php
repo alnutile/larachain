@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\SourceRunCompleteEvent;
 use App\Events\TransformerRunCompleteEvent;
 use App\Models\Source;
 use Illuminate\Bus\Queueable;
@@ -30,7 +31,7 @@ class ProcessSourceJob implements ShouldQueue
         try {
             logger('Getting Source '.$this->source->id);
             $this->source->run();
-            TransformerRunCompleteEvent::dispatch($this->source);
+            SourceRunCompleteEvent::dispatch($this->source);
             logger('Done Source '.$this->source->id);
         } catch (\Exception $e) {
             $message = 'Error getting Source '.$this->source->id;

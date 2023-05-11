@@ -42,6 +42,7 @@ class Source extends Model
     {
         $statusType = $this->type->label();
         try {
+            logger("Running source" . $statusType);
             //@TODO make this check in uses BaseSourceType
             $sourceType = app("App\Source\Types\\".$statusType, [
                 'source' => $this,

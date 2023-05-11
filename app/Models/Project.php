@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $updated_at
  * @property Collection $documents
  * @property Collection $response_types
+ * @property Collection $transformers
  */
 class Project extends Model
 {

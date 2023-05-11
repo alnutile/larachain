@@ -10,7 +10,7 @@ enum TransformerTypeEnum: string
      * @TODO Ideally do not have Transformer in the name
      */
     case EmbedTransformer = 'embed_transformer';
-    case PdfTransformer = '_pdf_transformer';
+    case PdfTransformer = 'pdf_transformer';
 
     public function label(): string
     {
