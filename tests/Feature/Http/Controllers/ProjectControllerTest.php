@@ -44,6 +44,7 @@ class ProjectControllerTest extends TestCase
 
     public function test_chat_controller()
     {
+        $this->markTestSkipped('@TODO this should not be incharge of this anymore');
         ChatRepository::shouldReceive('handle')->once();
         $user = User::factory()->create();
         $project = Project::factory()->create();

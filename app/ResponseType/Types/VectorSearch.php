@@ -11,7 +11,6 @@ class VectorSearch extends BaseResponseType
 {
     public function handle(ResponseType $responseType): ResponseDto
     {
-        /** @phpstan-ignore-next-line */
         $query = DocumentChunk::query()
             ->join('documents', 'documents.id', '=', 'document_chunks.document_id')
             ->join('sources', 'sources.id', '=', 'documents.source_id')
