@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Outbounds\ApiiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
-use App\Http\Controllers\Outbounds\WebFileSourceController;
+use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;
 use Illuminate\Foundation\Application;
@@ -127,7 +127,6 @@ Route::middleware([
             ->name('outbounds.api.run');
     }
 );
-
 
 Route::middleware([
     'auth:sanctum',

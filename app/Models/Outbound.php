@@ -34,7 +34,7 @@ class Outbound extends Model
     ];
 
     protected $appends = [
-        'type_formatted'
+        'type_formatted',
     ];
 
     public function getTypeFormattedAttribute()

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Outbounds;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\ProcessOutboundJob;
 use App\Models\Outbound;
 use App\Models\Project;
-use App\Models\Source;
 use App\Models\User;
 use App\ResponseType\ResponseDto;
 
@@ -23,7 +21,7 @@ abstract class BaseOutboundController extends Controller
     public function run(Project $project, Outbound $outbound)
     {
         $validate = request()->validate([
-           'question' => ['required']
+            'question' => ['required'],
         ]);
 
         /** @var User $user */

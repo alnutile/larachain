@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Outbounds;
 
-use App\Http\Controllers\Controller;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
 
 class ChatUiOutboundController extends BaseOutboundController
 {
-
     public function create(Project $project)
     {
         $outbound = Outbound::create([
             'type' => OutboundEnum::ChatUi,
             'active' => 1,
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         request()->session()->flash('flash.banner', 'Created Outbound now to add Response Types Transformers');
@@ -23,7 +21,7 @@ class ChatUiOutboundController extends BaseOutboundController
         return to_route('outbounds.chat_ui.show',
             [
                 'project' => $project->id,
-                "outbound" => $outbound->id
+                'outbound' => $outbound->id,
             ]);
     }
 
@@ -34,7 +32,6 @@ class ChatUiOutboundController extends BaseOutboundController
             'project' => $project,
         ]);
     }
-
 
     public function edit(Project $project, Outbound $outbound)
     {
