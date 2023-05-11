@@ -30,9 +30,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->controller(WebFileSourceController::class)->group(
-    function() {
-        Route::get("/projects/{project}/sources/web_file/create", "create")
-            ->name("sources.web_file.create");
+    function () {
+        Route::get('/projects/{project}/sources/web_file/create', 'create')
+            ->name('sources.web_file.create');
+        Route::post('/projects/{project}/sources/web_file/store', 'store')
+            ->name('sources.web_file.store');
     }
 );
 

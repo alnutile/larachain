@@ -61,23 +61,17 @@
 
 
 
-                    <div class="grid grid-cols-3 gap-4 mt-12 justify-items-center" v-if="false">
-                        <div class="text-lg font-semibold">
-                            <div>Related Source</div>
-                            <div>
-                                <SecondaryButton>add</SecondaryButton>
-                            </div>
+                    <div class="grid grid-cols-3 gap-4 mt-12 justify-items-center">
+                        <SourcesToChooseFrom :items="source_types" :project="project"/>
+                        <div class="text-lg font-semibold text-center">
+                            <div>Related Transformations</div>
+                            <SecondaryButton>Coming Soon</SecondaryButton>
                         </div>
-                        <div class="text-lg font-semibold">
-                            <div>Related Actions</div>
-                            <SecondaryButton>add</SecondaryButton>
-                        </div>
-                        <div class="text-lg font-semibold">
-                            <div>Related Retrieval Option</div>
-                            <SecondaryButton>add</SecondaryButton>
+                        <div class="text-lg font-semibold text-center">
+                            <div>Related Outbound Options</div>
+                            <SecondaryButton>Coming Soon</SecondaryButton>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -89,7 +83,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SectionTitle from "@/Components/SectionTitle.vue"
-import { useForm } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
 import Active from "@/Components/Active.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
@@ -99,9 +93,11 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 const toast = useToast();
 import pickBy from 'lodash/pickBy'
 import {computed, onMounted, ref} from "vue";
+import SourcesToChooseFrom from "./Components/SourcesToChooseFrom.vue";
 
 const props = defineProps({
     project: Object,
+    source_types: Array,
 })
 
 const form = useForm({
