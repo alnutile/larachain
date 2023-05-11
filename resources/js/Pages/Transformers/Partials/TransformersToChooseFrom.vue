@@ -2,21 +2,24 @@
     <div>
         <h2 class="text-base font-semibold leading-6 text-gray-900 flex items-center">
             <ArrowsPointingInIcon class="w-5 h-5 text-gray-500"/>
-            <div class="ml-2">Sources</div>
+            <div class="ml-2">Transformers</div>
         </h2>
-        <p class="mt-1 text-sm text-gray-500">You have not added a Source yet. Get started by adding a source of data, see options below</p>
+        <p class="mt-1 text-sm text-gray-500">
+            Once you have a source of data you can add Transformers 🤖 to modify the data. For example "Vectorize the data"
+        </p>
 
         <div class="min-h-[150px]">
-            <h3 class="text-gray-500 font-semibold">Sources related to this Project</h3>
-            <ExistingSources :project="project"/>
+            <h3 class="text-gray-500 font-semibold">Transformers related to this Project</h3>
+            <ExistingTransformers :project="project"/>
         </div>
 
         <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-2">
             <li v-for="(item, itemIdx) in items" :key="itemIdx" class="flow-root">
                 <div class="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
-                    <div :class="[item.background, 'flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg']">
+                    <div :class="`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg ${item.background}`">
+                        <ArrowsRightLeftIcon v-if="item.icon === 'ArrowsRightLeftIcon'" class="h-6 w-6 text-white"/>
                         <ArrowDownTrayIcon v-if="item.icon === 'ArrowDownTrayIcon'" class="h-6 w-6 text-white"/>
-                        <ClockIcon v-else class="h-6 w-6 text-white"/>
+                        <DocumentIcon v-if="item.icon === 'DocumentIcon'" class="h-6 w-6 text-white"/>
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-900">
@@ -41,22 +44,21 @@
 import {
     Bars4Icon,
     ArrowDownTrayIcon,
+    ArrowsRightLeftIcon,
     ArrowsPointingInIcon,
-    CalendarIcon,
+    DocumentIcon,
     ClockIcon,
-    PhotoIcon,
     TableCellsIcon,
     ViewColumnsIcon,
 } from '@heroicons/vue/24/outline'
 import {Link, useForm} from "@inertiajs/vue3"
 import {useToast} from "vue-toastification";
-import ExistingSources from "./ExistingSources.vue";
+import ExistingTransformers from "./ExistingTransformers.vue";
 const toast = useToast();
 
 const props = defineProps({
     items: Array,
     project: Object
 })
-
 
 </script>

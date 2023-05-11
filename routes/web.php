@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Sources\WebFileSourceController;
+use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +42,24 @@ Route::middleware([
             ->name('sources.web_file.update');
         Route::post('/projects/{project}/sources/{source}/web_file/run', 'run')
             ->name('sources.web_file.run');
+    }
+);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(EmbedTransformerController::class)->group(
+    function () {
+        Route::get('/projects/{project}/transformers/embed_transformer/create', 'create')
+            ->name('transformers.embed_transformer.create');
+        Route::get('/projects/{project}/transformers/{transformer}/embed_transformer/edit', 'edit')
+            ->name('transformers.embed_transformer.edit');
+        Route::post('/projects/{project}/transformers/embed_transformer/store', 'store')
+            ->name('transformers.embed_transformer.store');
+        Route::put('/projects/{project}/transformers/{transformer}/embed_transformer/update', 'update')
+            ->name('transformers.embed_transformer.update');
+        Route::post('/projects/{project}/transformers/{transformer}/embed_transformer/run', 'run')
+            ->name('transformers.embed_transformer.run');
     }
 );
 

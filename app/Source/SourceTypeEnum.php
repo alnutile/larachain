@@ -7,6 +7,10 @@ namespace App\Source;
  */
 enum SourceTypeEnum: string
 {
+
+    /**
+     * _ will just dispable the type until ready to show in the UI
+     */
     case WebFile = 'web_file';
     case Web = '_web';
     case S3Dir = '_s3_directory';
@@ -29,9 +33,9 @@ enum SourceTypeEnum: string
                     'id' => $case->value,
                     'name' => str($case->label())->headline()->toString(),
                     'route' => 'sources.'.$case->value.'.create',
-                    'description' => config('larachain.sources.web_file.description'),
-                    'icon' => config('larachain.sources.web_file.icon'),
-                    'background' => config('larachain.sources.web_file.background'),
+                    'description' => config("larachain.sources.{$case->value}.description"),
+                    'icon' => config("larachain.sources.{$case->value}.icon"),
+                    'background' => config("larachain.sources.{$case->value}.background"),
                 ];
             }
 

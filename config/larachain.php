@@ -19,4 +19,17 @@ return [
             'background' => 'bg-red-500',
         ],
     ],
+    'transformers' => [
+        'pdf_transformer' => [
+            'title' => 'Break Pages of PDF info text and Document Chunks',
+            'description' => 'If you have a PDF for a source use this to get to the pages and text',
+            'icon' => 'DocumentIcon',
+            'background' => 'bg-indigo-500',
+        ],
+        'embed_transformer' => [
+            'description' => 'Created Embeddings out of all your Document Chunks',
+            'icon' => 'ArrowsRightLeftIcon',
+            'background' => 'bg-red-700',
+        ],
+    ],
 ];

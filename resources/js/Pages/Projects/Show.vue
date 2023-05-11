@@ -65,18 +65,15 @@
                         <SourcesToChooseFrom
                             :items="source_types"
                             :project="project"/>
-                        <div class="text-lg font-semibold text-center">
-                            <div>Related Transformations</div>
-                            <SecondaryButton>Coming Soon</SecondaryButton>
-                        </div>
+                        <TransformersToChooseFrom
+                            :items="transformer_types"
+                            :project="project"/>
                         <div class="text-lg font-semibold text-center">
                             <div>Related Outbound Options</div>
                             <SecondaryButton>Coming Soon</SecondaryButton>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </AppLayout>
@@ -96,10 +93,12 @@ const toast = useToast();
 import pickBy from 'lodash/pickBy'
 import {computed, onMounted, ref} from "vue";
 import SourcesToChooseFrom from "@/Pages/Sources/WebFile/Partials/SourcesToChooseFrom.vue";
+import TransformersToChooseFrom from "@/Pages/Transformers/Partials/TransformersToChooseFrom.vue";
 
 const props = defineProps({
     project: Object,
     source_types: Array,
+    transformer_types: Array,
 })
 
 const form = useForm({

@@ -20,6 +20,10 @@ class Transformer extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'type_formatted'
+    ];
+
     protected $guarded = [];
 
     protected $casts = [
@@ -30,6 +34,10 @@ class Transformer extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function getTypeFormattedAttribute() {
+        return str($this->type->value)->headline()->toString();
     }
 
     /**

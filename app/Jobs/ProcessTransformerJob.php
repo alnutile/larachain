@@ -4,20 +4,21 @@ namespace App\Jobs;
 
 use App\Events\TransformerRunCompleteEvent;
 use App\Models\Source;
+use App\Models\Transformer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessSourceJob implements ShouldQueue
+class ProcessTransformerJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(public Source $source)
+    public function __construct(public Transformer $transformer)
     {
         //
     }
@@ -28,12 +29,12 @@ class ProcessSourceJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            logger('Getting Source '.$this->source->id);
-            $this->source->run();
-            TransformerRunCompleteEvent::dispatch($this->source);
-            logger('Done Source '.$this->source->id);
+            logger('Running Transformer '.$this->transformer->id);
+            $this->transformer->run();
+            TransformerRunCompleteEvent::dispatch($this->transformer);
+            logger('Done Running Transformer '.$this->transformer->id);
         } catch (\Exception $e) {
-            $message = 'Error getting Source '.$this->source->id;
+            $message = 'Error Running Transformer '.$this->transformer->id;
             logger($message);
             throw new \Exception($message);
         }

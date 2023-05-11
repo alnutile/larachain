@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\Project;
 use App\Source\SourceTypeEnum;
+use App\Transformers\TransformerTypeEnum;
 use Facades\App\Tools\ChatRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -76,10 +77,13 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $sourceTypes = SourceTypeEnum::toArray();
+        $transformerTypes = TransformerTypeEnum::toArray();
 
         return Inertia::render('Projects/Show', [
             'source_types' => $sourceTypes,
-            'project' => $project->load('documents', 'sources')->loadCount('documents'),
+            'transformer_types' => $transformerTypes,
+            'project' => $project->load('documents', 'sources', 'transformers')
+                ->loadCount('documents'),
         ]);
     }
 
