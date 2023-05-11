@@ -6,7 +6,6 @@ use App\Exceptions\SourceTypeMissingException;
 use App\Source\SourceTypeEnum;
 use App\Source\Types\BaseSourceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id

@@ -42,11 +42,10 @@ it('test show', function () {
         'project_id' => $project->id,
     ]);
 
-
     $this->actingAs($user)
         ->get(route('outbounds.chat_ui.show', [
             'project' => $project->id,
-            'outbound' => $outbound->id
+            'outbound' => $outbound->id,
         ]))
         ->assertOk();
 });

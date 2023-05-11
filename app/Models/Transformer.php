@@ -6,7 +6,6 @@ use App\Exceptions\TranformerTypeMissingException;
 use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id;
@@ -35,8 +34,6 @@ class Transformer extends BaseTypeModel
     {
         return $this->belongsTo(Project::class);
     }
-
-
 
     /**
      * @throws TranformerTypeMissingException

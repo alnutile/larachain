@@ -5,7 +5,6 @@ namespace App\Models;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property ResponseTypeEnum $type

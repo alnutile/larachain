@@ -30,13 +30,13 @@ class ChatUiOutboundController extends BaseOutboundController
         $responseTypes = config('larachain.response_types');
 
         $responseTypes = collect($responseTypes)->filter(
-            function($item, $response_type) {
+            function ($item, $response_type) {
                 return $item['active'];
             }
-        )->map(function($item, $response_type) use ($outbound) {
-            if(data_get($item, 'route')) {
-                $item['route'] = route("response_types." . $response_type . ".create", [
-                    'outbound' => $outbound->id
+        )->map(function ($item, $response_type) use ($outbound) {
+            if (data_get($item, 'route')) {
+                $item['route'] = route('response_types.'.$response_type.'.create', [
+                    'outbound' => $outbound->id,
                 ]);
             }
 
@@ -46,7 +46,7 @@ class ChatUiOutboundController extends BaseOutboundController
         return inertia('Outbounds/ChatUi/Show', [
             'details' => config('larachain.outbounds.chat_ui'),
             'project' => $project,
-            'outbound' => $outbound->load("response_types"),
+            'outbound' => $outbound->load('response_types'),
             'response_types' => $responseTypes,
         ]);
     }
