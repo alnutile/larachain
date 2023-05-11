@@ -1,18 +1,19 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+use App\Models\Outbound;
+use App\Models\User;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseCount;
 
-use Tests\TestCase;
+it("should create and redirect", function() {
+    $user = User::factory()->create();
 
-class EmbedQuestionResponseTypeControllerTest extends TestCase
-{
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
+    $outbound = Outbound::factory()->create();
 
-        $response->assertStatus(200);
-    }
-}
+    assertDatabaseCount("response_types", 0);
+
+    actingAs($user)
+        ->get(route('outbounds.response_types.embed_question.create', ['outbound' => $outbound->id]));
+
+    assertDatabaseCount("response_types", 1);
+});

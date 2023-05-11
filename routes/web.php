@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Outbounds\ApiiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
+use App\Http\Controllers\ResponeTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;
@@ -127,6 +128,24 @@ Route::middleware([
             ->name('outbounds.api.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(EmbedQuestionResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/embed_question/create', 'create')
+            ->name('outbounds.response_types.embed_question.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/embed_question/edit', 'edit')
+            ->name('outbounds.response_types.embed_question.edit');
+        Route::post('/outbounds/{outbound}/response_types/embed_question/store', 'store')
+            ->name('outbounds.response_types.embed_question.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/embed_question/update', 'update')
+            ->name('outbounds.response_types.embed_question.update');
+    }
+);
+
 
 Route::middleware([
     'auth:sanctum',
