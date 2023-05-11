@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sources;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;

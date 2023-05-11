@@ -27,7 +27,7 @@
 
 <script setup>
 import {useToast} from "vue-toastification";
-import {useForm, Link} from "@inertiajs/vue3";
+import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {onMounted} from "vue";
@@ -48,6 +48,8 @@ onMounted(() => {
 
 const formRun = useForm({})
 
+const emit = defineEmits(['runComplete'])
+
 const run = (source) => {
     toast(`Running Source ${source.name}`)
     formRun.post(route('sources.web_file.run', {
@@ -58,6 +60,10 @@ const run = (source) => {
         preserveScroll: true,
         onError: params => {
             toast.error("Error running job 🤦🏻‍")
+        },
+        onSuccess: params => {
+            emit("runComplete")
+            router.reload()
         }
     });
 }

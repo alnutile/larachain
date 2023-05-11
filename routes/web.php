@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WebFileSourceController;
+use App\Http\Controllers\Sources\WebFileSourceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
