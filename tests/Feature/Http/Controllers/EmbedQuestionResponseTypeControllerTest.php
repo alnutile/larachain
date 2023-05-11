@@ -13,7 +13,7 @@ it('should create and redirect', function () {
     assertDatabaseCount('response_types', 0);
 
     actingAs($user)
-        ->get(route('outbounds.response_types.embed_question.create', ['outbound' => $outbound->id]));
+        ->get(route('response_types.embed_question.create', ['outbound' => $outbound->id]));
 
     assertDatabaseCount('response_types', 1);
 });

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="outbound.response_types">
+    <div v-if="outbound.response_types.length > 0">
         <ul>
             <li v-for="response_type in outbound.response_types" :key="outbound.id" class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer">
                 <div>
