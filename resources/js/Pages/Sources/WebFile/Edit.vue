@@ -49,17 +49,18 @@ const toast = useToast();
 
 const props = defineProps({
     details: Object,
-    project: Object
+    project: Object,
+    source: Object
 })
 
 const form = useForm({
-    url: "",
-    description: "Some info",
-    name: "Web File"
+    url: props.source.url,
+    description: props.source.description,
+    name: props.source.name
 })
 
 const submit = () => {
-    form.post(route("sources.web_file.store", {
+    form.put(route("sources.web_file.update", {
         project: props.project.id
     }), {
         preserveScroll: true,

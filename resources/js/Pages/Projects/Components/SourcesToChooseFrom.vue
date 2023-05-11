@@ -7,19 +7,20 @@
         <p class="mt-1 text-sm text-gray-500">You have not added a Source yet. Get started by adding a source of data, see options below</p>
 
         <div>
+            <h3 class="text-gray-500 font-semibold">Sources related to this Project</h3>
             <div v-if="project.sources">
                 <ul>
-                    <li v-for="source in project.sources" :key="source.id" class="mt-1">
+                    <li v-for="source in project.sources" :key="source.id" class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer">
                         <div class="text-sm">
                             {{ source.name }} <span aria-hidden="true"> &rarr;</span>
                         </div>
                         <div class="text-xs text-gray-500">
                             {{source.meta_data.url}}
                         </div>
-
                     </li>
                 </ul>
             </div>
+            <div v-else class="text-gray-400">👇Choose a Source below to get started</div>
         </div>
 
         <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-2">

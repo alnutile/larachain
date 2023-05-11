@@ -33,8 +33,12 @@ Route::middleware([
     function () {
         Route::get('/projects/{project}/sources/web_file/create', 'create')
             ->name('sources.web_file.create');
+        Route::get('/projects/{project}/sources/{source}/web_file/edit', 'edit')
+            ->name('sources.web_file.edit');
         Route::post('/projects/{project}/sources/web_file/store', 'store')
             ->name('sources.web_file.store');
+        Route::put('/projects/{project}/sources/{source}/web_file/update', 'update')
+            ->name('sources.web_file.update');
     }
 );
 

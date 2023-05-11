@@ -50,4 +50,32 @@ class WebFileSourceController extends Controller
             'project' => $project->id,
         ]);
     }
+
+    public function update(Project $project, Source $source)
+    {
+        $validated = request()->validate([
+            'url' => ['required', 'url'],
+            'name' => ['required'],
+            'description' => ['nullable'],
+        ]);
+
+        $validated['project_id'] = $project->id;
+
+        $source->update([
+            'project_id' => $validated['project_id'],
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'type' => SourceTypeEnum::WebFile,
+            'order' => 1,
+            'meta_data' => [
+                'url' => $validated['url'],
+            ],
+        ]);
+
+        request()->session()->flash('flash.banner', 'Source Updated ✅');
+
+        return to_route('projects.show', [
+            'project' => $project->id,
+        ]);
+    }
 }
