@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method Project project()
  */
-class Transformer extends Model
+class Transformer extends BaseTypeModel
 {
     use HasFactory;
 
@@ -36,10 +36,7 @@ class Transformer extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function getTypeFormattedAttribute()
-    {
-        return str($this->type->value)->headline()->toString();
-    }
+
 
     /**
      * @throws TranformerTypeMissingException

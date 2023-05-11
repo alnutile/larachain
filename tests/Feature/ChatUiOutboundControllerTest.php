@@ -27,3 +27,26 @@ it('test shows create page', function () {
         ]);
     assertDatabaseCount('outbounds', 1);
 });
+
+it('test show', function () {
+    $user = User::factory()->withPersonalTeam()
+        ->create();
+
+    $user = $this->createTeam($user);
+
+    $project = Project::factory()->create([
+        'team_id' => $user->current_team_id,
+    ]);
+
+    $outbound = Outbound::factory()->create([
+        'project_id' => $project->id,
+    ]);
+
+
+    $this->actingAs($user)
+        ->get(route('outbounds.chat_ui.show', [
+            'project' => $project->id,
+            'outbound' => $outbound->id
+        ]))
+        ->assertOk();
+});

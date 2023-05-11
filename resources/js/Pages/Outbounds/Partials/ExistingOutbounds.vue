@@ -2,7 +2,7 @@
     <div v-if="project.outbounds">
         <ul>
             <li v-for="outbound in project.outbounds" :key="outbound.id" class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer">
-                <Link :href="route('outbounds.chat_ui.edit', {
+                <Link :href="route('outbounds.chat_ui.show', {
                             project: project.id,
                             outbound: outbound.id
                         })">

@@ -15,13 +15,17 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method Outbound outbound()
  */
-class ResponseType extends Model
+class ResponseType extends BaseTypeModel
 {
     use HasFactory;
 
     protected $guarded = [];
 
     protected ResponseDto $currentResponseDto;
+
+    protected $appends = [
+        'type_formatted',
+    ];
 
     protected $casts = [
         'prompt_token' => 'encrypted:array',
