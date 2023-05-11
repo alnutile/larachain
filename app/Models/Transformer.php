@@ -41,7 +41,6 @@ class Transformer extends Model
         return str($this->type->value)->headline()->toString();
     }
 
-
     /**
      * @throws TranformerTypeMissingException
      */
@@ -54,7 +53,7 @@ class Transformer extends Model
             $transformerType = $this->type->label();
 
             foreach ($this->project->documents as $document) {
-                logger("Running Transformer " . $transformerType);
+                logger('Running Transformer '.$transformerType);
 
                 $transformerType = app("App\Transformers\Types\\".$transformerType, [
                     'document' => $document,

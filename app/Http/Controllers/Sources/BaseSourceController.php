@@ -9,7 +9,6 @@ use App\Models\Source;
 
 abstract class BaseSourceController extends Controller
 {
-
     abstract public function create(Project $project);
 
     abstract public function edit(Project $project, Source $source);
@@ -28,5 +27,4 @@ abstract class BaseSourceController extends Controller
             'project' => $project->id,
         ]);
     }
-
 }

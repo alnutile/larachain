@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Events\SourceRunCompleteEvent;
-use App\Events\TransformerRunCompleteEvent;
 use App\Models\Source;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

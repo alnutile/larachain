@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Sources;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceTypeEnum;
@@ -81,6 +79,4 @@ class WebFileSourceController extends BaseSourceController
             'project' => $project->id,
         ]);
     }
-
-
 }

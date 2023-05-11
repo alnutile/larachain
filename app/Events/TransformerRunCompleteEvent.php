@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Source;
 use App\Models\Transformer;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;

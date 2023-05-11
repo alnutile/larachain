@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Tranformers;
 
-use App\Jobs\ProcessTransformerJob;
 use App\Models\Project;
 use App\Models\Transformer;
 use App\Transformers\TransformerTypeEnum;
@@ -36,6 +35,4 @@ class EmbedTransformerController extends BaseTransformerController
     {
         // Empty method
     }
-
-
 }

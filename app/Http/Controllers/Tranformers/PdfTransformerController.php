@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Tranformers;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\ProcessTransformerJob;
 use App\Models\Project;
 use App\Models\Transformer;
 use App\Transformers\TransformerTypeEnum;
@@ -38,6 +36,4 @@ class PdfTransformerController extends BaseTransformerController
     {
         // TODO: Implement update() method.
     }
-
-
 }
