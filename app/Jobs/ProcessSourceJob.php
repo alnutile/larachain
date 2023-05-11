@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Events\SourceRunCompleteEvent;
 use App\Models\Source;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -29,12 +28,12 @@ class ProcessSourceJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            logger("Getting Source " . $this->source->id);
+            logger('Getting Source '.$this->source->id);
             $this->source->run();
             SourceRunCompleteEvent::dispatch($this->source);
-            logger("Done Source " . $this->source->id);
+            logger('Done Source '.$this->source->id);
         } catch (\Exception $e) {
-            $message = "Error getting Source " . $this->source->id;
+            $message = 'Error getting Source '.$this->source->id;
             logger($message);
             throw new \Exception($message);
         }

@@ -65,7 +65,7 @@ it('should allow you to update', function () {
         ]), [
             'name' => 'Foo',
             'meta_data' => [
-                'url' => 'https://foo.bar'
+                'url' => 'https://foo.bar',
             ],
             'description' => 'Bar',
         ])
@@ -95,7 +95,7 @@ it('should create', function () {
             'name' => 'Foo',
             'description' => 'Bar',
             'meta_data' => [
-                'url' => 'https://foo.bar'
+                'url' => 'https://foo.bar',
             ],
         ])
         ->assertRedirectToRoute('projects.show', [

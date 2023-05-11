@@ -14,11 +14,11 @@ class WebFileSourceController extends Controller
         return inertia('Sources/WebFile/Create', [
             'details' => config('larachain.sources.web_file'),
             'project' => $project,
-            "source" => [
-                "meta_data" => [
-                    'url' => 'https://foo.com/some.pdf'
-                ]
-            ]
+            'source' => [
+                'meta_data' => [
+                    'url' => 'https://foo.com/some.pdf',
+                ],
+            ],
         ]);
     }
 
@@ -45,7 +45,7 @@ class WebFileSourceController extends Controller
             'description' => $validated['description'],
             'type' => SourceTypeEnum::WebFile,
             'order' => 1,
-            'meta_data' => $validated['meta_data']
+            'meta_data' => $validated['meta_data'],
         ]);
 
         request()->session()->flash('flash.banner', 'Source Created 🤘');
@@ -71,7 +71,7 @@ class WebFileSourceController extends Controller
             'description' => $validated['description'],
             'type' => SourceTypeEnum::WebFile,
             'order' => 1,
-            'meta_data' => $validated['meta_data']
+            'meta_data' => $validated['meta_data'],
         ]);
 
         request()->session()->flash('flash.banner', 'Source Updated ✅');
@@ -81,7 +81,8 @@ class WebFileSourceController extends Controller
         ]);
     }
 
-    public function run(Project $project, Source $source) {
+    public function run(Project $project, Source $source)
+    {
         ProcessSourceJob::dispatch($source);
 
         request()->session()->flash('flash.banner', 'Getting file will notify you when done 🗃️');

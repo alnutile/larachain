@@ -39,7 +39,6 @@ class WebFile extends BaseSourceType
                 ]
             );
 
-
     }
 
     protected function getPath($fileName)
