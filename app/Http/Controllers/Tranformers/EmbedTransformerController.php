@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Tranformers;
 
-use App\Http\Controllers\Controller;
 use App\Jobs\ProcessTransformerJob;
 use App\Models\Project;
 use App\Models\Transformer;
@@ -15,15 +14,17 @@ class EmbedTransformerController extends BaseTransformerController
         Transformer::create([
             'type' => TransformerTypeEnum::EmbedTransformer,
             'order' => $project->transformers->count() + 1,
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
-        return to_route("projects.show", ['project' => $project->id]);
+
+        return to_route('projects.show', ['project' => $project->id]);
     }
 
     public function edit(Project $project, Transformer $transformer)
     {
         request()->session()->flash('flash.banner', 'You can sort the order by dragging and dropping');
-        return to_route("projects.show", ['project' => $project->id]);
+
+        return to_route('projects.show', ['project' => $project->id]);
     }
 
     public function store(Project $project)
@@ -46,5 +47,4 @@ class EmbedTransformerController extends BaseTransformerController
             'project' => $project->id,
         ]);
     }
-
 }

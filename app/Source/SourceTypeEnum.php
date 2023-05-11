@@ -7,7 +7,6 @@ namespace App\Source;
  */
 enum SourceTypeEnum: string
 {
-
     /**
      * _ will just dispable the type until ready to show in the UI
      */

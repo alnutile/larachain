@@ -51,21 +51,21 @@ const formRun = useForm({})
 const emit = defineEmits(['runComplete'])
 
 const run = (transformer) => {
-    // toast(`Running Transformer ${transformer.name}`)
-    // formRun.post(route('transformers.embed_transformer.run', {
-    //     project: props.project.id,
-    //     transformer: transformer.id
-    // }), {
-    //     errorBag: "transformerEmbedTransformer",
-    //     preserveScroll: true,
-    //     onError: params => {
-    //         toast.error("Error running job 🤦🏻‍")
-    //     },
-    //     onSuccess: params => {
-    //         emit("runComplete")
-    //         router.reload()
-    //     }
-    // });
+    toast(`Running Transformer ${transformer.name}`)
+    formRun.post(route('transformers.embed_transformer.run', {
+        project: props.project.id,
+        transformer: transformer.id
+    }), {
+        errorBag: "transformerEmbedTransformer",
+        preserveScroll: true,
+        onError: params => {
+            toast.error("Error running job 🤦🏻‍")
+        },
+        onSuccess: params => {
+            emit("runComplete")
+            router.reload()
+        }
+    });
 }
 </script>
 

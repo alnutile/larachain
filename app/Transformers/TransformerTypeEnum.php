@@ -6,6 +6,7 @@ enum TransformerTypeEnum: string
 {
     /**
      * _ will just dispable the type until ready to show in the UI
+     *
      * @TODO Ideally do not have Transformer in the name
      */
     case EmbedTransformer = 'embed_transformer';

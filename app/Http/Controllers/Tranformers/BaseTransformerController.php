@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Transformer;
 
-abstract  class BaseTransformerController extends Controller
+abstract class BaseTransformerController extends Controller
 {
     abstract public function create(Project $project);
 

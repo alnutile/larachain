@@ -21,7 +21,7 @@ class Transformer extends Model
     use HasFactory;
 
     protected $appends = [
-        'type_formatted'
+        'type_formatted',
     ];
 
     protected $guarded = [];
@@ -36,7 +36,8 @@ class Transformer extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function getTypeFormattedAttribute() {
+    public function getTypeFormattedAttribute()
+    {
         return str($this->type->value)->headline()->toString();
     }
 

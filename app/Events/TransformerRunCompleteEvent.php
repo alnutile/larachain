@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Source;
+use App\Models\Transformer;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -16,7 +17,7 @@ class TransformerRunCompleteEvent implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(public Source $source)
+    public function __construct(public Transformer $transformer)
     {
         //
     }
@@ -29,7 +30,7 @@ class TransformerRunCompleteEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('projects.'.$this->source->project_id),
+            new PrivateChannel('projects.'.$this->transformer->project_id),
         ];
     }
 
