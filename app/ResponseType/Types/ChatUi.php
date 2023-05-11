@@ -19,7 +19,7 @@ class ChatUi extends BaseResponseType
 
     protected ResponseType $responseType;
 
-    protected string $content;
+    protected mixed $content;
 
     public function handle(ResponseType $responseType): ResponseDto
     {

@@ -30,7 +30,7 @@ class ChatReplyEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('projects.chat.'.$this->project->id),
+            new PrivateChannel('projects.'.$this->project->id),
         ];
     }
 

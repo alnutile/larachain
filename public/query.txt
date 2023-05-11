@@ -1,0 +1,1 @@
+select document_chunks.embedding <-> ? as distance, document_chunks.content from "document_chunks" inner join "documents" on "documents"."id" = "document_chunks"."document_id" inner join "sources" on "sources"."id" = "documents"."source_id" where "sources"."project_id" = ? order by distance

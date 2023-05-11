@@ -117,6 +117,8 @@ EOD;
             return data_get($data, 'choices.0.text');
         }
 
+        $messages = clean_messages($messages);
+
         $stream = OpenAI::chat()->createStreamed([
             'model' => 'gpt-3.5-turbo',
             'temperature' => $this->temperature,
@@ -140,6 +142,8 @@ EOD;
                 $count = $count + 1;
             }
         }
+        logger($reply);
+        ChatReplyEvent::dispatch($project, $user, $reply);
 
         return implode("\n", $data);
     }

@@ -1,0 +1,10 @@
+{
+    "message": {
+        "role": "user",
+        "content": "Foo bar",
+        "user_id": 75,
+        "project_id": 46
+    },
+    "response": null,
+    "status": 200
+}

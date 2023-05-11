@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
 use App\Source\SourceTypeEnum;
 use App\Transformers\TransformerTypeEnum;
-use Facades\App\Tools\ChatRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -32,7 +32,19 @@ class ProjectController extends Controller
         ]);
 
         try {
-            ChatRepository::handle($project, auth()->user(), $validated['question']);
+            /**
+             * @TODO abstract this out
+             * right now for the demo it will take the first
+             * outbound that is chat
+             */
+            $outbound = $project->outbounds()
+                ->whereType(OutboundEnum::ChatUi->value)
+                ->first();
+            /** @var Outbound $outbound */
+            $outbound->run(
+                auth()->user(),
+                $validated['question']
+            );
 
             return response()->json([], 200);
         } catch (\Exception $e) {

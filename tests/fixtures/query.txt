@@ -1,0 +1,1 @@
+select embedding <-> ? as distance, content from "documents" where exists (select * from "sources" where "documents"."source_id" = "sources"."id" and "project_id" = ?) order by distance

@@ -4,7 +4,13 @@
             <li v-for="response_type in outbound.response_types" :key="outbound.id" class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer">
                 <div>
                     <div class="text-sm">
-                        Response Type {{response_type.type_formatted}} <span class="text-xs text-gray-400">({{ response_type.id }})</span><span aria-hidden="true"> &rarr;</span>
+                        Response Type {{response_type.type_formatted}}
+                        <Link :href="route(`response_types.${response_type.type}.edit`, {
+                            outbound: outbound.id,
+                            response_type: response_type.id
+                        })">
+                            <span class="text-xs text-gray-400">({{ response_type.id }})</span><span aria-hidden="true"> &rarr;</span>
+                        </Link>
                     </div>
                     <div class="text-xs text-gray-500">
                     </div>

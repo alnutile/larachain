@@ -49,7 +49,7 @@ class Outbound extends Model
 
     public function response_types()
     {
-        return $this->hasMany(ResponseType::class)->orderBy('order');
+        return $this->hasMany(ResponseType::class)->orderBy('order', 'ASC');
     }
 
     /**
@@ -74,9 +74,14 @@ class Outbound extends Model
 
             foreach ($this->response_types as $response_type_model) {
                 $responseType = $response_type_model->type->label();
+
+                logger('Running Response Type ID '.$response_type_model->id);
+
+                put_fixture('current_dto_'.$response_type_model->id.'.json', $this->currentResponseDto->toArray());
+
                 $responseTypeClass = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
-                    'response_dto' => $dto,
+                    'response_dto' => $this->currentResponseDto,
                 ]);
                 /** @var BaseResponseType $responseTypeClass */
                 $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
@@ -84,7 +89,7 @@ class Outbound extends Model
 
             return $this->currentResponseDto;
         } catch (\Exception $e) {
-            logger($e);
+            logger($e->getMessage());
 
             return ResponseDto::from([
                 'status' => 500,

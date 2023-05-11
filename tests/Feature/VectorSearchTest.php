@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Document;
+use App\Models\DocumentChunk;
 use App\Models\Message;
 use App\Models\Project;
 use App\Models\ResponseType;
@@ -15,7 +15,7 @@ class VectorSearchTest extends TestCase
 {
     public function test_search_vector()
     {
-        Document::factory()->withEmbedData()->create();
+        $documentChunk = DocumentChunk::factory()->withEmbedData()->create();
 
         $project = Project::factory()->create();
         $user = User::factory()->create();

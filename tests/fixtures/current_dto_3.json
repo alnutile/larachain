@@ -1,0 +1,10 @@
+{
+    "message": {
+        "role": "user",
+        "content": "What does WDR stand for?",
+        "user_id": 1,
+        "project_id": 1
+    },
+    "response": null,
+    "status": 200
+}

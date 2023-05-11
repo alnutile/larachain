@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Outbounds\ApiiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
+use App\Http\Controllers\ResponeTypes\ChatUiResponseTypeController;
+use App\Http\Controllers\ResponeTypes\CombineContentResponseTypeController;
 use App\Http\Controllers\ResponeTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\ResponeTypes\VectorSearchResponseTypeController;
 use App\Http\Controllers\Sources\WebFileSourceController;
@@ -134,6 +136,23 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(CombineContentResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/combine_content/create', 'create')
+            ->name('response_types.combine_content.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/combine_content/edit', 'edit')
+            ->name('response_types.combine_content.edit');
+        Route::post('/outbounds/{outbound}/response_types/combine_content/store', 'store')
+            ->name('response_types.combine_content.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/combine_content/update', 'update')
+            ->name('response_types.combine_content.update');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(EmbedQuestionResponseTypeController::class)->group(
     function () {
         Route::get('/outbounds/{outbound}/response_types/embed_question/create', 'create')
@@ -156,11 +175,28 @@ Route::middleware([
         Route::get('/outbounds/{outbound}/response_types/vector_search/create', 'create')
             ->name('response_types.vector_search.create');
         Route::get('/outbounds/{outbound}/response_types/{response_type}/vector_search/edit', 'edit')
-            ->name('response_types.embed_question.edit');
+            ->name('response_types.vector_search.edit');
         Route::post('/outbounds/{outbound}/response_types/vector_search/store', 'store')
-            ->name('response_types.embed_question.store');
+            ->name('response_types.vector_search.store');
         Route::put('/outbounds/{outbound}/response_types/{response_type}/vector_search/update', 'update')
             ->name('response_types.vector_search.update');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(ChatUiResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/chat_ui/create', 'create')
+            ->name('response_types.chat_ui.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/chat_ui/edit', 'edit')
+            ->name('response_types.chat_ui.edit');
+        Route::post('/outbounds/{outbound}/response_types/chat_ui/store', 'store')
+            ->name('response_types.chat_ui.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/chat_ui/update', 'update')
+            ->name('response_types.chat_ui.update');
     }
 );
 

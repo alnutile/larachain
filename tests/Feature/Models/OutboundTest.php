@@ -26,7 +26,7 @@ it('has relations to project', function () {
     expect($model->response_types->first()->id)->not->toBeNull();
 });
 
-it('should ru the related response types', function () {
+it('should runs the related response types', function () {
     $user = User::factory()->create();
     $request = 'Foo bar';
 

@@ -24,16 +24,6 @@ class EmbedQuestionResponseTypeController extends BaseResponseTypeController
         return back();
     }
 
-    public function show(Outbound $outbound)
-    {
-        // TODO: Implement show() method.
-    }
-
-    public function edit(Outbound $outbound, ResponseType $response_type)
-    {
-        // TODO: Implement edit() method.
-    }
-
     public function store(Outbound $outbound)
     {
         // TODO: Implement store() method.

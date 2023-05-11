@@ -10,9 +10,19 @@ abstract class BaseResponseTypeController extends Controller
 {
     abstract public function create(Outbound $outbound);
 
-    abstract public function show(Outbound $outbound);
+    public function show(Outbound $outbound, ResponseType $response_type)
+    {
+        request()->session()->flash('flash.banner', 'Now Settings for this 🤷🏻‍');
 
-    abstract public function edit(Outbound $outbound, ResponseType $response_type);
+        return back();
+    }
+
+    public function edit(Outbound $outbound, ResponseType $response_type)
+    {
+        request()->session()->flash('flash.banner', 'Now Settings for this 🤷🏻‍');
+
+        return back();
+    }
 
     abstract public function store(Outbound $outbound);
 

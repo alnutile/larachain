@@ -1,0 +1,15 @@
+{
+    "message": {
+        "id": 133,
+        "role": "user",
+        "project_id": 1,
+        "user_id": 1,
+        "content": "What does WDR stand for?",
+        "created_at": "2023-05-11T20:52:27.000000Z",
+        "updated_at": "2023-05-11T20:52:27.000000Z",
+        "token_count": null,
+        "embedding": {}
+    },
+    "response": null,
+    "status": 200
+}

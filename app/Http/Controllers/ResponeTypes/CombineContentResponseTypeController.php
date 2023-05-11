@@ -6,13 +6,13 @@ use App\Models\Outbound;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseTypeEnum;
 
-class VectorSearchResponseTypeController extends BaseResponseTypeController
+class CombineContentResponseTypeController extends BaseResponseTypeController
 {
     //
     public function create(Outbound $outbound)
     {
         ResponseType::create([
-            'type' => ResponseTypeEnum::VectorSearch,
+            'type' => ResponseTypeEnum::CombineContent,
             'order' => $outbound->response_types->count() + 1,
             'outbound_id' => $outbound->id,
             'prompt_token' => [],

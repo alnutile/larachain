@@ -1,0 +1,15 @@
+[
+    {
+        "user_id": 1,
+        "project_id": 1,
+        "content": "A user is asking you questions about the regulatory rules related to California Regional Water Quality Control Board Central Valley Region that has been uploaded to this database. Please answer there questions from the context below and only reference external information if needed.\nContext: Attachment A to Order R5\n-2013 -0120 -09   Information Sheet   66\nTulare Lake Basin Area\nSeptember 2013   Last Revised April 2021\nFigures\nFigure 1\n   Tulare Lake Basin Area Waste Discharge Requirements General Order R5\n-2013 -0120 -09   51\nGrowers within the Tulare Lake Basin Area\nSeptember 2013   Last Revised April 2021\nFigure \n1 Map of the Tulare Lake Basin Area Appendix MRP\n-2   6\nMRP Orde r R5-2013 -0120 -0 9\nSeptember 2013   Last Revised  April 2021\nd)\n Name, license number, and signature of California licensed professional who \nconducted survey.\ne)  Surveyors field notes.\nf)   Tabulated survey data. Attachment \nE to Order R5 -2013 -0120 -0 9  9\nTulare Lake Basin Area\nSeptember 2013   Last Revised  April 2021\nAcronyms and Abbreviations\n2012 Farm Bill\nFood, Conservation, and Energy Act of 2012\nBasin Plan Water Quality Control Plan for the Tulare Lake Basin\nBPAW Basin Plan Amendment Workplan\nBPTC best practicable treatment or control\nCAC county agricultural commissioner\nCCA Certified Crop Adviser\nCCR California Code of Regulations\nCDFA California Department of Food and Agriculture\nCEDEN California Environmental Data Exchange Network\nCentral Valley Water Board California Regional Water Quality Control Board, Central Valley Region\nCEQA California Environmental Quality Act\nCFR Code of Federal Regulations\nCHRIS California Historical Resources Information System\nCOC constituent of concern\nCRHR California Register of Historic Resources\nCTR California Toxics Rule\nCV RDC Central Valley Regional Data Center\nCV -SALTS Central Valley Salinity Alternatives for Long -Term Sustainability\nCWC California Water Code\nDO dissolved oxygen\nDPH California Department of Public Health\nDPM diesel particulate matter\nDPR California Department of Pesticide Regulation\nDWR California Department of Water Resources\nECR Existing Conditions Report\nEDD electronic data deliverable\nEIR environmental impact report\nEPA U.S. Environmental Protection Agency\nEQIP Environmental Quality Incentives Program\nESA federal Endangered Species A ct\nESJ WQC East San Joaquin Water Quality Coalition \n\\n\n\\n\n###\n\\n\n\\n",
+        "role": "system",
+        "updated_at": "2023-05-11T20:37:05.000000Z",
+        "created_at": "2023-05-11T20:37:05.000000Z",
+        "id": 115
+    },
+    {
+        "role": "user",
+        "content": "What does WDRs stand for"
+    }
+]

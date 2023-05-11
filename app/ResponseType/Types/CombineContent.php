@@ -5,7 +5,6 @@ namespace App\ResponseType\Types;
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
-use Illuminate\Support\Arr;
 
 class CombineContent extends BaseResponseType
 {
@@ -13,9 +12,7 @@ class CombineContent extends BaseResponseType
     {
         $combinedContent = '';
 
-        $response = Arr::wrap($this->response_dto->response);
-
-        foreach ($response as $document) {
+        foreach ($this->response_dto->response as $document) {
             $combinedContent .= $document->content;
             if (strlen($combinedContent) >= 750) {
                 break;
