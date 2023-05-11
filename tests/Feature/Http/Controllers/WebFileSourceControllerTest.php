@@ -33,13 +33,13 @@ it('should allow you to edit', function () {
     ]);
 
     $source = Source::factory()->create([
-        'project_id' => $project->id
+        'project_id' => $project->id,
     ]);
 
     $this->actingAs($user)
         ->get(route('sources.web_file.edit', [
             'project' => $project->id,
-            'source' => $source->id
+            'source' => $source->id,
         ]))
         ->assertOk();
 });
@@ -55,23 +55,23 @@ it('should allow you to update', function () {
     ]);
 
     $source = Source::factory()->create([
-        'project_id' => $project->id
+        'project_id' => $project->id,
     ]);
 
     $this->actingAs($user)
         ->put(route('sources.web_file.update', [
             'project' => $project->id,
-            'source' => $source->id
+            'source' => $source->id,
         ]), [
-            'name' => "Foo",
-            'url' => "http://foo.com",
-            'description' => "Bar"
+            'name' => 'Foo',
+            'url' => 'http://foo.com',
+            'description' => 'Bar',
         ])
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,
         ]);
 
-    expect($source->refresh()->name)->toBe("Foo");
+    expect($source->refresh()->name)->toBe('Foo');
 });
 
 it('should create', function () {
