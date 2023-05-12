@@ -27,6 +27,15 @@ class ResponseTypeFactory extends Factory
         ];
     }
 
+    public function trimText()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::TrimText,
+                'meta_data' => []
+            ];
+        });
+    }
 
     public function combineContent()
     {
