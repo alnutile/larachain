@@ -50,6 +50,13 @@ class ChatUi extends BaseResponseType
                 ->where('project_id', $this->project->id)
                 ->whereRole('system')
                 ->first();
+
+            /**
+             * Give it hte latest context
+             */
+            $systemMessage->content = ($this->updateSystemPrompt())->format();
+            $systemMessage->save();
+
             $messages = Message::query()
                 ->select(['role', 'content'])
                 ->where('user_id', $this->user->id)
@@ -76,6 +83,17 @@ class ChatUi extends BaseResponseType
                 'response' => null,
             ]
         );
+    }
+
+    protected function updateSystemPrompt(): PromptTemplate
+    {
+        $template = $this->responseType->prompt_token['system'];
+
+        $input_variables = [
+            new PromptToken('context', $this->content),
+        ];
+
+        return new PromptTemplate($input_variables, $template);
     }
 
     protected function getFirstQuestionPrompt(): PromptTemplate
