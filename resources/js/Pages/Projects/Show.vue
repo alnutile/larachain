@@ -48,19 +48,23 @@
                         </div>
                     </div>
 
-                    <div class="mt-8">
+                    <div class="max-w-6xl mt-8 bg-slate-800 text-gray-200 p-4 overflow-auto flex-col  mx-auto text-xl">
                         <div v-if="response.length === 0" class="text-xl text-gray-400">
                             Responses will show here
                         </div>
-                        <div v-else class="text-xl text-gray-800">
-                            <div v-for="(message, index) in response" :key="index" class="flex justify-start items-center gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-                                </svg>
-
-                                {{ message }}
+                        <div v-else v-for="(message, index) in response" :key="index" class="flex items-center gap-4 w-full">
+                            <div v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2 inline-block">
+                                <div>
+                                    {{ message.content }}
+                                </div>
+                            </div>
+                            <div v-else class="flex w-full justify-end mt-1 mb-1">
+                                <div class="bg-blue-500 text-white rounded-md px-4 py-2 inline-block">
+                                    {{ message.content }}
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
 
@@ -114,14 +118,20 @@ const response = ref([]);
 onMounted(() => {
     Echo.private(`projects.${props.project.id}`)
         .listen('.chat', (e) => {
-            console.log(e.response);
-            response.value.push(e.response)
+            response.value.push({
+                type: "system",
+                content: e.response
+            })
         });
 })
 
 const submit = () => {
     form.processing = true;
     toast("This might take a moment")
+    response.value.push({
+        type: "user",
+        content: form.question
+    })
     axios.post(route('projects.chat', {
         project: props.project.id
     }), pickBy(form))
@@ -138,7 +148,6 @@ const submit = () => {
 
 const refresh = () => {
     form.processing = true;
-    toast("This might take a moment")
     axios.delete(route("projects.messages.delete", {
         project: props.project.id
     }))

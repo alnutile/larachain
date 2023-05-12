@@ -24,7 +24,8 @@
         "smalot/pdfparser": "^2.5",
         "spatie/laravel-data": "^3.4",
         "sundance/larachain-prompt-templates": "^0.0.1",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "ylsideas/feature-flags": "^2.0"
     },
     "require-dev": {
         "alnutile/inertia-crud": "^1.0",

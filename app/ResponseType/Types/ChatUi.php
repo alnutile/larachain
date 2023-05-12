@@ -55,16 +55,19 @@ class ChatUi extends BaseResponseType
                 ->where('user_id', $this->user->id)
                 ->where('project_id', $this->project->id)
                 ->whereIn('role', ['user', 'assistant'])
-                ->latest()
+                ->orderBy('id', 'desc')
                 ->take(4)
-                ->get();
+                ->get()
+                ->reverse();
             $messages->prepend($systemMessage);
         }
 
+        $messages = clean_messages($messages->toArray());
         $fullResponse = ClientWrapper::projectChat(
             $this->project,
             $this->user,
-            $messages->toArray());
+            $messages);
+
         $this->makeAssistantMessage($fullResponse);
 
         return ResponseDto::from(

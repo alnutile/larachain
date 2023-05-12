@@ -10,6 +10,7 @@ use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use YlsIdeas\FeatureFlags\Facades\Features;
 
 /**
  * @property ResponseTypeEnum $type
@@ -75,16 +76,19 @@ class Outbound extends Model
             foreach ($this->response_types as $response_type_model) {
                 $responseType = $response_type_model->type->label();
 
-                logger('Running Response Type ID '.$response_type_model->id);
-
-                put_fixture('current_dto_'.$response_type_model->id.'.json', $this->currentResponseDto->toArray());
-
                 $responseTypeClass = app("App\ResponseType\Types\\".$responseType, [
                     'project' => $this->project,
                     'response_dto' => $this->currentResponseDto,
                 ]);
+
                 /** @var BaseResponseType $responseTypeClass */
                 $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
+
+                if (Features::accessible('larachain_logging')) {
+                    logger('Running Response Type ID '.$response_type_model->id);
+                    put_fixture('larachain_current_dto_'.$responseType.'.json', $this->currentResponseDto->toArray());
+                }
+
             }
 
             return $this->currentResponseDto;
