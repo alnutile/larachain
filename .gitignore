@@ -17,3 +17,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+tests/fixtures/larachain_chat_ui_questions.json
+tests/fixtures/larachain_current_dto_ChatUi.json
+tests/fixtures/larachain_current_dto_CombineContent.json
+tests/fixtures/larachain_current_dto_EmbedQuestion.json
+tests/fixtures/larachain_current_dto_VectorSearch.json

@@ -12,9 +12,14 @@ class CombineContent extends BaseResponseType
     {
         $combinedContent = '';
 
+        /**
+         * @TODO move this into the UI
+         */
+        $token_limit = data_get($responseType->meta_data, "token_limit", 750);
+
         foreach ($this->response_dto->response as $document) {
             $combinedContent .= $document->content;
-            if (strlen($combinedContent) >= 750) {
+            if (strlen($combinedContent) >= $token_limit) {
                 break;
             }
         }

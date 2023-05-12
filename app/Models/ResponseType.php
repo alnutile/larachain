@@ -29,6 +29,7 @@ class ResponseType extends BaseTypeModel
     protected $casts = [
         'prompt_token' => 'encrypted:array',
         'type' => ResponseTypeEnum::class,
+        'meta_data' => 'encrypted:array',
     ];
 
     public function outbound()

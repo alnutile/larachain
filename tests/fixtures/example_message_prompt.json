@@ -1,0 +1,22 @@
+[
+    {
+        "role": "system",
+        "content": "A user is asking you questions about the regulatory rules related to California Regional Water Quality Control Board Central Valley Region that has been uploaded to this database. Please answer there questions from the context below and only reference external information if needed.\nContext: September 2013 \n Last Revised  April 2021\nMonitoring and Reporting Program\n R5 -2013 -0120 -0 9\nAppendix  MRP -1\nManagement Plan Requirements\nSurface Water and Groundwater Table of Contents\nI.   Management Plan Development and Required Components  ................................ ................1\nA.   Introduction and Background Section  ................................ ............................................... 1\nB.   Physical Settin g and Information  ................................ ....................................................... 2\n1.   General Requirements  ................................ .................................................................. 2\n2.   Surface Water   Additional Requirements  ................................ .................................... 2\n3.   Groundwater   Additional Requirements  ................................ ....................................... 3\nC.  Management Pl an Strategy................................ ............................................................... 3\nD.  Monitoring Methods  ................................ .......................................................................... 5\n1.   General Requirements  ................................ .................................................................. 5\n2.   Surface Water   Additional Requirements  ................................ .................................... 5\n3.   Groundwater   Additional Requirements  ................................ ................................ .......\n 5\nE.   Data Evaluation  ................................ ................................................................................. 5\nF.   Records and Reporting  ................................ ..................................................................... 6\nG.  Source Identification Study Requirements  ................................ ........................................ 6\nII.   Approval and Review of the Management Plan  ................................ .....................................7\nIII.  Manag ement Plan Completion  ................................ ...............................................................8 \n###\n\\n\n\\n"
+    },
+    {
+        "role": "assistant",
+        "content": "\nThe\n document\n does\n not\n provide\n any\n information\n or\n reference\n to\n the\n acronym\n \"\nSQ\nMP\n.\"\n"
+    },
+    {
+        "role": "user",
+        "content": "What are the Monitoring Requirements and Schedule"
+    },
+    {
+        "role": "assistant",
+        "content": "\nThe\n document\n does\n not\n provide\n specific\n information\n on\n the\n monitoring\n requirements\n and\n schedule\n.\n However\n,\n it\n does\n provide\n general\n requirements\n for\n monitoring\n methods\n,\n data\n evaluation\n,\n records\n,\n and\n reporting\n in\n the\n Management\n Plan\n Requirements\n section\n.\n It\n also\n outlines\n the\n approval\n and\n review\n process\n for\n the\n management\n plan\n and\n the\n completion\n process\n.\n Specific\n monitoring\n requirements\n and\n schedules\n may\n be\n outlined\n in\n other\n documents\n or\n regulations\n related\n to\n the\n California\n Regional\n Water\n Quality\n Control\n Board\n Central\n Valley\n Region\n.\n"
+    },
+    {
+        "role": "user",
+        "content": "What are the Monitoring Requirements and Schedule"
+    }
+]

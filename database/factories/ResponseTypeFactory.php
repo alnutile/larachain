@@ -21,9 +21,23 @@ class ResponseTypeFactory extends Factory
         return [
             'order' => fake()->randomDigitNotZero(),
             'prompt_token' => [],
+            'meta_data' => [],
             'type' => ResponseTypeEnum::ChatUi,
             'outbound_id' => Outbound::factory(),
         ];
+    }
+
+
+    public function combineContent()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::CombineContent,
+                'meta_data' => [
+                    'token_limit' => 750
+                    ]
+            ];
+        });
     }
 
     public function vectorSearch()

@@ -7,7 +7,7 @@ use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\Source;
 use App\ResponseType\ResponseDto;
-use App\ResponseType\Types\CombineContent;
+use App\ResponseType\Types\TrimText;
 
 it('Should combine as when it comes from vector search', function () {
     $project = Project::factory()->create();
@@ -35,7 +35,7 @@ it('Should combine as when it comes from vector search', function () {
 
     $responseType = ResponseType::factory()->create();
 
-    $combine = new CombineContent($source->project, $responseDto);
+    $combine = new TrimText($source->project, $responseDto);
 
     $results = $combine->handle($responseType);
 
