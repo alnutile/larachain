@@ -16,7 +16,9 @@ class ProjectController extends Controller
     public function index()
     {
         return Inertia::render('Projects/Index', [
+            /** @phpstan-ignore-next-line */
             'projects' => Project::query()
+                ->with('sources', 'outbounds')
                 ->where('team_id',
                 auth()->user()->current_team_id)
                 ->orderBy('updated_at', 'DESC')

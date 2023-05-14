@@ -30,36 +30,32 @@
                         <div class="mt-8 flex flex-col">
                             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <table class="min-w-full divide-y divide-gray-300">
-                                            <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"></th>
-                                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Active</th>
-                                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                    <span class="sr-only">Edit</span>
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200 bg-white">
-                                            <tr v-for="project in projects.data" :key="project.id">
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                    <Link class="underline" :href="route('projects.show', {
-                                                        project: project.id
-                                                    })">{{ project.id }}</Link>
-                                                </td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ project.name }}</td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    <Active :active="project.active"/>
-                                                </td>
-                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    <div class="grid grid-cols-2">
+                                            <div v-for="project in projects.data" :key="project.id" class="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5 md:rounded-lg ">
+                                                <div class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900 text-xl p-2">Project: {{ project.name }}</div>
+                                                <div class="p-2">
+                                                    <div class="text-sm text-gray-500 flex flex-col text-left justify-start">
+                                                        <div class="font-semibold">Source(s):</div>
+                                                        <div v-for="source in project.sources">{{source.name}} - {{ source.type_formatted}}</div>
+                                                    </div>
+                                                    <div class="text-sm text-gray-500 flex flex-col text-left justify-start">
+                                                        <div class="font-semibold">Outbound(s):</div>
+                                                        <div v-for="outbound in project.outbounds">{{outbound.name}} - {{ outbound.type_formatted}}</div>
+                                                    </div>
+                                                    <div class="whitespace-nowrap text-sm text-gray-500 flex justify-start items-center">
+                                                        <span class="font-semibold">Active:</span>
+                                                        <Active :active="project.active"/>
+                                                    </div>
+                                                </div>
+                                                <div class="
+                                                flex gap-4 justify-end items-center
+                                                relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <PrimaryButtonLink :href="route('projects.show',
+                                                    {project: project.id})" >View</PrimaryButtonLink>
                                                     <Link :href="route('projects.edit',
                                                     {project: project.id})" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                                </div>
+                                            </div>
                                     </div>
                                     <SimplePaginate :meta="projects"></SimplePaginate>
                                 </div>
@@ -78,6 +74,7 @@ import Active from "@/Components/Active.vue";
 import SimplePaginate from "@/Components/SimplePaginate.vue";
 import { Link,usePage } from "@inertiajs/vue3"
 import {useToast} from "vue-toastification";
+import PrimaryButtonLink from "@/Components/PrimaryButtonLink.vue";
 const toast = useToast();
 
 const props = defineProps({
