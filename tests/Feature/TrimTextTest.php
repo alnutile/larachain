@@ -46,13 +46,13 @@ class TrimTextTest extends TestCase
             ->trimText()
             ->create();
 
-        $combine = new TrimText($source->project, $responseDto);
+        $trim = new TrimText($source->project, $responseDto);
 
-        $results = $combine->handle($responseType);
+        $results = $trim->handle($responseType);
 
         $expected = get_fixture('trimmed2.text', false);
         $this->assertStringNotContainsString('don’t', $results->response);
 
-        $this->assertEquals($expected[0], $results->response->first());
+        $this->assertEquals($expected[0], $results->response->first()->content);
     }
 }
