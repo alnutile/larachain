@@ -6,14 +6,8 @@
 
 And just thinking how to make some of those flows work in a Laravel environment
 
-[https://github.com/hwchase17/langchain](https://github.com/hwchase17/langchain)
+[![LaraChain Full Demo](https://img.youtube.com/vi/cz7d6d3pk4o/0.jpg)](https://www.youtube.com/watch?v=cz7d6d3pk4o)]
 
-
-> I am still researching terminology and patterns used by LangChain 
-> will update below once I get more info and make the plugin system clear 
-> which will just use composer to plugin actions etc
-
-![image](docs/images/overview.jpg)
 
 ## Links
 
