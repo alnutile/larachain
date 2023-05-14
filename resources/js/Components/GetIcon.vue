@@ -8,6 +8,7 @@ import {
     ArrowDownTrayIcon,
     ArrowsPointingInIcon,
     Bars4Icon,
+    DocumentTextIcon,
     CalendarIcon,
     ChatBubbleLeftIcon, ClockIcon, MagnifyingGlassIcon, MegaphoneIcon, PhotoIcon, TableCellsIcon, ViewColumnsIcon
 } from "@heroicons/vue/24/outline";

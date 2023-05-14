@@ -2,7 +2,6 @@
 
 namespace App\ResponseType\Types;
 
-use App\Models\Project;
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
@@ -14,7 +13,6 @@ use Wamania\Snowball\StemmerFactory;
  */
 class TrimText extends BaseResponseType
 {
-
     const ARTICLES_PREPOSITIONS = [
         'english' => ['the', 'a', 'an', 'in', 'on', 'at', 'for', 'to', 'of'],
     ];
@@ -33,7 +31,6 @@ class TrimText extends BaseResponseType
 
     protected StopWords $stopWords;
 
-
     public function handle(ResponseType $responseType): ResponseDto
     {
         $this->stopWords = new StopWords();
@@ -50,7 +47,6 @@ class TrimText extends BaseResponseType
         );
     }
 
-
     /**
      * @TODO
      * add language to meta_data
@@ -60,12 +56,16 @@ class TrimText extends BaseResponseType
         string $language = 'en',
         bool $removeSpaces = false,
         bool $removeStopwords = true,
-        bool $removePunctuation = false
+        bool $removePunctuation = false,
+        bool $stemmer = true
     ): string {
-        $stemmer = StemmerFactory::create($language);
+        if ($stemmer) {
+            $stemmer = StemmerFactory::create($language);
+        }
+
         $stopwords = $this->stopWords->getStopWordsFromLanguage($language);
 
-        $text = str_replace(["'", "’"], "", $text);
+        $text = str_replace(["'", '’'], '', $text);
 
         $tokenized = preg_split('/\s+/', $text);
 
@@ -74,12 +74,11 @@ class TrimText extends BaseResponseType
             $wordsToExclude = array_diff($wordsToExclude, self::NEGATION_WORDS[$language] ?? []);
 
             $tokenized = array_filter($tokenized, function ($word) use ($wordsToExclude) {
-                return !in_array(strtolower($word), $wordsToExclude);
+                return ! in_array(strtolower($word), $wordsToExclude);
             });
         }
 
         $tokenized = array_values($tokenized);
-
 
         $words = $tokenized;
 
@@ -108,11 +107,11 @@ class TrimText extends BaseResponseType
         $joinStr = $removeSpaces ? '' : ' ';
         $trimmed = implode($joinStr, $words);
 
-        if (!$removePunctuation) {
+        if (! $removePunctuation) {
             $trimmed = preg_replace('/\s([?.!,:;])/', '$1', $trimmed);
         }
 
-        $trimmed =  preg_replace('/[^\x20-\x7F]/', '', $trimmed);
+        $trimmed = preg_replace('/[^\x20-\x7F]/', '', $trimmed);
 
         return $trimmed;
     }

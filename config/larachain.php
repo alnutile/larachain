@@ -96,7 +96,7 @@ return [
             'description' => 'Create a chat system with platforms like OpenAI or others. It will pass any info into the {context} token in the prompt_token',
             'icon' => 'ChatBubbleLeftIcon',
             'route' => 'chat_ui',
-            'background' => 'bg-pink-500',
+            'background' => 'bg-pink-400',
             'active' => 1,
         ],
     ],

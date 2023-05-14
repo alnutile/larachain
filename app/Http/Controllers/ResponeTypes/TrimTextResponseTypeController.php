@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\ResponeTypes;
 
-use App\Http\Controllers\Controller;
 use App\Models\Outbound;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseTypeEnum;

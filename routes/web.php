@@ -5,6 +5,7 @@ use App\Http\Controllers\Outbounds\ChatUiOutboundController;
 use App\Http\Controllers\ResponeTypes\ChatUiResponseTypeController;
 use App\Http\Controllers\ResponeTypes\CombineContentResponseTypeController;
 use App\Http\Controllers\ResponeTypes\EmbedQuestionResponseTypeController;
+use App\Http\Controllers\ResponeTypes\TrimTextResponseTypeController;
 use App\Http\Controllers\ResponeTypes\VectorSearchResponseTypeController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
@@ -153,7 +154,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller(CombineContentResponseTypeController::class)->group(
+])->controller(TrimTextResponseTypeController::class)->group(
     function () {
         Route::get('/outbounds/{outbound}/response_types/trim_text/create', 'create')
             ->name('response_types.trim_text.create');

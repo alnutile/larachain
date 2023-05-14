@@ -15,7 +15,7 @@ class CombineContent extends BaseResponseType
         /**
          * @TODO move this into the UI
          */
-        $token_limit = data_get($responseType->meta_data, "token_limit", 750);
+        $token_limit = data_get($responseType->meta_data, 'token_limit', 750);
 
         foreach ($this->response_dto->response as $document) {
             $combinedContent .= $document->content;

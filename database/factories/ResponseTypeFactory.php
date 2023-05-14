@@ -32,7 +32,7 @@ class ResponseTypeFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'type' => ResponseTypeEnum::TrimText,
-                'meta_data' => []
+                'meta_data' => [],
             ];
         });
     }
@@ -43,8 +43,8 @@ class ResponseTypeFactory extends Factory
             return [
                 'type' => ResponseTypeEnum::CombineContent,
                 'meta_data' => [
-                    'token_limit' => 750
-                    ]
+                    'token_limit' => 750,
+                ],
             ];
         });
     }

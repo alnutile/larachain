@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('response_types', function (Blueprint $table) {
-            $table->longText("meta_data")->nullable();
+            $table->longText('meta_data')->nullable();
         });
     }
 
