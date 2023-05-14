@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\ResponseTypeMissingException;
+use App\Outbound\Content;
 use App\Outbound\OutboundEnum;
 use App\ResponseType\BaseResponseType;
 use App\ResponseType\ResponseDto;
@@ -10,6 +11,7 @@ use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use YlsIdeas\FeatureFlags\Facades\Features;
 
 /**
@@ -67,8 +69,18 @@ class Outbound extends Model
 
         try {
 
+            /**
+             * @TODO
+             * big fix needed here
+             * Any transformer might be the first
+             * and might be dealing with a string in the message
+             * not the response
+             * and then the response might be a results of
+             * the string and not document_chunks collection
+             */
             $dto = ResponseDto::from([
                 'message' => $message,
+                'response' => $this->wrapRequest($request)
             ]);
 
             $this->currentResponseDto = $dto;
@@ -101,5 +113,12 @@ class Outbound extends Model
                 'response' => $e->getMessage(),
             ]);
         }
+    }
+
+    protected function wrapRequest(string $request) : \Illuminate\Support\Collection
+    {
+        return collect()->add(Content::from([
+            'content' => $request
+        ]));
     }
 }

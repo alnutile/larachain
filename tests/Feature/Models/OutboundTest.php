@@ -2,101 +2,102 @@
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
+use App\Models\DocumentChunk;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
+use App\Models\Source;
 use App\Models\User;
 use App\Outbound\OutboundEnum;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
+use Illuminate\Support\Facades\File;
+use Tests\TestCase;
 
-it('should have factory', function () {
+class OutboundTest extends TestCase
+{
 
-    $model = Outbound::factory()->create();
-    expect($model->type)->toBeInstanceOf(OutboundEnum::class);
-});
+    public function test_should_have_factory()
+    {
 
-it('has relations to project', function () {
+        $model = Outbound::factory()->create();
+        $this->assertInstanceOf(OutboundEnum::class, $model->type);
+    }
 
-    $model = Outbound::factory()->has(ResponseType::factory(), 'response_types')->create();
+    public function test_has_relations_to_project()
+    {
 
-    expect($model->project->id)->not->toBeNull();
-    expect($model->project->outbounds->first()->id)->not->toBeNull();
-    expect($model->response_types->first()->id)->not->toBeNull();
-});
+        $model = Outbound::factory()->has(ResponseType::factory(), 'response_types')->create();
 
-it('should runs the related response types', function () {
-    $user = User::factory()->create();
-    $request = 'Foo bar';
+        $this->assertNotNull($model->project->id);
+        $this->assertNotNull($model->project->outbounds->first()->id);
+        $this->assertNotNull($model->response_types->first()->id);
+    }
 
-    $embeddings = get_fixture('embedding_response.json');
+    public function test_should_runs_the_related_response_types()
+    {
+        $user = User::factory()->create();
+        $request = 'Foo bar';
 
-    $project = Project::factory()->create();
-    $outbound = Outbound::factory()->create([
-        'project_id' => $project->id,
-    ]);
+        $embeddings = get_fixture('embedding_response.json');
 
-    /** @var ResponseType $responseType */
-    ResponseType::factory()->create([
-        'outbound_id' => $outbound->id,
-        'type' => ResponseTypeEnum::EmbedQuestion,
-    ]);
+        $project = Project::factory()->create();
+        $outbound = Outbound::factory()->create([
+            'project_id' => $project->id,
+        ]);
 
-    $dto = new EmbeddingsResponseDto(
-        data_get($embeddings, 'data.0.embedding'),
-        1000
-    );
+        /** @var ResponseType $responseType */
+        ResponseType::factory()->create([
+            'outbound_id' => $outbound->id,
+            'type' => ResponseTypeEnum::EmbedQuestion,
+        ]);
 
-    ClientWrapper::shouldReceive('getEmbedding')
-        ->once()
-        ->andReturn($dto);
+        $dto = new EmbeddingsResponseDto(
+            data_get($embeddings, 'data.0.embedding'),
+            1000
+        );
 
-    $this->assertDatabaseCount('messages', 0);
-    /** @var ResponseDto $results */
-    $outbound->run($user, $request);
-    $this->assertDatabaseCount('messages', 1);
+        ClientWrapper::shouldReceive('getEmbedding')
+            ->once()
+            ->andReturn($dto);
 
-});
+        $this->assertDatabaseCount('messages', 0);
+        /** @var ResponseDto $results */
+        $outbound->run($user, $request);
+        $this->assertDatabaseCount('messages', 1);
 
-//public function test_runs_embed_then_search()
-//{
-//    $user = User::factory()->create();
-//    $request = 'History';
-//
-//    $embeddings = get_fixture('embedding_response.json');
-//
-//    Document::factory()->withEmbedData()->create();
-//
-//    $project = Project::factory()->create();
-//
-//    $responseType1 = ResponseType::factory()->create([
-//        'type' => ResponseTypeEnum::EmbedQuestion,
-//        'project_id' => $project->id,
-//        'order' => 1,
-//    ]);
-//
-//    $responseType2 = ResponseType::factory()->create([
-//        'type' => ResponseTypeEnum::VectorSearch,
-//        'project_id' => $project->id,
-//        'order' => 2,
-//    ]);
-//
-//    $responseType3 = ResponseType::factory()->create([
-//        'type' => ResponseTypeEnum::CombineContent,
-//        'project_id' => $project->id,
-//        'order' => 4,
-//    ]);
-//
-//    $dto = new EmbeddingsResponseDto(
-//        data_get($embeddings, 'data.0.embedding'),
-//        1000
-//    );
-//
-//    ClientWrapper::shouldReceive('getEmbedding')
-//        ->once()
-//        ->andReturn($dto);
-//    /** @var ResponseDto $results */
-//    $results = $responseType1->run($user, $request);
-//    $this->assertNotNull($results->response);
-//}
+    }
+
+    public function test_trims_and_combines()
+    {
+        $user = User::factory()->create();
+
+        $project = Project::factory()->create();
+        $outbound = Outbound::factory()->create([
+            'project_id' => $project->id,
+        ]);
+
+        $example = 'But don’t humans also have genuinely original ideas?” Come on, read a fantasy book. It’s either a Tolkien clone, or it’s A Song Of Ice And Fire. Tolkien was a professor of Anglo-Saxon language and culture; no secret where he got his inspiration. A Song Of Ice And Fire is just War Of The Roses with dragons. Lannister and Stark are just Lancaster and York, the map of Westeros is just Britain (minus Scotland) with an upside down-Ireland stuck to the bottom of it – wake up, sheeple! Dullards blend Tolkien into a slurry and shape it into another Tolkien-clone. Tolkien-level artistic geniuses blend human experience, history, and the artistic corpus into a slurry and form it into an entirely new genre. Again, the difference is how finely you blend and what spices you add to the slurry.';
+        $source = Source::factory()->create([
+            'project_id' => $project->id
+        ]);
+
+        $trim = ResponseType::factory()
+            ->trimText()
+            ->create(['order' => 1, 'outbound_id' => $outbound->id]);
+
+        $combine = ResponseType::factory()
+            ->combineContent()
+            ->create(['order' => 2, 'outbound_id' => $outbound->id]);
+
+        $request = $example;
+
+        /** @var ResponseDto $results */
+        $results = $outbound->run($user, $request);
+
+        $expected = "But don’t humans also have genuinely original ideas?” Come on, read a fantasy book. It’s either a Tolkien clone,";
+        $this->assertStringContainsString($expected, $results->response);
+    }
+
+}
