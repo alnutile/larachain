@@ -1,8 +1,6 @@
 <?php
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
-use App\Models\Document;
-use App\Models\DocumentChunk;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
@@ -12,12 +10,10 @@ use App\Outbound\OutboundEnum;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
-use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
 class OutboundTest extends TestCase
 {
-
     public function test_should_have_factory()
     {
 
@@ -80,7 +76,7 @@ class OutboundTest extends TestCase
 
         $example = 'But don’t humans also have genuinely original ideas?” Come on, read a fantasy book. It’s either a Tolkien clone, or it’s A Song Of Ice And Fire. Tolkien was a professor of Anglo-Saxon language and culture; no secret where he got his inspiration. A Song Of Ice And Fire is just War Of The Roses with dragons. Lannister and Stark are just Lancaster and York, the map of Westeros is just Britain (minus Scotland) with an upside down-Ireland stuck to the bottom of it – wake up, sheeple! Dullards blend Tolkien into a slurry and shape it into another Tolkien-clone. Tolkien-level artistic geniuses blend human experience, history, and the artistic corpus into a slurry and form it into an entirely new genre. Again, the difference is how finely you blend and what spices you add to the slurry.';
         $source = Source::factory()->create([
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         $trim = ResponseType::factory()
@@ -96,8 +92,7 @@ class OutboundTest extends TestCase
         /** @var ResponseDto $results */
         $results = $outbound->run($user, $request);
 
-        $expected = "But don’t humans also have genuinely original ideas?” Come on, read a fantasy book. It’s either a Tolkien clone,";
+        $expected = 'But don’t humans also have genuinely original ideas?” Come on, read a fantasy book. It’s either a Tolkien clone,';
         $this->assertStringContainsString($expected, $results->response);
     }
-
 }

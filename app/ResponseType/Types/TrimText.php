@@ -35,7 +35,7 @@ class TrimText extends BaseResponseType
     {
         $this->stopWords = new StopWords();
 
-        $this->response_dto->response->map(function($document) {
+        $this->response_dto->response->map(function ($document) {
             return $this->trim($document->content);
         });
 

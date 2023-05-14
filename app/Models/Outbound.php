@@ -11,7 +11,6 @@ use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use YlsIdeas\FeatureFlags\Facades\Features;
 
 /**
@@ -80,7 +79,7 @@ class Outbound extends Model
              */
             $dto = ResponseDto::from([
                 'message' => $message,
-                'response' => $this->wrapRequest($request)
+                'response' => $this->wrapRequest($request),
             ]);
 
             $this->currentResponseDto = $dto;
@@ -115,10 +114,10 @@ class Outbound extends Model
         }
     }
 
-    protected function wrapRequest(string $request) : \Illuminate\Support\Collection
+    protected function wrapRequest(string $request): \Illuminate\Support\Collection
     {
         return collect()->add(Content::from([
-            'content' => $request
+            'content' => $request,
         ]));
     }
 }
