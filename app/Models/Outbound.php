@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Exceptions\ResponseTypeMissingException;
-use App\Outbound\Content;
 use App\Outbound\OutboundEnum;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\Content;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
