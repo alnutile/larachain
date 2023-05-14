@@ -153,6 +153,23 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(CombineContentResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/trim_text/create', 'create')
+            ->name('response_types.trim_text.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/trim_text/edit', 'edit')
+            ->name('response_types.trim_text.edit');
+        Route::post('/outbounds/{outbound}/response_types/trim_text/store', 'store')
+            ->name('response_types.trim_text.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/trim_text/update', 'update')
+            ->name('response_types.trim_text.update');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(EmbedQuestionResponseTypeController::class)->group(
     function () {
         Route::get('/outbounds/{outbound}/response_types/embed_question/create', 'create')

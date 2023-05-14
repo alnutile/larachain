@@ -16,6 +16,7 @@ export default {
     name: "GetIcon",
     components: {
         Bars4Icon,
+        DocumentTextIcon,
         ArrowDownTrayIcon,
         resolveComponent,
         ChatBubbleLeftIcon,

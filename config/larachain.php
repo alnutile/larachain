@@ -83,6 +83,14 @@ return [
             'background' => 'bg-slate-800',
             'active' => 1,
         ],
+        'trim_text' => [
+            'title' => 'Trim Text',
+            'description' => 'designed to help you trim text inputs, making it easier to fit more content within GPT’s context window. By tokenizing, stemming, and removing spaces, this library prepares your text inputs for efficient processing with GPT models.',
+            'icon' => 'DocumentTextIcon',
+            'route' => 'trim_text',
+            'background' => 'bg-slate-800',
+            'active' => 1,
+        ],
         'chat_ui' => [
             'title' => 'Integrate with Chat LLM APIs',
             'description' => 'Create a chat system with platforms like OpenAI or others. It will pass any info into the {context} token in the prompt_token',
