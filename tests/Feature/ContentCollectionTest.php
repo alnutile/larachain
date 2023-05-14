@@ -1,25 +1,24 @@
 <?php
+
 namespace Tests\Feature;
 
 use App\Models\DocumentChunk;
 use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
-use phpDocumentor\Reflection\Types\Collection;
 use Spatie\LaravelData\DataCollection;
 use Tests\TestCase;
 
 class ContentCollectionTest extends TestCase
 {
-
     public function test_can_deal_with_documents()
     {
 
         DocumentChunk::factory()->count(4)->create([
-            'content' => "Some Content"
+            'content' => 'Some Content',
         ]);
 
         $collection = ContentCollection::from([
-            'contents' => Content::collection(DocumentChunk::get())
+            'contents' => Content::collection(DocumentChunk::get()),
         ]);
 
          expect($collection->contents)->toBeInstanceOf(DataCollection::class);
@@ -28,14 +27,14 @@ class ContentCollectionTest extends TestCase
 
     public function test_converts()
     {
-        $content = "Foo bar";
+        $content = 'Foo bar';
 
         $contentDto = Content::from([
-            'content' => $content
+            'content' => $content,
         ]);
 
         $collection = ContentCollection::from([
-            'contents' => Content::collection([$contentDto])
+            'contents' => Content::collection([$contentDto]),
         ]);
 
         expect($collection->contents)->toBeInstanceOf(DataCollection::class);
@@ -49,5 +48,4 @@ class ContentCollectionTest extends TestCase
 
         expect($collection->contents)->toBeInstanceOf(DataCollection::class);
     }
-
 }

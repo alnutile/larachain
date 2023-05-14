@@ -42,8 +42,8 @@ class TrimTextTest extends TestCase
         $responseDto = ResponseDto::from([
             'message' => $message,
             'response' => ContentCollection::from([
-                'contents' => Content::collection($documents)
-            ])
+                'contents' => Content::collection($documents),
+            ]),
         ]);
 
         $responseType = ResponseType::factory()

@@ -6,7 +6,6 @@ use App\Models\Message;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
-use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
@@ -82,7 +81,7 @@ class ChatUi extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => ContentCollection::emptyContent()
+                'response' => ContentCollection::emptyContent(),
             ]
         );
     }

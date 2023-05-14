@@ -73,8 +73,8 @@ class Outbound extends Model
                 'message' => $message,
                 'response' => ContentCollection::from([
                     'contents' => [
-                        Content::from(['content' => $request])
-                    ]
+                        Content::from(['content' => $request]),
+                    ],
                 ]),
             ]);
 
@@ -108,13 +108,11 @@ class Outbound extends Model
                 'response' => ContentCollection::from([
                     'contents' => [
                         Content::from([
-                            'content' => $e->getMessage()
-                        ])
-                    ]
+                            'content' => $e->getMessage(),
+                        ]),
+                    ],
                 ]),
             ]);
         }
     }
-
-
 }

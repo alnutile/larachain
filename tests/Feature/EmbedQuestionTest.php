@@ -37,7 +37,7 @@ class EmbedQuestionTest extends TestCase
 
         $dto = ResponseDto::from([
             'message' => $message,
-            'response' => ContentCollection::emptyContent()
+            'response' => ContentCollection::emptyContent(),
         ]);
 
         $embedRt = new EmbedQuestion($project, $dto);

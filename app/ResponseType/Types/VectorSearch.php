@@ -26,10 +26,9 @@ class VectorSearch extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' =>
-                    ContentCollection::from([
-                        'contents' => Content::collection(DocumentChunk::get())
-                    ])
+                'response' => ContentCollection::from([
+                    'contents' => Content::collection(DocumentChunk::get()),
+                ]),
             ]
         );
     }

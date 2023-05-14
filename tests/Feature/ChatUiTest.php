@@ -41,9 +41,9 @@ EOL;
             'response' => ContentCollection::from([
                 'contents' => [
                     Content::from([
-                        'content' => 'Foobar'
-                    ])
-                ]
+                        'content' => 'Foobar',
+                    ]),
+                ],
             ]),
         ]);
 
@@ -88,9 +88,9 @@ EOL;
             'response' => ContentCollection::from([
                 'contents' => [
                     Content::from([
-                        'content' => 'Foobar'
-                    ])
-                ]
+                        'content' => 'Foobar',
+                    ]),
+                ],
             ]),
         ]);
 
@@ -169,8 +169,8 @@ EOL;
             'role' => 'user',
             'response' => ContentCollection::from([
                 'contents' => [
-                    Content::from(['content' => 'Foobar'])
-                ]
+                    Content::from(['content' => 'Foobar']),
+                ],
             ]),
         ]);
 

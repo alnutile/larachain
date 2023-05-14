@@ -32,8 +32,8 @@ class CombineContent extends BaseResponseType
                 'response' => ContentCollection::from([
                     'contents' => [
                         Content::from([
-                        'content' => $combinedContent
-                    ])]
+                            'content' => $combinedContent,
+                        ])],
                 ]),
             ]
         );
