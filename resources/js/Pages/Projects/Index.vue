@@ -36,11 +36,11 @@
                                                 <div class="p-2">
                                                     <div class="text-sm text-gray-500 flex flex-col text-left justify-start">
                                                         <div class="font-semibold">Source(s):</div>
-                                                        <div v-for="source in project.sources">{{source.name}} - {{ source.type_formatted}}</div>
+                                                        <div v-for="source in project.sources">- {{source.name}}: {{ source.type_formatted}}</div>
                                                     </div>
                                                     <div class="text-sm text-gray-500 flex flex-col text-left justify-start">
                                                         <div class="font-semibold">Outbound(s):</div>
-                                                        <div v-for="outbound in project.outbounds">{{outbound.name}} - {{ outbound.type_formatted}}</div>
+                                                        <div v-for="outbound in project.outbounds">- {{ outbound.type_formatted}}</div>
                                                     </div>
                                                     <div class="whitespace-nowrap text-sm text-gray-500 flex justify-start items-center">
                                                         <span class="font-semibold">Active:</span>

@@ -1,15 +1,17 @@
 {
     "message": {
-        "id": 227,
+        "id": 232,
         "role": "user",
         "project_id": 1,
         "user_id": 1,
-        "content": "What does it say about nitrate impacts to drinking water supplies",
-        "created_at": "2023-05-14T12:59:50.000000Z",
-        "updated_at": "2023-05-14T12:59:50.000000Z",
+        "content": "What are the waste discharge requirements.",
+        "created_at": "2023-05-14T23:58:59.000000Z",
+        "updated_at": "2023-05-14T23:58:59.000000Z",
         "token_count": null,
         "embedding": {}
     },
-    "response": null,
+    "response": {
+        "contents": []
+    },
     "status": 200
 }
