@@ -2,7 +2,7 @@
 
 ## Reading over LangChain
 
-[LaraChain.io](https://github.com/alnutile/larachain/wiki/LaraChain)
+[LaraChain.io](https://github.com/alnutile/larachain/wiki)
 
 And just thinking how to make some of those flows work in a Laravel environment
 
