@@ -6,7 +6,7 @@
 
 And just thinking how to make some of those flows work in a Laravel environment
 
-[![LaraChain Full Demo](https://img.youtube.com/vi/cz7d6d3pk4o/0.jpg)](https://www.youtube.com/watch?v=cz7d6d3pk4o)]
+[![LaraChain Full Demo](https://img.youtube.com/vi/cz7d6d3pk4o/0.jpg)](https://www.youtube.com/watch?v=cz7d6d3pk4o)
 
 
 ## Links
