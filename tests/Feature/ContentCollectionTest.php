@@ -5,6 +5,7 @@ use App\Models\DocumentChunk;
 use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use phpDocumentor\Reflection\Types\Collection;
+use Spatie\LaravelData\DataCollection;
 use Tests\TestCase;
 
 class ContentCollectionTest extends TestCase
@@ -18,37 +19,35 @@ class ContentCollectionTest extends TestCase
         ]);
 
         $collection = ContentCollection::from([
-            'contents' => DocumentChunk::get()
+            'contents' => Content::collection(DocumentChunk::get())
         ]);
 
-         expect($collection->contents)->toBeInstanceOf(\Illuminate\Support\Collection::class);
+         expect($collection->contents)->toBeInstanceOf(DataCollection::class);
          expect($collection->contents->first())->toBeInstanceOf(Content::class);
     }
 
     public function test_converts()
     {
         $content = "Foo bar";
+
         $contentDto = Content::from([
             'content' => $content
         ]);
+
         $collection = ContentCollection::from([
-            'contents' => $content
+            'contents' => Content::collection([$contentDto])
         ]);
 
-        expect($collection->contents)->toBeInstanceOf(\Illuminate\Support\Collection::class);
+        expect($collection->contents)->toBeInstanceOf(DataCollection::class);
         expect($collection->contents->first())->toBeInstanceOf(Content::class);
     }
+
+    public function test_empty()
+    {
+
+        $collection = ContentCollection::emptyContent();
+
+        expect($collection->contents)->toBeInstanceOf(DataCollection::class);
+    }
+
 }
-
-//
-//it("can handle content that is already set", function() {
-//    $content = "Foo bar";
-//
-//
-//    $collection = ContentCollection::from([
-//        'contents' => collect($content)
-//    ]);
-//
-//    expect($collection->contents)->toBeInstanceOf(\Illuminate\Support\Collection::class);
-//});
-

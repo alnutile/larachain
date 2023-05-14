@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $outbound_id
  * @property Outbound $outbound;
  * @property array $prompt_token;
+ * @property array $meta_data;
  *
  * @method Outbound outbound()
  */

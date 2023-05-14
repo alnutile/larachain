@@ -4,6 +4,7 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 
@@ -18,7 +19,7 @@ class EmbedQuestion extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => null,
+                'response' => ContentCollection::emptyContent(),
             ]
         );
     }

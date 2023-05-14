@@ -5,6 +5,8 @@ namespace App\ResponseType\Types;
 use App\Models\DocumentChunk;
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\Content;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
 class VectorSearch extends BaseResponseType
@@ -24,7 +26,10 @@ class VectorSearch extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => $results,
+                'response' =>
+                    ContentCollection::from([
+                        'contents' => Content::collection(DocumentChunk::get())
+                    ])
             ]
         );
     }

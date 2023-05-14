@@ -4,6 +4,8 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\Content;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
 class CombineContent extends BaseResponseType
@@ -17,7 +19,7 @@ class CombineContent extends BaseResponseType
          */
         $token_limit = data_get($responseType->meta_data, 'token_limit', 750);
 
-        foreach ($this->response_dto->response as $document) {
+        foreach ($this->response_dto->response->contents as $document) {
             $combinedContent .= $document->content;
             if (strlen($combinedContent) >= $token_limit) {
                 break;
@@ -27,7 +29,12 @@ class CombineContent extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => $combinedContent,
+                'response' => ContentCollection::from([
+                    'contents' => [
+                        Content::from([
+                        'content' => $combinedContent
+                    ])]
+                ]),
             ]
         );
     }

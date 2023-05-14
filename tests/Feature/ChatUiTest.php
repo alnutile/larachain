@@ -7,6 +7,8 @@ use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
+use App\ResponseType\Content;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\ChatUi;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
@@ -36,8 +38,13 @@ EOL;
 
         $responseDto = ResponseDto::from([
             'message' => $message,
-            'role' => 'user',
-            'response' => 'Foobar',
+            'response' => ContentCollection::from([
+                'contents' => [
+                    Content::from([
+                        'content' => 'Foobar'
+                    ])
+                ]
+            ]),
         ]);
 
         $rt = ResponseType::factory()
@@ -78,7 +85,13 @@ EOL;
         $responseDto = ResponseDto::from([
             'message' => $message,
             'role' => 'user',
-            'response' => 'Foobar',
+            'response' => ContentCollection::from([
+                'contents' => [
+                    Content::from([
+                        'content' => 'Foobar'
+                    ])
+                ]
+            ]),
         ]);
 
         $rt = ResponseType::factory()
@@ -94,7 +107,7 @@ EOL;
         $this->assertNotNull(Message::whereRole('assistant')->first());
     }
 
-    public function test_gets_recent_quetions()
+    public function test_gets_recent_questions()
     {
 
         $project = Project::factory()->create();
@@ -154,7 +167,11 @@ EOL;
         $responseDto = ResponseDto::from([
             'message' => $message5,
             'role' => 'user',
-            'response' => 'Foobar',
+            'response' => ContentCollection::from([
+                'contents' => [
+                    Content::from(['content' => 'Foobar'])
+                ]
+            ]),
         ]);
 
         ClientWrapper::shouldReceive('projectChat')
