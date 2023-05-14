@@ -37,6 +37,7 @@ class TrimText extends BaseResponseType
 
         $this->response_dto->response->map(function ($document) {
             $document->content = $this->trim($document->content);
+
             return $document;
         });
 
