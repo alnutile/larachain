@@ -35,6 +35,7 @@ EOD;
             ->withArgs(function ($filePath, $content) {
                 $this->assertStringContainsString("case FooBar = 'foo_bar'", $content);
                 $this->assertStringContainsString("case EmbedQuestion = 'embed_question'", $content);
+                $this->assertStringContainsString("enum ResponseTypeEnum: string", $content);
 
                 return true;
             });
