@@ -11,6 +11,7 @@ class ControllerTransformerTest extends TestCase
 {
     public function test_copies_to_folders()
     {
+        File::shouldReceive('makeDirectory')->andReturnTrue();
         File::shouldReceive('exists')->andReturnTrue();
         File::shouldReceive('allFiles')->andReturn(
             [
