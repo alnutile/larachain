@@ -8,7 +8,7 @@ use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
-class [RESOURCE_CLASS_NAME]Content extends BaseResponseType
+class [RESOURCE_CLASS_NAME] extends BaseResponseType
 {
     public function handle(ResponseType $responseType): ResponseDto
     {

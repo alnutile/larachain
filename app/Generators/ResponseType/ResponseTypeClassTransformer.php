@@ -10,7 +10,7 @@ class ResponseTypeClassTransformer extends BaseTransformer
     {
         $this->generatorRepository = $generatorRepository;
 
-        $this->makeController();
+        $this->makeClass();
         $this->makeTest();
     }
 
@@ -25,7 +25,7 @@ class ResponseTypeClassTransformer extends BaseTransformer
         $this->generatorRepository->putFile($destination, $transformed);
     }
 
-    protected function makeController()
+    protected function makeClass()
     {
         $content = $this->getContents('/ResponseType/Stub.php');
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
