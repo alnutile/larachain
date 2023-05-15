@@ -11,7 +11,7 @@ class EnumTransformer extends BaseTransformer
     {
         $this->generatorRepository = $generatorRepository;
 
-        $enumPath = app_path('Generators/ResponseType/EnumTransformer.php');
+        $enumPath = app_path('ResponseType/ResponseTypeEnum.php');
         $contents = File::get($enumPath);
 
         $case = "case [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]'";
