@@ -2,6 +2,7 @@
 
 namespace App\Generators\ResponseType;
 
+use Facades\App\Generators\ResponseType\LarachainConfigTransformer;
 use Facades\App\Generators\ResponseType\ControllerTransformer;
 use Facades\App\Generators\ResponseType\EnumTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
@@ -50,6 +51,7 @@ class GeneratorRepository
         VueTransformer::handle($this);
         RoutesTransformer::handle($this);
         EnumTransformer::handle($this);
+        LarachainConfigTransformer::handle($this);
 
         return $this;
     }
