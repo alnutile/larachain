@@ -19,7 +19,7 @@ class OutboundFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => OutboundEnum::Api,
+            'type' => OutboundEnum::ChatUi,
             'project_id' => Project::factory(),
             'active' => 1,
         ];

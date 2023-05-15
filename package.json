@@ -24,7 +24,9 @@
         "@heroicons/vue": "^2.0.18",
         "chokidar": "^3.5.3",
         "collect.js": "^4.36.1",
+        "json-editor-vue": "^0.10.6",
         "lodash": "^4.17.21",
+        "vanilla-jsoneditor": "^0.17.3",
         "vue-toastification": "^2.0.0-rc.5"
     }
 }

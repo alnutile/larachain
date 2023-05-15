@@ -4,7 +4,8 @@ namespace App\ResponseType;
 
 enum ResponseTypeEnum: string
 {
-    //case TemplateType = 'template_type'
+    //case TemplateType = 'template_type'/
+    case StringReplace = 'string_replace';
     case EmbedQuestion = 'embed_question';
     case VectorSearch = 'vector_search';
     case CombineContent = 'combine_content';
@@ -15,6 +16,7 @@ enum ResponseTypeEnum: string
     public function label(): string
     {
         return match ($this) {
+            static::StringReplace => 'StringReplace',
             static::EmbedQuestion => 'EmbedQuestion',
             static::TrimText => 'TrimText',
             static::VectorSearch => 'VectorSearch',

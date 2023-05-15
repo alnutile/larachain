@@ -18,7 +18,9 @@
                                 </template>
 
                                 <template #form>
-                                   <ResourceForm v-model="form"/>
+                                   <ResourceForm
+                                       @removeSearchItem="removeSearchItem"
+                                       v-model="form"/>
                                 </template>
 
                                 <template #actions>
@@ -56,10 +58,16 @@ const form = useForm({
     prompt_token: props.response_type.prompt_token,
 })
 
+const removeSearchItem = (index) => {
+    console.log(index);
+    form.meta_data.search.splice(index, 1);
+    form.meta_data.replace.splice(index, 1);
+}
+
 const submit = () => {
-    form.put(route("response_types.[RESOURCE_KEY].update", {
-        project: props.project.id,
-        'response_type': props.response_type.id
+    form.put(route("response_types.string_replace.update", {
+        outbound: props.outbound.id,
+        response_type: props.response_type.id
     }), {
         preserveScroll: true,
         onError: params => {

@@ -5,9 +5,9 @@
             class="p-2 border border-gray-300 w-full"
             type="text"
             placeholder="https://somepublicpdf.com/foo.pdf"
-            v-model="modelValue.meta_data.url"
+            v-model="modelValue.meta_data"
         />
-        <InputError :message="modelValue.errors?.meta_data?.url" class="mt-2" />
+        <InputError :message="modelValue.errors?.meta_data" class="mt-2" />
     </div>
 </template>
 

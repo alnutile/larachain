@@ -27,6 +27,23 @@ class ResponseTypeFactory extends Factory
         ];
     }
 
+    public function stringReplace()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::StringReplace,
+                'meta_data' => [
+                    'search' => [
+                        'foo',
+                    ],
+                    'replace' => [
+                        'bar',
+                    ],
+                ],
+            ];
+        });
+    }
+
     public function trimText()
     {
         return $this->state(function (array $attributes) {

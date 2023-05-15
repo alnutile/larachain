@@ -102,7 +102,17 @@ return [
             'description' => 'Create a chat system with platforms like OpenAI or others. It will pass any info into the {context} token in the prompt_token',
             'icon' => 'ChatBubbleLeftIcon',
             'route' => 'chat_ui',
-            'background' => 'bg-pink-400',
+            'background' => 'bg-green-500',
+            'active' => 1,
+        ],
+        'string_replace' => [
+            'title' => 'String Replace',
+            'description' => 'This will allow you to enter an array of words to look for and an array of words to replace them with',
+            'icon' => 'MegaphoneIcon',
+            'route' => 'string_replace',
+            'requires' => [
+            ],
+            'background' => 'bg-green-500',
             'active' => 1,
         ],
     ],

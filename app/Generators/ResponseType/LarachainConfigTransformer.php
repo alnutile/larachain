@@ -40,10 +40,11 @@ EOD;
     protected function getColor(): string
     {
         return Arr::random([
-            'bg-pink-400',
-            'bg-slate-800',
+            'bg-red-700',
+            'bg-indigo-600',
             'bg-green-500',
             'bg-sky-500',
+            'bg-slate-800',
         ]);
     }
 }

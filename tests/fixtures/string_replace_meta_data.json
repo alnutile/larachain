@@ -1,0 +1,4 @@
+{
+    "meta_data": "{\n  \"search\": [\"foo\", \"bar\"],\n  \"replace\": [\"baz\", \"boo\"]\n}",
+    "prompt_token": []
+}

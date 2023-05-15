@@ -247,3 +247,20 @@ Route::middleware([
                 ->name('projects.messages.delete');
         });
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\StringReplaceResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/string_replace/create', 'create')
+            ->name('response_types.string_replace.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/string_replace/edit', 'edit')
+            ->name('response_types.string_replace.edit');
+        Route::post('/outbounds/{outbound}/response_types/string_replace/store', 'store')
+            ->name('response_types.string_replace.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/string_replace/update', 'update')
+            ->name('response_types.string_replace.update');
+    }
+);

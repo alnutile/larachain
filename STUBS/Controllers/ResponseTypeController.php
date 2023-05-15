@@ -16,6 +16,7 @@ class [RESOURCE_CLASS_NAME]ResponseTypeController extends BaseResponseTypeContro
         'order' => $outbound->response_types->count() + 1,
         'outbound_id' => $outbound->id,
         'prompt_token' => [],
+        'meta_data' => [],
     ]);
 
     request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
