@@ -2,6 +2,7 @@
 
 namespace App\Generators\ResponseType;
 
+use Facades\App\Generators\ResponseType\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
     class VueTransformer extends BaseTransformer
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\File;
         protected function makeVue()
         {
             $rootPath = base_path(sprintf('resources/js/Pages/%s',
-                $this->generatorRepository->resource_proper_plural));
+                $this->generatorRepository->getClassName()));
             if (! File::exists($rootPath.'/Components')) {
                 File::makeDirectory($rootPath.'/Components', 0755, true, true);
             }

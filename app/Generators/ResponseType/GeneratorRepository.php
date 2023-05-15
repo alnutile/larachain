@@ -2,35 +2,44 @@
 
 namespace App\Generators\ResponseType;
 
-use Illuminate\Support\Facades\File;
 use Facades\App\Generators\ResponseType\ControllerTransformer;
-use Facades\App\Generators\ResponseType\VueTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
+use Facades\App\Generators\ResponseType\VueTransformer;
+use Illuminate\Support\Facades\File;
 
 class GeneratorRepository
 {
     public string $name;
-    public string $title;
+
     public string $description;
+
     protected string $key;
+
+    protected bool $requires_settings;
+
+    protected string $class_name;
 
     public function setup(
         string $name,
-        string $title,
         string $description,
         bool $requires_settings = false
-    )
-    {
+    ) {
         $this->name = $name;
         $this->requires_settings = $requires_settings;
-        $this->title = $title;
         $this->description = $description;
+        $this->class_name = str($name)->studly()->toString();
         $this->key = str($name)->lower()->snake()->toString();
 
         return $this;
     }
 
-    public function getKey() {
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    public function getClassName(): string
+    {
         return $this->key;
     }
 

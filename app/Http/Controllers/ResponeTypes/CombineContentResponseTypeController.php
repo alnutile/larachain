@@ -16,7 +16,6 @@ class CombineContentResponseTypeController extends BaseResponseTypeController
             'order' => $outbound->response_types->count() + 1,
             'outbound_id' => $outbound->id,
             'prompt_token' => [],
-
         ]);
 
         request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');

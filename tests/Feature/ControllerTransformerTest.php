@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Support\Facades\File;
 use App\Generators\ResponseType\ControllerTransformer;
 use App\Generators\ResponseType\GeneratorRepository;
+use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
 class ControllerTransformerTest extends TestCase
@@ -19,15 +19,15 @@ class ControllerTransformerTest extends TestCase
         );
 
         File::shouldReceive('get')
-            ->andReturn('Foo bar [RESOURCE_PROPER] [RESOURCE_SINGULAR_KEY]');
+            ->andReturn('[RESOURCE_CLASS_NAME]');
         File::shouldReceive('put')
             ->withArgs(function ($filePath, $content) {
-                $this->assertStringContainsString('Foo bar Foo foo', $content);
+                $this->assertStringContainsString('FooBar', $content);
 
                 return true;
             });
         $generator = new GeneratorRepository();
-        $generator->setup("Foo Bar", "Some Response Type", "Some Description", false);
+        $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false);
 
         $controllerGenerator = new ControllerTransformer();
         $controllerGenerator->handle($generator);

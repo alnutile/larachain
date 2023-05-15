@@ -8,15 +8,15 @@ class TokenReplacer
     {
         return str($content)
             ->replace([
-                '[RESOURCE_PROPER]',
-                '[RESOURCE_PROPER_PLURAL]',
-                '[RESOURCE_SINGULAR_KEY]',
-                '[RESOURCE_PLURAL_KEY]',
+                '[RESOURCE_KEY]',
+                '[RESOURCE_NAME]',
+                '[RESOURCE_CLASS_NAME]',
+                '[RESOURCE_DESCRIPTION]',
             ], [
-                $generatorRepository->resource_proper,
-                $generatorRepository->resource_proper_plural,
-                $generatorRepository->resource_singular_key,
-                $generatorRepository->resource_plural_key,
+                $generatorRepository->getKey(),
+                $generatorRepository->name,
+                str($generatorRepository->name)->studly(),
+                $generatorRepository->description,
             ])->toString();
     }
 }

@@ -19,7 +19,7 @@ class ControllerTransformer extends BaseTransformer
         $content = $this->getContents('/Tests/ResourceControllerTest.php');
         $tranformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sControllerTest.php', $this->generatorRepository->resource_proper);
+        $name = sprintf('%sControllerTest.php', $this->generatorRepository->getClassName());
         $destination = base_path('tests/Feature/Http/Controllers/'.$name);
 
         $this->generatorRepository->putFile($destination, $tranformed);
@@ -27,13 +27,13 @@ class ControllerTransformer extends BaseTransformer
 
     protected function makeController()
     {
-        $content = $this->getContents('Controllers/ResourceController.php');
+        $content = $this->getContents('Controllers/ResponseTypeController.php');
 
-        $tranformed = TokenReplacer::handle($this->generatorRepository, $content);
+        $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sController.php', $this->generatorRepository->resource_proper);
+        $name = sprintf('%sResponseTypeController.php', $this->generatorRepository->getClassName());
         $destination = base_path('app/Http/Controllers/'.$name);
 
-        $this->generatorRepository->putFile($destination, $tranformed);
+        $this->generatorRepository->putFile($destination, $transformed);
     }
 }
