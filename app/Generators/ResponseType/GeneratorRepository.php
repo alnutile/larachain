@@ -5,6 +5,7 @@ namespace App\Generators\ResponseType;
 use Facades\App\Generators\ResponseType\ControllerTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
 use Facades\App\Generators\ResponseType\VueTransformer;
+use Facades\App\Generators\ResponseType\EnumTransformer;
 use Illuminate\Support\Facades\File;
 
 class GeneratorRepository
@@ -48,6 +49,7 @@ class GeneratorRepository
         ControllerTransformer::handle($this);
         VueTransformer::handle($this);
         RoutesTransformer::handle($this);
+        EnumTransformer::handle($this);
 
         return $this;
     }
