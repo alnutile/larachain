@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Outbound;
+namespace App\ResponseType;
 
 class Content extends \Spatie\LaravelData\Data
 {

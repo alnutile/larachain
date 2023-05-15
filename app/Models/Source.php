@@ -29,6 +29,10 @@ class Source extends BaseTypeModel
         'type' => SourceTypeEnum::class,
     ];
 
+    protected $appends = [
+        'type_formatted',
+    ];
+
     protected function project()
     {
         return $this->belongsTo(Project::class);
@@ -53,5 +57,10 @@ class Source extends BaseTypeModel
             logger($e);
             throw new SourceTypeMissingException();
         }
+    }
+
+    public function getTypeFormattedAttribute()
+    {
+        return str($this->type->value)->headline();
     }
 }

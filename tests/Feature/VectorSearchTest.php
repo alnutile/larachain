@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\VectorSearch;
 use Tests\TestCase;
@@ -25,7 +26,7 @@ class VectorSearchTest extends TestCase
         $message = Message::factory()->withEmbedData()->create();
         $dto = ResponseDto::from([
             'message' => $message,
-            'response' => null,
+            'response' => ContentCollection::emptyContent(),
         ]);
 
         $vector = new VectorSearch($project, $dto);

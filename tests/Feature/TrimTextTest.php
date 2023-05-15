@@ -7,6 +7,8 @@ use App\Models\DocumentChunk;
 use App\Models\Message;
 use App\Models\ResponseType;
 use App\Models\Source;
+use App\ResponseType\Content;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\TrimText;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,7 +41,9 @@ class TrimTextTest extends TestCase
 
         $responseDto = ResponseDto::from([
             'message' => $message,
-            'response' => $documents,
+            'response' => ContentCollection::from([
+                'contents' => Content::collection($documents),
+            ]),
         ]);
 
         $responseType = ResponseType::factory()
@@ -51,8 +55,8 @@ class TrimTextTest extends TestCase
         $results = $trim->handle($responseType);
 
         $expected = get_fixture('trimmed2.text', false);
-        $this->assertStringNotContainsString('don’t', $results->response);
+        $this->assertStringNotContainsString('don’t', $results->response->contents->first()->content);
 
-        $this->assertEquals($expected[0], $results->response->first()->content);
+        $this->assertEquals($expected[0], $results->response->contents->first()->content);
     }
 }

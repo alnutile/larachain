@@ -9,7 +9,7 @@ class ResponseDto extends Data
 {
     public function __construct(
         public Message $message,
-        public mixed $response,
+        public ContentCollection $response,
         public int $status = 200
     ) {
     }

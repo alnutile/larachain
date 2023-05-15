@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Sundance\LarachainPromptTemplates\Prompts\PromptToken;
@@ -19,7 +20,7 @@ class ChatUi extends BaseResponseType
 
     protected ResponseType $responseType;
 
-    protected mixed $content;
+    protected ContentCollection $content;
 
     public function handle(ResponseType $responseType): ResponseDto
     {
@@ -80,7 +81,7 @@ class ChatUi extends BaseResponseType
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
-                'response' => null,
+                'response' => ContentCollection::emptyContent(),
             ]
         );
     }
@@ -90,7 +91,7 @@ class ChatUi extends BaseResponseType
         $template = $this->responseType->prompt_token['system'];
 
         $input_variables = [
-            new PromptToken('context', $this->content),
+            new PromptToken('context', $this->content->getFirstContent()->content),
         ];
 
         return new PromptTemplate($input_variables, $template);
@@ -101,7 +102,7 @@ class ChatUi extends BaseResponseType
         $template = $this->responseType->prompt_token['system'];
 
         $input_variables = [
-            new PromptToken('context', $this->content),
+            new PromptToken('context', $this->content->getFirstContent()->content),
         ];
 
         return new PromptTemplate($input_variables, $template);

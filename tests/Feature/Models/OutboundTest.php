@@ -93,6 +93,6 @@ class OutboundTest extends TestCase
         $results = $outbound->run($user, $request);
 
         $expected = 'dont human genuin origin ideas? Come on, read fantasi book. Tolkien clone';
-        $this->assertStringContainsString($expected, $results->response);
+        $this->assertStringContainsString($expected, $results->response->getFirstContent()->content);
     }
 }

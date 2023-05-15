@@ -24,6 +24,6 @@ class OutboundController extends Controller
          /** @var ResponseDto $response */
          $response = $outbound->run($user, $request);
 
-        return response($response->response, $response->status);
+        return response($response->response->contents->toArray(), $response->status);
     }
 }

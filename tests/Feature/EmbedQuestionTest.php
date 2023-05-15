@@ -6,6 +6,7 @@ use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Message;
 use App\Models\Project;
 use App\Models\ResponseType;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\EmbedQuestion;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
@@ -36,6 +37,7 @@ class EmbedQuestionTest extends TestCase
 
         $dto = ResponseDto::from([
             'message' => $message,
+            'response' => ContentCollection::emptyContent(),
         ]);
 
         $embedRt = new EmbedQuestion($project, $dto);

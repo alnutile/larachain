@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property Collection $documents
+ * @property Collection $sources
  * @property Collection $response_types
  * @property Collection $transformers
  */
