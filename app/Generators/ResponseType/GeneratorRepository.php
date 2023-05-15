@@ -3,9 +3,9 @@
 namespace App\Generators\ResponseType;
 
 use Facades\App\Generators\ResponseType\ControllerTransformer;
+use Facades\App\Generators\ResponseType\EnumTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
 use Facades\App\Generators\ResponseType\VueTransformer;
-use Facades\App\Generators\ResponseType\EnumTransformer;
 use Illuminate\Support\Facades\File;
 
 class GeneratorRepository
@@ -61,6 +61,6 @@ class GeneratorRepository
 
     public function getRootPathOrStubs(): string
     {
-        return base_path("STUBS/");
+        return base_path('STUBS/');
     }
 }

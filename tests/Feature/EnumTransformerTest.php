@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Generators\ResponseType\EnumTransformer;
 use App\Generators\ResponseType\GeneratorRepository;
-use App\Generators\ResponseType\RoutesTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -35,7 +34,7 @@ EOD;
             ->withArgs(function ($filePath, $content) {
                 $this->assertStringContainsString("case FooBar = 'foo_bar'", $content);
                 $this->assertStringContainsString("case EmbedQuestion = 'embed_question'", $content);
-                $this->assertStringContainsString("enum ResponseTypeEnum: string", $content);
+                $this->assertStringContainsString('enum ResponseTypeEnum: string', $content);
 
                 return true;
             });
