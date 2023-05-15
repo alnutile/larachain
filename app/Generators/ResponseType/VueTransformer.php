@@ -15,10 +15,9 @@ class VueTransformer extends BaseTransformer
 
     protected function makeVue()
     {
-        $rootPath = base_path(sprintf('resources/js/Pages/ResponseTypes/%s',
-            $this->generatorRepository->getClassName()));
+        $rootPath = base_path(sprintf('resources/js/Pages/ResponseTypes/%s', $this->generatorRepository->getClassName()));
 
-        File::makeDirectory(base_path(sprintf('%s/Partials', $rootPath)));
+        File::makeDirectory(sprintf('%s/Partials', $rootPath), 0755, true, true);
 
         $files = File::allFiles($this->generatorRepository->getRootPathOrStubs().'Vue/ResponseTypes/ResponseType');
 
