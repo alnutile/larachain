@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class EnumTransformerTest extends TestCase
 {
-    public function test_handles_routes()
+    public function test_handles_enum()
     {
         $enum = <<<EOD
 <?php
