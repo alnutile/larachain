@@ -15,7 +15,7 @@ class EnumTransformer extends BaseTransformer
         $contents = File::get($enumPath);
 
         $token = "//case TemplateType = 'template_type'";
-        $case = "\ncase [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]'";
+        $case = "\n    case [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]';";
         $case = TokenReplacer::handle($generatorRepository, $case);
         $replaceWith = sprintf("%s/%s", $token, $case);
 
