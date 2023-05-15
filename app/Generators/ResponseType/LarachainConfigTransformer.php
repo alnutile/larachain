@@ -27,7 +27,7 @@ class LarachainConfigTransformer extends BaseTransformer
         $template = <<<'EOD'
 <?php
 
-return %s
+return %s;
 EOD;
 
         $config = var_export($config, true);
