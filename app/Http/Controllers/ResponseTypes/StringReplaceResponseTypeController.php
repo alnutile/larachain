@@ -10,7 +10,7 @@ class StringReplaceResponseTypeController extends BaseResponseTypeController
 {
     public function create(Outbound $outbound)
     {
-        ResponseType::create([
+        $responseType = ResponseType::create([
             'type' => ResponseTypeEnum::StringReplace,
             'order' => $outbound->response_types->count() + 1,
             'outbound_id' => $outbound->id,
@@ -21,9 +21,12 @@ class StringReplaceResponseTypeController extends BaseResponseTypeController
             ],
         ]);
 
-        request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
+        request()->session()->flash('flash.banner', 'Response Type created, now to add Search and Replace 💪');
 
-        return back();
+        return to_route('response_types.string_replace.edit', [
+            'outbound' => $outbound->id,
+            'response_type' => $responseType->id,
+        ]);
     }
 
     public function edit(Outbound $outbound, ResponseType $response_type)
