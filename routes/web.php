@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Outbounds\ApiiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
-use App\Http\Controllers\ResponeTypes\ChatUiResponseTypeController;
-use App\Http\Controllers\ResponeTypes\CombineContentResponseTypeController;
-use App\Http\Controllers\ResponeTypes\EmbedQuestionResponseTypeController;
-use App\Http\Controllers\ResponeTypes\TrimTextResponseTypeController;
-use App\Http\Controllers\ResponeTypes\VectorSearchResponseTypeController;
+use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
+use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
+use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
+use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
+use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;

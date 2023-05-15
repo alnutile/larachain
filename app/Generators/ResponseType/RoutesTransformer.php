@@ -16,7 +16,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller(\App\Http\Controllers\ResponeTypes\[RESOURCE_CLASS_NAME]ResponseTypeController::class)->group(
+])->controller(\App\Http\Controllers\ResponseTypes\[RESOURCE_CLASS_NAME]ResponseTypeController::class)->group(
     function () {
         Route::get('/outbounds/{outbound}/response_types/[RESOURCE_KEY]/create', 'create')
             ->name('response_types.[RESOURCE_KEY].create');

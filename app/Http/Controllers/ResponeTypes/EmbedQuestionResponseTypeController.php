@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ResponeTypes;
+namespace App\Http\Controllers\ResponseTypes;
 
 use App\Models\Outbound;
 use App\Models\ResponseType;
