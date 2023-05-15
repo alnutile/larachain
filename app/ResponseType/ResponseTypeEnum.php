@@ -4,6 +4,8 @@ namespace App\ResponseType;
 
 enum ResponseTypeEnum: string
 {
+
+    //case TemplateType = 'template_type'
     case EmbedQuestion = 'embed_question';
     case VectorSearch = 'vector_search';
     case CombineContent = 'combine_content';

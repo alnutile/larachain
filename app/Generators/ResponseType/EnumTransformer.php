@@ -14,12 +14,12 @@ class EnumTransformer extends BaseTransformer
         $enumPath = app_path('ResponseType/ResponseTypeEnum.php');
         $contents = File::get($enumPath);
 
-        $case = "case [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]'";
+        $case = "\ncase [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]'";
         $case = TokenReplacer::handle($generatorRepository, $case);
 
         $contents = str($contents)
-            ->before("case ")
-            ->prepend($case)
+            ->afterLast("//case TemplateType = 'template_type'")
+            ->append($case)
             ->toString();
 
         File::put($enumPath, $contents);

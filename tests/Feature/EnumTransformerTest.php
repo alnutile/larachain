@@ -19,6 +19,7 @@ namespace App\ResponseType;
 
 enum ResponseTypeEnum: string
 {
+    //case TemplateType = 'template_type'
     case EmbedQuestion = 'embed_question';
     case VectorSearch = 'vector_search';
     case CombineContent = 'combine_content';
@@ -33,6 +34,7 @@ EOD;
         File::shouldReceive('put')
             ->withArgs(function ($filePath, $content) {
                 $this->assertStringContainsString("case FooBar = 'foo_bar'", $content);
+                $this->assertStringContainsString("case EmbedQuestion = 'embed_question'", $content);
 
                 return true;
             });
