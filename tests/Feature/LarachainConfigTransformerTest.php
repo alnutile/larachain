@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Generators\ResponseType\LarachainConfigTransformer;
 use App\Generators\ResponseType\GeneratorRepository;
+use App\Generators\ResponseType\LarachainConfigTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -11,7 +11,7 @@ class LarachainConfigTransformerTest extends TestCase
 {
     public function test_handles_config()
     {
-        $config = File::get(base_path("tests/fixtures/larachain.php"));
+        $config = File::get(base_path('tests/fixtures/larachain.php'));
         $generator = new GeneratorRepository();
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false);
 
@@ -23,9 +23,9 @@ class LarachainConfigTransformerTest extends TestCase
                 $this->assertStringContainsString($generator->name, $content);
                 $this->assertStringContainsString($generator->getKey(), $content);
                 $this->assertStringContainsString($generator->description, $content);
+
                 return true;
             });
-
 
         $transformer = new LarachainConfigTransformer();
         $transformer->handle($generator);

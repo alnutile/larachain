@@ -2,7 +2,6 @@
 
 namespace App\Generators\ResponseType;
 
-use Facades\App\Generators\ResponseType\TokenReplacer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
@@ -12,20 +11,20 @@ class LarachainConfigTransformer extends BaseTransformer
     {
         $this->generatorRepository = $generatorRepository;
 
-        $sourcePath = config_path("larachain.php");
+        $sourcePath = config_path('larachain.php');
         $config = config('larachain');
 
         $config['response_types'][$generatorRepository->getKey()] = [
-            "title" => $generatorRepository->name,
-                "description" => $generatorRepository->description,
-                "icon" => "MegaphoneIcon",
-                "route" => $generatorRepository->getKey(),
-                "requires" =>  [],
-                "background" => $this->getColor(),
-                "active" => 1
+            'title' => $generatorRepository->name,
+            'description' => $generatorRepository->description,
+            'icon' => 'MegaphoneIcon',
+            'route' => $generatorRepository->getKey(),
+            'requires' => [],
+            'background' => $this->getColor(),
+            'active' => 1,
         ];
 
-        $template = <<<EOD
+        $template = <<<'EOD'
 <?php
 
 return %s
@@ -38,12 +37,13 @@ EOD;
         File::put($sourcePath, $contents);
     }
 
-    protected function getColor() : string {
+    protected function getColor(): string
+    {
         return Arr::random([
             'bg-pink-400',
             'bg-slate-800',
             'bg-green-500',
-            'bg-sky-500'
+            'bg-sky-500',
         ]);
     }
 }
