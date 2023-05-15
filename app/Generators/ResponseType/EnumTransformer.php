@@ -21,7 +21,6 @@ class EnumTransformer extends BaseTransformer
 
         $contents = str($contents)
             ->replace($token, $replaceWith)
-            ->append($case)
             ->toString();
 
         File::put($enumPath, $contents);
