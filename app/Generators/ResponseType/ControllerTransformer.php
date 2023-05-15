@@ -2,7 +2,7 @@
 
 namespace App\Generators\ResponseType;
 
-use Facades\SundanceSolutions\InertiaCrud\Generator\TokenReplacer;
+use Facades\App\Generators\ResponseType\TokenReplacer;
 
 class ControllerTransformer extends BaseTransformer
 {
