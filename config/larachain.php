@@ -125,16 +125,5 @@ return array(
                     'background' => 'bg-pink-400',
                     'active' => 1,
                 ),
-            'foo_bar' =>
-                array(
-                    'title' => 'Foo Bar',
-                    'description' => 'Foo barring',
-                    'icon' => 'MegaphoneIcon',
-                    'route' => 'foo_bar',
-                    'requires' =>
-                        array(),
-                    'background' => 'bg-pink-400',
-                    'active' => 1,
-                ),
         ),
 );
