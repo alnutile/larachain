@@ -2,10 +2,10 @@
 
 namespace App\Generators\ResponseType;
 
-use Facades\App\Generators\ResponseType\ResponseTypeClassTransformer;
 use Facades\App\Generators\ResponseType\ControllerTransformer;
 use Facades\App\Generators\ResponseType\EnumTransformer;
 use Facades\App\Generators\ResponseType\LarachainConfigTransformer;
+use Facades\App\Generators\ResponseType\ResponseTypeClassTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
 use Facades\App\Generators\ResponseType\VueTransformer;
 use Illuminate\Support\Facades\File;
