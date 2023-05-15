@@ -3,6 +3,7 @@
 namespace App\Generators\ResponseType;
 
 use Facades\App\Generators\ResponseType\TokenReplacer;
+use Illuminate\Support\Facades\File;
 
 class ControllerTransformer extends BaseTransformer
 {
@@ -16,13 +17,14 @@ class ControllerTransformer extends BaseTransformer
 
     protected function makeTest()
     {
-        $content = $this->getContents('/Tests/ResourceControllerTest.php');
-        $tranformed = TokenReplacer::handle($this->generatorRepository, $content);
+        $content = $this->getContents('/Tests/ResponseTypeControllerTest.php');
+        $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%sControllerTest.php', $this->generatorRepository->getClassName());
-        $destination = base_path('tests/Feature/Http/Controllers/'.$name);
-
-        $this->generatorRepository->putFile($destination, $tranformed);
+        $basePath = base_path('tests/Feature/Http/Controllers/');
+        File::makeDirectory($basePath,0755,true,true);
+        $destination = $basePath.$name;
+        $this->generatorRepository->putFile($destination, $transformed);
     }
 
     protected function makeController()

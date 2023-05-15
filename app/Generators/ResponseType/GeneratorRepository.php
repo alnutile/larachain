@@ -40,7 +40,7 @@ class GeneratorRepository
 
     public function getClassName(): string
     {
-        return $this->key;
+        return $this->class_name;
     }
 
     public function run()
