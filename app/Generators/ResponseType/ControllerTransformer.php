@@ -22,7 +22,7 @@ class ControllerTransformer extends BaseTransformer
 
         $name = sprintf('%sControllerTest.php', $this->generatorRepository->getClassName());
         $basePath = base_path('tests/Feature/Http/Controllers/');
-        File::makeDirectory($basePath,0755,true,true);
+        File::makeDirectory($basePath, 0755, true, true);
         $destination = $basePath.$name;
         $this->generatorRepository->putFile($destination, $transformed);
     }

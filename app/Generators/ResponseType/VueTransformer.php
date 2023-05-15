@@ -26,7 +26,7 @@ class VueTransformer extends BaseTransformer
             $content = File::get($file->getPathname());
             $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-            if($file->getFilename() === 'ResourceForm.vue') {
+            if ($file->getFilename() === 'ResourceForm.vue') {
                 $destination = $resourceFormRootPath;
             } else {
                 $destination = sprintf('%s/%s',
@@ -38,5 +38,4 @@ class VueTransformer extends BaseTransformer
             $this->generatorRepository->putFile($destination, $transformed);
         }
     }
-
 }

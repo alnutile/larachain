@@ -18,7 +18,6 @@ class VueTransformerTest extends TestCase
             ]
         );
 
-
         File::shouldReceive('get')
             ->andReturn('[RESOURCE_CLASS_NAME]');
 

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Generators\ResponseType\VueTransformer;
 use App\Generators\ResponseType\GeneratorRepository;
+use App\Generators\ResponseType\VueTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 

@@ -12,15 +12,22 @@ class RoutesTransformer extends BaseTransformer
         $this->generatorRepository = $generatorRepository;
         $routes = <<<EOD
 
-    Route::controller(\App\Http\Controllers\[RESOURCE_PROPER]Controller::class)
-        ->group(function () {
-            Route::get('/[RESOURCE_PLURAL_KEY]', 'index')->name('[RESOURCE_PLURAL_KEY].index');
-            Route::get('/[RESOURCE_PLURAL_KEY]/create', 'create')->name('[RESOURCE_PLURAL_KEY].create');
-            Route::post('/[RESOURCE_PLURAL_KEY]/create', 'store')->name('[RESOURCE_PLURAL_KEY].store');
-            Route::get('/[RESOURCE_PLURAL_KEY]/{[RESOURCE_SINGULAR_KEY]}', 'show')->name('[RESOURCE_PLURAL_KEY].show');
-            Route::get('/[RESOURCE_PLURAL_KEY]/{[RESOURCE_SINGULAR_KEY]}/edit', 'edit')->name('[RESOURCE_PLURAL_KEY].edit');
-            Route::put('/[RESOURCE_PLURAL_KEY]/{[RESOURCE_SINGULAR_KEY]}', 'update')->name('[RESOURCE_PLURAL_KEY].update');
-        });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponeTypes\[RESOURCE_CLASS_NAME]ResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/[RESOURCE_KEY]/create', 'create')
+            ->name('response_types.[RESOURCE_KEY].create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/[RESOURCE_KEY]/edit', 'edit')
+            ->name('response_types.[RESOURCE_KEY].edit');
+        Route::post('/outbounds/{outbound}/response_types/[RESOURCE_KEY]/store', 'store')
+            ->name('response_types.[RESOURCE_KEY].store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/[RESOURCE_KEY]/update', 'update')
+            ->name('response_types.[RESOURCE_KEY].update');
+    }
+);
 EOD;
         $routesTransformed = TokenReplacer::handle($generatorRepository, $routes);
         $routesPath = base_path('routes/web.php');
