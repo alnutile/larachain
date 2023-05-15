@@ -59,6 +59,6 @@ class GeneratorRepository
 
     public function getRootPathOrStubs(): string
     {
-        return __DIR__.'/../../STUBS/';
+        return base_path("STUBS/");
     }
 }

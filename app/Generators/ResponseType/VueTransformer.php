@@ -19,6 +19,8 @@ class VueTransformer extends BaseTransformer
             $this->generatorRepository->getClassName()));
         $resourceFormRootPath = base_path(sprintf('resources/js/Pages/ResponseTypes/Partials/ResourceForm.vue'));
 
+        
+
         $files = File::allFiles($this->generatorRepository->getRootPathOrStubs().'Vue/ResponseTypes/ResponseType');
 
         /** @var \Symfony\Component\Finder\SplFileInfo $file */
