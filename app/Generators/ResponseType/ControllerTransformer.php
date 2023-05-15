@@ -34,7 +34,7 @@ class ControllerTransformer extends BaseTransformer
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%sResponseTypeController.php', $this->generatorRepository->getClassName());
-        $destination = base_path('app/Http/Controllers/'.$name);
+        $destination = base_path('app/Http/Controllers/ResponseTypes/'.$name);
 
         $this->generatorRepository->putFile($destination, $transformed);
     }
