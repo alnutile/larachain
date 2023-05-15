@@ -18,6 +18,9 @@ class VueTransformerTest extends TestCase
             ]
         );
 
+        File::shouldReceive('makeDirectory')
+            ->once();
+
         File::shouldReceive('get')
             ->andReturn('[RESOURCE_CLASS_NAME]');
 

@@ -17,9 +17,8 @@ class VueTransformer extends BaseTransformer
     {
         $rootPath = base_path(sprintf('resources/js/Pages/ResponseTypes/%s',
             $this->generatorRepository->getClassName()));
-        $resourceFormRootPath = base_path(sprintf('resources/js/Pages/ResponseTypes/Partials/ResourceForm.vue'));
 
-        
+        File::makeDirectory(base_path(sprintf('%s/Partials', $rootPath)));
 
         $files = File::allFiles($this->generatorRepository->getRootPathOrStubs().'Vue/ResponseTypes/ResponseType');
 
@@ -29,7 +28,7 @@ class VueTransformer extends BaseTransformer
             $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
             if ($file->getFilename() === 'ResourceForm.vue') {
-                $destination = $resourceFormRootPath;
+                $destination = $rootPath . '/Partials/ResourceForm.vue';
             } else {
                 $destination = sprintf('%s/%s',
                     $rootPath,
