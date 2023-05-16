@@ -58,8 +58,8 @@ const form = useForm({
 
 const submit = () => {
     form.put(route("response_types.[RESOURCE_KEY].update", {
-        project: props.project.id,
-        'response_type': props.response_type.id
+        outbound: outbound.project.id,
+        response_type: props.response_type.id
     }), {
         preserveScroll: true,
         onError: params => {

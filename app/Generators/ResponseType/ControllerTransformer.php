@@ -17,10 +17,15 @@ class ControllerTransformer extends BaseTransformer
 
     protected function makeTest()
     {
-        $content = $this->getContents('/Tests/ResponseTypeControllerTest.php');
+        if ($this->generatorRepository->getRequiresSettings()) {
+            $content = $this->getContents('Controllers/ResponseTypeWithSettingsControllerTest.php');
+        } else {
+            $content = $this->getContents('/Tests/ResponseTypeControllerTest.php');
+        }
+
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sControllerTest.php', $this->generatorRepository->getClassName());
+        $name = sprintf('%sResponseTypeControllerTest.php', $this->generatorRepository->getClassName());
         $basePath = base_path('tests/Feature/Http/Controllers/');
         File::makeDirectory($basePath, 0755, true, true);
         $destination = $basePath.$name;
@@ -29,7 +34,11 @@ class ControllerTransformer extends BaseTransformer
 
     protected function makeController()
     {
-        $content = $this->getContents('Controllers/ResponseTypeController.php');
+        if ($this->generatorRepository->getRequiresSettings()) {
+            $content = $this->getContents('Controllers/ResponseTypeWithSettingsController.php');
+        } else {
+            $content = $this->getContents('Controllers/ResponseTypeController.php');
+        }
 
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 

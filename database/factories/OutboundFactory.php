@@ -24,4 +24,13 @@ class OutboundFactory extends Factory
             'active' => 1,
         ];
     }
+
+    public function chatUi()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => OutboundEnum::ChatUi,
+            ];
+        });
+    }
 }

@@ -115,5 +115,15 @@ return [
             'background' => 'bg-green-500',
             'active' => 1,
         ],
+        'foo_bar' => [
+            'title' => 'Foo Bar',
+            'description' => 'Some Response Type',
+            'icon' => 'MegaphoneIcon',
+            'route' => 'foo_bar',
+            'requires' => [
+            ],
+            'background' => 'bg-red-700',
+            'active' => 1,
+        ],
     ],
 ];

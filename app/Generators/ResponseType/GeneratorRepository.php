@@ -41,6 +41,11 @@ class GeneratorRepository
         return $this->key;
     }
 
+    public function getRequiresSettings(): bool
+    {
+        return $this->requires_settings;
+    }
+
     public function getClassName(): string
     {
         return $this->class_name;
