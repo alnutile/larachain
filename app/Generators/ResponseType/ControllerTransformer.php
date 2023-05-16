@@ -18,7 +18,7 @@ class ControllerTransformer extends BaseTransformer
     protected function makeTest()
     {
         if ($this->generatorRepository->getRequiresSettings()) {
-            $content = $this->getContents('Controllers/ResponseTypeWithSettingsControllerTest.php');
+            $content = $this->getContents('/Tests/ResponseTypeWithSettingsControllerTest.php');
         } else {
             $content = $this->getContents('/Tests/ResponseTypeControllerTest.php');
         }
