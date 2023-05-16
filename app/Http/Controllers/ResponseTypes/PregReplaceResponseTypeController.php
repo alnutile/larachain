@@ -8,16 +8,15 @@ use App\ResponseType\ResponseTypeEnum;
 
 class PregReplaceResponseTypeController extends BaseResponseTypeController
 {
-
     public function create(Outbound $outbound)
-{
+    {
     ResponseType::create([
         'type' => ResponseTypeEnum::PregReplace,
         'order' => $outbound->response_types->count() + 1,
         'outbound_id' => $outbound->id,
         'prompt_token' => [],
         'meta_data' => [
-            'preg_replace' => "'/\./', ''"
+            'preg_replace' => "'/\./', ''",
         ],
     ]);
 
@@ -27,7 +26,7 @@ class PregReplaceResponseTypeController extends BaseResponseTypeController
     }
 
     public function edit(Outbound $outbound, ResponseType $response_type)
-{
+    {
     return inertia('ResponseTypes/PregReplace/Edit', [
         'response_type' => $response_type,
         'outbound' => $outbound,
@@ -36,7 +35,7 @@ class PregReplaceResponseTypeController extends BaseResponseTypeController
 }
 
     public function update(Outbound $outbound, ResponseType $response_type)
-{
+    {
     $validated = request()->validate(
         [
             'meta_data.preg_replace_pattern' => ['required', 'string'],
@@ -55,11 +54,8 @@ class PregReplaceResponseTypeController extends BaseResponseTypeController
     ]);
 }
 
-
     public function store(Outbound $outbound)
     {
         // TODO: Implement store() method.
     }
-
-
 }

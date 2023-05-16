@@ -8,7 +8,6 @@ use App\ResponseType\ResponseTypeEnum;
 
 class StringRemoveResponseTypeController extends BaseResponseTypeController
 {
-
     public function create(Outbound $outbound)
     {
         $responseType = ResponseType::create([
@@ -18,9 +17,9 @@ class StringRemoveResponseTypeController extends BaseResponseTypeController
             'prompt_token' => [],
             'meta_data' => [
                 'strings' => [
-                    "foo",
-                    "bar"
-                ]
+                    'foo',
+                    'bar',
+                ],
             ],
         ]);
 
@@ -43,7 +42,7 @@ class StringRemoveResponseTypeController extends BaseResponseTypeController
 
     public function update(Outbound $outbound, ResponseType $response_type)
     {
-        put_fixture("meta_data_string_replace.json", request()->all());
+        put_fixture('meta_data_string_replace.json', request()->all());
         $validated = request()->validate(
             [
                 'meta_data.strings' => ['required'],
@@ -55,17 +54,14 @@ class StringRemoveResponseTypeController extends BaseResponseTypeController
 
         request()->session()->flash('flash.banner', 'Updated 📀📀📀📀');
 
-        return to_route('outbounds.' . $outbound->type->value . '.show', [
+        return to_route('outbounds.'.$outbound->type->value.'.show', [
             'outbound' => $outbound->id,
             'project' => $outbound->project->id,
         ]);
     }
 
-
     public function store(Outbound $outbound)
     {
         // TODO: Implement store() method.
     }
-
-
 }

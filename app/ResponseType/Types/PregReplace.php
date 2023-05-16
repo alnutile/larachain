@@ -4,8 +4,6 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
-use App\ResponseType\Content;
-use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
 class PregReplace extends BaseResponseType
@@ -19,11 +17,11 @@ class PregReplace extends BaseResponseType
          */
         $preg_replace_pattern = data_get($responseType->meta_data, 'preg_replace_pattern', null);
         $preg_replace_replacement = data_get($responseType->meta_data, 'preg_replace_replacement', null);
-        if($preg_replace_replacement === "''") {
+        if ($preg_replace_replacement === "''") {
             $preg_replace_replacement = null;
         }
 
-        if($preg_replace_pattern) {
+        if ($preg_replace_pattern) {
                 $this->response_dto->response->contents->map(function ($document) use ($preg_replace_pattern, $preg_replace_replacement) {
                 $document->content = preg_replace($preg_replace_pattern, $preg_replace_replacement, $document->content);
 

@@ -4,8 +4,6 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
-use App\ResponseType\Content;
-use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
 class StringRemove extends BaseResponseType
@@ -19,7 +17,7 @@ class StringRemove extends BaseResponseType
          */
         $remove = data_get($responseType->meta_data, 'string', []);
 
-        if(!empty($remove)) {
+        if (! empty($remove)) {
             $this->response_dto->response->contents->map(function ($document) use ($remove) {
                 $document->content = str($document->content)
                     ->remove($remove)->toString();
@@ -27,7 +25,6 @@ class StringRemove extends BaseResponseType
                 return $document;
             });
         }
-
 
         return ResponseDto::from(
             [

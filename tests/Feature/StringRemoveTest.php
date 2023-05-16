@@ -28,9 +28,9 @@ class StringRemoveTest extends TestCase
         ]);
 
         DocumentChunk::factory()->count(10)->create([
-                'document_id' => $document->id,
-                'content' => $example,
-            ]
+            'document_id' => $document->id,
+            'content' => $example,
+        ]
         );
 
         $documents = DocumentChunk::query()
@@ -50,16 +50,16 @@ class StringRemoveTest extends TestCase
                 'meta_data' => [
                     'string' => [
                         'original',
-                        'humans'
-                    ]
-                ]
+                        'humans',
+                    ],
+                ],
             ]);
 
         $trim = new StringRemove($source->project, $responseDto);
 
         $results = $trim->handle($responseType);
 
-        $this->assertStringNotContainsString("humans", $results->response->contents->first()->content);
+        $this->assertStringNotContainsString('humans', $results->response->contents->first()->content);
     }
 
     public function test_gibberish()
@@ -72,9 +72,9 @@ class StringRemoveTest extends TestCase
         ]);
 
         DocumentChunk::factory()->count(10)->create([
-                'document_id' => $document->id,
-                'content' => $example,
-            ]
+            'document_id' => $document->id,
+            'content' => $example,
+        ]
         );
 
         $documents = DocumentChunk::query()
@@ -94,15 +94,15 @@ class StringRemoveTest extends TestCase
                 'meta_data' => [
                     'string' => [
                         'original',
-                        'humans'
-                    ]
-                ]
+                        'humans',
+                    ],
+                ],
             ]);
 
         $trim = new StringRemove($source->project, $responseDto);
 
         $results = $trim->handle($responseType);
 
-        $this->assertStringNotContainsString("humans", $results->response->contents->first()->content);
+        $this->assertStringNotContainsString('humans', $results->response->contents->first()->content);
     }
 }
