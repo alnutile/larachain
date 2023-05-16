@@ -21,7 +21,7 @@ class CombineContent extends BaseResponseType
 
         foreach ($this->response_dto->response->contents as $document) {
             $combinedContent .= $document->content;
-            if (strlen($combinedContent) >= $token_limit) {
+            if ($this->count_tokens($combinedContent) >= $token_limit) {
                 break;
             }
         }
@@ -37,5 +37,14 @@ class CombineContent extends BaseResponseType
                 ]),
             ]
         );
+    }
+
+    protected function count_tokens($string)
+    {
+        // Add spaces before punctuation, then split the string by spaces
+        $tokens = preg_split('/\s+/', preg_replace('/([?.!])/', ' $1', $string));
+
+        // Return the count of the tokens
+        return count($tokens);
     }
 }

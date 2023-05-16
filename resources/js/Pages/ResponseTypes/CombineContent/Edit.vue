@@ -18,14 +18,8 @@
                                 </template>
 
                                 <template #form>
-                                    <div class="flex col-span-6">
-                                        <div>
-                                        <JsonEditorVue
-                                        v-model="form.meta_data"
-                                        v-bind="{/* local props & attrs */}"
-                                        />
-                                    </div>
-                                    </div>
+                                   <ResourceForm
+                                       v-model="form"/>
                                 </template>
 
                                 <template #actions>
@@ -50,7 +44,6 @@ import FormSection from "@/Components/TypeFormSection.vue";
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Link } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
-import JsonEditorVue from 'json-editor-vue'
 const toast = useToast();
 
 const props = defineProps({
@@ -64,14 +57,9 @@ const form = useForm({
     prompt_token: props.response_type.prompt_token,
 })
 
-const removeSearchItem = (index) => {
-    console.log(index);
-    form.meta_data.search.splice(index, 1);
-    form.meta_data.replace.splice(index, 1);
-}
 
 const submit = () => {
-    form.put(route("response_types.string_replace.update", {
+    form.put(route("response_types.combine_content.update", {
         outbound: props.outbound.id,
         response_type: props.response_type.id
     }), {

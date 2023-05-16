@@ -3,8 +3,8 @@
         <div>
             <InputLabel for="urls" >Search for</InputLabel>
             <div class="flex flex-col gap-2">
-                <div class="mt-2 flex justify-start" v-for="(searchItem, index) in modelValue.meta_data['search']" >
-                    <TextInput type="text" v-model="modelValue.meta_data['search'][index]" :tabindex="index"/>
+                <div class="mt-2 flex justify-start" v-for="(searchItem, searchIndex) in modelValue.meta_data['search']" :key="searchItem" >
+                    <TextInput type="text" v-model="modelValue.meta_data['search'][searchIndex]"/>
                 </div>
             </div>
             <div class="mt-2 flex justify-start">
@@ -18,9 +18,9 @@
         <div>
             <InputLabel for="urls" >Replace With</InputLabel>
             <div class="flex flex-col gap-2">
-                <div class="mt-2 flex justify-start gap-2" v-for="(index) in replace" >
-                    <TextInput type="text" v-model="modelValue.meta_data['replace'][index]" />
-                    <button @click="removeSearchItem(index)" type="button" class="bg-red-500 p-2">
+                <div class="mt-2 flex justify-start gap-2" v-for="(replaceIndex) in replace" :key="replaceIndex">
+                    <TextInput type="text" v-model="modelValue.meta_data['replace'][replaceIndex]" />
+                    <button @click="removeSearchItem(replaceIndex)" type="button" class="bg-red-500 p-2">
                         <MinusIcon class="w-5 h-5 text-white"></MinusIcon>
                     </button>
                 </div>
@@ -43,25 +43,19 @@ const props = defineProps({
     modelValue: Object
 })
 
-const search = ref([])
 const replace = ref([])
-const newSearchItem = ref("")
 const newReplaceItem = ref("")
+const newSearchItem = ref("")
 
 const addSearchItem = () => {
     emit("update:modelValue.meta_data['search']", newSearchItem.value)
-    search.value.push(newSearchItem.value)
-    replace.value.push("REPLACE_WITH")
-    newSearchItem.value = "";
 }
 
 const removeSearchItem = (index) => {
     emit("removeSearchItem", index)
-
 }
 
 onMounted(() => {
-    search.value = props.modelValue.meta_data.search;
     replace.value = props.modelValue.meta_data.replace;
 })
 

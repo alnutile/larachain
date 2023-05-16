@@ -15,6 +15,9 @@ class CombineContentResponseTypeController extends BaseResponseTypeController
             'type' => ResponseTypeEnum::CombineContent,
             'order' => $outbound->response_types->count() + 1,
             'outbound_id' => $outbound->id,
+            'meta_data' => [
+                'token_limit' => 2000,
+            ],
             'prompt_token' => [],
         ]);
 
@@ -23,13 +26,36 @@ class CombineContentResponseTypeController extends BaseResponseTypeController
         return back();
     }
 
-    public function store(Outbound $outbound)
+    public function edit(Outbound $outbound, ResponseType $response_type)
     {
-        // TODO: Implement store() method.
+        return inertia('ResponseTypes/CombineContent/Edit', [
+            'response_type' => $response_type,
+            'outbound' => $outbound,
+            'details' => config('larachain.response_types.combine_content'),
+        ]);
     }
 
     public function update(Outbound $outbound, ResponseType $response_type)
     {
-        // TODO: Implement update() method.
+        $validated = request()->validate(
+            [
+                'meta_data.token_limit' => ['required'],
+            ]
+        );
+
+        $response_type->meta_data = $validated['meta_data'];
+        $response_type->save();
+
+        request()->session()->flash('flash.banner', 'Updated 📀📀📀📀');
+
+        return to_route('outbounds.'.$outbound->type->value.'.show', [
+            'outbound' => $outbound->id,
+            'project' => $outbound->project->id,
+        ]);
+    }
+
+    public function store(Outbound $outbound)
+    {
+        // TODO: Implement store() method.
     }
 }

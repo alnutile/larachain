@@ -138,6 +138,7 @@ const submit = () => {
         .then(data => {
             toast("See results")
             form.processing = false;
+            form.question = "";
         })
         .catch(error => {
             console.log(error)
