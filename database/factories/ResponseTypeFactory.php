@@ -27,6 +27,19 @@ class ResponseTypeFactory extends Factory
         ];
     }
 
+    public function pregReplace()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::PregReplace,
+                'meta_data' => [
+                    'preg_replace_pattern' => "/\./",
+                    'preg_replace_replacement' => "''",
+                ],
+            ];
+        });
+    }
+
     public function stringReplace()
     {
         return $this->state(function (array $attributes) {

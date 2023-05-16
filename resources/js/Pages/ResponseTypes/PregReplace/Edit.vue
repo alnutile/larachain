@@ -57,11 +57,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form
-        .transform((data) => ({
-            meta_data:  JSON.parse(data.meta_data),
-        }))
-        .put(route("response_types.[RESOURCE_KEY].update", {
+    form.put(route("response_types.preg_replace.update", {
         outbound: props.outbound.id,
         response_type: props.response_type.id
     }), {

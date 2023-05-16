@@ -18,7 +18,14 @@
                                 </template>
 
                                 <template #form>
-                                   <ResourceForm v-model="form"/>
+                                    <div class="flex col-span-6">
+                                        <div>
+                                            <JsonEditorVue
+                                                v-model="form.meta_data"
+                                                v-bind="{/* local props & attrs */}"
+                                            />
+                                        </div>
+                                    </div>
                                 </template>
 
                                 <template #actions>
@@ -43,6 +50,8 @@ import FormSection from "@/Components/TypeFormSection.vue";
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Link } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
+
+import JsonEditorVue from 'json-editor-vue'
 const toast = useToast();
 
 const props = defineProps({
@@ -61,11 +70,12 @@ const submit = () => {
         .transform((data) => ({
             meta_data:  JSON.parse(data.meta_data),
         }))
-        .put(route("response_types.[RESOURCE_KEY].update", {
+        .put(route("response_types.string_remove.update", {
         outbound: props.outbound.id,
         response_type: props.response_type.id
     }), {
         preserveScroll: true,
+
         onError: params => {
             toast.error("Error saving updates check validation")
         }

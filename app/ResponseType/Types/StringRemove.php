@@ -4,9 +4,11 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
+use App\ResponseType\Content;
+use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
-class FooBar extends BaseResponseType
+class StringRemove extends BaseResponseType
 {
     public function handle(ResponseType $responseType): ResponseDto
     {
@@ -15,13 +17,17 @@ class FooBar extends BaseResponseType
          * @NOTE you can use the meta_data or prompt_token
          * JSON area for storing encrypted settings
          */
-        $token_limit = data_get($responseType->meta_data, 'something', 750);
+        $remove = data_get($responseType->meta_data, 'string', []);
 
-        $this->response_dto->response->contents->map(function ($document) {
-            $document->content = str($document->content)->toString();
+        if(!empty($remove)) {
+            $this->response_dto->response->contents->map(function ($document) use ($remove) {
+                $document->content = str($document->content)
+                    ->remove($remove)->toString();
 
-            return $document;
-        });
+                return $document;
+            });
+        }
+
 
         return ResponseDto::from(
             [

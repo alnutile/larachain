@@ -17,10 +17,15 @@ class EnumTransformer extends BaseTransformer
         $token = "//case TemplateType = 'template_type'";
         $case = "\n    case [RESOURCE_CLASS_NAME] = '[RESOURCE_KEY]';";
         $case = TokenReplacer::handle($generatorRepository, $case);
-        $replaceWith = sprintf('%s/%s', $token, $case);
+        $replaceWith = sprintf('%s %s', $token, $case);
+
+        $tokenLabel = "//static::Template => 'Template',";
+        $caseLabel = "\n    static::[RESOURCE_CLASS_NAME] => '[RESOURCE_CLASS_NAME]',";
+        $caseLabel = TokenReplacer::handle($generatorRepository, $caseLabel);
+        $replaceWithLabel = sprintf('%s %s', $tokenLabel, $caseLabel);
 
         $contents = str($contents)
-            ->replace($token, $replaceWith)
+            ->replace([$token, $tokenLabel], [$replaceWith, $replaceWithLabel])
             ->toString();
 
         File::put($enumPath, $contents);

@@ -1,12 +1,12 @@
 {
     "message": {
-        "id": 247,
+        "id": 261,
         "role": "user",
         "project_id": 1,
         "user_id": 1,
         "content": "What does it say about nitrate impacts to drinking water supplies",
-        "created_at": "2023-05-16T00:38:28.000000Z",
-        "updated_at": "2023-05-16T00:38:28.000000Z",
+        "created_at": "2023-05-16T02:21:17.000000Z",
+        "updated_at": "2023-05-16T02:21:17.000000Z",
         "token_count": null,
         "embedding": {}
     },

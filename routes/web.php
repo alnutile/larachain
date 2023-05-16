@@ -264,3 +264,37 @@ Route::middleware([
             ->name('response_types.string_replace.update');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\StringRemoveResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/string_remove/create', 'create')
+            ->name('response_types.string_remove.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/string_remove/edit', 'edit')
+            ->name('response_types.string_remove.edit');
+        Route::post('/outbounds/{outbound}/response_types/string_remove/store', 'store')
+            ->name('response_types.string_remove.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/string_remove/update', 'update')
+            ->name('response_types.string_remove.update');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\PregReplaceResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/preg_replace/create', 'create')
+            ->name('response_types.preg_replace.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/preg_replace/edit', 'edit')
+            ->name('response_types.preg_replace.edit');
+        Route::post('/outbounds/{outbound}/response_types/preg_replace/store', 'store')
+            ->name('response_types.preg_replace.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/preg_replace/update', 'update')
+            ->name('response_types.preg_replace.update');
+    }
+);

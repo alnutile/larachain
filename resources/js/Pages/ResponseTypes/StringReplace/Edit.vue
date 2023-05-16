@@ -20,11 +20,11 @@
                                 <template #form>
                                     <div class="flex col-span-6">
                                         <div>
-                                        <JsonEditorVue
-                                        v-model="form.meta_data"
-                                        v-bind="{/* local props & attrs */}"
-                                        />
-                                    </div>
+                                            <JsonEditorVue
+                                            v-model="form.meta_data"
+                                            v-bind="{/* local props & attrs */}"
+                                            />
+                                        </div>
                                     </div>
                                 </template>
 
@@ -64,14 +64,12 @@ const form = useForm({
     prompt_token: props.response_type.prompt_token,
 })
 
-const removeSearchItem = (index) => {
-    console.log(index);
-    form.meta_data.search.splice(index, 1);
-    form.meta_data.replace.splice(index, 1);
-}
 
 const submit = () => {
-    form.put(route("response_types.string_replace.update", {
+    form
+        .transform((data) => ({
+            meta_data:  JSON.parse(data.meta_data),
+        })).put(route("response_types.string_replace.update", {
         outbound: props.outbound.id,
         response_type: props.response_type.id
     }), {
