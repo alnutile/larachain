@@ -55,7 +55,7 @@ class Document extends Model
         );
     }
 
-    public function pathToFile() : string | null
+    public function pathToFile(): string|null
     {
         if ($this->source->type === SourceTypeEnum::WebFile) {
             return sprintf(
@@ -65,7 +65,8 @@ class Document extends Model
                 $this->guid);
         }
 
-            return null;
+        /** @phpstan-ignore-next-line */
+        return null;
     }
 
     public function document_chunks()

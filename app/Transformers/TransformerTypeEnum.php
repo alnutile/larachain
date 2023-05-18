@@ -11,5 +11,4 @@ enum TransformerTypeEnum: string
     case EmbedTransformer = 'embed_transformer';
     case PdfTransformer = 'pdf_transformer';
 
-
 }

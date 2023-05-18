@@ -9,6 +9,6 @@ enum OutboundEnum: string
     use TypeTrait;
 
     case ChatUi = 'chat_ui';
-
+    case Api = 'api';
 
 }

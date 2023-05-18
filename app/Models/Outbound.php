@@ -80,16 +80,16 @@ class Outbound extends Model
 
             $this->currentResponseDto = $dto;
 
-            $responseTypes = config("larachain.response_types");
+            $responseTypes = config('larachain.response_types');
 
             foreach ($this->response_types as $response_type_model) {
                 $responseType = $response_type_model->type->value;
                 $responseType = data_get($responseTypes, $responseType);
 
-                $class = data_get($responseType, "class", null);
+                $class = data_get($responseType, 'class', null);
 
-                if(!$class) {
-                    throw new \Exception("Response Type Missing Class");
+                if (! $class) {
+                    throw new \Exception('Response Type Missing Class');
                 }
 
                 $responseTypeClass = app($class, [

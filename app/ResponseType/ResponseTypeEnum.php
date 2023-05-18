@@ -19,5 +19,4 @@ enum ResponseTypeEnum: string
     case ChatUi = 'chat_ui';
     case Api = 'api';
 
-
 }

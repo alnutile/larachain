@@ -44,12 +44,12 @@ class Source extends BaseTypeModel
     public function run()
     {
         try {
-            $statusTypes = config("larachain.sources");
+            $statusTypes = config('larachain.sources');
             $statusType = $this->type->value;
             $statusType = data_get($statusTypes, $statusType);
-            $class = data_get($statusType, "class", null);
-            if(!$class) {
-                throw new \Exception("Response Type Missing Class");
+            $class = data_get($statusType, 'class', null);
+            if (! $class) {
+                throw new \Exception('Response Type Missing Class');
             }
 
             logger('Running source '.$class);

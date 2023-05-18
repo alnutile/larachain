@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Feature\Models;
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
