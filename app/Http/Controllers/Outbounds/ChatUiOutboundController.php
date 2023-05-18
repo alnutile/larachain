@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Outbounds;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
+use App\ResponseType\ResponseTypeEnum;
 
 class ChatUiOutboundController extends BaseOutboundController
 {
@@ -27,27 +28,11 @@ class ChatUiOutboundController extends BaseOutboundController
 
     public function show(Project $project, Outbound $outbound)
     {
-        $responseTypes = config('larachain.response_types');
-
-        $responseTypes = collect($responseTypes)->filter(
-            function ($item, $response_type) {
-                return $item['active'];
-            }
-        )->map(function ($item, $response_type) use ($outbound) {
-            if (data_get($item, 'route')) {
-                $item['route'] = route('response_types.'.$response_type.'.create', [
-                    'outbound' => $outbound->id,
-                ]);
-            }
-
-            return $item;
-        })->toArray();
-
         return inertia('Outbounds/ChatUi/Show', [
             'details' => config('larachain.outbounds.chat_ui'),
             'project' => $project,
             'outbound' => $outbound->load('response_types'),
-            'response_types' => $responseTypes,
+            'response_types' => ResponseTypeEnum::toArray(),
         ]);
     }
 
