@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
 
 /**
+ * @property string $guid
  * @property string $content
  * @property int $id;
  * @property int $token_count;
@@ -54,7 +55,7 @@ class Document extends Model
         );
     }
 
-    public function pathToFile()
+    public function pathToFile(): string|null
     {
         if ($this->source->type === SourceTypeEnum::WebFile) {
             return sprintf(
@@ -64,7 +65,8 @@ class Document extends Model
                 $this->guid);
         }
 
-            return null;
+        /** @phpstan-ignore-next-line */
+        return null;
     }
 
     public function document_chunks()

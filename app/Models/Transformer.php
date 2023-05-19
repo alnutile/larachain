@@ -41,15 +41,18 @@ class Transformer extends BaseTypeModel
     public function run()
     {
         try {
-            /**
-             * @TODO move this to a queue
-             */
-            $transformerType = $this->type->label();
+            $transformerTypes = config('larachain.transformers');
+            $transformerType = $this->type->value;
+            $transformerType = data_get($transformerTypes, $transformerType);
+            $class = data_get($transformerType, 'class', null);
+            if (! $class) {
+                throw new \Exception('Transformer Missing Class');
+            }
 
             foreach ($this->project->documents as $document) {
-                logger('Running Transformer '.$transformerType);
+                logger('Running Transformer '.$class);
 
-                $transformerType = app("App\Transformers\Types\\".$transformerType, [
+                $transformerType = app($class, [
                     'document' => $document,
                 ]);
                 /** @var BaseTransformer $transformerType */

@@ -7,6 +7,8 @@ import { resolveComponent } from "vue";
 import {
     ArrowDownTrayIcon,
     ArrowsPointingInIcon,
+    ArrowsRightLeftIcon,
+    DocumentIcon,
     Bars4Icon,
     DocumentTextIcon,
     CalendarIcon,
@@ -17,10 +19,12 @@ export default {
     name: "GetIcon",
     components: {
         Bars4Icon,
+        DocumentIcon,
         DocumentTextIcon,
         ArrowDownTrayIcon,
         resolveComponent,
         ChatBubbleLeftIcon,
+        ArrowsRightLeftIcon,
         ArrowsPointingInIcon,
         CalendarIcon,
         ClockIcon,

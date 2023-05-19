@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Models;
+
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Outbound;
 use App\Models\Project;

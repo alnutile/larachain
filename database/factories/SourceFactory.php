@@ -29,8 +29,6 @@ class SourceFactory extends Factory
             'order' => fake()->numberBetween(1, 10),
             'type' => fake()->randomElement([
                 SourceTypeEnum::WebFile,
-                SourceTypeEnum::Web,
-                SourceTypeEnum::S3Dir,
             ]),
             'created_at' => fake()->dateTime,
             'updated_at' => fake()->dateTime,

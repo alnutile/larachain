@@ -28,7 +28,7 @@ it('test shows create page', function () {
     assertDatabaseCount('outbounds', 1);
 });
 
-it('test show', function () {
+it('test show outbound', function () {
     $user = User::factory()->withPersonalTeam()
         ->create();
 

@@ -1,10 +1,15 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Source\SourceTypeEnum;
+use Tests\TestCase;
 
-it('see the array output', function () {
-
-    $results = SourceTypeEnum::toArray();
-
-    expect($results[0]['name'])->toBe('Web File');
-});
+class SourceTypeEnumTest extends TestCase
+{
+    public function test_to_array()
+    {
+        $results = SourceTypeEnum::toArray();
+        expect($results['web_file']['name'])->toBe('Web File Source Type');
+    }
+}

@@ -19,13 +19,9 @@ class EnumTransformer extends BaseTransformer
         $case = TokenReplacer::handle($generatorRepository, $case);
         $replaceWith = sprintf('%s %s', $token, $case);
 
-        $tokenLabel = "//static::Template => 'Template',";
-        $caseLabel = "\n    static::[RESOURCE_CLASS_NAME] => '[RESOURCE_CLASS_NAME]',";
-        $caseLabel = TokenReplacer::handle($generatorRepository, $caseLabel);
-        $replaceWithLabel = sprintf('%s %s', $tokenLabel, $caseLabel);
 
         $contents = str($contents)
-            ->replace([$token, $tokenLabel], [$replaceWith, $replaceWithLabel])
+            ->replace([$token], [$replaceWith])
             ->toString();
 
         File::put($enumPath, $contents);

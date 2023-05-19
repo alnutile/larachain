@@ -1,7 +1,8 @@
 {
     "meta_data": {
         "strings": [
-            "."
+            "foo",
+            "bar"
         ]
     }
 }

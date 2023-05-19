@@ -1,0 +1,29 @@
+{
+    "message": {
+        "id": 271,
+        "role": "user",
+        "project_id": 1,
+        "user_id": 1,
+        "content": "What does WDR stand for?",
+        "created_at": "2023-05-18T22:27:21.000000Z",
+        "updated_at": "2023-05-18T22:27:21.000000Z",
+        "token_count": null,
+        "embedding": {},
+        "user": {
+            "id": 1,
+            "name": "Admin",
+            "email": "alfrednutile@gmail.com",
+            "email_verified_at": null,
+            "current_team_id": 1,
+            "profile_photo_path": null,
+            "created_at": "2023-04-30T14:23:29.000000Z",
+            "updated_at": "2023-04-30T14:23:29.000000Z",
+            "two_factor_confirmed_at": null,
+            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=A&color=7F9CF5&background=EBF4FF"
+        }
+    },
+    "response": {
+        "contents": []
+    },
+    "status": 200
+}

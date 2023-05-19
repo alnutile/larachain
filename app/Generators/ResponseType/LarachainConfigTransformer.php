@@ -15,12 +15,9 @@ class LarachainConfigTransformer extends BaseTransformer
         $config = config('larachain');
 
         $config['response_types'][$generatorRepository->getKey()] = [
-            'title' => $generatorRepository->name,
+            'name' => $generatorRepository->name,
             'description' => $generatorRepository->description,
-            'icon' => 'MegaphoneIcon',
-            'route' => $generatorRepository->getKey(),
             'requires' => [],
-            'background' => $this->getColor(),
             'active' => 1,
         ];
 
@@ -37,14 +34,5 @@ EOD;
         File::put($sourcePath, $contents);
     }
 
-    protected function getColor(): string
-    {
-        return Arr::random([
-            'bg-red-700',
-            'bg-indigo-600',
-            'bg-green-500',
-            'bg-sky-500',
-            'bg-slate-800',
-        ]);
-    }
+
 }

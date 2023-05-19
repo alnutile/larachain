@@ -10,19 +10,22 @@ class PregReplaceResponseTypeController extends BaseResponseTypeController
 {
     public function create(Outbound $outbound)
     {
-    ResponseType::create([
-        'type' => ResponseTypeEnum::PregReplace,
-        'order' => $outbound->response_types->count() + 1,
-        'outbound_id' => $outbound->id,
-        'prompt_token' => [],
-        'meta_data' => [
-            'preg_replace' => "'/\./', ''",
-        ],
-    ]);
+        $response = ResponseType::create([
+            'type' => ResponseTypeEnum::PregReplace,
+            'order' => $outbound->response_types->count() + 1,
+            'outbound_id' => $outbound->id,
+            'prompt_token' => [],
+            'meta_data' => [
+                'preg_replace' => "'/\./', ''",
+            ],
+        ]);
 
-    request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
+        request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
 
-    return back();
+        return to_route("response_types.preg_replace", [
+            'outbound' => $outbound->id,
+            'response_type' => $response->id
+        ]);
     }
 
     public function edit(Outbound $outbound, ResponseType $response_type)

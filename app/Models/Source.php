@@ -43,11 +43,18 @@ class Source extends BaseTypeModel
      */
     public function run()
     {
-        $statusType = $this->type->label();
         try {
-            logger('Running source'.$statusType);
+            $statusTypes = config('larachain.sources');
+            $statusType = $this->type->value;
+            $statusType = data_get($statusTypes, $statusType);
+            $class = data_get($statusType, 'class', null);
+            if (! $class) {
+                throw new \Exception('Response Type Missing Class');
+            }
+
+            logger('Running source '.$class);
             //@TODO make this check in uses BaseSourceType
-            $sourceType = app("App\Source\Types\\".$statusType, [
+            $sourceType = app($class, [
                 'source' => $this,
             ]);
             /** @var BaseSourceType $sourceType */
