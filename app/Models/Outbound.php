@@ -87,6 +87,8 @@ class Outbound extends Model
                 $responseType = data_get($responseTypes, $responseType);
 
                 $class = data_get($responseType, 'class', null);
+                $key = data_get($responseType, 'id', null);
+                logger("Class", [$class]);
 
                 if (! $class) {
                     throw new \Exception('Response Type Missing Class');
@@ -102,7 +104,7 @@ class Outbound extends Model
 
                 if (Features::accessible('larachain_logging')) {
                     logger('Running Response Type ID '.$response_type_model->id);
-                    put_fixture('larachain_current_dto_'.$responseType.'.json', $this->currentResponseDto->toArray());
+                    put_fixture('larachain_current_dto_'.$key.'.json', $this->currentResponseDto->toArray());
                 }
 
             }

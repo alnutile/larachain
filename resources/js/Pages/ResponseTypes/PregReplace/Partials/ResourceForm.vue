@@ -16,7 +16,7 @@
         <TextInput
             class="p-2 border border-gray-300 w-full"
             type="text"
-            placeholder="''"
+            placeholder="use two single '' for null"
             v-model="modelValue.meta_data.preg_replace_replacement"
         />
         <div class="text-xs mb-1 text-gray-600">This will be the replacement:</div>

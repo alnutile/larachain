@@ -36,7 +36,6 @@ EOD;
                 $this->assertStringNotContainsString("case FooBar = 'foo_bar';/", $content);
                 $this->assertStringContainsString("case EmbedQuestion = 'embed_question'", $content);
                 $this->assertStringContainsString('enum ResponseTypeEnum: string', $content);
-                //$this->assertStringContainsString("static:FooBar => 'FooBar'", $content);
                 $this->assertEquals(1, substr_count($content, 'case FooBar'));
 
                 return true;

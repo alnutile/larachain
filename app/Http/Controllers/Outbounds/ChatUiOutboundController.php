@@ -32,7 +32,7 @@ class ChatUiOutboundController extends BaseOutboundController
             'details' => config('larachain.outbounds.chat_ui'),
             'project' => $project,
             'outbound' => $outbound->load('response_types'),
-            'response_types' => ResponseTypeEnum::toArray(),
+            'response_types' => ResponseTypeEnum::toArray('response_types'),
         ]);
     }
 

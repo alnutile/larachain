@@ -2,7 +2,7 @@
 <AppLayout title="Source Web File">
     <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ details.title }}
+            {{ details.name }}
         </h2>
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -11,7 +11,7 @@
                         <div class="max-w-7xl mx-auto sm:py-10 sm:px-6 lg:px-8">
                             <FormSection>
                                 <template #title>
-                                    {{ details.title }}
+                                    {{ details.name }}
                                 </template>
                                 <template #description>
                                     {{ details.description }}

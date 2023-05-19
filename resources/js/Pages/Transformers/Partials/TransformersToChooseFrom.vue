@@ -17,9 +17,7 @@
             <li v-for="(item, itemIdx) in items" :key="itemIdx" class="flow-root">
                 <div class="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
                     <div :class="`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg ${item.background}`">
-                        <ArrowsRightLeftIcon v-if="item.icon === 'ArrowsRightLeftIcon'" class="h-6 w-6 text-white"/>
-                        <ArrowDownTrayIcon v-if="item.icon === 'ArrowDownTrayIcon'" class="h-6 w-6 text-white"/>
-                        <DocumentIcon v-if="item.icon === 'DocumentIcon'" class="h-6 w-6 text-white"/>
+                        <GetIcon :icon="item.icon"></GetIcon>
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-900">
@@ -41,6 +39,7 @@
 </template>
 
 <script setup>
+import GetIcon from "@/Components/GetIcon.vue";
 import {
     Bars4Icon,
     ArrowDownTrayIcon,

@@ -6,13 +6,15 @@ return [
             'name' => 'Web File Source Type',
             'class' => 'App\\Source\\Types\\WebFile',
             'active' => 1,
+            'icon' => 'ArrowsRightLeftIcon',
+            'background' => 'bg-sky-500',
             'description' => 'Points to one or more URLs to download files from the internet for later parsing. All configuration data is encrypted.',
         ],
         'web' => [
             'name' => 'Scrape a Web Page',
             'description' => 'Simple scraper to fetch the desired data from a web page and pass it to LLM.',
             'icon' => 'Bars4Icon',
-            'active' => 1,
+            'active' => 0,
             'background' => 'bg-sky-500',
         ],
         'web_hook' => [
@@ -125,9 +127,9 @@ return [
             'active' => 1,
         ],
         'string_remove' => [
-            'name' => 'string_remove',
+            'name' => 'String Remove',
             'class' => 'App\\ResponseType\\Types\\StringRemove',
-            'description' => 'Remove string',
+            'description' => 'Remove string, you will get to add a string to remove',
             'icon' => 'MegaphoneIcon',
             'requires' => [
             ],
@@ -142,16 +144,6 @@ return [
             'requires' => [
             ],
             'background' => 'bg-red-700',
-            'active' => 1,
-        ],
-        'foo_bar' => [
-            'title' => 'Foo Bar',
-            'description' => 'Some Response Type',
-            'icon' => 'MegaphoneIcon',
-            'route' => 'foo_bar',
-            'requires' => [
-            ],
-            'background' => 'bg-sky-500',
             'active' => 1,
         ],
     ],

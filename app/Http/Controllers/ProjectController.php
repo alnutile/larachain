@@ -34,11 +34,6 @@ class ProjectController extends Controller
         ]);
 
         try {
-            /**
-             * @TODO abstract this out
-             * right now for the demo it will take the first
-             * outbound that is chat
-             */
             $outbound = $project->outbounds()
                 ->whereType(OutboundEnum::ChatUi->value)
                 ->first();
@@ -92,8 +87,8 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $sourceTypes = SourceTypeEnum::toArray();
-        $transformerTypes = TransformerTypeEnum::toArray();
-        $outboundTypes = OutboundEnum::toArray();
+        $transformerTypes = TransformerTypeEnum::toArray("transformers");
+        $outboundTypes = OutboundEnum::toArray("outbounds");
 
         return Inertia::render('Projects/Show', [
             'source_types' => $sourceTypes,
