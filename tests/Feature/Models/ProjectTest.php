@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Document;
 use App\Models\Project;
 use App\Models\Source;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,9 +20,16 @@ class ProjectTest extends TestCase
 
     public function test_rels_to_documents()
     {
-        $model = Project::factory()->has(Source::factory())->create();
-        $this->assertNotNull($model->sources);
-        $this->assertNotNull($model->documents);
+        $project = Project::factory()->create();
+
+        $source1 = Source::factory()->has(Document::factory()->count(1))->create([
+            'project_id' => $project->id,
+        ]);
+        $source2 = Source::factory()->has(Document::factory()->count(2))->create([
+            'project_id' => $project->id,
+        ]);
+        $this->assertCount(2, $project->sources);
+        $this->assertCount(3, $project->documents);
     }
 
     public function test_rels()

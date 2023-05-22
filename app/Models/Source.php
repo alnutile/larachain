@@ -38,6 +38,11 @@ class Source extends BaseTypeModel
         return $this->belongsTo(Project::class);
     }
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
     /**
      * @throws SourceTypeMissingException
      */

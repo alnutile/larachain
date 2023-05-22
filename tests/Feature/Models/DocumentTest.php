@@ -13,6 +13,7 @@ class DocumentTest extends TestCase
         $model = Document::factory()->create();
 
         $this->assertNotNull($model->source->id);
+        $this->assertNotEmpty($model->source->documents);
     }
 
     public function test_project_rel()

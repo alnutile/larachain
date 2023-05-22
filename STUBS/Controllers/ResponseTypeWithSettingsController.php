@@ -11,7 +11,7 @@ class [RESOURCE_CLASS_NAME]ResponseTypeController extends BaseResponseTypeContro
 
     public function create(Outbound $outbound)
 {
-    ResponseType::create([
+    $response = ResponseType::create([
         'type' => ResponseTypeEnum::[RESOURCE_CLASS_NAME],
         'order' => $outbound->response_types->count() + 1,
         'outbound_id' => $outbound->id,
@@ -19,9 +19,12 @@ class [RESOURCE_CLASS_NAME]ResponseTypeController extends BaseResponseTypeContro
         'meta_data' => [],
     ]);
 
-    request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
+        request()->session()->flash('flash.banner', 'Response Type created, update settings 👉');
 
-    return back();
+            return to_route('response_types.[RESOURCE_KEY].edit', [
+                'outbound' => $outbound->id,
+                'response_type' => $response->id,
+            ]);
     }
 
     public function edit(Outbound $outbound, ResponseType $response_type)

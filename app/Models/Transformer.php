@@ -49,14 +49,20 @@ class Transformer extends BaseTypeModel
                 throw new \Exception('Transformer Missing Class');
             }
 
-            foreach ($this->project->documents as $document) {
-                logger('Running Transformer '.$class);
+            /**
+             * @NOTE was not getting great results with the
+             * through relationship
+             */
+            foreach ($this->project->sources as $source) {
+                foreach ($source->documents as $document) {
+                    logger('Running Transformer '.$class);
 
-                $transformerType = app($class, [
-                    'document' => $document,
-                ]);
-                /** @var BaseTransformer $transformerType */
-                $transformerType->handle($this);
+                    $transformerType = app($class, [
+                        'document' => $document,
+                    ]);
+                    /** @var BaseTransformer $transformerType */
+                    $transformerType->handle($this);
+                }
             }
         } catch (\Exception $e) {
             logger($e);
