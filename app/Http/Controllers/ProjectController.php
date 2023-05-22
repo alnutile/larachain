@@ -81,7 +81,7 @@ class ProjectController extends Controller
 
         $model = Project::create($validated);
 
-        return redirect()->route('projects.edit', ['project' => $model->id]);
+        return redirect()->route('projects.show', ['project' => $model->id]);
     }
 
     public function show(Project $project)
