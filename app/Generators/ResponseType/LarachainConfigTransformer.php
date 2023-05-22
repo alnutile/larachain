@@ -2,34 +2,12 @@
 
 namespace App\Generators\ResponseType;
 
+use App\Generators\LarachainConfig;
 use Illuminate\Support\Facades\File;
 
-class LarachainConfigTransformer extends BaseTransformer
+class LarachainConfigTransformer extends LarachainConfig
 {
-    public function handle(GeneratorRepository $generatorRepository): void
-    {
-        $this->generatorRepository = $generatorRepository;
+    protected string $type = "response_types";
+    protected string $typeCaps = "ResponseType";
 
-        $sourcePath = config_path('larachain.php');
-        $config = config('larachain');
-
-        $config['response_types'][$generatorRepository->getKey()] = [
-            'name' => $generatorRepository->name,
-            'description' => $generatorRepository->description,
-            'requires' => [],
-            'active' => 1,
-        ];
-
-        $template = <<<'EOD'
-<?php
-
-return %s;
-EOD;
-
-        $config = var_export($config, true);
-
-        $contents = sprintf($template, $config);
-
-        File::put($sourcePath, $contents);
-    }
 }
