@@ -6,17 +6,17 @@ use App\Generators\BaseRepository;
 //use Facades\App\Generators\Source\EnumTransformer;
 //use Facades\App\Generators\Source\LarachainConfigTransformer;
 //use Facades\App\Generators\Source\ResponseTypeClassTransformer;
-use Facades\App\Generators\Source\RoutesTransformer;
-use Facades\App\Generators\Source\VueTransformer;
 use Facades\App\Generators\Source\ControllerSource;
+use Facades\App\Generators\Source\RoutesSource;
+use Facades\App\Generators\Source\VueSource;
 
 class GeneratorRepository extends BaseRepository
 {
     public function run(): self
     {
         ControllerSource::handle($this);
-        VueTransformer::handle($this);
-        RoutesTransformer::handle($this);
+        VueSource::handle($this);
+        RoutesSource::handle($this);
 //        EnumTransformer::handle($this);
 //        LarachainConfigTransformer::handle($this);
 //        ResponseTypeClassTransformer::handle($this);

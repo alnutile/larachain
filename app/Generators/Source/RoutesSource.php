@@ -2,17 +2,15 @@
 
 namespace App\Generators\Source;
 
-use App\Http\Controllers\Sources\WebFileSourceController;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Route;
 
 class RoutesSource extends BaseSource
 {
     public function handle(GeneratorRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
-        $routes = <<<EOD
+        $routes = <<<'EOD'
 
 Route::middleware([
     'auth:sanctum',
