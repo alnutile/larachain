@@ -21,6 +21,16 @@ class TransformerRunCompleteEvent implements ShouldBroadcast
         //
     }
 
+    public function broadcastWith(): array
+    {
+        return [
+            'id' => $this->transformer->id,
+            'order' => $this->transformer->order,
+            'type' => $this->transformer->type->value,
+            'project_id' => $this->transformer->project_id,
+        ];
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *

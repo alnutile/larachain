@@ -5,11 +5,14 @@ namespace App\Models;
 use App\Exceptions\TranformerTypeMissingException;
 use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
+use Illuminate\Bus\Batch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Bus;
 
 /**
  * @property int $id;
  * @property int $order;
+ * @property int $project_id;
  * @property TransformerTypeEnum $type;
  * @property Project $project;
  *
@@ -45,9 +48,11 @@ class Transformer extends BaseTypeModel
             $transformerType = $this->type->value;
             $transformerType = data_get($transformerTypes, $transformerType);
             $class = data_get($transformerType, 'class', null);
+
             if (! $class) {
                 throw new \Exception('Transformer Missing Class');
             }
+
 
             /**
              * @NOTE was not getting great results with the
