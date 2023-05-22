@@ -8,8 +8,7 @@ use Pgvector\Laravel\Vector;
 
 /**
  * @property int $token_count
- * @property array embedding
- *
+ * @property array $embedding
  */
 class DocumentChunk extends Model
 {

@@ -5,9 +5,7 @@ namespace App\Models;
 use App\Exceptions\TranformerTypeMissingException;
 use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
-use Illuminate\Bus\Batch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Bus;
 
 /**
  * @property int $id;
@@ -52,7 +50,6 @@ class Transformer extends BaseTypeModel
             if (! $class) {
                 throw new \Exception('Transformer Missing Class');
             }
-
 
             /**
              * @NOTE was not getting great results with the
