@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Generators\Source\ControllerSource;
 use App\Generators\Source\GeneratorRepository;
-use App\Generators\ResponseType\VueTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -30,7 +30,7 @@ class ControllerSourceTest extends TestCase
         $generator = new GeneratorRepository();
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false);
 
-        $controllerGenerator = new VueTransformer();
+        $controllerGenerator = new ControllerSource();
         $controllerGenerator->handle($generator);
     }
 }

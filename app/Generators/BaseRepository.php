@@ -4,7 +4,7 @@ namespace App\Generators;
 
 use Illuminate\Support\Facades\File;
 
-class BaseRepository
+abstract class BaseRepository
 {
     public string $name;
 
@@ -30,6 +30,9 @@ class BaseRepository
         return $this;
     }
 
+    abstract public function run(): self;
+
+
     public function getKey(): string
     {
         return $this->key;
@@ -45,7 +48,6 @@ class BaseRepository
         return $this->class_name;
     }
 
-    abstract public function run(): self;
 
     public function putFile(string $pathWithName, string $content)
     {
