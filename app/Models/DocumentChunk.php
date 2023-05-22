@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
 
+/**
+ * @property int $token_count
+ * @property array $embedding
+ */
 class DocumentChunk extends Model
 {
     use HasFactory;

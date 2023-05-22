@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @property int $id;
  * @property int $order;
+ * @property int $project_id;
  * @property TransformerTypeEnum $type;
  * @property Project $project;
  *
@@ -45,6 +46,7 @@ class Transformer extends BaseTypeModel
             $transformerType = $this->type->value;
             $transformerType = data_get($transformerTypes, $transformerType);
             $class = data_get($transformerType, 'class', null);
+
             if (! $class) {
                 throw new \Exception('Transformer Missing Class');
             }
