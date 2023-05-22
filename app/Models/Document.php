@@ -65,7 +65,6 @@ class Document extends Model
                 $this->guid);
         }
 
-        /** @phpstan-ignore-next-line */
         return null;
     }
 
