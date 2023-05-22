@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Generators\ResponseType\GeneratorRepository;
-use App\Generators\ResponseType\TokenReplacer;
+use App\Generators\TokenReplacer;
 use Tests\TestCase;
 
 class TokenReplacerTest extends TestCase

@@ -2,7 +2,7 @@
 
 namespace App\Generators\Source;
 
-use Facades\App\Generators\ResponseType\TokenReplacer;
+use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
 class ControllerSource extends BaseSource

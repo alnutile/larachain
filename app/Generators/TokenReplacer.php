@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Generators\ResponseType;
+namespace App\Generators;
 
 class TokenReplacer
 {
-    public function handle(GeneratorRepository $generatorRepository, string $content): string
+    public function handle(BaseRepository $generatorRepository, string $content): string
     {
         return str($content)
             ->replace([

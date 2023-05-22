@@ -3,12 +3,12 @@
 namespace App\Generators\Source;
 
 use App\Generators\BaseRepository;
-use Facades\App\Generators\Source\ControllerSource;
 use Facades\App\Generators\ResponseType\EnumTransformer;
 use Facades\App\Generators\ResponseType\LarachainConfigTransformer;
 use Facades\App\Generators\ResponseType\ResponseTypeClassTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
 use Facades\App\Generators\ResponseType\VueTransformer;
+use Facades\App\Generators\Source\ControllerSource;
 
 class GeneratorRepository extends BaseRepository
 {

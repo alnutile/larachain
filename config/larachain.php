@@ -146,5 +146,12 @@ return [
             'background' => 'bg-red-700',
             'active' => 1,
         ],
+        'foo_bar' => [
+            'name' => 'Foo Bar',
+            'description' => 'Some Response Type',
+            'requires' => [
+            ],
+            'active' => 1,
+        ],
     ],
 ];

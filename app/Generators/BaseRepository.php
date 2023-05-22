@@ -32,7 +32,6 @@ abstract class BaseRepository
 
     abstract public function run(): self;
 
-
     public function getKey(): string
     {
         return $this->key;
@@ -47,7 +46,6 @@ abstract class BaseRepository
     {
         return $this->class_name;
     }
-
 
     public function putFile(string $pathWithName, string $content)
     {
