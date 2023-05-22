@@ -35,8 +35,8 @@ This just helps since Jetstream requires a team etc to work.
 
 
 ```bash
-sail artisan migrate
-sail artisan db:seed --class=UserSeeder
+php artisan migrate
+php artisan db:seed --class=UserSeeder
 ```
 
 
