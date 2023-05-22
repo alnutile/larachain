@@ -20,15 +20,19 @@ class UserSeeder extends Seeder
             $user->email = env('ADMIN_EMAIL');
             $user->password = bcrypt(env('ADMIN_PASSWORD'));
             $user->save();
+
+            $team = new Team();
+            $team->personal_team = 1;
+            $team->user_id = $user->id;
+            $team->name = 'Admin Team';
+            $team->save();
+
+            $user->current_team_id = $team->id;
+            $user->save();
         }
 
-        $team = new Team();
-        $team->personal_team = 1;
-        $team->user_id = $user->id;
-        $team->name = 'Admin Team';
-        $team->save();
 
-        $user->current_team_id = $team->id;
-        $user->save();
+
+
     }
 }

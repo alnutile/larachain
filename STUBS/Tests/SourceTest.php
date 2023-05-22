@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Source;
-use App\Source\Types\WebFile;
+use App\Source\Types\[RESOURCE_CLASS_NAME];
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
@@ -13,10 +13,10 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
 {
     public function test_gets_file()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
+        $webFileSourceType = new [RESOURCE_CLASS_NAME]($source);
 
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),
@@ -34,7 +34,7 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
 
     public function test_makes_document()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->create();
 
         Storage::fake('projects');
         $webFileSourceType = new WebFile($source);
@@ -52,7 +52,7 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
 
     public function test_makes_document_once()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->create();
 
         Storage::fake('projects');
         $webFileSourceType = new WebFile($source);

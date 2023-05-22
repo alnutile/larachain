@@ -16,7 +16,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller([RESOURCE_CLASS_NAME]SourceController::class)->group(
+])->controller(\App\Http\Controllers\Sources\[RESOURCE_CLASS_NAME]SourceController::class)->group(
     function () {
         Route::get('/projects/{project}/sources/[RESOURCE_KEY]/create', 'create')
             ->name('sources.[RESOURCE_KEY].create');

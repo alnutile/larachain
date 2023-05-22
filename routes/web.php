@@ -8,6 +8,7 @@ use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
 use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
 use App\Http\Controllers\Sources\WebFileSourceController;
+use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;
 use Illuminate\Foundation\Application;

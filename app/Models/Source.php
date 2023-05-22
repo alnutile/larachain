@@ -54,10 +54,10 @@ class Source extends BaseTypeModel
             $statusType = data_get($statusTypes, $statusType);
             $class = data_get($statusType, 'class', null);
             if (! $class) {
-                throw new \Exception('Response Type Missing Class');
+                throw new \Exception('Source Missing Class');
             }
 
-            logger('Running source '.$class);
+            logger('Running Source '.$class);
             //@TODO make this check in uses BaseSourceType
             $sourceType = app($class, [
                 'source' => $this,

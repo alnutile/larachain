@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Source;
 use App\Source\Types\WebFile;
+use App\Source\Types\WebSiteDocument;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
@@ -13,20 +14,30 @@ class WebSiteDocumentTest extends TestCase
 {
     public function test_gets_file()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->webDocumentMetaData()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
+        $webFileSourceType = new WebSiteDocument($source);
+
+        $html = <<<EOD
+<html>
+<head></head>
+<body>
+<h1>Baz Boo</h1>
+Foo bar
+</body>
+</html>
+EOD;
 
         Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
+            'wikipedia.com/*' => Http::response($html, 200),
         ]);
 
         $webFileSourceType->handle();
 
         Http::assertSentCount(1);
 
-        $to = sprintf('%d/sources/%d/foo.pdf',
+        $to = sprintf('%d/sources/%d/foo.html',
             $source->project_id, $source->id);
         Storage::disk('projects')->assertExists($to);
 
@@ -34,10 +45,10 @@ class WebSiteDocumentTest extends TestCase
 
     public function test_makes_document()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->webDocumentMetaData()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
+        $webFileSourceType = new WebSiteDocument($source);
 
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),
@@ -52,10 +63,10 @@ class WebSiteDocumentTest extends TestCase
 
     public function test_makes_document_once()
     {
-        $source = Source::factory()->webFileMetaData()->create();
+        $source = Source::factory()->webDocumentMetaData()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
+        $webFileSourceType = new WebSiteDocument($source);
 
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),

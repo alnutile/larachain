@@ -35,6 +35,21 @@ class SourceFactory extends Factory
         ];
     }
 
+    public function webDocumentMetaData()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => SourceTypeEnum::WebFile,
+                'meta_data' => [
+                    'url' => 'https://wikipedia.com/foo.html',
+                    'username' => 'foo',
+                    'password' => 'bar',
+                    'auth' => 'basic',
+                ],
+            ];
+        });
+    }
+
     public function webFileMetaData()
     {
         return $this->state(function (array $attributes) {
