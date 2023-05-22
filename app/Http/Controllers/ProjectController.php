@@ -87,8 +87,8 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $sourceTypes = SourceTypeEnum::toArray();
-        $transformerTypes = TransformerTypeEnum::toArray("transformers");
-        $outboundTypes = OutboundEnum::toArray("outbounds");
+        $transformerTypes = TransformerTypeEnum::toArray('transformers');
+        $outboundTypes = OutboundEnum::toArray('outbounds');
 
         return Inertia::render('Projects/Show', [
             'source_types' => $sourceTypes,

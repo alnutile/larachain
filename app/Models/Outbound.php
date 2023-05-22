@@ -88,7 +88,7 @@ class Outbound extends Model
 
                 $class = data_get($responseType, 'class', null);
                 $key = data_get($responseType, 'id', null);
-                logger("Class", [$class]);
+                logger('Class', [$class]);
 
                 if (! $class) {
                     throw new \Exception('Response Type Missing Class');

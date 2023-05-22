@@ -14,7 +14,7 @@ trait TypeTrait
             return data_get($item, 'active') === 1;
         })->map(function ($item, $key) use ($type) {
             if (! data_get($item, 'route')) {
-                $item['route'] = sprintf('%s.%s.create',  $type, $key);
+                $item['route'] = sprintf('%s.%s.create', $type, $key);
             }
 
             if (! data_get($item, 'id')) {

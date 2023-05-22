@@ -2,7 +2,6 @@
 
 namespace App\Generators\ResponseType;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
 class LarachainConfigTransformer extends BaseTransformer
@@ -33,6 +32,4 @@ EOD;
 
         File::put($sourcePath, $contents);
     }
-
-
 }

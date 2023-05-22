@@ -19,7 +19,6 @@ class EnumTransformer extends BaseTransformer
         $case = TokenReplacer::handle($generatorRepository, $case);
         $replaceWith = sprintf('%s %s', $token, $case);
 
-
         $contents = str($contents)
             ->replace([$token], [$replaceWith])
             ->toString();

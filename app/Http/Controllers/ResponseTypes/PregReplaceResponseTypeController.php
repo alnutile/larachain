@@ -22,9 +22,9 @@ class PregReplaceResponseTypeController extends BaseResponseTypeController
 
         request()->session()->flash('flash.banner', 'Response Type created, this one has no settings 👉');
 
-        return to_route("response_types.preg_replace", [
+        return to_route('response_types.preg_replace', [
             'outbound' => $outbound->id,
-            'response_type' => $response->id
+            'response_type' => $response->id,
         ]);
     }
 
