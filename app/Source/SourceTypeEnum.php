@@ -11,6 +11,7 @@ enum SourceTypeEnum: string
 {
     use TypeTrait;
 
-    //case TemplateType = 'template_type'
+    //case TemplateType = 'template_type' 
+    case WebSiteDocument = 'web_site_document';
     case WebFile = 'web_file';
 }

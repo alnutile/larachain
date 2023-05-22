@@ -13,7 +13,7 @@
             <ExistingTransformers :project="project"/>
         </div>
 
-        <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-2">
+        <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-1">
             <li v-for="(item, itemIdx) in items" :key="itemIdx" class="flow-root">
                 <div class="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
                     <div :class="`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg ${item.background}`">

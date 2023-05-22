@@ -13,7 +13,7 @@
             <ExistingOutbounds :project="project"/>
         </div>
 
-        <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-2">
+        <ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-1">
             <li v-for="(item, itemIdx) in items" :key="itemIdx" class="flow-root">
                 <Link :href="route(item.route, {
                                 project: project.id

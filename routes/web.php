@@ -298,3 +298,22 @@ Route::middleware([
             ->name('response_types.preg_replace.update');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(WebSiteDocumentSourceController::class)->group(
+    function () {
+        Route::get('/projects/{project}/sources/web_site_document/create', 'create')
+            ->name('sources.web_site_document.create');
+        Route::get('/projects/{project}/sources/{source}/web_site_document/edit', 'edit')
+            ->name('sources.web_site_document.edit');
+        Route::post('/projects/{project}/sources/web_site_document/store', 'store')
+            ->name('sources.web_site_document.store');
+        Route::put('/projects/{project}/sources/{source}/web_site_document/update', 'update')
+            ->name('sources.web_site_document.update');
+        Route::post('/projects/{project}/sources/{source}/web_site_document/run', 'run')
+            ->name('sources.web_site_document.run');
+    }
+);

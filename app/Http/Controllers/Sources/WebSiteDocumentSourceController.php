@@ -6,13 +6,13 @@ use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceTypeEnum;
 
-class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
+class WebSiteDocumentSourceController extends BaseSourceController
 {
 
     public function create(Project $project)
     {
-        return inertia('Sources/[RESOURCE_CLASS_NAME]/Create', [
-            'details' => config('larachain.sources.[RESOURCE_KEY]'),
+        return inertia('Sources/WebSiteDocument/Create', [
+            'details' => config('larachain.sources.web_site_document'),
             'project' => $project,
             'source' => [
                 'meta_data' => [
@@ -24,8 +24,8 @@ class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
 
     public function edit(Project $project, Source $source)
     {
-        return inertia('Sources/[RESOURCE_CLASS_NAME]/Edit', [
-            'details' => config('larachain.sources.[RESOURCE_KEY]'),
+        return inertia('Sources/WebSiteDocument/Edit', [
+            'details' => config('larachain.sources.web_site_document'),
             'project' => $project,
             'source' => $source,
         ]);
@@ -43,7 +43,7 @@ class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
             'project_id' => $project->id,
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => SourceTypeEnum::WebSiteDocument,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);
@@ -69,7 +69,7 @@ class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
             'project_id' => $validated['project_id'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => SourceTypeEnum::WebSiteDocument,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);

@@ -11,7 +11,7 @@ class SourceClassTransformer extends BaseSource
         $this->generatorRepository = $generatorRepository;
 
         $this->makeClass();
-       // $this->makeTest();
+        $this->makeTest();
     }
 
     protected function makeTest()

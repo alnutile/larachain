@@ -1,3 +1,4 @@
 ## TODO
 
   * Use Batches more, like I did in `App/Models/Transformation::run` to break up the work and speed things up
+  * Need to offer to limit Transformation to Source or Sources should not assume all
