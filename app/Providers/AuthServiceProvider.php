@@ -29,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         LogViewer::auth(function ($request) {
+
             return $request->user()->id === 1;
         });
     }
