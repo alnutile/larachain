@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Generators;
 
-use App\Generators\Source\GeneratorRepository;
+use Facades\App\Generators\Source\GeneratorRepository;
 use Illuminate\Console\Command;
 
 class SourceGenerator extends Command
