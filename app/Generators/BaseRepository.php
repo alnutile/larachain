@@ -45,8 +45,7 @@ class BaseRepository
         return $this->class_name;
     }
 
-    abstract public function run() : self;
-
+    abstract public function run(): self;
 
     public function putFile(string $pathWithName, string $content)
     {
