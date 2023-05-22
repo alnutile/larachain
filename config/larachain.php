@@ -7,7 +7,7 @@ return [
             'class' => 'App\\Source\\Types\\WebFile',
             'active' => 1,
             'icon' => 'ArrowsRightLeftIcon',
-            'background' => 'bg-sky-500',
+            'background' => 'bg-blue-500',
             'description' => 'Points to one or more URLs to download files from the internet for later parsing. All configuration data is encrypted.',
         ],
         'web' => [
@@ -15,14 +15,14 @@ return [
             'description' => 'Simple scraper to fetch the desired data from a web page and pass it to LLM.',
             'icon' => 'Bars4Icon',
             'active' => 0,
-            'background' => 'bg-sky-500',
+            'background' => 'bg-blue-500',
         ],
         'web_hook' => [
             'name' => 'Create a Webhook to Send Data',
             'description' => 'Add a webhook here to send logs or other data.',
             'icon' => 'Bars4Icon',
             'active' => 0,
-            'background' => 'bg-sky-500',
+            'background' => 'bg-blue-500',
         ],
         's3_directory' => [
             'name' => 'S3 Directory to Get Files From',
@@ -56,7 +56,7 @@ return [
             'description' => 'Users can use the chosen Chat LLM to interact with the related data.',
             'icon' => 'ChatBubbleLeftIcon',
             'active' => 1,
-            'background' => 'bg-sky-500',
+            'background' => 'bg-blue-500',
         ],
         'api' => [
             'name' => 'Add an API',
@@ -75,7 +75,7 @@ return [
             'requires' => [
                 0 => 'transformers:embed_transformer',
             ],
-            'background' => 'bg-sky-500',
+            'background' => 'bg-blue-500',
             'active' => 1,
         ],
         'vector_search' => [

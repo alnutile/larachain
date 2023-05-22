@@ -98,7 +98,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 const toast = useToast();
 import pickBy from 'lodash/pickBy'
 import {computed, onMounted, ref} from "vue";
-import SourcesToChooseFrom from "@/Pages/Sources/WebFile/Partials/SourcesToChooseFrom.vue";
+import SourcesToChooseFrom from "./Components/SourcesToChooseFrom.vue";
 import TransformersToChooseFrom from "@/Pages/Transformers/Partials/TransformersToChooseFrom.vue";
 import OutboundsToChooseFrom from "@/Pages/Outbounds/Partials/OutboundsToChooseFrom.vue";
 

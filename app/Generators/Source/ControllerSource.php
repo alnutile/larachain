@@ -12,15 +12,15 @@ class ControllerSource extends BaseSource
         $this->generatorRepository = $generatorRepository;
 
         $this->makeController();
-        //$this->makeTest();
+        $this->makeTest();
     }
 
     protected function makeTest()
     {
-        $content = $this->getContents('/Tests/ResponseTypeControllerTest.php');
+        $content = $this->getContents('/Tests/SourceControllerTest.php');
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sResponseTypeControllerTest.php', $this->generatorRepository->getClassName());
+        $name = sprintf('%sSourceControllerTest.php', $this->generatorRepository->getClassName());
         $basePath = base_path('tests/Feature/Http/Controllers/');
         File::makeDirectory($basePath, 0755, true, true);
         $destination = $basePath.$name;

@@ -15,8 +15,7 @@
             <li v-for="(item, itemIdx) in items" :key="itemIdx" class="flow-root">
                 <div class="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
                     <div :class="[item.background, 'flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg']">
-                        <ArrowDownTrayIcon v-if="item.icon === 'ArrowDownTrayIcon'" class="h-6 w-6 text-white"/>
-                        <ClockIcon v-else class="h-6 w-6 text-white"/>
+                        <GetIcon :icon="item.icon"/>
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-900">
@@ -39,18 +38,12 @@
 
 <script setup>
 import {
-    Bars4Icon,
-    ArrowDownTrayIcon,
     ArrowsPointingInIcon,
-    CalendarIcon,
-    ClockIcon,
-    PhotoIcon,
-    TableCellsIcon,
-    ViewColumnsIcon,
 } from '@heroicons/vue/24/outline'
 import {Link, useForm} from "@inertiajs/vue3"
 import {useToast} from "vue-toastification";
 import ExistingSources from "./ExistingSources.vue";
+import GetIcon from "@/Components/GetIcon.vue";
 const toast = useToast();
 
 const props = defineProps({
