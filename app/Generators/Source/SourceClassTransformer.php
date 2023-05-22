@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Generators\ResponseType;
+namespace App\Generators\Source;
 
 use Facades\App\Generators\TokenReplacer;
 
-class SourceClassTransformer extends BaseTransformer
+class SourceClassTransformer extends BaseSource
 {
     public function handle(GeneratorRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
 
         $this->makeClass();
-        $this->makeTest();
+       // $this->makeTest();
     }
 
     protected function makeTest()
     {
-        $content = $this->getContents('/Tests/ResponseTypeTest.php');
+        $content = $this->getContents('/Tests/SourceTest.php');
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%sTest.php', $this->generatorRepository->getClassName());
@@ -27,11 +27,11 @@ class SourceClassTransformer extends BaseTransformer
 
     protected function makeClass()
     {
-        $content = $this->getContents('/ResponseType/Stub.php');
+        $content = $this->getContents('/Source/Stub.php');
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%s.php', $this->generatorRepository->getClassName());
-        $basePath = base_path('app/ResponseType/Types/');
+        $basePath = base_path('app/Source/Types/');
         $destination = $basePath.$name;
         $this->generatorRepository->putFile($destination, $transformed);
     }

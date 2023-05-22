@@ -149,6 +149,7 @@ return [
         'foo_bar' => [
             'name' => 'Foo Bar',
             'description' => 'Some Response Type',
+            'class' => 'App\\ResponseType\\Types\\FooBar',
             'requires' => [
             ],
             'active' => 1,

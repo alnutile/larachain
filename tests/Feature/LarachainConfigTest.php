@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Generators\LarachainConfig;
 use App\Generators\ResponseType\GeneratorRepository;
 use App\Generators\ResponseType\LarachainConfigTransformer;
 use Illuminate\Support\Facades\File;

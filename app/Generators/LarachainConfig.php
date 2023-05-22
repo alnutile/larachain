@@ -4,14 +4,14 @@ namespace App\Generators;
 
 use Illuminate\Support\Facades\File;
 
-class LarachainConfig extends BaseRepository
+class LarachainConfig extends Base
 {
+    protected string $type = 'sources';
 
-    protected string $type = "sources";
-    protected string $typeCaps = "Source";
+    protected string $typeCaps = 'Source';
 
-
-    public function run(): self {
+    public function run(): self
+    {
         return $this;
     }
 
@@ -25,7 +25,7 @@ class LarachainConfig extends BaseRepository
         $config[$this->type][$generatorRepository->getKey()] = [
             'name' => $generatorRepository->name,
             'description' => $generatorRepository->description,
-            'class' => 'App\\' .$this->typeCaps.'\\Types\\' . $generatorRepository->getClassName(),
+            'class' => 'App\\'.$this->typeCaps.'\\Types\\'.$generatorRepository->getClassName(),
             'requires' => [],
             'active' => 1,
         ];
