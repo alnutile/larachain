@@ -28,9 +28,9 @@ class FooBarTest extends TestCase
         ]);
 
         DocumentChunk::factory()->count(10)->create([
-                'document_id' => $document->id,
-                'content' => $example,
-            ]
+            'document_id' => $document->id,
+            'content' => $example,
+        ]
         );
 
         $documents = DocumentChunk::query()

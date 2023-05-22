@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Source;
-use App\Source\Types\WebFile;
 use App\Source\Types\WebSiteDocument;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +18,7 @@ class WebSiteDocumentTest extends TestCase
         Storage::fake('projects');
         $webFileSourceType = new WebSiteDocument($source);
 
-        $html = <<<EOD
+        $html = <<<'EOD'
 <html>
 <head></head>
 <body>

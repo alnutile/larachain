@@ -8,7 +8,6 @@ use App\Source\SourceTypeEnum;
 
 class WebSiteDocumentSourceController extends BaseSourceController
 {
-
     public function create(Project $project)
     {
         return inertia('Sources/WebSiteDocument/Create', [
