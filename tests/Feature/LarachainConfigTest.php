@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Generators\LarachainConfig;
 use App\Generators\ResponseType\GeneratorRepository;
 use App\Generators\ResponseType\LarachainConfigTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
-class LarachainConfigTransformerTest extends TestCase
+class LarachainConfigTest extends TestCase
 {
     public function test_handles_config()
     {
@@ -22,6 +23,7 @@ class LarachainConfigTransformerTest extends TestCase
             ->withArgs(function ($filePath, $content) use ($generator) {
                 $this->assertStringContainsString($generator->name, $content);
                 $this->assertStringContainsString($generator->getKey(), $content);
+                $this->assertStringContainsString('App\\\ResponseType\\\Types\\\FooBar', $content);
                 $this->assertStringContainsString($generator->description, $content);
 
                 return true;
