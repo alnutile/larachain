@@ -33,14 +33,13 @@ class SharedController extends Controller
             $outbound = $project->outbounds()
                 ->whereType(OutboundEnum::ChatUi->value)
                 ->first();
-            if($outbound) {
+            if ($outbound) {
                 /** @var Outbound $outbound */
                 $outbound->run(
                     auth()->user(),
                     $validated['question']
                 );
             }
-
 
             return response()->json([], 200);
         } catch (\Exception $e) {

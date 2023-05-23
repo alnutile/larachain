@@ -36,8 +36,9 @@ class HandleInertiaRequests extends Middleware
     {
 
         $features = [
-            'private_web' => Features::accessible("private_web"),
+            'private_web' => Features::accessible('private_web'),
         ];
+
         return array_merge(parent::share($request), [
             'feature_flags' => $features,
             'app_name' => config('app.name'),

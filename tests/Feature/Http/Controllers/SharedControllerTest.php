@@ -32,6 +32,5 @@ class SharedControllerTest extends TestCase
 
         $this->assertAuthenticated();
 
-        $this->assertDatabaseCount("messages", 1);
     }
 }

@@ -320,7 +320,6 @@ Route::middleware([
     }
 );
 
-
 Route::middleware([
     'auth.guest',
 ])->controller(SharedController::class)->group(
@@ -331,5 +330,3 @@ Route::middleware([
             ->name('shared.show');
     }
 );
-
-
