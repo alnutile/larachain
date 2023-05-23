@@ -75,6 +75,11 @@ EOL;
                 'type' => 'invalid_request_error',
                 'code' => null,
             ]),
+            new \OpenAI\Exceptions\ErrorException([
+                'message' => 'The model `gpt-1` does not exist',
+                'type' => 'invalid_request_error',
+                'code' => null,
+            ]),
         ]);
 
         $response = ClientWrapper::projectChat(
@@ -99,7 +104,7 @@ EOL;
             ]
         );
 
-        $this->assertEquals('Error with API try again later', $response);
+        $this->assertEquals('Trying again due to error', $response);
 
     }
 }

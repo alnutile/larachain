@@ -136,7 +136,7 @@ const submit = () => {
         project: props.project.id
     }), pickBy(form))
         .then(data => {
-            toast("See results")
+            toast("Results should appear soon...")
             form.processing = false;
             form.question = "";
         })

@@ -110,7 +110,7 @@ EOD;
         return $content;
     }
 
-    public function projectChat(Project $project, User $user, array $messages): string|\Exception
+    public function projectChat(Project $project, User $user, array $messages, $tries = 1): string|\Exception
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
@@ -153,11 +153,24 @@ EOD;
 
             return implode("\n", $data);
         } catch (\Exception $e) {
+
             logger('Error talking to api', [
                 $e->getMessage(),
             ]);
 
-            return 'Error with API try again later';
+            if ($tries > 2) {
+                return 'Error with API try again later';
+            } else {
+                $tries = $tries + 1;
+                $this->projectChat(
+                    $project,
+                    $user,
+                    $messages,
+                    $tries
+                );
+
+                return 'Trying again due to error';
+            }
         }
     }
 
