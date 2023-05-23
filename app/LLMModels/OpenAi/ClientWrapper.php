@@ -110,7 +110,7 @@ EOD;
         return $content;
     }
 
-    public function projectChat(Project $project, User $user, array $messages): string
+    public function projectChat(Project $project, User $user, array $messages): string|\Exception
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
@@ -124,33 +124,41 @@ EOD;
             put_fixture('larachain_chat_ui_questions.json', $messages);
         }
 
-        $stream = OpenAI::chat()->createStreamed([
-            'model' => 'gpt-3.5-turbo',
-            'temperature' => $this->temperature,
-            'messages' => $messages,
-        ]);
+        try {
+            $stream = OpenAI::chat()->createStreamed([
+                'model' => 'gpt-3.5-turbo',
+                'temperature' => $this->temperature,
+                'messages' => $messages,
+            ]);
 
-        $count = 0;
-        $reply = '';
-        $data = [];
-        foreach ($stream as $response) {
-            $step = $response->choices[0]->toArray();
-            $content = data_get($step, 'delta.content');
-            $data[] = $content;
-            $reply = $reply.$content;
-            if ($count >= 20) {
-                logger($reply); //make this pusher
-                ChatReplyEvent::dispatch($project, $user, $reply);
-                $count = 0;
-                $reply = '';
-            } else {
-                $count = $count + 1;
+            $count = 0;
+            $reply = '';
+            $data = [];
+            foreach ($stream as $response) {
+                $step = $response->choices[0]->toArray();
+                $content = data_get($step, 'delta.content');
+                $data[] = $content;
+                $reply = $reply.$content;
+                if ($count >= 20) {
+                    logger($reply); //make this pusher
+                    ChatReplyEvent::dispatch($project, $user, $reply);
+                    $count = 0;
+                    $reply = '';
+                } else {
+                    $count = $count + 1;
+                }
             }
-        }
-        logger($reply);
-        ChatReplyEvent::dispatch($project, $user, $reply);
+            logger($reply);
+            ChatReplyEvent::dispatch($project, $user, $reply);
 
-        return implode("\n", $data);
+            return implode("\n", $data);
+        } catch (\Exception $e) {
+            logger('Error talking to api', [
+                $e->getMessage(),
+            ]);
+
+            return 'Error with API try again later';
+        }
     }
 
     public function chat(array $messages): string

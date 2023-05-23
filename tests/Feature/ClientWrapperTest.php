@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
+use App\Models\Project;
+use App\Models\User;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
+use OpenAI\Laravel\Facades\OpenAI;
 use Tests\TestCase;
 
 class ClientWrapperTest extends TestCase
@@ -57,6 +60,46 @@ EOL;
     $response = ClientWrapper::getEmbedding($fixture);
 
     $this->assertInstanceOf(EmbeddingsResponseDto::class, $response);
+
+    }
+
+    public function test_exception()
+    {
+        config(['openai.mock' => false]);
+        $project = Project::factory()->create();
+        $user = User::factory()->create();
+
+        OpenAI::fake([
+            new \OpenAI\Exceptions\ErrorException([
+                'message' => 'The model `gpt-1` does not exist',
+                'type' => 'invalid_request_error',
+                'code' => null,
+            ]),
+        ]);
+
+        $response = ClientWrapper::projectChat(
+            $project, $user,
+            [
+                [
+                    'role' => 'system',
+                    'content' => 'You are an AI Historian assistant...',
+                ],
+                [
+                    'role' => 'user',
+                    'content' => "What other makers are around the time of O'Keeffe, Georgia?",
+                ],
+                [
+                    'role' => 'assistant',
+                    'content' => 'yup',
+                ],
+                [
+                    'role' => 'user',
+                    'content' => "What influenced O'Keeffe's art style?",
+                ],
+            ]
+        );
+
+        $this->assertEquals('Error with API try again later', $response);
 
     }
 }

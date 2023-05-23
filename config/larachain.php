@@ -156,5 +156,13 @@ return [
             'background' => 'bg-red-700',
             'active' => 1,
         ],
+        'foo_bar' => [
+            'name' => 'Foo Bar',
+            'description' => 'Some Response Type',
+            'class' => 'App\\ResponseType\\Types\\FooBar',
+            'requires' => [
+            ],
+            'active' => 1,
+        ],
     ],
 ];
