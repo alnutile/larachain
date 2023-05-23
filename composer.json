@@ -24,6 +24,7 @@
         "smalot/pdfparser": "^2.5",
         "soundasleep/html2text": "^2.1",
         "spatie/laravel-data": "^3.4",
+        "spatie/laravel-sluggable": "^3.4",
         "sundance/larachain-prompt-templates": "^0.0.1",
         "tightenco/ziggy": "^1.0",
         "voku/stop-words": "^2.0",

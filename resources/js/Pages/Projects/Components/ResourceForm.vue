@@ -9,18 +9,50 @@
         <InputError
             :message="modelValue.errors.name"
         ></InputError>
-        <InputLabel value="Active"/>
-        <Checkbox
-            class="disabled:bg-gray-100 disabled:cursor-not-allowed"
-            v-model="modelValue.active"
-            :checked="modelValue.active"
-        ></Checkbox>
+        <div class="border border-gray-200 rounded rounded-md p-4 shadow">
+            <InputLabel value="Active"/>
+            <Checkbox
+                class="disabled:bg-gray-100 disabled:cursor-not-allowed"
+                v-model="modelValue.active"
+                :checked="modelValue.active"
+            ></Checkbox>
+        </div>
 
-        <InputError
-            :message="modelValue.errors.active"
-        >
+        <div class="border border-gray-200 rounded rounded-md p-4 shadow">
+            <InputLabel value="Share on Web"/>
+            <Checkbox
+                class="disabled:bg-gray-100 disabled:cursor-not-allowed"
+                v-model="modelValue.web_page"
+                :checked="modelValue.web_page"
+            ></Checkbox>
+            <InputError
+                :message="modelValue.errors.web_page"
+            />
+            <div class="text-gray-500">This will allow you to share as a public or private read only web page</div>
 
-        </InputError>
+            <div v-if="modelValue.web_page">
+                <InputLabel value="Private"/>
+                <Checkbox
+                    class="disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    v-model="modelValue.private"
+                    :checked="modelValue.private"
+                ></Checkbox>
+                <InputError
+                    :message="modelValue.errors.web_page"
+                />
+                <div class="text-gray-500">Do you want to secure with a password?</div>
+                <div v-if="modelValue.private">
+                    <InputLabel value="Password"/>
+                    <TextInput
+                        type="text"
+                        v-model="modelValue.password"
+                    ></TextInput>
+                    <InputError
+                        :message="modelValue.errors.password"
+                    ></InputError>
+                </div>
+            </div>
+        </div>
 </div>
 </template>
 

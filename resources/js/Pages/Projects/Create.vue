@@ -15,12 +15,12 @@
                         </template>
 
                     </SectionTitle>
-                    <div class="max-w-2xl  border-gray-300 border rounded-lg p-5">
+                    <div class="max-w-2xl border-gray-300 border rounded-lg p-5">
                         <form @submit.prevent="submit">
                             <ResourceForm
                                 v-model="form">
                             </ResourceForm>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end mt-4 ">
                                 <PrimaryButton
                                                type="submit"
                                 >Save</PrimaryButton>
@@ -67,7 +67,11 @@ export default {
             toast: useToast(),
             form: useForm({
                 name: this.project.name,
-                active: this.project.active
+                slug: this.project.slug,
+                active: this.project.active,
+                web_page: this.project.web_page,
+                password: this.project.meta_data.password,
+                private: this.project.private,
             })
         }
     }

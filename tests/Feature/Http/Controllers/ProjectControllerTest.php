@@ -122,12 +122,19 @@ class ProjectControllerTest extends TestCase
             'name' => 'foobar',
             'active' => 1,
             'team_id' => $team->id,
+            'slug' => null,
+            'web_page' => 1,
+            'private' => 1,
+            'password' => 'foobaz',
+            'meta_data' => [],
         ])
             ->assertStatus(302)
-            ->assertRedirect(route('projects.edit', [
+            ->assertRedirect(route('projects.show', [
                 'project' => $model->id,
             ]));
-
+        $this->assertEquals([
+            'password' => 'foobaz',
+        ], $model->refresh()->meta_data);
         $this->assertEquals('foobar', $model->refresh()->name);
     }
 
@@ -163,6 +170,11 @@ class ProjectControllerTest extends TestCase
         $this->post(route('projects.create'), [
             'name' => 'foobar',
             'active' => 1,
+            'slug' => null,
+            'web_page' => 1,
+            'private' => 1,
+            'password' => 'foo',
+            'meta_data' => [],
         ])
             ->assertStatus(302);
 
@@ -172,5 +184,10 @@ class ProjectControllerTest extends TestCase
 
         $this->assertNotNull($model->name);
         $this->assertNotNull($model->team_id);
+        $this->assertNotNull($model->slug);
+
+        $this->assertEquals([
+            'password' => 'foo',
+        ], $model->meta_data);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use YlsIdeas\FeatureFlags\Facades\Features;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -33,7 +34,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
+        $features = [
+            'private_web' => Features::accessible("private_web"),
+        ];
         return array_merge(parent::share($request), [
+            'feature_flags' => $features,
             'app_name' => config('app.name'),
             'team_label' => 'Organization Name',
             'larachain' => config('larachain'),

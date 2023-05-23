@@ -21,6 +21,26 @@ class ProjectFactory extends Factory
             'name' => fake()->word(),
             'team_id' => Team::factory(),
             'active' => 1,
+            'slug' => fake()->slug(),
+            'web_page' => fake()->boolean(),
+            'private' => fake()->boolean(),
+            'meta_data' => [
+                'password' => 'bar',
+            ],
         ];
+    }
+
+    public function webShared()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'slug' => 'foobar',
+                'web_page' => 1,
+                'private' => 1,
+                'meta_data' => [
+                    'password' => null,
+                ],
+            ];
+        });
     }
 }
