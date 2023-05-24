@@ -231,7 +231,7 @@ Route::middleware([
 
     Route::post('/sortable/{project}/sort',
         SortingController::class)
-        ->name("sortable.sort");
+        ->name('sortable.sort');
 
     Route::controller(\App\Http\Controllers\ProjectController::class)
         ->group(function () {

@@ -19,7 +19,6 @@ class EmbedTransformerController extends BaseTransformerController
         return to_route('projects.show', ['project' => $project->id]);
     }
 
-
     public function store(Project $project)
     {
         // Empty method

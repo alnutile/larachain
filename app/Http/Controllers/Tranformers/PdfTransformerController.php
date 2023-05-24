@@ -22,7 +22,6 @@ class PdfTransformerController extends BaseTransformerController
         return to_route('projects.show', ['project' => $project->id]);
     }
 
-
     public function store(Project $project)
     {
         // TODO: Implement store() method.
