@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div v-if="settings" class="bg-gradient-to-r from-white to-gray-50 grid grid-cols-3 gap-2 mt-12 justify-items-center divide-x rounded border-gray-200 border shadow-lg p-2">
+                    <div v-if="settings" class="bg-gradient-to-r from-white to-gray-50 grid grid-cols-1 sm:grid-cols-3 gap-2 mt-12 justify-items-center divide-x rounded border-gray-200 border shadow-lg p-2">
                         <SourcesToChooseFrom
                             :items="source_types"
                             :project="project"/>
