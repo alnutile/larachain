@@ -12,7 +12,6 @@ use App\ResponseType\ResponseTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use YlsIdeas\FeatureFlags\Facades\Features;
 
 /**
  * @property ResponseTypeEnum $type
@@ -101,11 +100,6 @@ class Outbound extends Model
 
                 /** @var BaseResponseType $responseTypeClass */
                 $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
-
-                if (Features::accessible('larachain_logging')) {
-                    logger('Running Response Type ID '.$response_type_model->id);
-                    put_fixture('larachain_current_dto_'.$key.'.json', $this->currentResponseDto->toArray());
-                }
 
             }
 

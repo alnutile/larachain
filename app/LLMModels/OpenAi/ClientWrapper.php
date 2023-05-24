@@ -6,7 +6,6 @@ use App\Events\ChatReplyEvent;
 use App\Models\Project;
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
-use YlsIdeas\FeatureFlags\Facades\Features;
 
 class ClientWrapper
 {
@@ -119,10 +118,6 @@ EOD;
         }
 
         $messages = clean_messages($messages);
-
-        if (Features::accessible('larachain_logging')) {
-            put_fixture('larachain_chat_ui_questions.json', $messages);
-        }
 
         try {
             $stream = OpenAI::chat()->createStreamed([

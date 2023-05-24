@@ -56,7 +56,7 @@ import ExistingTransformers from "./ExistingTransformers.vue";
 const toast = useToast();
 
 const props = defineProps({
-    items: Array,
+    items: Object,
     project: Object
 })
 

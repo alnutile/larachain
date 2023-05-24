@@ -47,7 +47,7 @@ import GetIcon from "@/Components/GetIcon.vue";
 const toast = useToast();
 
 const props = defineProps({
-    items: Array,
+    items: Object,
     project: Object
 })
 

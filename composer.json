@@ -14,6 +14,7 @@
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.15",
         "laravel/jetstream": "^3.1",
+        "laravel/pennant": "^1.3",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "opcodesio/log-viewer": "^2.4",
@@ -27,8 +28,7 @@
         "sundance/larachain-prompt-templates": "^0.0.1",
         "tightenco/ziggy": "^1.0",
         "voku/stop-words": "^2.0",
-        "wamania/php-stemmer": "^3.0",
-        "ylsideas/feature-flags": "^2.0"
+        "wamania/php-stemmer": "^3.0"
     },
     "require-dev": {
         "alnutile/inertia-crud": "^1.0",
