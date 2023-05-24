@@ -19,12 +19,6 @@ class EmbedTransformerController extends BaseTransformerController
         return to_route('projects.show', ['project' => $project->id]);
     }
 
-    public function edit(Project $project, Transformer $transformer)
-    {
-        request()->session()->flash('flash.banner', 'You can sort the order by dragging and dropping');
-
-        return to_route('projects.show', ['project' => $project->id]);
-    }
 
     public function store(Project $project)
     {

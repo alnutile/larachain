@@ -7,6 +7,7 @@ use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
 use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
 use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
+use App\Http\Controllers\SortingController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
@@ -227,6 +228,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::post('/sortable/{project}/sort',
+        SortingController::class)
+        ->name("sortable.sort");
 
     Route::controller(\App\Http\Controllers\ProjectController::class)
         ->group(function () {
