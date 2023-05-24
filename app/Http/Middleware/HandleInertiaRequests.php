@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $features = Feature::all();
+
         return array_merge(parent::share($request), [
             'features' => $features,
             'app_name' => config('app.name'),
