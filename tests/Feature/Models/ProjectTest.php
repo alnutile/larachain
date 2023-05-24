@@ -16,6 +16,7 @@ class ProjectTest extends TestCase
     {
         $model = Project::factory()->create();
         $this->assertNotNull($model->name);
+        $this->assertNotEmpty($model->meta_data);
     }
 
     public function test_rels_to_documents()

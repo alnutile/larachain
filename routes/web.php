@@ -7,6 +7,7 @@ use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
 use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
 use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
+use App\Http\Controllers\SharedController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
 use App\Http\Controllers\Tranformers\EmbedTransformerController;
@@ -33,7 +34,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -316,5 +317,16 @@ Route::middleware([
             ->name('sources.web_site_document.update');
         Route::post('/projects/{project}/sources/{source}/web_site_document/run', 'run')
             ->name('sources.web_site_document.run');
+    }
+);
+
+Route::middleware([
+    'auth.guest',
+])->controller(SharedController::class)->group(
+    function () {
+        Route::post('/shared/{project}/chat', 'chat')
+            ->name('shared.chat');
+        Route::get('/shared/{slug}', 'show')
+            ->name('shared.show');
     }
 );

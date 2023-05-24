@@ -1,12 +1,12 @@
 {
     "message": {
-        "id": 271,
+        "id": 274,
         "role": "user",
         "project_id": 1,
         "user_id": 1,
-        "content": "What does WDR stand for?",
-        "created_at": "2023-05-18T22:27:21.000000Z",
-        "updated_at": "2023-05-18T22:27:21.000000Z",
+        "content": "What does BMP stand for",
+        "created_at": "2023-05-23T10:59:58.000000Z",
+        "updated_at": "2023-05-23T10:59:58.000000Z",
         "token_count": null,
         "embedding": {},
         "user": {

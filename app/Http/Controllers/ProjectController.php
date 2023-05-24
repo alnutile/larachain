@@ -54,8 +54,13 @@ class ProjectController extends Controller
 
     public function create()
     {
+        $project = new Project();
+        $project->meta_data = [
+            'password' => null,
+        ];
+
         return Inertia::render('Projects/Create', [
-            'project' => new Project(),
+            'project' => $project,
         ]);
     }
 
@@ -74,8 +79,16 @@ class ProjectController extends Controller
             [
                 'name' => 'required',
                 'active' => 'nullable',
+                'slug' => 'nullable',
+                'web_page' => 'nullable',
+                'private' => 'nullable',
+                'meta_data' => 'nullable',
+                'password' => 'nullable',
             ]
         );
+
+        $validated['meta_data']['password'] = $validated['password'];
+        unset($validated['password']);
 
         $validated['team_id'] = auth()->user()->current_team_id;
 
@@ -120,13 +133,20 @@ class ProjectController extends Controller
             [
                 'name' => 'required',
                 'active' => 'nullable',
-                'team_id' => 'required',
+                'slug' => 'nullable',
+                'web_page' => 'nullable',
+                'private' => 'nullable',
+                'meta_data' => 'nullable',
+                'password' => 'nullable',
             ]
         );
 
+        $validated['meta_data']['password'] = $validated['password'];
+        unset($validated['password']);
+
         $project->update($validated);
 
-        return redirect()->route('projects.edit', ['project' => $project->id]);
+        return redirect()->route('projects.show', ['project' => $project->id]);
     }
 
     public function destroy($id)
