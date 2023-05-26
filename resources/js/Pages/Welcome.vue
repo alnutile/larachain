@@ -27,13 +27,7 @@
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
-            <div class="space-y-1 pb-4 pt-2">
-                <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-                <Link :href="route('login')" class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">Login</Link>
-            </div>
-        </div>
+
     </nav>
 
     <div class="bg-white py-10 sm:py-12">
@@ -46,7 +40,7 @@
                 </p>
             </div>
         </div>
-        <div class="flex justify-center gap-8 mt-4 items-center text-xl max-w-7xl mx-auto">
+        <div class="flex sm:flex-row flex-col justify-center gap-8 mt-4 items-center text-xl max-w-7xl mx-auto">
             <div class="flex justify-start gap-2 items-center">
                 💪
                 <a class="underline" href="https://github.com/alnutile/larachain">OpenSource </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
