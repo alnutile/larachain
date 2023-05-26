@@ -34,6 +34,4 @@ class TransformerFactory extends Factory
             ];
         });
     }
-
-
 }

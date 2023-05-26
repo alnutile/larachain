@@ -21,6 +21,9 @@
                         <div class="text-xs text-gray-500">
                             {{element.meta_data.url}}
                         </div>
+                        <div class="mt-2 flex justify-start items-center text-xs text-gray-400 font-bold italic">
+                            Type:{{element.type_formatted}}
+                        </div>
                     </Link>
                     <div class="flex justify-end">
                         <SecondaryButton @click="run(element)">
@@ -42,7 +45,7 @@ import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {onMounted, ref} from "vue";
-import { ArrowsPointingOutIcon} from "@heroicons/vue/24/solid"
+import { ArrowsPointingOutIcon, ArrowsRightLeftIcon} from "@heroicons/vue/24/solid"
 
 
 const toast = useToast();

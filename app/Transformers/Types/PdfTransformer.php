@@ -14,7 +14,7 @@ class PdfTransformer extends BaseTransformer
     {
         $filePath = $this->document->pathToFile();
 
-        if(str($filePath)->endsWith(".pdf")) {
+        if (str($filePath)->endsWith('.pdf')) {
             $parser = new Parser();
             $pdf = $parser->parseFile($filePath);
             $pages = $pdf->getPages();
@@ -33,6 +33,7 @@ class PdfTransformer extends BaseTransformer
                 }
             }
         }
+
         return $this->document;
     }
 }

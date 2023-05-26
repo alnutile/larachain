@@ -12,8 +12,8 @@ trait SharedSetupForPdfFile
 
     public Source $source;
 
-
-    protected function webPageToText() {
+    protected function webPageToText()
+    {
         $source = Source::factory()
             ->webDocumentMetaData()
             ->create();
@@ -41,7 +41,8 @@ trait SharedSetupForPdfFile
         $this->source = $source;
     }
 
-    protected function webFileDownloadSetup() {
+    protected function webFileDownloadSetup()
+    {
         $source = Source::factory()
             ->webFileMetaData()
             ->create();

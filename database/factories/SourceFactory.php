@@ -47,7 +47,6 @@ class SourceFactory extends Factory
         });
     }
 
-
     public function webFileMetaData()
     {
         return $this->state(function (array $attributes) {

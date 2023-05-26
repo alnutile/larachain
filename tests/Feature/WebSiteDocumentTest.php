@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Source;
 use App\Source\Types\WebSiteDocument;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
@@ -16,27 +17,20 @@ class WebSiteDocumentTest extends TestCase
         $source = Source::factory()->webDocumentMetaData()->create();
 
         Storage::fake('projects');
+
         $webFileSourceType = new WebSiteDocument($source);
 
-        $html = <<<'EOD'
-<html>
-<head></head>
-<body>
-<h1>Baz Boo</h1>
-Foo bar
-</body>
-</html>
-EOD;
+        $html = File::get(base_path("tests/fixtures/example.html"));
 
         Http::fake([
-            'wikipedia.com/*' => Http::response($html, 200),
+            'en.wikipedia.com/*' => Http::response($html, 200),
         ]);
 
         $webFileSourceType->handle();
 
         Http::assertSentCount(1);
 
-        $to = sprintf('%d/sources/%d/foo.html',
+        $to = sprintf('%d/sources/%d/Laravel.html',
             $source->project_id, $source->id);
         Storage::disk('projects')->assertExists($to);
 
@@ -50,7 +44,7 @@ EOD;
         $webFileSourceType = new WebSiteDocument($source);
 
         Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
+            'en.wikipedia.com/*' => Http::response('foo', 200),
         ]);
 
         $this->assertDatabaseCount('documents', 0);

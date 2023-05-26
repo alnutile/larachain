@@ -13,6 +13,7 @@ class TransformerTest extends TestCase
 
     public function test_transformer_factory()
     {
+        $this->webFileDownloadSetup();
         $model = Transformer::factory()->create();
         $this->assertNotNull($model->project->id);
         $this->assertNotNull($model->project->transformers->first()->id);
@@ -21,6 +22,7 @@ class TransformerTest extends TestCase
 
     public function test_runs_transformers()
     {
+        $this->webFileDownloadSetup();
         $model = Transformer::factory()->pdfTranformer()->create([
             'project_id' => $this->source->project_id,
         ]);

@@ -55,7 +55,8 @@ class Document extends Model
         );
     }
 
-    public function directoryForFile() : string|null {
+    public function directoryForFile(): string|null
+    {
         if (in_array($this->source->type, [
             SourceTypeEnum::WebFile,
             SourceTypeEnum::WebSiteDocument,
