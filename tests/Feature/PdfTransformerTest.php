@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Source;
 use App\Models\Transformer;
 use App\Transformers\Types\PdfTransformer;
 use Illuminate\Support\Facades\File;
@@ -21,6 +22,7 @@ class PdfTransformerTest extends TestCase
 
     public function test_gets_data_from_pdf()
     {
+        $this->webFileDownloadSetup();
         $transformerModel = Transformer::factory()->create();
         $this->assertDatabaseCount('document_chunks', 0);
         $transformer = new PdfTransformer($this->document);
@@ -31,6 +33,7 @@ class PdfTransformerTest extends TestCase
 
     public function test_does_not_repeat()
     {
+        $this->webFileDownloadSetup();
         $transformerModel = Transformer::factory()->create();
         $this->assertDatabaseCount('document_chunks', 0);
         $transformer = new PdfTransformer($this->document);
@@ -38,5 +41,15 @@ class PdfTransformerTest extends TestCase
         $this->assertDatabaseCount('document_chunks', 10);
         $transformer->handle($transformerModel);
         $this->assertDatabaseCount('document_chunks', 10);
+    }
+
+    public function test_does_not_run()
+    {
+        $this->webPageToText();
+        $transformerModel = Transformer::factory()->pdfTranformer()->create();
+        $this->assertDatabaseCount('document_chunks', 0);
+        $transformer = new PdfTransformer($this->document);
+        $transformer->handle($transformerModel);
+        $this->assertDatabaseCount('document_chunks', 0);
     }
 }

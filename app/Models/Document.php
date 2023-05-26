@@ -55,9 +55,26 @@ class Document extends Model
         );
     }
 
+    public function directoryForFile() : string|null {
+        if (in_array($this->source->type, [
+            SourceTypeEnum::WebFile,
+            SourceTypeEnum::WebSiteDocument,
+        ])) {
+            return sprintf(
+                storage_path('app/projects/%d/sources/%d'),
+                $this->source->project_id,
+                $this->source->id);
+        }
+
+        return null;
+    }
+
     public function pathToFile(): string|null
     {
-        if ($this->source->type === SourceTypeEnum::WebFile) {
+        if (in_array($this->source->type, [
+            SourceTypeEnum::WebFile,
+            SourceTypeEnum::WebSiteDocument,
+        ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d/%s'),
                 $this->source->project_id,

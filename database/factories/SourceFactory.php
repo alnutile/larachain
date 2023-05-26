@@ -41,14 +41,12 @@ class SourceFactory extends Factory
             return [
                 'type' => SourceTypeEnum::WebFile,
                 'meta_data' => [
-                    'url' => 'https://wikipedia.com/foo.html',
-                    'username' => 'foo',
-                    'password' => 'bar',
-                    'auth' => 'basic',
+                    'url' => 'https://en.wikipedia.org/wiki/Laravel',
                 ],
             ];
         });
     }
+
 
     public function webFileMetaData()
     {
