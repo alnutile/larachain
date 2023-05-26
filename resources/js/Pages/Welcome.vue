@@ -74,9 +74,9 @@
     </div>
 
 
-    <footer class="mt-32 bg-gray-900 sm:mt-56" aria-labelledby="footer-heading">
+    <footer class="mt-10 bg-gray-900 sm:mt-20" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
-        <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
+        <div class="mx-auto max-w-7xl px-6 py-16 sm:py-12 lg:px-8 lg:py-12">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div class="w-10 h-10 text-2xl text-indigo-500">LaraChain</div>
                 <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
@@ -114,6 +114,16 @@
                                     <a :href="item.href" class="text-sm leading-6 text-gray-300 hover:text-white">{{ item.name }}</a>
                                 </li>
                             </ul>
+                            <div  class="bg-gray-50 rounded-lg text-gray-500 mt-2">
+                                <a href="https://sundance-solutions.mailcoach.app/larachain" class="flex justify-between items-center ">
+                                    <div class="ml-2">me@me.com</div>
+                                    <div class="bg-indigo-600 p-2 rounded-r-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-indigo-200">
+                                            <path stroke-linecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,11 +188,11 @@ const footerNavigation = {
         { name: 'GitHub', href: 'https://github.com/alnutile/larachain' },
         { name: 'LinkedIn', href: 'https://www.linkedin.com/in/alfrednutile/' },
         { name: 'YouTube PlayList', href: 'https://www.youtube.com/playlist?list=PLL8JVuiFkO9IvRPfwH4p2UFhvj7UJxiNv' },
-        { name: 'Alfred Nutile', href: 'https://alfrednutile.info/' },
+        { name: 'Blog', href: 'https://alfrednutile.info/' },
     ],
     support: [
-        { name: 'Issues', href: 'https://github.com/alnutile/larachain/issues' },
-        { name: 'Project Board', href: 'https://github.com/users/alnutile/projects/2' },
+        { name: 'Issues 🐞', href: 'https://github.com/alnutile/larachain/issues' },
+        { name: 'Project Board 📆', href: 'https://github.com/users/alnutile/projects/2' },
     ],
     company: [
         { name: 'Break9', href: 'https://break9.com/' },
@@ -191,10 +201,10 @@ const footerNavigation = {
         // { name: 'Press', href: '#' },
         // { name: 'Partners', href: '#' },
     ],
-    // marketing: [
-    //     { name: 'Claim', href: '#' },
-    //     { name: 'Privacy', href: '#' },
-    //     { name: 'Terms', href: '#' },
-    // ],
+    marketing: [
+        { name: 'News and Updates 📢', href: 'https://sundance-solutions.mailcoach.app/larachain' },
+        // { name: 'Privacy', href: '#' },
+        // { name: 'Terms', href: '#' },
+    ],
 }
 </script>
