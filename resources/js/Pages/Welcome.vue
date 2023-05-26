@@ -7,19 +7,9 @@
                     <!-- Mobile menu button -->
                     <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <!--
-                          Icon when menu is closed.
-
-                          Menu open: "hidden", Menu closed: "block"
-                        -->
                         <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
-                        <!--
-                          Icon when menu is open.
-
-                          Menu open: "block", Menu closed: "hidden"
-                        -->
                         <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -46,10 +36,10 @@
         </div>
     </nav>
 
-    <div class="bg-white py-24 sm:py-32">
+    <div class="bg-white py-10 sm:py-12">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl sm:text-center">
-                <h2 class="text-base font-semibold leading-7 text-indigo-600">Large Language Models and Your Data</h2>
+                <h2 class="text-base font-semibold leading-7 text-indigo-600">Laravel + Large Language Models (LLMs) + Your Data = ❤️</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Want to start using Laravel and Large Language Models with your data?</p>
                 <p class="mt-6 text-lg leading-8 text-gray-600">
                     This opensource product is a great foundation. With it you begin to chat with and LLM and your data as the context.
@@ -155,35 +145,36 @@ import {
 } from '@heroicons/vue/20/solid'
 
 const features = [
+
     {
-        name: 'Download and Deploy',
-        description: 'Your code your server (or host with us)',
-        icon: CloudArrowUpIcon,
+        name: 'All the LLMs',
+        description: 'The system will be agnostic talking to LLMs from Google, OpenAi, Azure, Hugging Face and more',
+        icon: ArrowsPointingOutIcon,
     },
     {
         name: 'Pluggable Framework',
-        description: 'We will continue to build plugins but if you have some custom need you can easily build it to get your data into the system.',
+        description: 'We will continue to build plugins for getting data into and out of LaraChain. If you have a custom need you can easily build it using PHP',
         icon: PlayIcon,
     },
     {
-        name: 'All the Power of Laravel',
+        name: 'All the Power of Laravel and Friends',
         description: 'Horizon, Events, Facades, Tailwind, Inertia, JetStream all ready for you to build on top of',
         icon: ArrowPathIcon,
     },
     {
-        name: 'Project Centric Data Storage',
-        description: 'Import your data into different projects, then you chat with that data in that context.',
+        name: 'Project Centric Data Storage + Team Level Permissions',
+        description: 'Import your data into different projects, then you chat with that data in that context. Make Teams and add users so that you can securely search and share your content.',
         icon: FolderOpenIcon,
-    },
-    {
-        name: 'Team Level Permissions',
-        description: 'Make Teams and add users so that you can securely search and share your content.',
-        icon: UserGroupIcon,
     },
     {
         name: 'APIs, ChatGPT Plugins and more',
         description: 'Need to get to your data? Just turn on many of these egress methods to get to it.',
         icon: ArrowsPointingOutIcon,
+    },
+    {
+        name: 'Download and Deploy',
+        description: 'Your code, your servers (or host with us)',
+        icon: CloudArrowUpIcon,
     },
 ]
 
