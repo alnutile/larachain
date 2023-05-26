@@ -40,9 +40,9 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl sm:text-center">
                 <h2 class="text-base font-semibold leading-7 text-indigo-600">Laravel + Large Language Models (LLMs) + Your Data = ❤️</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Want to start using Laravel and Large Language Models with your data?</p>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Do you want to start using Laravel and Large Language Models with your data?</p>
                 <p class="mt-6 text-lg leading-8 text-gray-600">
-                    This opensource product is a great foundation. With it you begin to chat with and LLM and your data as the context.
+                    This open-source product provides a great foundation. With it, you can start to chat with a Large Language Model, using your data as the context.
                 </p>
             </div>
         </div>
@@ -114,9 +114,9 @@
                             </ul>
                         </div>
                         <div class="mt-10 md:mt-0">
-                            <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
+                            <h3 class="text-sm font-semibold leading-6 text-white">News and Updates</h3>
                             <ul role="list" class="mt-6 space-y-4">
-                                <li v-for="item in footerNavigation.legal" :key="item.name">
+                                <li v-for="item in footerNavigation.marketing" :key="item.name">
                                     <a :href="item.href" class="text-sm leading-6 text-gray-300 hover:text-white">{{ item.name }}</a>
                                 </li>
                             </ul>
@@ -186,20 +186,18 @@ const footerNavigation = {
         { name: 'YouTube PlayList', href: 'https://www.youtube.com/playlist?list=PLL8JVuiFkO9IvRPfwH4p2UFhvj7UJxiNv' },
         { name: 'Alfred Nutile', href: 'https://alfrednutile.info/' },
     ],
-    // support: [
-    //     { name: 'Pricing', href: '#' },
-    //     { name: 'Documentation', href: '#' },
-    //     { name: 'Guides', href: '#' },
-    //     { name: 'API Status', href: '#' },
-    // ],
-    // company: [
-    //     { name: 'About', href: '#' },
-    //     { name: 'Blog', href: '#' },
-    //     { name: 'Jobs', href: '#' },
-    //     { name: 'Press', href: '#' },
-    //     { name: 'Partners', href: '#' },
-    // ],
-    // legal: [
+    support: [
+        { name: 'Issues', href: 'https://github.com/alnutile/larachain/issues' },
+        { name: 'Project Board', href: 'https://github.com/users/alnutile/projects/2' },
+    ],
+    company: [
+        { name: 'Break9', href: 'https://break9.com/' },
+        { name: 'Sundance Solutions', href: 'https://sundancesolutions.io/' },
+        // { name: 'Jobs', href: '#' },
+        // { name: 'Press', href: '#' },
+        // { name: 'Partners', href: '#' },
+    ],
+    // marketing: [
     //     { name: 'Claim', href: '#' },
     //     { name: 'Privacy', href: '#' },
     //     { name: 'Terms', href: '#' },
