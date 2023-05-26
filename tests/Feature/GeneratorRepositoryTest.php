@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Generators\ResponseType\GeneratorRepository;
 use Facades\App\Generators\ResponseType\ControllerTransformer;
 use Facades\App\Generators\ResponseType\EnumTransformer;
+use Facades\App\Generators\ResponseType\LarachainConfigTransformer;
+use Facades\App\Generators\ResponseType\ResponseTypeClassTransformer;
 use Facades\App\Generators\ResponseType\RoutesTransformer;
 use Facades\App\Generators\ResponseType\VueTransformer;
 use Tests\TestCase;
@@ -17,6 +19,8 @@ class GeneratorRepositoryTest extends TestCase
         VueTransformer::shouldReceive('handle')->once();
         RoutesTransformer::shouldReceive('handle')->once();
         EnumTransformer::shouldReceive('handle')->once();
+        LarachainConfigTransformer::shouldReceive('handle')->once();
+        ResponseTypeClassTransformer::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();
@@ -30,6 +34,8 @@ class GeneratorRepositoryTest extends TestCase
         VueTransformer::shouldReceive('handle')->once();
         RoutesTransformer::shouldReceive('handle')->once();
         EnumTransformer::shouldReceive('handle')->once();
+        LarachainConfigTransformer::shouldReceive('handle')->once();
+        ResponseTypeClassTransformer::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();
