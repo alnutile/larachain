@@ -72,21 +72,21 @@ jobs:
           npm install && npm run build
           XDEBUG_MODE=coverage php artisan test --coverage  --min=50
 
-#  cd:
-#    runs-on: ubuntu-latest
-#    needs: ci
-#    if: github.ref == 'refs/heads/main'
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#      - name: Setup PHP
-#        uses: shivammathur/setup-php@v2
-#        with:
-#          php-version: 8.1
-#          tools: composer:v2
-#          coverage: none
-#      - name: Require Vapor CLI
-#        run: composer global require laravel/vapor-cli
-#      - name: Install Project Dependencies
-#        run: |
-#          curl https://envoyer.io/deploy/${{ secrets.ENVOYER }}
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          tools: composer:v2
+          coverage: none
+      - name: Require Vapor CLI
+        run: composer global require laravel/vapor-cli
+      - name: Install Project Dependencies
+        run: |
+          curl https://envoyer.io/deploy/${{ secrets.ENVOYER }}
