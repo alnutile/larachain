@@ -19,6 +19,7 @@ class VectorSearch extends BaseResponseType
             ->selectRaw('document_chunks.embedding <-> ? as distance, document_chunks.content',
                 [$this->response_dto->message->embedding])
             ->where('sources.project_id', $this->project->id)
+            ->limit(20)
             ->orderByRaw('distance');
 
         $results = $query->get();
