@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\Outbounds\ApiiOutboundController;
-use App\Http\Controllers\Outbounds\ChatUiOutboundController;
-use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
-use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
-use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
-use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
-use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use App\Http\Controllers\SortingController;
 use App\Http\Controllers\Sources\WebFileSourceController;
-use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
-use App\Http\Controllers\Tranformers\EmbedTransformerController;
+use App\Http\Controllers\Outbounds\ApiiOutboundController;
+use App\Http\Controllers\Outbounds\ChatUiOutboundController;
 use App\Http\Controllers\Tranformers\PdfTransformerController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\Tranformers\EmbedTransformerController;
+use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
+use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
+use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
+use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
+use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
+use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
 
 /*
 |--------------------------------------------------------------------------

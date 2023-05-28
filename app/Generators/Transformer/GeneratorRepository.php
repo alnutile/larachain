@@ -3,11 +3,11 @@
 namespace App\Generators\Transformer;
 
 use App\Generators\BaseRepository;
-use Facades\App\Generators\Source\EnumSource;
-use Facades\App\Generators\Source\LarachainConfigSource;
-use Facades\App\Generators\Source\RoutesSource;
-use Facades\App\Generators\Source\SourceClassTransformer;
-use Facades\App\Generators\Source\VueSource;
+use Facades\App\Generators\Transformer\VueTransformer;
+use Facades\App\Generators\Transformer\EnumTransformer;
+use Facades\App\Generators\Transformer\RoutesTransformer;
+// use Facades\App\Generators\Transformer\LarachainConfigTransformer;
+// use Facades\App\Generators\Transformer\SourceClassTransformer;
 use Facades\App\Generators\Transformer\ControllerTransformerGenerator;
 
 class GeneratorRepository extends BaseRepository
@@ -15,9 +15,9 @@ class GeneratorRepository extends BaseRepository
     public function run(): self
     {
         ControllerTransformerGenerator::handle($this);
-        // VueSource::handle($this);
-        // RoutesSource::handle($this);
-        // EnumSource::handle($this);
+        VueTransformer::handle($this);
+        RoutesTransformer::handle($this);
+        EnumTransformer::handle($this);
         // LarachainConfigSource::handle($this);
         // SourceClassTransformer::handle($this);
 
