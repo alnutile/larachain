@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 class WebFileTest extends TestCase
 {
+    use SharedSetupForPdfFile;
+
     public function test_gets_file()
     {
         $source = Source::factory()->webFileMetaData()->create();

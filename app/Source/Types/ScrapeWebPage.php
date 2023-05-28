@@ -6,7 +6,6 @@ use App\Exceptions\SourceMissingRequiredMetaDataException;
 use App\Ingress\StatusEnum;
 use App\Models\Document;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 
 class ScrapeWebPage extends BaseSourceType
 {
@@ -32,7 +31,7 @@ class ScrapeWebPage extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
-                    'content' => $fileContents
+                    'content' => $fileContents,
                 ]
             );
     }

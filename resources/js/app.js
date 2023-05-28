@@ -19,7 +19,12 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(Toast, {})
+            .use(Toast, {
+                transition: "Vue-Toastification__bounce",
+                maxToasts: 1,
+                hideProgressBar: true,
+                newestOnTop: true
+            })
             .use(ZiggyVue, Ziggy)
             .mount(el);
     },

@@ -27,7 +27,7 @@
                     </Link>
                     <div class="flex justify-end">
                         <SecondaryButton @click="run(element)">
-                            <Spinner v-if="formRun.processing"/>
+                            <Spinner v-if="formRun.processing&& running === element.id"/>
                             run</SecondaryButton>
                     </div>
                 </div>
@@ -49,6 +49,8 @@ import { ArrowsPointingOutIcon, ArrowsRightLeftIcon} from "@heroicons/vue/24/sol
 
 
 const toast = useToast();
+
+const running = ref()
 
 const props = defineProps({
     project: Object
@@ -94,6 +96,7 @@ const formRun = useForm({})
 const emit = defineEmits(['runComplete'])
 
 const run = (source) => {
+    running.value = source.id;
     toast(`Running Source ${source.name}`)
     formRun.post(route('sources.web_file.run', {
         project: props.project.id,

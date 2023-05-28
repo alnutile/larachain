@@ -63,7 +63,7 @@ return [
         'html2text' => [
             'name' => 'Html2Text',
             'description' => 'Simple transformer to strip html tags',
-            'class' => 'App\\Transformer\\Types\\Html2Text',
+            'class' => 'App\\Transformers\\Types\\Html2Text',
             'requires' => [
             ],
             'active' => 1,

@@ -14,7 +14,7 @@ class WebFile extends BaseSourceType
     {
         $url = data_get($this->source->meta_data, 'url');
 
-        $fileName = file_name_from_url($url);
+        $fileName = str($url)->afterLast('/')->toString();
 
         if (! $url) {
             throw new SourceMissingRequiredMetaDataException();
@@ -23,10 +23,6 @@ class WebFile extends BaseSourceType
         $fileContents = Http::get($url)->body();
 
         $path = $this->getPath($fileName);
-
-        if (! str($path)->endsWith('html')) {
-            $path = str($path)->append('.html');
-        }
 
         Storage::disk('projects')
             ->put($path, $fileContents);
@@ -42,9 +38,6 @@ class WebFile extends BaseSourceType
                     'status' => StatusEnum::Complete,
                 ]
             );
-
-
-
     }
 
     protected function getPath($fileName)

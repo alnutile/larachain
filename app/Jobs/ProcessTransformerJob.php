@@ -35,6 +35,7 @@ class ProcessTransformerJob implements ShouldQueue
         } catch (\Exception $e) {
             $message = 'Error Running Transformer '.$this->transformer->id;
             logger($message);
+            logger($e->getMessage());
             throw new \Exception($message);
         }
     }

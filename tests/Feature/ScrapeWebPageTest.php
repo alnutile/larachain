@@ -5,10 +5,7 @@ namespace Tests\Feature;
 use App\Models\Document;
 use App\Models\Source;
 use App\Source\Types\ScrapeWebPage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
-use Mockery;
 use Tests\TestCase;
 
 class ScrapeWebPageTest extends TestCase
@@ -19,7 +16,7 @@ class ScrapeWebPageTest extends TestCase
 
         $webFileSourceType = new ScrapeWebPage($source);
 
-        $html = "Foo bar";
+        $html = 'Foo bar';
 
         Http::fake([
             'wikipedia.org/*' => Http::response($html, 200),
@@ -40,7 +37,7 @@ class ScrapeWebPageTest extends TestCase
 
         $webFileSourceType = new ScrapeWebPage($source);
 
-        $html = "Foo bar";
+        $html = 'Foo bar';
 
         Http::fake([
             'wikipedia.org/*' => Http::response($html, 200),
@@ -60,7 +57,7 @@ class ScrapeWebPageTest extends TestCase
 
         $webFileSourceType = new ScrapeWebPage($source);
 
-        $html = "Foo bar";
+        $html = 'Foo bar';
 
         Http::fake([
             'wikipedia.org/*' => Http::response($html, 200),
@@ -77,6 +74,4 @@ class ScrapeWebPageTest extends TestCase
         $webFileSourceType->handle();
         $this->assertDatabaseCount('documents', 1);
     }
-
-
 }
