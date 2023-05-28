@@ -30,13 +30,13 @@ class WebSiteDocument extends BaseSourceType
         $fileContents = Http::get($url)->body();
 
         $fileContents = Html2Text::convert($fileContents, [
-            'ignore_errors' => true
+            'ignore_errors' => true,
         ]);
 
         $path = $this->getPath($fileName);
 
-        if(!str($path)->endsWith("html")) {
-            $path = str($path)->append(".html");
+        if (! str($path)->endsWith('html')) {
+            $path = str($path)->append('.html');
         }
 
         Storage::disk('projects')

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Support\Facades\File;
-use App\Generators\Transformer\GeneratorRepository;
 use App\Generators\Transformer\ControllerTransformerGenerator;
+use App\Generators\Transformer\GeneratorRepository;
+use Illuminate\Support\Facades\File;
+use Tests\TestCase;
 
 class ControllerTransformerGeneratorTest extends TestCase
 {

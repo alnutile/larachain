@@ -20,7 +20,7 @@ class WebSiteDocumentTest extends TestCase
 
         $webFileSourceType = new WebSiteDocument($source);
 
-        $html = File::get(base_path("tests/fixtures/example.html"));
+        $html = File::get(base_path('tests/fixtures/example.html'));
 
         Http::fake([
             'en.wikipedia.com/*' => Http::response($html, 200),
