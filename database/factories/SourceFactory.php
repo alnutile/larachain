@@ -41,7 +41,7 @@ class SourceFactory extends Factory
             return [
                 'type' => SourceTypeEnum::ScrapeWebPage,
                 'meta_data' => [
-                    'url' => 'https://en.wikipedia.org/wiki/Laravel',
+                    'url' => 'https://wikipedia.org/wiki/Laravel',
                 ],
             ];
         });

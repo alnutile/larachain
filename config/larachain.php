@@ -33,7 +33,7 @@ return [
             'background' => 'bg-red-500',
         ],
         'scrape_web_page' => [
-            'name' => 'Web Site Document',
+            'name' => 'Scrape a single web page',
             'description' => 'Get a web page and save as html',
             'class' => 'App\\Source\\Types\\ScrapeWebPage',
             'requires' => [

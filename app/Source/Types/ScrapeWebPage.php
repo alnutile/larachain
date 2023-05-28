@@ -12,12 +12,7 @@ class ScrapeWebPage extends BaseSourceType
 {
     public function handle(): Document
     {
-        /**
-         * @NOTE This is one example
-         * This example will get a file off the web
-         * When this runs the handle is called
-         * You could pull in your own classes or put your code here
-         */
+
         $url = data_get($this->source->meta_data, 'url');
 
         $fileName = file_name_from_url($url);
@@ -28,15 +23,6 @@ class ScrapeWebPage extends BaseSourceType
 
         $fileContents = Http::get($url)->body();
 
-        $path = $this->getPath($fileName);
-
-        if (! str($path)->endsWith('html')) {
-            $path = str($path)->append('.html');
-        }
-
-        Storage::disk('projects')
-            ->put($path, $fileContents);
-
         return Document::where('guid', $fileName)
             ->where('source_id', $this->source->id)
             ->firstOrCreate(
@@ -46,6 +32,7 @@ class ScrapeWebPage extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
+                    'content' => $fileContents
                 ]
             );
     }
