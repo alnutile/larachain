@@ -2,13 +2,14 @@
 
 namespace Tests\Feature;
 
-use App\Models\Source;
-use App\Source\Types\WebSiteDocument;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
+use App\Models\Source;
+use App\Models\Document;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use App\Source\Types\WebSiteDocument;
+use Illuminate\Support\Facades\Storage;
 
 class WebSiteDocumentTest extends TestCase
 {
@@ -54,7 +55,7 @@ class WebSiteDocumentTest extends TestCase
 
     }
 
-    public function test_makes_document_once()
+    public function test_makes_document_once_with_name()
     {
         $source = Source::factory()->webDocumentMetaData()->create();
 
@@ -69,6 +70,10 @@ class WebSiteDocumentTest extends TestCase
         $webFileSourceType->handle();
 
         $this->assertDatabaseCount('documents', 1);
+
+        $document = Document::first();
+        $this->assertEquals("Laravel.html", $document->guid);
+
         $webFileSourceType->handle();
         $this->assertDatabaseCount('documents', 1);
     }

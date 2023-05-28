@@ -20,13 +20,13 @@ Route::middleware([
     function () {
         Route::get('/projects/{project}/transformers/[RESOURCE_KEY]/create', 'create')
             ->name('transformers.[RESOURCE_KEY].create');
-        Route::get('/projects/{project}/transformers/{source}/[RESOURCE_KEY]/edit', 'edit')
+        Route::get('/projects/{project}/transformers/{transformer}/[RESOURCE_KEY]/edit', 'edit')
             ->name('transformers.[RESOURCE_KEY].edit');
         Route::post('/projects/{project}/transformers/[RESOURCE_KEY]/store', 'store')
             ->name('transformers.[RESOURCE_KEY].store');
-        Route::put('/projects/{project}/transformers/{source}/[RESOURCE_KEY]/update', 'update')
+        Route::put('/projects/{project}/transformers/{transformer}/[RESOURCE_KEY]/update', 'update')
             ->name('transformers.[RESOURCE_KEY].update');
-        Route::post('/projects/{project}/transformers/{source}/[RESOURCE_KEY]/run', 'run')
+        Route::post('/projects/{project}/transformers/{transformer}/[RESOURCE_KEY]/run', 'run')
             ->name('transformers.[RESOURCE_KEY].run');
     }
 );

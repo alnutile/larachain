@@ -2,8 +2,8 @@
 
 namespace App\Generators\Transformer;
 
-use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
+use Facades\App\Generators\TokenReplacer;
 
 class ControllerTransformerGenerator extends BaseTransformer
 {
@@ -17,10 +17,10 @@ class ControllerTransformerGenerator extends BaseTransformer
 
     protected function makeTest()
     {
-        $content = $this->getContents('/Tests/SourceControllerTest.php');
+        $content = $this->getContents('/Tests/TransformerControllerTest.php');
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sSourceControllerTest.php', $this->generatorRepository->getClassName());
+        $name = sprintf('%sTransformerControllerTest.php', $this->generatorRepository->getClassName());
         $basePath = base_path('tests/Feature/Http/Controllers/');
         File::makeDirectory($basePath, 0755, true, true);
         $destination = $basePath.$name;
@@ -29,12 +29,12 @@ class ControllerTransformerGenerator extends BaseTransformer
 
     protected function makeController()
     {
-        $content = $this->getContents('Controllers/SourceController.php');
+        $content = $this->getContents('Controllers/TransformerController.php');
 
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sSourceController.php', $this->generatorRepository->getClassName());
-        $destination = base_path('app/Http/Controllers/Sources/'.$name);
+        $name = sprintf('%sTransformerController.php', $this->generatorRepository->getClassName());
+        $destination = base_path('app/Http/Controllers/Transformers/'.$name);
 
         $this->generatorRepository->putFile($destination, $transformed);
     }

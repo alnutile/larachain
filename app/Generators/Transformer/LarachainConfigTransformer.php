@@ -6,7 +6,7 @@ use App\Generators\LarachainConfig;
 
 class LarachainConfigTransformer extends LarachainConfig
 {
-    protected string $type = 'sources';
+    protected string $type = 'tranformers';
 
-    protected string $typeCaps = 'Source';
+    protected string $typeCaps = 'Transformer';
 }

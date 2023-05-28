@@ -2,12 +2,11 @@
 
 namespace App\Source\Types;
 
-use App\Exceptions\SourceMissingRequiredMetaDataException;
-use App\Ingress\StatusEnum;
 use App\Models\Document;
+use App\Ingress\StatusEnum;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Soundasleep\Html2Text;
+use App\Exceptions\SourceMissingRequiredMetaDataException;
 
 class WebSiteDocument extends BaseSourceType
 {
@@ -21,7 +20,7 @@ class WebSiteDocument extends BaseSourceType
          */
         $url = data_get($this->source->meta_data, 'url');
 
-        $fileName = str($url)->afterLast('/')->toString();
+        $fileName = file_name_from_url($url);
 
         if (! $url) {
             throw new SourceMissingRequiredMetaDataException();
@@ -29,10 +28,7 @@ class WebSiteDocument extends BaseSourceType
 
         $fileContents = Http::get($url)->body();
 
-        $fileContents = Html2Text::convert($fileContents, [
-            'ignore_errors' => true,
-        ]);
-
+        
         $path = $this->getPath($fileName);
 
         if (! str($path)->endsWith('html')) {

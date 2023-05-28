@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
+use Mockery;
+use Tests\TestCase;
 use App\Models\Source;
+use App\Models\Document;
 use App\Source\Types\WebFile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Mockery;
-use Tests\TestCase;
 
 class WebFileTest extends TestCase
 {
@@ -47,6 +48,9 @@ class WebFileTest extends TestCase
         $webFileSourceType->handle();
 
         $this->assertDatabaseCount('documents', 1);
+
+        $document = Document::first();
+        $this->assertEquals("foo.pdf", $document->guid);
 
     }
 
