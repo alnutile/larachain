@@ -2,8 +2,8 @@
 
 namespace App\Generators\Transformer;
 
-use Illuminate\Support\Facades\File;
 use Facades\App\Generators\TokenReplacer;
+use Illuminate\Support\Facades\File;
 
 class EnumTransformer extends BaseTransformer
 {

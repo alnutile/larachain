@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\User;
+use App\Jobs\ProcessTransformerJob;
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Jobs\ProcessTransformerJob;
+use App\Models\User;
 use Illuminate\Support\Facades\Queue;
 use function Pest\Laravel\assertDatabaseCount;
 

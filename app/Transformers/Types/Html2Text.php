@@ -3,10 +3,10 @@
 namespace App\Transformers\Types;
 
 use App\Models\Document;
-use App\Models\Transformer;
 use App\Models\DocumentChunk;
-use Soundasleep\Html2Text as Helper;
+use App\Models\Transformer;
 use App\Transformers\BaseTransformer;
+use Soundasleep\Html2Text as Helper;
 
 class Html2Text extends BaseTransformer
 {
@@ -15,19 +15,19 @@ class Html2Text extends BaseTransformer
         $filePath = $this->document->pathToFile();
 
         if (str($filePath)->endsWith('.html')) {
-            
+
             if (! DocumentChunk::query()
             ->where('document_id', $this->document->id)
             ->exists()) {
                 $fileContents = Helper::convert($this->document->content, [
                     'ignore_errors' => true,
                 ]);
-    
+
                 DocumentChunk::create([
-                    'guid' => str($filePath)->afterLast("/"),
+                    'guid' => str($filePath)->afterLast('/'),
                     'content' => $fileContents,
                     'document_id' => $this->document->id,
-            ]);
+                ]);
         }
         }
 

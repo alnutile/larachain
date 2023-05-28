@@ -2,9 +2,8 @@
 
 namespace App\Generators\Transformer;
 
-use Illuminate\Support\Facades\File;
 use Facades\App\Generators\TokenReplacer;
-use App\Generators\Transformer\BaseTransformer;
+use Illuminate\Support\Facades\File;
 
 class VueTransformer extends BaseTransformer
 {

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Stringable;
 
 if (! function_exists('remove_ascii')) {
@@ -21,10 +22,11 @@ if (! function_exists('clean_messages')) {
 }
 
 if (! function_exists('file_name_from_url')) {
-    function file_name_from_url(string $url) : string {
-        return str($url)->beforeLast("?")->afterLast("/")
-        ->when(!str($url)->endsWith(".html"), function(Stringable $string) {
-            return $string->append(".html");
+    function file_name_from_url(string $url): string
+    {
+        return str($url)->beforeLast('?')->afterLast('/')
+        ->when(! str($url)->endsWith('.html'), function (Stringable $string) {
+            return $string->append('.html');
         })
         ->toString();
     }

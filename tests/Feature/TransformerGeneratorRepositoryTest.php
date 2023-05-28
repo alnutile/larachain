@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Generators\Transformer\GeneratorRepository;
-use Facades\App\Generators\Transformer\VueTransformer;
+use Facades\App\Generators\Transformer\ControllerTransformerGenerator;
 use Facades\App\Generators\Transformer\EnumTransformer;
+use Facades\App\Generators\Transformer\LarachainConfigTransformer;
 use Facades\App\Generators\Transformer\RoutesTransformer;
 use Facades\App\Generators\Transformer\TransformerClassGenerator;
-use Facades\App\Generators\Transformer\LarachainConfigTransformer;
-use Facades\App\Generators\Transformer\ControllerTransformerGenerator;
+use Facades\App\Generators\Transformer\VueTransformer;
+use Tests\TestCase;
 
 class TransformerGeneratorRepositoryTest extends TestCase
 {

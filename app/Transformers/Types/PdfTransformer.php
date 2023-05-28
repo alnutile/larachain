@@ -3,10 +3,10 @@
 namespace App\Transformers\Types;
 
 use App\Models\Document;
-use App\Models\Transformer;
-use Smalot\PdfParser\Parser;
 use App\Models\DocumentChunk;
+use App\Models\Transformer;
 use App\Transformers\BaseTransformer;
+use Smalot\PdfParser\Parser;
 
 class PdfTransformer extends BaseTransformer
 {

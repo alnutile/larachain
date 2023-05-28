@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\Generators;
 
-use Illuminate\Console\Command;
 use Facades\App\Generators\Transformer\GeneratorRepository;
+use Illuminate\Console\Command;
 
 class TransformerGenerator extends Command
 {

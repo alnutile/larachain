@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
-use App\Models\Source;
 use App\Models\Document;
+use App\Models\Source;
+use App\Source\Types\WebSiteDocument;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
-use App\Source\Types\WebSiteDocument;
 use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class WebSiteDocumentTest extends TestCase
 {
@@ -72,7 +72,7 @@ class WebSiteDocumentTest extends TestCase
         $this->assertDatabaseCount('documents', 1);
 
         $document = Document::first();
-        $this->assertEquals("Laravel.html", $document->guid);
+        $this->assertEquals('Laravel.html', $document->guid);
 
         $webFileSourceType->handle();
         $this->assertDatabaseCount('documents', 1);

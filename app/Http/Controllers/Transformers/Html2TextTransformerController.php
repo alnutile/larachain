@@ -8,7 +8,6 @@ use App\Transformers\TransformerTypeEnum;
 
 class Html2TextTransformerController extends BaseTransformerController
 {
-
     public function create(Project $project)
     {
         Transformer::create([
