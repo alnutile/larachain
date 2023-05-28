@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Source;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DeleteSourceController extends Controller
 {
-
-    public function delete(Source $source) {
+    public function delete(Source $source)
+    {
 
         $projectId = $source->project_id;
 
@@ -24,10 +23,10 @@ class DeleteSourceController extends Controller
             $source->delete();
         });
 
-
         request()->session()->flash('flash.banner', 'Source deleted...');
-        return to_route("projects.show", [
-            "project" => $projectId
+
+        return to_route('projects.show', [
+            'project' => $projectId,
         ]);
     }
 }

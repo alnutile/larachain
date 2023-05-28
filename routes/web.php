@@ -330,11 +330,10 @@ Route::middleware([
     'verified',
 ])->controller(\App\Http\Controllers\DeleteSourceController::class)->group(
     function () {
-        Route::delete("/sources/{source}/delete", 'delete')
-            ->name("sources.delete");
+        Route::delete('/sources/{source}/delete', 'delete')
+            ->name('sources.delete');
     }
 );
-
 
 Route::middleware([
     'auth:sanctum',
