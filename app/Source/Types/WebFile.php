@@ -2,10 +2,11 @@
 
 namespace App\Source\Types;
 
-use App\Exceptions\SourceMissingRequiredMetaDataException;
-use App\Ingress\StatusEnum;
 use App\Models\Document;
+use App\Ingress\StatusEnum;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use App\Exceptions\SourceMissingRequiredMetaDataException;
 
 class WebFile extends BaseSourceType
 {
@@ -20,6 +21,11 @@ class WebFile extends BaseSourceType
         }
 
         $fileContents = Http::get($url)->body();
+
+        $path = $this->getPath($fileName);
+
+        Storage::disk('projects')
+            ->put($path, $fileContents);
 
         return Document::where('guid', $fileName)
             ->where('source_id', $this->source->id)

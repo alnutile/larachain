@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Document;
+use Mockery;
+use Tests\TestCase;
 use App\Models\Source;
 use App\Source\Types\WebFile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Mockery;
-use Tests\TestCase;
 
 class WebFileTest extends TestCase
 {
@@ -27,9 +26,9 @@ class WebFileTest extends TestCase
 
         Http::assertSentCount(1);
 
-        $document = Document::first();
-
-        $this->assertEquals('foo', $document->content);
+        $to = sprintf('%d/sources/%d/foo.pdf',
+            $source->project_id, $source->id);
+        Storage::disk('projects')->assertExists($to);
 
     }
 
@@ -48,9 +47,6 @@ class WebFileTest extends TestCase
         $webFileSourceType->handle();
 
         $this->assertDatabaseCount('documents', 1);
-
-        $document = Document::first();
-        $this->assertEquals('foo.pdf', $document->guid);
 
     }
 

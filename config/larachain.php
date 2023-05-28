@@ -34,7 +34,7 @@ return [
         ],
         'web_site_document' => [
             'name' => 'Web Site Document',
-            'description' => 'Get a web page and save as text',
+            'description' => 'Get a web page and save as html',
             'class' => 'App\\Source\\Types\\WebSiteDocument',
             'requires' => [
             ],
@@ -67,6 +67,8 @@ return [
             'requires' => [
             ],
             'active' => 1,
+            'icon' => 'GlobeAltIcon',
+            'background' => 'bg-slate-800',
         ],
     ],
     'outbounds' => [

@@ -10,6 +10,7 @@ import {
     ArrowsRightLeftIcon,
     DocumentIcon,
     Bars4Icon,
+    GlobeAltIcon,
     DocumentTextIcon,
     CalendarIcon,
     ChatBubbleLeftIcon, ClockIcon, MagnifyingGlassIcon, MegaphoneIcon, PhotoIcon, TableCellsIcon, ViewColumnsIcon
@@ -20,6 +21,7 @@ export default {
     components: {
         Bars4Icon,
         DocumentIcon,
+        GlobeAltIcon,
         DocumentTextIcon,
         ArrowDownTrayIcon,
         resolveComponent,
