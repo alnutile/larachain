@@ -26,15 +26,50 @@
                         </div>
                     </Link>
                     <div class="flex justify-end">
-                        <SecondaryButton @click="run(element)">
+                        <RunButton
+                            type="button"
+                            @click="run(element)">
                             <Spinner v-if="formRun.processing&& running === element.id"/>
-                            run</SecondaryButton>
+                            <PlayIcon class="w-4 h-4"/></RunButton>
+                        <DeleteButton
+                            type="button"
+                            @click="setSourceToDelete(element)">
+                            <TrashIcon class="w-4 h-4"/>
+                        </DeleteButton>
                     </div>
                 </div>
             </div>
         </VueDraggableNext>
     </div>
     <div v-else class="text-gray-400">👇Choose a Source below to get started</div>
+
+    <DialogModal
+        closeable
+        :show="showDeleteModal"
+        @close="showDeleteModal = false">
+        <template #title>
+            <div class="flex justify-start gap-4">
+                Delete Source {{ sourceModel.name }}
+            </div>
+        </template>
+
+        <template #content>
+                <div class="p-4 text-lg">
+                    This will delete all the related documents as well.
+                </div>
+                <div class="flex justify-end gap-4">
+                    <DeletePartial
+                        :source="sourceModel"
+                                  @sourceDeleted="deleteComplete"/>
+                    <SecondaryButton
+                        type="button"
+                        @click="showDeleteModal = false">
+                        Cancel
+                    </SecondaryButton>
+                </div>
+        </template>
+    </DialogModal>
+
 
 </template>
 
@@ -44,8 +79,12 @@ import {useToast} from "vue-toastification";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import {onMounted, ref} from "vue";
-import { ArrowsPointingOutIcon, ArrowsRightLeftIcon} from "@heroicons/vue/24/solid"
+import RunButton from "@/Components/RunButton.vue";
+import DeleteButton from "@/Components/DeleteButton.vue";
+import {nextTick, onMounted, ref} from "vue";
+import { ArrowsPointingOutIcon, ArrowsRightLeftIcon, TrashIcon, PlayIcon} from "@heroicons/vue/24/solid"
+import DialogModal from "@/Components/DialogModal.vue";
+import DeletePartial from "@/Pages/Sources/Components/DeletePartial.vue";
 
 
 const toast = useToast();
@@ -57,6 +96,25 @@ const props = defineProps({
 })
 
 const sources = ref([])
+
+const sourceModel = ref({})
+
+const showDeleteModal = ref(false)
+
+const deleteComplete = () => {
+    showDeleteModal.value = false;
+    router.visit(route("projects.show", {
+        project: props.project.id
+    }),{
+        only: ['project']
+    });
+    nextTick();
+}
+
+const setSourceToDelete = (source) => {
+    sourceModel.value = source;
+    showDeleteModal.value = true;
+}
 
 onMounted(() => {
     sources.value = props.project.sources;

@@ -14,7 +14,7 @@
         <TextInput
             class="p-2 border border-gray-300 w-full"
             type="text"
-            placeholder="https://somepublicpdf.com/foo.pdf"
+            placeholder="https://wikipedia.org/wiki/Laravel.html"
             v-model="modelValue.meta_data.url"
         />
         <InputError :message="modelValue.errors?.meta_data?.url" class="mt-2" />

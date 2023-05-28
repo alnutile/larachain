@@ -15,7 +15,7 @@ class ScrapeWebPageSourceController extends BaseSourceController
             'project' => $project,
             'source' => [
                 'meta_data' => [
-                    'url' => 'https://foo.com/some.pdf',
+                    'url' => 'https://wikipedia.org/wiki/Laravel.html',
                 ],
             ],
         ]);

@@ -328,6 +328,18 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(\App\Http\Controllers\DeleteSourceController::class)->group(
+    function () {
+        Route::delete("/sources/{source}/delete", 'delete')
+            ->name("sources.delete");
+    }
+);
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(\App\Http\Controllers\Transformers\Html2TextTransformerController::class)->group(
     function () {
         Route::get('/projects/{project}/transformers/html2text/create', 'create')

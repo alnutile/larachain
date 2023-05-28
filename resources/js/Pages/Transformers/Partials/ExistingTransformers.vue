@@ -20,7 +20,7 @@
                         <div class="text-xs text-gray-500">
                         </div>
                     </Link>
-                    <div class="flex justify-end">
+                    <div class="flex justify-end w-full">
                         <SecondaryButton @click="run(element)">
                             <Spinner v-if="formRun.processing && running === element.id"/>
                             run</SecondaryButton>
