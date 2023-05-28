@@ -31,7 +31,7 @@ class TransformerClassGenerator extends BaseTransformer
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%s.php', $this->generatorRepository->getClassName());
-        $basePath = base_path('app/Transformer/Types/');
+        $basePath = base_path('app/Transformers/Types/');
         $destination = $basePath.$name;
         $this->generatorRepository->putFile($destination, $transformed);
     }
