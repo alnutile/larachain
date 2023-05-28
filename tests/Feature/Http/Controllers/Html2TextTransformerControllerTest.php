@@ -3,11 +3,11 @@
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Jobs\ProcessTransformerJob;
+use App\Jobs\ProcessSourceJob;
 use Illuminate\Support\Facades\Queue;
 use function Pest\Laravel\assertDatabaseCount;
 
-it('should create', function () {
+it('should create Html2Text', function () {
     $user = User::factory()->withPersonalTeam()
         ->create();
 
@@ -20,7 +20,7 @@ it('should create', function () {
     assertDatabaseCount('transformers', 0);
 
     $this->actingAs($user)
-        ->get(route('transformers.embed_transformer.create', [
+        ->get(route('transformers.html2text.create', [
             'project' => $project->id,
         ]))
         ->assertRedirectToRoute('projects.show', [
@@ -29,7 +29,7 @@ it('should create', function () {
     assertDatabaseCount('transformers', 1);
 });
 
-it('should run transformer', function () {
+it('should run transformer Html2Text', function () {
     $user = User::factory()->withPersonalTeam()
         ->create();
 
@@ -46,7 +46,7 @@ it('should run transformer', function () {
     Queue::fake();
 
     $this->actingAs($user)
-        ->post(route('transformers.embed_transformer.run', [
+        ->post(route('transformers.html2text.run', [
             'project' => $project->id,
             'transformer' => $transformer->id,
         ]))

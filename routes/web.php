@@ -323,3 +323,22 @@ Route::middleware([
             ->name('sources.web_site_document.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Transformers\Html2TextTransformerController::class)->group(
+    function () {
+        Route::get('/projects/{project}/transformers/html2text/create', 'create')
+            ->name('transformers.html2text.create');
+        Route::get('/projects/{project}/transformers/{transformer}/html2text/edit', 'edit')
+            ->name('transformers.html2text.edit');
+        Route::post('/projects/{project}/transformers/html2text/store', 'store')
+            ->name('transformers.html2text.store');
+        Route::put('/projects/{project}/transformers/{transformer}/html2text/update', 'update')
+            ->name('transformers.html2text.update');
+        Route::post('/projects/{project}/transformers/{transformer}/html2text/run', 'run')
+            ->name('transformers.html2text.run');
+    }
+);

@@ -8,7 +8,7 @@ use App\Models\DocumentChunk;
 use Soundasleep\Html2Text as Helper;
 use App\Transformers\BaseTransformer;
 
-class [RESOURCE_CLASS_NAME] extends BaseTransformer
+class Html2Text extends BaseTransformer
 {
     public function handle(Transformer $transformer): Document
     {

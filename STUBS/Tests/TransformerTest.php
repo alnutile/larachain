@@ -2,77 +2,55 @@
 
 namespace Tests\Feature;
 
-use App\Models\Source;
-use App\Source\Types\[RESOURCE_CLASS_NAME];
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
+use App\Models\Source;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use App\Source\Types\[RESOURCE_CLASS_NAME];
 
-class [RESOURCE_CLASS_NAME]Test extends TestCase
-{
-    public function test_gets_file()
-    {
-        $source = Source::factory()->create();
+it('should create [RESOURCE_CLASS_NAME]', function () {
+    $user = User::factory()->withPersonalTeam()
+        ->create();
 
-        Storage::fake('projects');
-        $webFileSourceType = new [RESOURCE_CLASS_NAME]($source);
+    $user = $this->createTeam($user);
 
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
+    $project = Project::factory()->create([
+        'team_id' => $user->current_team_id,
+    ]);
+
+    assertDatabaseCount('transformers', 0);
+
+    $this->actingAs($user)
+        ->get(route('transformers.[RESOURCE_KEY].create', [
+            'project' => $project->id,
+        ]))
+        ->assertRedirectToRoute('projects.show', [
+            'project' => $project->id,
         ]);
+    assertDatabaseCount('transformers', 1);
+});
 
-        $webFileSourceType->handle();
+it('should run transformer [RESOURCE_CLASS_NAME]', function () {
+    $user = User::factory()->withPersonalTeam()
+        ->create();
 
-        Http::assertSentCount(1);
+    $user = $this->createTeam($user);
 
-        $to = sprintf('%d/sources/%d/foo.pdf',
-            $source->project_id, $source->id);
-        Storage::disk('projects')->assertExists($to);
+    $project = Project::factory()->create([
+        'team_id' => $user->current_team_id,
+    ]);
 
-    }
+    $transformer = Transformer::factory()->create(
+        ['project_id' => $project->id]
+    );
 
-    public function test_makes_document()
-    {
-        $source = Source::factory()->create();
-
-        Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
-
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
+    $this->actingAs($user)
+        ->post(route('transformers.[RESOURCE_KEY].run', [
+            'project' => $project->id,
+            'transformer' => $transformer->id,
+        ]))
+        ->assertRedirectToRoute('projects.show', [
+            'project' => $project->id,
         ]);
-
-        $this->assertDatabaseCount('documents', 0);
-        $webFileSourceType->handle();
-
-        $this->assertDatabaseCount('documents', 1);
-
-    }
-
-    public function test_makes_document_once()
-    {
-        $source = Source::factory()->create();
-
-        Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
-
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
-        ]);
-
-        $this->assertDatabaseCount('documents', 0);
-        $webFileSourceType->handle();
-
-        $this->assertDatabaseCount('documents', 1);
-        $webFileSourceType->handle();
-        $this->assertDatabaseCount('documents', 1);
-    }
-
-    protected function mockFunction($functionName, $returnValue)
-    {
-        $mock = Mockery::mock();
-        $mock->shouldReceive('__invoke')->andReturn($returnValue);
-        $this->app->instance($functionName, $mock);
-    }
-}
+});
