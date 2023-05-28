@@ -192,7 +192,7 @@ const footerNavigation = {
     ],
     support: [
         { name: 'Issues 🐞', href: 'https://github.com/alnutile/larachain/issues' },
-        { name: 'Project Board 📆', href: 'https://github.com/users/alnutile/projects/2' },
+        { name: 'Project Board 📆', href: 'https://github.com/users/alnutile/projects/2/views/1?layout=board' },
     ],
     company: [
         { name: 'Break9', href: 'https://break9.com/' },
