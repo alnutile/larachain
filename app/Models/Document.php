@@ -59,7 +59,6 @@ class Document extends Model
     {
         if (in_array($this->source->type, [
             SourceTypeEnum::WebFile,
-            SourceTypeEnum::WebSiteDocument,
         ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d'),
@@ -74,7 +73,6 @@ class Document extends Model
     {
         if (in_array($this->source->type, [
             SourceTypeEnum::WebFile,
-            SourceTypeEnum::WebSiteDocument,
         ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d/%s'),

@@ -32,10 +32,10 @@ return [
             'active' => 0,
             'background' => 'bg-red-500',
         ],
-        'web_site_document' => [
+        'scrape_web_page' => [
             'name' => 'Web Site Document',
             'description' => 'Get a web page and save as html',
-            'class' => 'App\\Source\\Types\\WebSiteDocument',
+            'class' => 'App\\Source\\Types\\ScrapeWebPage',
             'requires' => [
             ],
             'active' => 1,

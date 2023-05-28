@@ -18,7 +18,7 @@ it('should show the form for URL Source Web Site Document', function () {
     ]);
 
     $this->actingAs($user)
-        ->get(route('sources.web_site_document.create', [
+        ->get(route('sources.scrape_web_page.create', [
             'project' => $project->id,
         ]))
         ->assertOk();
@@ -39,7 +39,7 @@ it('should allow you to edit Web Site Document', function () {
     ]);
 
     $this->actingAs($user)
-        ->get(route('sources.web_site_document.edit', [
+        ->get(route('sources.scrape_web_page.edit', [
             'project' => $project->id,
             'source' => $source->id,
         ]))
@@ -62,7 +62,7 @@ it('should run Web Site Document', function () {
     ]);
 
     $this->actingAs($user)
-        ->post(route('sources.web_site_document.run', [
+        ->post(route('sources.scrape_web_page.run', [
             'project' => $project->id,
             'source' => $source->id,
         ]))
@@ -88,7 +88,7 @@ it('should allow you to update Web Site Document', function () {
     ]);
 
     $this->actingAs($user)
-        ->put(route('sources.web_site_document.update', [
+        ->put(route('sources.scrape_web_page.update', [
             'project' => $project->id,
             'source' => $source->id,
         ]), [
@@ -118,7 +118,7 @@ it('should create Web Site Document', function () {
     assertDatabaseCount('sources', 0);
 
     $this->actingAs($user)
-        ->post(route('sources.web_site_document.store', [
+        ->post(route('sources.scrape_web_page.store', [
             'project' => $project->id,
         ]), [
             'name' => 'Foo',

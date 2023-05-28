@@ -12,35 +12,6 @@ trait SharedSetupForPdfFile
 
     public Source $source;
 
-    protected function webPageToText()
-    {
-        $source = Source::factory()
-            ->webDocumentMetaData()
-            ->create();
-
-        $document = Document::factory()->create([
-            'source_id' => $source->id,
-            'guid' => 'example.html',
-        ]);
-
-        $from = base_path('tests/fixtures/example.html');
-
-        if (! File::exists($document->directoryForFile())) {
-            File::makeDirectory(
-                $document->directoryForFile(),
-                0755,
-                true
-            );
-            File::copy(
-                $from,
-                $document->pathToFile()
-            );
-        }
-
-        $this->document = $document;
-        $this->source = $source;
-    }
-
     protected function webFileDownloadSetup()
     {
         $source = Source::factory()

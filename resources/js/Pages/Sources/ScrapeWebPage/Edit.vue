@@ -60,7 +60,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form.put(route("sources.web_site_document.update", {
+    form.put(route("sources.scrape_web_page.update", {
         project: props.project.id,
         source: props.source.id
     }), {

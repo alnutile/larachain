@@ -8,7 +8,7 @@ use App\Models\Document;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
-class WebSiteDocument extends BaseSourceType
+class ScrapeWebPage extends BaseSourceType
 {
     public function handle(): Document
     {

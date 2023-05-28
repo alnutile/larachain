@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
 use App\Models\Source;
 use App\Source\Types\WebFile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class WebFileTest extends TestCase
 {

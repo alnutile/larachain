@@ -6,12 +6,12 @@ use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceTypeEnum;
 
-class WebSiteDocumentSourceController extends BaseSourceController
+class ScrapeWebPageSourceController extends BaseSourceController
 {
     public function create(Project $project)
     {
-        return inertia('Sources/WebSiteDocument/Create', [
-            'details' => config('larachain.sources.web_site_document'),
+        return inertia('Sources/ScrapeWebPage/Create', [
+            'details' => config('larachain.sources.scrape_web_page'),
             'project' => $project,
             'source' => [
                 'meta_data' => [
@@ -23,8 +23,8 @@ class WebSiteDocumentSourceController extends BaseSourceController
 
     public function edit(Project $project, Source $source)
     {
-        return inertia('Sources/WebSiteDocument/Edit', [
-            'details' => config('larachain.sources.web_site_document'),
+        return inertia('Sources/ScrapeWebPage/Edit', [
+            'details' => config('larachain.sources.scrape_web_page'),
             'project' => $project,
             'source' => $source,
         ]);
@@ -42,7 +42,7 @@ class WebSiteDocumentSourceController extends BaseSourceController
             'project_id' => $project->id,
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::WebSiteDocument,
+            'type' => SourceTypeEnum::ScrapeWebPage,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);
@@ -68,7 +68,7 @@ class WebSiteDocumentSourceController extends BaseSourceController
             'project_id' => $validated['project_id'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::WebSiteDocument,
+            'type' => SourceTypeEnum::ScrapeWebPage,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);

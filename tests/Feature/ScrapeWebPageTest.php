@@ -4,22 +4,22 @@ namespace Tests\Feature;
 
 use App\Models\Document;
 use App\Models\Source;
-use App\Source\Types\WebSiteDocument;
+use App\Source\Types\ScrapeWebPage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
 
-class WebSiteDocumentTest extends TestCase
+class ScrapeWebPageTest extends TestCase
 {
     public function test_gets_file()
     {
-        $source = Source::factory()->webDocumentMetaData()->create();
+        $source = Source::factory()->scrapeWebPage()->create();
 
         Storage::fake('projects');
 
-        $webFileSourceType = new WebSiteDocument($source);
+        $webFileSourceType = new ScrapeWebPage($source);
 
         $html = File::get(base_path('tests/fixtures/example.html'));
 
@@ -39,10 +39,10 @@ class WebSiteDocumentTest extends TestCase
 
     public function test_makes_document()
     {
-        $source = Source::factory()->webDocumentMetaData()->create();
+        $source = Source::factory()->scrapeWebPage()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebSiteDocument($source);
+        $webFileSourceType = new ScrapeWebPage($source);
 
         Http::fake([
             'en.wikipedia.com/*' => Http::response('foo', 200),
@@ -57,10 +57,10 @@ class WebSiteDocumentTest extends TestCase
 
     public function test_makes_document_once_with_name()
     {
-        $source = Source::factory()->webDocumentMetaData()->create();
+        $source = Source::factory()->scrapeWebPage()->create();
 
         Storage::fake('projects');
-        $webFileSourceType = new WebSiteDocument($source);
+        $webFileSourceType = new ScrapeWebPage($source);
 
         Http::fake([
             'wikipedia.com/*' => Http::response('foo', 200),

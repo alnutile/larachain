@@ -12,6 +12,6 @@ enum SourceTypeEnum: string
     use TypeTrait;
 
     //case TemplateType = 'template_type'
-    case WebSiteDocument = 'web_site_document';
+    case ScrapeWebPage = 'scrape_web_page';
     case WebFile = 'web_file';
 }

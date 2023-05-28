@@ -59,7 +59,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form.post(route("sources.web_site_document.store", {
+    form.post(route("sources.scrape_web_page.store", {
         project: props.project.id
     }), {
         preserveScroll: true,

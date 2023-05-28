@@ -8,8 +8,8 @@ use App\Http\Controllers\ResponseTypes\EmbedQuestionResponseTypeController;
 use App\Http\Controllers\ResponseTypes\TrimTextResponseTypeController;
 use App\Http\Controllers\ResponseTypes\VectorSearchResponseTypeController;
 use App\Http\Controllers\SortingController;
+use App\Http\Controllers\Sources\ScrapeWebPageSourceController;
 use App\Http\Controllers\Sources\WebFileSourceController;
-use App\Http\Controllers\Sources\WebSiteDocumentSourceController;
 use App\Http\Controllers\Transformers\EmbedTransformerController;
 use App\Http\Controllers\Transformers\PdfTransformerController;
 use Illuminate\Foundation\Application;
@@ -309,18 +309,18 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller(WebSiteDocumentSourceController::class)->group(
+])->controller(ScrapeWebPageSourceController::class)->group(
     function () {
-        Route::get('/projects/{project}/sources/web_site_document/create', 'create')
-            ->name('sources.web_site_document.create');
-        Route::get('/projects/{project}/sources/{source}/web_site_document/edit', 'edit')
-            ->name('sources.web_site_document.edit');
-        Route::post('/projects/{project}/sources/web_site_document/store', 'store')
-            ->name('sources.web_site_document.store');
-        Route::put('/projects/{project}/sources/{source}/web_site_document/update', 'update')
-            ->name('sources.web_site_document.update');
-        Route::post('/projects/{project}/sources/{source}/web_site_document/run', 'run')
-            ->name('sources.web_site_document.run');
+        Route::get('/projects/{project}/sources/scrape_web_page/create', 'create')
+            ->name('sources.scrape_web_page.create');
+        Route::get('/projects/{project}/sources/{source}/scrape_web_page/edit', 'edit')
+            ->name('sources.scrape_web_page.edit');
+        Route::post('/projects/{project}/sources/scrape_web_page/store', 'store')
+            ->name('sources.scrape_web_page.store');
+        Route::put('/projects/{project}/sources/{source}/scrape_web_page/update', 'update')
+            ->name('sources.scrape_web_page.update');
+        Route::post('/projects/{project}/sources/{source}/scrape_web_page/run', 'run')
+            ->name('sources.scrape_web_page.run');
     }
 );
 

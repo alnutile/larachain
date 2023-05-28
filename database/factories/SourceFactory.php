@@ -35,11 +35,11 @@ class SourceFactory extends Factory
         ];
     }
 
-    public function webDocumentMetaData()
+    public function scrapeWebPage()
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => SourceTypeEnum::WebFile,
+                'type' => SourceTypeEnum::ScrapeWebPage,
                 'meta_data' => [
                     'url' => 'https://en.wikipedia.org/wiki/Laravel',
                 ],
