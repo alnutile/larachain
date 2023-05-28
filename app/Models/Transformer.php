@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Exceptions\TranformerTypeMissingException;
 use App\Transformers\BaseTransformer;
 use App\Transformers\TransformerTypeEnum;
+use App\Exceptions\TransformerTypeMissingException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -37,7 +37,7 @@ class Transformer extends BaseTypeModel
     }
 
     /**
-     * @throws TranformerTypeMissingException
+     * @throws TransformerTypeMissingException
      */
     public function run()
     {
@@ -68,7 +68,7 @@ class Transformer extends BaseTypeModel
             }
         } catch (\Exception $e) {
             logger($e);
-            throw new TranformerTypeMissingException();
+            throw new TransformerTypeMissingException();
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tranformers;
+namespace App\Http\Controllers\Transformers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\ProcessTransformerJob;

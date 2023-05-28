@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class TranformerTypeMissingException extends Exception
+class TransformerTypeMissingException extends Exception
 {
     //
 }
