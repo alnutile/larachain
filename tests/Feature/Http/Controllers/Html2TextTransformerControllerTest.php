@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\User;
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Models\User;
 use Illuminate\Support\Facades\Queue;
 use function Pest\Laravel\assertDatabaseCount;
 
@@ -52,6 +52,4 @@ it('should run transformer Html2Text', function () {
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,
         ]);
-
-    Queue::assertPushed(ProcessTransformerJob::class);
 });

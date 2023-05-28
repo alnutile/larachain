@@ -34,4 +34,13 @@ class TransformerFactory extends Factory
             ];
         });
     }
+
+    public function html2text()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => TransformerTypeEnum::Html2Text,
+            ];
+        });
+    }
 }

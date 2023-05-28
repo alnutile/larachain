@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\Transformer;
-use App\Transformers\Types\PdfTransformer;
-use Illuminate\Support\Facades\File;
 use Tests\TestCase;
+use App\Models\Transformer;
+use Illuminate\Support\Facades\File;
+use App\Transformers\Types\PdfTransformer;
 
 class PdfTransformerTest extends TestCase
 {

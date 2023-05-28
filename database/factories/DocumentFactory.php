@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Ingress\StatusEnum;
 use App\Models\Source;
+use App\Ingress\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -29,4 +29,14 @@ class DocumentFactory extends Factory
             'meta_data' => [],
         ];
     }
+
+    public function html()
+{
+    return $this->state(function (array $attributes) {
+        return [
+            'content' => fake()->randomHtml(),
+            'guid' => "foo.html"
+        ];
+    });
+}
 }

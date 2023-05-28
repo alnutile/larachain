@@ -4,53 +4,37 @@ namespace Tests\Feature;
 
 use Mockery;
 use Tests\TestCase;
-use App\Models\Source;
+use App\Models\Document;
+use App\Models\Transformer;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use App\Source\Types\[RESOURCE_CLASS_NAME];
+use App\Transformers\TransformerTypeEnum;
+use App\Transformers\Types\[RESOURCE_CLASS_NAME];
 
-it('should create [RESOURCE_CLASS_NAME]', function () {
-    $user = User::factory()->withPersonalTeam()
-        ->create();
+class [RESOURCE_CLASS_NAME]Test extends TestCase
+{
+    use SharedSetupForPdfFile;
+    
+    public function test_parses()
+    {
+        $document = Document::factory()->html()->create();
 
-    $user = $this->createTeam($user);
-
-    $project = Project::factory()->create([
-        'team_id' => $user->current_team_id,
-    ]);
-
-    assertDatabaseCount('transformers', 0);
-
-    $this->actingAs($user)
-        ->get(route('transformers.[RESOURCE_KEY].create', [
-            'project' => $project->id,
-        ]))
-        ->assertRedirectToRoute('projects.show', [
-            'project' => $project->id,
+        $transformerModel = Transformer::factory()->create([
+            'type' => TransformerTypeEnum::[RESOURCE_CLASS_NAME],
         ]);
-    assertDatabaseCount('transformers', 1);
-});
+        
+        Storage::fake('projects');
 
-it('should run transformer [RESOURCE_CLASS_NAME]', function () {
-    $user = User::factory()->withPersonalTeam()
-        ->create();
+        $transformer = new [RESOURCE_CLASS_NAME]($document);
+        $this->assertDatabaseCount('document_chunks', 0);
+        $transformer->handle($transformerModel);
+        $this->assertDatabaseCount('document_chunks', 1);
 
-    $user = $this->createTeam($user);
+        $document = Document::first();
+        $content = $document->content;
 
-    $project = Project::factory()->create([
-        'team_id' => $user->current_team_id,
-    ]);
+        $this->assertNotNull($content);
 
-    $transformer = Transformer::factory()->create(
-        ['project_id' => $project->id]
-    );
-
-    $this->actingAs($user)
-        ->post(route('transformers.[RESOURCE_KEY].run', [
-            'project' => $project->id,
-            'transformer' => $transformer->id,
-        ]))
-        ->assertRedirectToRoute('projects.show', [
-            'project' => $project->id,
-        ]);
-});
+    }
+  
+}

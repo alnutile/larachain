@@ -12,10 +12,8 @@ class [RESOURCE_CLASS_NAME] extends BaseTransformer
 {
     public function handle(Transformer $transformer): Document
     {
-        $filePath = $this->document->pathToFile();
 
-        if (str($filePath)->endsWith('.html')) {
-            
+        if (str($this->document->guid)->endsWith('.html')) {
             if (! DocumentChunk::query()
             ->where('document_id', $this->document->id)
             ->exists()) {

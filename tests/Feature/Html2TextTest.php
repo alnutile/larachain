@@ -2,77 +2,39 @@
 
 namespace Tests\Feature;
 
-use App\Models\Source;
-use App\Source\Types\Html2Text;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
+use App\Models\Document;
+use App\Models\Transformer;
+use Illuminate\Support\Facades\Http;
+use App\Transformers\Types\Html2Text;
+use Illuminate\Support\Facades\Storage;
+use App\Transformers\TransformerTypeEnum;
 
 class Html2TextTest extends TestCase
 {
-    public function test_gets_file()
+    use SharedSetupForPdfFile;
+    
+    public function test_parses()
     {
-        $source = Source::factory()->create();
+        $document = Document::factory()->html()->create();
 
-        Storage::fake('projects');
-        $webFileSourceType = new Html2Text($source);
-
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
+        $transformerModel = Transformer::factory()->create([
+            'type' => TransformerTypeEnum::Html2Text,
         ]);
-
-        $webFileSourceType->handle();
-
-        Http::assertSentCount(1);
-
-        $to = sprintf('%d/sources/%d/foo.pdf',
-            $source->project_id, $source->id);
-        Storage::disk('projects')->assertExists($to);
-
-    }
-
-    public function test_makes_document()
-    {
-        $source = Source::factory()->create();
-
+        
         Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
 
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
-        ]);
+        $transformer = new Html2Text($document);
+        $this->assertDatabaseCount('document_chunks', 0);
+        $transformer->handle($transformerModel);
+        $this->assertDatabaseCount('document_chunks', 1);
 
-        $this->assertDatabaseCount('documents', 0);
-        $webFileSourceType->handle();
+        $document = Document::first();
+        $content = $document->content;
 
-        $this->assertDatabaseCount('documents', 1);
+        $this->assertNotNull($content);
 
     }
-
-    public function test_makes_document_once()
-    {
-        $source = Source::factory()->create();
-
-        Storage::fake('projects');
-        $webFileSourceType = new WebFile($source);
-
-        Http::fake([
-            'wikipedia.com/*' => Http::response('foo', 200),
-        ]);
-
-        $this->assertDatabaseCount('documents', 0);
-        $webFileSourceType->handle();
-
-        $this->assertDatabaseCount('documents', 1);
-        $webFileSourceType->handle();
-        $this->assertDatabaseCount('documents', 1);
-    }
-
-    protected function mockFunction($functionName, $returnValue)
-    {
-        $mock = Mockery::mock();
-        $mock->shouldReceive('__invoke')->andReturn($returnValue);
-        $this->app->instance($functionName, $mock);
-    }
+  
 }
