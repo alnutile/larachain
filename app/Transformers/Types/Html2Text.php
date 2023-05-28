@@ -3,10 +3,10 @@
 namespace App\Transformers\Types;
 
 use App\Models\Document;
-use App\Models\Transformer;
 use App\Models\DocumentChunk;
-use Soundasleep\Html2Text as Helper;
+use App\Models\Transformer;
 use App\Transformers\BaseTransformer;
+use Soundasleep\Html2Text as Helper;
 
 class Html2Text extends BaseTransformer
 {
@@ -14,7 +14,7 @@ class Html2Text extends BaseTransformer
     {
         $filePath = $this->document->pathToFile();
 
-        if (str($this->document->guid)->endsWith(".html")) {
+        if (str($this->document->guid)->endsWith('.html')) {
             if (! DocumentChunk::query()
             ->where('document_id', $this->document->id)
             ->exists()) {

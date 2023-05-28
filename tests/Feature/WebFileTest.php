@@ -2,19 +2,16 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
-use App\Models\Source;
 use App\Models\Document;
+use App\Models\Source;
 use App\Source\Types\WebFile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class WebFileTest extends TestCase
 {
-
-
-    
     public function test_gets_file()
     {
         $source = Source::factory()->webFileMetaData()->create();
@@ -32,7 +29,7 @@ class WebFileTest extends TestCase
 
         $document = Document::first();
 
-        $this->assertEquals("foo", $document->content);
+        $this->assertEquals('foo', $document->content);
 
     }
 

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Source;
 use App\Ingress\StatusEnum;
+use App\Models\Source;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,11 +31,11 @@ class DocumentFactory extends Factory
     }
 
     public function html()
-{
+    {
     return $this->state(function (array $attributes) {
         return [
             'content' => fake()->randomHtml(),
-            'guid' => "foo.html"
+            'guid' => 'foo.html',
         ];
     });
 }

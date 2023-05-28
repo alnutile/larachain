@@ -2,19 +2,17 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
 use App\Models\Document;
 use App\Models\Transformer;
-use Illuminate\Support\Facades\Http;
+use App\Transformers\TransformerTypeEnum;
 use App\Transformers\Types\Html2Text;
 use Illuminate\Support\Facades\Storage;
-use App\Transformers\TransformerTypeEnum;
+use Tests\TestCase;
 
 class Html2TextTest extends TestCase
 {
     use SharedSetupForPdfFile;
-    
+
     public function test_parses()
     {
         $document = Document::factory()->html()->create();
@@ -22,7 +20,7 @@ class Html2TextTest extends TestCase
         $transformerModel = Transformer::factory()->create([
             'type' => TransformerTypeEnum::Html2Text,
         ]);
-        
+
         Storage::fake('projects');
 
         $transformer = new Html2Text($document);
@@ -36,5 +34,4 @@ class Html2TextTest extends TestCase
         $this->assertNotNull($content);
 
     }
-  
 }
