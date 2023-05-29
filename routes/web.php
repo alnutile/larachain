@@ -350,6 +350,17 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(\App\Http\Controllers\DeleteResponseTypesController::class)->group(
+    function () {
+        Route::delete('/response_types/{response_type}/delete', 'delete')
+            ->name('response_types.delete');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(\App\Http\Controllers\Transformers\Html2TextTransformerController::class)->group(
     function () {
         Route::get('/projects/{project}/transformers/html2text/create', 'create')

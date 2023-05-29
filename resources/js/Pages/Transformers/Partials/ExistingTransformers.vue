@@ -58,8 +58,6 @@ import DeletePartial from "@/Pages/Sources/Components/DeletePartial.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import RunButton from "@/Components/RunButton.vue";
 import DeleteButton from "@/Components/DeleteButton.vue";
-
-
 import { ArrowsPointingOutIcon, PlayIcon, TrashIcon} from "@heroicons/vue/24/solid"
 const toast = useToast();
 
@@ -85,7 +83,6 @@ const deleteTransformer = (transformers) => {
         preserveScroll: false,
         preserveState: false,
     });
-
 }
 
 const endDrag = (event) => {

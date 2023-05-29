@@ -23,6 +23,13 @@
                         <div class="text-xs text-gray-500">
                         </div>
                     </div>
+                    <div class="justify-end flex w-full">
+                        <DeleteButton
+                            type="button"
+                            @click="deleteResponseType(element)">
+                            <TrashIcon class="w-4 h-4"/>
+                        </DeleteButton>
+                    </div>
                 </div>
             </div>
         </VueDraggableNext>
@@ -35,10 +42,11 @@
 
 <script setup>
 import { VueDraggableNext } from 'vue-draggable-next'
-import { ArrowsPointingOutIcon} from "@heroicons/vue/24/solid"
 import {useToast} from "vue-toastification";
-import {Link} from "@inertiajs/vue3";
+import {Link, useForm} from "@inertiajs/vue3";
 import {onMounted, ref} from "vue";
+import DeleteButton from "@/Components/DeleteButton.vue";
+import { ArrowsPointingOutIcon, TrashIcon} from "@heroicons/vue/24/solid"
 const toast = useToast();
 
 const items = ref([])
@@ -49,6 +57,16 @@ const props = defineProps({
     outbound: Object
 })
 
+const form = useForm({})
+
+const deleteResponseType = (response_types) => {
+    form.delete(route('response_types.delete', {
+        response_type: response_types.id
+    }), {
+        preserveScroll: false,
+        preserveState: false,
+    });
+}
 onMounted(() => {
     items.value = props.outbound.response_types;
 })
