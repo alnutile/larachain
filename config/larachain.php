@@ -83,7 +83,7 @@ return [
             'name' => 'Add an API',
             'description' => 'Attach a secure API to communicate with your data from any other app.',
             'icon' => 'PhoneIcon',
-            'active' => 0,
+            'active' => 1,
             'background' => 'bg-gray-500',
         ],
     ],

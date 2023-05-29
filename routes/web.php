@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Outbounds\ApiiOutboundController;
+use App\Http\Controllers\Outbounds\ApiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
 use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
 use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
@@ -90,6 +90,27 @@ Route::middleware([
             ->name('transformers.embed_transformer.update');
         Route::post('/projects/{project}/transformers/{transformer}/embed_transformer/run', 'run')
             ->name('transformers.embed_transformer.run');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(ApiOutboundController::class)->group(
+    function () {
+        Route::get('/projects/{project}/outbounds/api/create', 'create')
+            ->name('outbounds.chat_ui.create');
+        Route::get('/projects/{project}/outbounds/{api}/api', 'show')
+            ->name('outbounds.api.show');
+        Route::get('/projects/{project}/outbounds/{outbound}/api/edit', 'edit')
+            ->name('outbounds.api.edit');
+        Route::post('/projects/{project}/outbounds/api/store', 'store')
+            ->name('outbounds.api.store');
+        Route::put('/projects/{project}/transformers/{outbound}/api/update', 'update')
+            ->name('outbounds.api.update');
+        Route::post('/projects/{project}/transformers/{outbound}/api/run', 'run')
+            ->name('outbounds.api.run');
     }
 );
 
