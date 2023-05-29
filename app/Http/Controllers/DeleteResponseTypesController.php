@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ResponseType;
-use App\Models\Transformer;
-use Illuminate\Http\Request;
 
 class DeleteResponseTypesController extends Controller
 {
@@ -16,7 +14,7 @@ class DeleteResponseTypesController extends Controller
 
         request()->session()->flash('flash.banner', 'ResponseType deleted...');
 
-        return to_route('outbounds.' . $outbound->type->value . '.show', [
+        return to_route('outbounds.'.$outbound->type->value.'.show', [
             'outbound' => $outbound->id,
             'project' => $outbound->project_id,
         ]);

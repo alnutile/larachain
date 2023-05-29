@@ -3,10 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\ResponseType;
-use App\Models\Transformer;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DeleteResponseTypesControllerTest extends TestCase
