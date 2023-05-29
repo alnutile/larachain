@@ -54,6 +54,79 @@ import { usePage, Link } from "@inertiajs/vue3";
                                     </Link>
                                 </template>
                             </Block>
+
+                            <Block>
+                                <template #icon>
+                                    <svg
+                                        class="w-6 h-6 stroke-gray-400"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                    </svg>
+                                </template>
+                                <template #title_link>
+                                    <a href="https://github.com/alnutile/larachain/wiki" target="_blank">Wiki</a>
+                                </template>
+                                <template #description>
+                                    All the latest docs for you to learn the how and the why.
+                                </template>
+                                <template #exit_link>
+                                    <a href="https://github.com/alnutile/larachain/wiki" target="_blank" class="inline-flex items-center font-semibold text-indigo-700">
+                                        Wiki
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 fill-indigo-500">
+                                            <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </template>
+                            </Block>
+                            <Block>
+                                <template #icon>
+                                    <svg
+                                        class="w-6 h-6 stroke-gray-400"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                                    </svg>
+
+                                </template>
+                                <template #title_link>
+                                    <a href="https://github.com/users/alnutile/projects/2/views/1" target="_blank">Issue Board</a>
+                                </template>
+                                <template #description>
+                                    See the planning and issues on GitHub. Help with any or submit some ideas and bugs.
+                                </template>
+                                <template #exit_link>
+                                    <a href="https://github.com/users/alnutile/projects/2/views/1" target="_blank" class="inline-flex items-center font-semibold text-indigo-700">
+                                        Issue Board
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 fill-indigo-500">
+                                            <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </template>
+                            </Block>
+                            <Block>
+                                <template #icon>
+                                    <svg
+                                        class="w-6 h-6 stroke-gray-400"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                                    </svg>
+
+                                </template>
+                                <template #title_link>
+                                    <a href="https://github.com/alnutile/larachain" target="_blank">GitHub Code</a>
+                                </template>
+                                <template #description>
+                                    {{ usePage().props.app_name }} is Open-Source. You can download it, fix it, read the code, self host etc!
+                                </template>
+                                <template #exit_link>
+                                    <a href="https://github.com/alnutile/larachain" target="_blank" class="inline-flex items-center font-semibold text-indigo-700">
+                                        GitHub Code
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 fill-indigo-500">
+                                            <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </template>
+                            </Block>
                         </div>
                     </div>
                 </div>
