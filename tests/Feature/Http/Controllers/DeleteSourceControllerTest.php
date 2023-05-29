@@ -12,8 +12,6 @@ class DeleteSourceControllerTest extends TestCase
 {
     public function test_delete()
     {
-        //can user do it
-
         $user = User::factory()->create();
 
         $source = Source::factory()->create();

@@ -29,8 +29,10 @@
                         <RunButton
                             type="button"
                             @click="run(element)">
-                            <Spinner v-if="formRun.processing&& running === element.id"/>
-                            <PlayIcon class="w-4 h-4"/></RunButton>
+                            <Spinner
+                                class="mr-0"
+                                v-if="formRun.processing&& running === element.id"/>
+                            <PlayIcon v-else class="w-4 h-4"/></RunButton>
                         <DeleteButton
                             type="button"
                             @click="setSourceToDelete(element)">

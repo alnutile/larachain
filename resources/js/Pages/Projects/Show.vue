@@ -45,18 +45,16 @@
                         <div v-if="response.length === 0" class="text-xl text-gray-400">
                             Responses will show here
                         </div>
-                        <div v-else v-for="(message, index) in response" :key="index" class="flex items-center gap-4 w-full">
-                            <div v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2 inline-block">
-                                <div>
+                        <span v-else v-for="(message, index) in response" :key="index" class="flex items-center gap-4 w-full">
+                            <span v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2">
                                     {{ message.content }}
-                                </div>
-                            </div>
-                            <div v-else class="flex w-full justify-end mt-1 mb-1">
-                                <div class="bg-blue-500 text-white rounded-md px-4 py-2 inline-block">
+                            </span>
+                            <span v-else class="flex w-full justify-end mt-1 mb-1 ">
+                                <span class="bg-blue-500 text-white rounded-md px-4 py-2 inline-block">
                                     {{ message.content }}
-                                </div>
-                            </div>
-                        </div>
+                                </span>
+                            </span>
+                        </span>
                     </div>
 
                     <div v-if="settings"

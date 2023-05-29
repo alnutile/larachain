@@ -21,9 +21,21 @@
                         </div>
                     </Link>
                     <div class="flex justify-end w-full">
-                        <SecondaryButton @click="run(element)">
-                            <Spinner v-if="formRun.processing && running === element.id"/>
-                            run</SecondaryButton>
+
+                        <RunButton
+                            type="button"
+                            @click="run(element)">
+                            <Spinner
+                                class="mr-0"
+                                v-if="formRun.processing&& running === element.id"/>
+                            <PlayIcon v-else class="w-4 h-4"/></RunButton>
+
+                        <DeleteButton
+                            type="button"
+                            @click="deleteTransformer(element)">
+                            <TrashIcon class="w-4 h-4"/>
+                        </DeleteButton>
+
                     </div>
                 </div>
             </div>
@@ -31,6 +43,7 @@
 
     </div>
     <div v-else class="text-gray-400">👇Choose a Transformer below to get started</div>
+
 
 </template>
 
@@ -40,14 +53,21 @@ import {useToast} from "vue-toastification";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import {onMounted, ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
+import DeletePartial from "@/Pages/Sources/Components/DeletePartial.vue";
+import DialogModal from "@/Components/DialogModal.vue";
+import RunButton from "@/Components/RunButton.vue";
+import DeleteButton from "@/Components/DeleteButton.vue";
 
-import { ArrowsPointingOutIcon} from "@heroicons/vue/24/solid"
+
+import { ArrowsPointingOutIcon, PlayIcon, TrashIcon} from "@heroicons/vue/24/solid"
 const toast = useToast();
 
 const props = defineProps({
     project: Object
 })
+
+const form = useForm({});
 
 const items = ref([])
 
@@ -56,6 +76,17 @@ const model = "\\App\\Models\\Transformer"
 onMounted(() => {
     items.value = props.project.transformers;
 })
+
+
+const deleteTransformer = (transformers) => {
+    form.delete(route('transformers.delete', {
+        transformer: transformers.id
+    }), {
+        preserveScroll: false,
+        preserveState: false,
+    });
+
+}
 
 const endDrag = (event) => {
     items.value.forEach((item, key) => {

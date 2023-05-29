@@ -134,7 +134,7 @@ EOD;
                 $content = data_get($step, 'delta.content');
                 $data[] = $content;
                 $reply = $reply.$content;
-                if ($count >= 20) {
+                if ($count >= 50) {
                     logger($reply); //make this pusher
                     ChatReplyEvent::dispatch($project, $user, $reply);
                     $count = 0;
@@ -146,7 +146,7 @@ EOD;
             logger($reply);
             ChatReplyEvent::dispatch($project, $user, $reply);
 
-            return implode("\n", $data);
+            return implode(" ", $data);
         } catch (\Exception $e) {
 
             logger('Error talking to api', [
