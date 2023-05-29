@@ -2,13 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Document;
-use App\Models\DocumentChunk;
-use App\Models\Source;
 use App\Models\Transformer;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DeleteTransformerControllerTest extends TestCase

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Document;
-use App\Models\Source;
 use App\Models\Transformer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DeleteTransformerController extends Controller
 {

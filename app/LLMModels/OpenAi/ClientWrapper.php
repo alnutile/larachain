@@ -146,7 +146,7 @@ EOD;
             logger($reply);
             ChatReplyEvent::dispatch($project, $user, $reply);
 
-            return implode(" ", $data);
+            return implode(' ', $data);
         } catch (\Exception $e) {
 
             logger('Error talking to api', [
