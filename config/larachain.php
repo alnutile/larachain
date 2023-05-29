@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'google_analytics' => false,
     'sources' => [
         'web_file' => [
             'name' => 'Web File Source Type',
