@@ -2,14 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Document;
-use App\Models\DocumentChunk;
 use App\Models\Outbound;
 use App\Models\ResponseType;
-use App\Models\Source;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DeleteOutboundControllerTest extends TestCase
@@ -21,7 +16,7 @@ class DeleteOutboundControllerTest extends TestCase
         $outbound = Outbound::factory()->create();
 
         ResponseType::factory()->count(4)->create([
-            'outbound_id' => $outbound->id
+            'outbound_id' => $outbound->id,
         ]);
 
         $this->assertDatabaseCount('outbounds', 1);

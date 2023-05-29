@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outbound;
-use Illuminate\Http\Request;
 
 class DeleteOutboundController extends Controller
 {
