@@ -1,8 +1,11 @@
 <template>
     <div v-if="project.outbounds">
         <ul>
-            <li v-for="outbound in project.outbounds" :key="outbound.id" class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer">
-                <Link :href="route('outbounds.chat_ui.show', {
+            <li v-for="outbound in project.outbounds" :key="outbound.id"
+                class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer justify-between flex">
+                <Link
+                    class="w-full"
+                    :href="route('outbounds.chat_ui.show', {
                             project: project.id,
                             outbound: outbound.id
                         })">
@@ -13,6 +16,13 @@
 
                     </div>
                 </Link>
+                <div class="justify-end flex w-full h-6">
+                    <DeleteButton
+                        type="button"
+                        @click="deleteOutbound(outbound)">
+                        <TrashIcon class="w-4 h-4"/>
+                    </DeleteButton>
+                </div>
             </li>
         </ul>
     </div>
@@ -26,13 +36,23 @@ import {useForm, Link, router} from "@inertiajs/vue3";
 import Spinner from "@/Components/Spinner.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {onMounted, ref} from "vue";
-
+import DeleteButton from "@/Components/DeleteButton.vue";
+import { ArrowsPointingOutIcon, TrashIcon} from "@heroicons/vue/24/solid"
 const toast = useToast();
 
 const props = defineProps({
     project: Object
 })
+const form = useForm({})
 
+const deleteOutbound = (outbound) => {
+    form.delete(route('outbounds.delete', {
+        outbound: outbound.id
+    }), {
+        preserveScroll: false,
+        preserveState: false,
+    });
+}
 
 </script>
 

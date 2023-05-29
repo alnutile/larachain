@@ -350,6 +350,17 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(\App\Http\Controllers\DeleteOutboundController::class)->group(
+    function () {
+        Route::delete('/outbounds/{outbound}/delete', 'delete')
+            ->name('outbounds.delete');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(\App\Http\Controllers\DeleteResponseTypesController::class)->group(
     function () {
         Route::delete('/response_types/{response_type}/delete', 'delete')
