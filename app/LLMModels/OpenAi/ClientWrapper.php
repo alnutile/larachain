@@ -109,7 +109,10 @@ EOD;
         return $content;
     }
 
-    public function projectChat(Project $project, User $user, array $messages, $tries = 1): string|\Exception
+    public function projectChat(Project $project,
+                                User    $user,
+                                array   $messages,
+                                        $tries = 1): string|\Exception
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
@@ -133,7 +136,7 @@ EOD;
                 $step = $response->choices[0]->toArray();
                 $content = data_get($step, 'delta.content');
                 $data[] = $content;
-                $reply = $reply.$content;
+                $reply = $reply . $content;
                 if ($count >= 50) {
                     logger($reply); //make this pusher
                     ChatReplyEvent::dispatch($project, $user, $reply);
@@ -169,6 +172,46 @@ EOD;
         }
     }
 
+    public function nonStreamProjectChat(Project $project,
+                                         User    $user,
+                                         array   $messages,
+                                                 $tries = 1): string|\Exception
+    {
+
+        $messages = clean_messages($messages);
+
+        try {
+            $response = OpenAI::chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'temperature' => $this->temperature,
+                'messages' => $messages,
+            ]);
+
+            $content = data_get($response, 'choices.0.message.content', null);
+            ChatReplyEvent::dispatch($project, $user, $content);
+
+            return $content;
+        } catch (\Exception $e) {
+            logger('Error talking to api', [
+                $e->getMessage(),
+            ]);
+
+            if ($tries > 2) {
+                return 'Error with API try again later';
+            } else {
+                $tries = $tries + 1;
+                $this->nonStreamProjectChat(
+                    $project,
+                    $user,
+                    $messages,
+                    $tries
+                );
+
+                return 'Trying again due to error';
+            }
+        }
+    }
+
     public function chat(array $messages): string
     {
         if (config('openai.mock')) {
@@ -190,7 +233,7 @@ EOD;
             $step = $response->choices[0]->toArray();
             $content = data_get($step, 'delta.content');
             $data[] = $content;
-            $reply = $reply.' '.$content;
+            $reply = $reply . ' ' . $content;
             if ($count >= 20) {
                 logger($reply); //make this pusher
                 $count = 0;

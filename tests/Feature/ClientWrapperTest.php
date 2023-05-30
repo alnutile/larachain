@@ -6,11 +6,60 @@ use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Project;
 use App\Models\User;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
+use Illuminate\Support\Facades\Event;
 use OpenAI\Laravel\Facades\OpenAI;
+use OpenAI\Responses\Chat\CreateResponse;
 use Tests\TestCase;
 
 class ClientWrapperTest extends TestCase
 {
+
+    public function test_non_stream_chat() {
+        Event::fake();
+        OpenAI::fake([
+            CreateResponse::fake([
+                'choices' => [
+                    [
+                        'text' => 'awesome!',
+                    ],
+                ]
+            ])
+        ]);
+
+
+        $project = Project::factory()->create();
+        $user = User::factory()->create();
+        $message = [
+            [
+                'role' => 'system',
+                'content' => 'You are an AI Historian assistant...',
+            ],
+            [
+                'role' => 'user',
+                'content' => "What other makers are around the time of O'Keeffe, Georgia?",
+            ],
+            [
+                'role' => 'assistant',
+                'content' => 'yup',
+            ],
+            [
+                'role' => 'user',
+                'content' => "What influenced O'Keeffe's art style?",
+            ],
+        ];
+
+        $results = ClientWrapper::nonStreamProjectChat(
+            $project,
+            $user,
+            $message,
+            2
+        );
+
+        $this->assertEquals("\n\nHello there, this is a fake chat response.", $results);
+
+    }
+
+
     public function test_chat()
     {
 

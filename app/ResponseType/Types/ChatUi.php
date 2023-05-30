@@ -3,6 +3,7 @@
 namespace App\ResponseType\Types;
 
 use App\Models\Message;
+use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
@@ -71,10 +72,12 @@ class ChatUi extends BaseResponseType
         }
 
         $messages = clean_messages($messages->toArray());
-        $fullResponse = ClientWrapper::projectChat(
+
+        $fullResponse = $this->chat(
             $this->project,
             $this->user,
-            $messages);
+            $messages
+        );
 
         $this->makeAssistantMessage($fullResponse);
 
@@ -84,6 +87,13 @@ class ChatUi extends BaseResponseType
                 'response' => ContentCollection::emptyContent(),
             ]
         );
+    }
+
+    protected function chat(Project $project, User $user, array $messages) : string {
+        return ClientWrapper::projectChat(
+            $this->project,
+            $this->user,
+            $messages);
     }
 
     protected function updateSystemPrompt(): PromptTemplate

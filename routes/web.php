@@ -406,3 +406,20 @@ Route::middleware([
             ->name('transformers.html2text.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\ChatApiResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/chatapi/create', 'create')
+            ->name('response_types.chatapi.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/chatapi/edit', 'edit')
+            ->name('response_types.chatapi.edit');
+        Route::post('/outbounds/{outbound}/response_types/chatapi/store', 'store')
+            ->name('response_types.chatapi.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/chatapi/update', 'update')
+            ->name('response_types.chatapi.update');
+    }
+);
