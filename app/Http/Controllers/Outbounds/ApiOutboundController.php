@@ -15,7 +15,6 @@ class ApiOutboundController extends BaseOutboundController
             'type' => OutboundEnum::Api,
             'active' => 1,
             'project_id' => $project->id,
-            'meta_data' => []
         ]);
 
         request()->session()->flash('flash.banner', 'Created Outbound now to add Response Types');

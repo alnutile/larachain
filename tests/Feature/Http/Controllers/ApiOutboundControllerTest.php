@@ -28,7 +28,7 @@ it('test shows create page API Outbound', function () {
     assertDatabaseCount('outbounds', 1);
 });
 
-it('test show outbound', function () {
+it('test show Api Outbound', function () {
     $user = User::factory()->withPersonalTeam()
         ->create();
 
@@ -38,12 +38,12 @@ it('test show outbound', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    $outbound = Outbound::factory()->create([
+    $outbound = Outbound::factory()->api()->create([
         'project_id' => $project->id,
     ]);
 
     $this->actingAs($user)
-        ->get(route('outbounds.chat_ui.show', [
+        ->get(route('outbounds.api.show', [
             'project' => $project->id,
             'outbound' => $outbound->id,
         ]))

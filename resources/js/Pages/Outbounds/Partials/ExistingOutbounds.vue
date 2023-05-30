@@ -5,7 +5,7 @@
                 class="mt-1 border border-gray-200 p-4 shadow hover:bg-gray-50 hover:cursor-pointer justify-between flex">
                 <Link
                     class="w-full"
-                    :href="route('outbounds.chat_ui.show', {
+                    :href="route(`outbounds.${outbound.type}.show`, {
                             project: project.id,
                             outbound: outbound.id
                         })">
