@@ -55,11 +55,12 @@ EOL;
         ]);
 
         try {
-            $response = $outbound->runResponseType(
-                $responseType,
+            $response = $outbound->run(
                 auth()->user(),
                 $validated['question']
             );
+
+            logger('### CONTROLLER', $response->toArray());
 
             return response()->json([
                 'data' => $response->message->content,

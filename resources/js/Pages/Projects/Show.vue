@@ -36,6 +36,7 @@
                                             Ask
                                         </PrimaryButton>
                                     </div>
+                                    <div><button @click="refresh" class="underlines text-gray-500 italic" type="button">clear history</button></div>
                                 </div>
                             </form>
                         </div>

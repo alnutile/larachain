@@ -121,6 +121,7 @@ EOD;
         }
 
         $messages = clean_messages($messages);
+        logger('### Message being sent', $messages);
 
         try {
             $stream = OpenAI::chat()->createStreamed([
@@ -135,6 +136,8 @@ EOD;
             foreach ($stream as $response) {
                 $step = $response->choices[0]->toArray();
                 $content = data_get($step, 'delta.content');
+                logger('### Response', [$content]);
+
                 $data[] = $content;
                 $reply = $reply.$content;
                 if ($count >= 50) {
@@ -147,6 +150,7 @@ EOD;
                 }
             }
             logger($reply);
+
             ChatReplyEvent::dispatch($project, $user, $reply);
 
             return implode(' ', $data);
@@ -187,8 +191,13 @@ EOD;
                 'messages' => $messages,
             ]);
 
+            logger('### Message being sent', $messages);
+
             $content = data_get($response, 'choices.0.message.content', null);
+
             ChatReplyEvent::dispatch($project, $user, $content);
+
+            logger('### Response', $messages);
 
             return $content;
         } catch (\Exception $e) {

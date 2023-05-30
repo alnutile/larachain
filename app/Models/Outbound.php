@@ -55,7 +55,7 @@ class Outbound extends Model
         return $this->hasMany(ResponseType::class)->orderBy('order', 'ASC');
     }
 
-    public function runResponseType(ResponseType $responseType, User $user, string $request): ResponseDto
+    public function runResponseType(User $user, ResponseType $responseType, string $request): ResponseDto
     {
         $message = $this->makeMessage($request, $user);
 
@@ -131,7 +131,6 @@ class Outbound extends Model
 
         /** @var BaseResponseType $responseTypeClass */
         $this->currentResponseDto = $responseTypeClass->handle($response_type_model);
-
     }
 
     protected function makeMessage(string $request, User $user): Message
