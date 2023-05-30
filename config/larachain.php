@@ -171,8 +171,10 @@ return [
             'name' => 'ChatApi',
             'description' => 'Answer questions using LLMs like ChatGPT, PaLM2 and others',
             'class' => 'App\\ResponseType\\Types\\ChatApi',
+            'icon' => 'PhoneArrowUpRightIcon',
             'requires' => [
             ],
+            'background' => 'bg-indigo-500',
             'active' => 1,
         ],
     ],
