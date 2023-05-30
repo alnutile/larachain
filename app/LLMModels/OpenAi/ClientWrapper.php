@@ -110,8 +110,8 @@ EOD;
     }
 
     public function projectChat(Project $project,
-                                User    $user,
-                                array   $messages,
+                                User $user,
+                                array $messages,
                                         $tries = 1): string|\Exception
     {
         if (config('openai.mock')) {
@@ -136,7 +136,7 @@ EOD;
                 $step = $response->choices[0]->toArray();
                 $content = data_get($step, 'delta.content');
                 $data[] = $content;
-                $reply = $reply . $content;
+                $reply = $reply.$content;
                 if ($count >= 50) {
                     logger($reply); //make this pusher
                     ChatReplyEvent::dispatch($project, $user, $reply);
@@ -173,8 +173,8 @@ EOD;
     }
 
     public function nonStreamProjectChat(Project $project,
-                                         User    $user,
-                                         array   $messages,
+                                         User $user,
+                                         array $messages,
                                                  $tries = 1): string|\Exception
     {
 
@@ -233,7 +233,7 @@ EOD;
             $step = $response->choices[0]->toArray();
             $content = data_get($step, 'delta.content');
             $data[] = $content;
-            $reply = $reply . ' ' . $content;
+            $reply = $reply.' '.$content;
             if ($count >= 20) {
                 logger($reply); //make this pusher
                 $count = 0;

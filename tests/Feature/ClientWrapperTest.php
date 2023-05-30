@@ -13,8 +13,8 @@ use Tests\TestCase;
 
 class ClientWrapperTest extends TestCase
 {
-
-    public function test_non_stream_chat() {
+    public function test_non_stream_chat()
+    {
         Event::fake();
         OpenAI::fake([
             CreateResponse::fake([
@@ -22,10 +22,9 @@ class ClientWrapperTest extends TestCase
                     [
                         'text' => 'awesome!',
                     ],
-                ]
-            ])
+                ],
+            ]),
         ]);
-
 
         $project = Project::factory()->create();
         $user = User::factory()->create();
@@ -58,7 +57,6 @@ class ClientWrapperTest extends TestCase
         $this->assertEquals("\n\nHello there, this is a fake chat response.", $results);
 
     }
-
 
     public function test_chat()
     {

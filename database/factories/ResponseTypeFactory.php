@@ -101,6 +101,19 @@ class ResponseTypeFactory extends Factory
         });
     }
 
+    public function chatApi()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::ChatApi,
+                'prompt_token' => [
+                    'assistant' => 'message here',
+                    'system' => 'message here',
+                ],
+            ];
+        });
+    }
+
     public function apiTranformer()
     {
         return $this->state(function (array $attributes) {

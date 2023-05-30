@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\ResponseTypes;
 
 use App\Models\Outbound;
+use App\Models\Project;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseTypeEnum;
 
 class ChatApiResponseTypeController extends ChatUiResponseTypeController
 {
-
     public function create(Outbound $outbound)
     {
         $response = ResponseType::create([
@@ -36,5 +36,29 @@ class ChatApiResponseTypeController extends ChatUiResponseTypeController
         ]);
     }
 
+    public function api(
+        Outbound $outbound,
+        ResponseType $responseType
+    ) {
+        $validated = request()->validate([
+            'question' => ['required', 'max:5000'],
+        ]);
 
+        try {
+            $response = $outbound->runResponseType(
+                $responseType,
+                auth()->user(),
+                $validated['question']
+            );
+
+            return response()->json([
+                'data' => $response->message->content,
+            ], 200);
+        } catch (\Exception $e) {
+            logger('Error with request', [$e->getMessage()]);
+
+            return response()->json([], 500);
+        }
+
+    }
 }

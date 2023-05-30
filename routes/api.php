@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ResponseTypes\ChatApiResponseTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')
+    ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',
+    [ChatApiResponseTypeController::class, 'api'])
+    ->name('api.outbound.response_types.chat_api');

@@ -28,9 +28,9 @@ class ChatApiTest extends TestCase
         ]);
 
         DocumentChunk::factory()->count(10)->create([
-                'document_id' => $document->id,
-                'content' => $example,
-            ]
+            'document_id' => $document->id,
+            'content' => $example,
+        ]
         );
 
         $documents = DocumentChunk::query()
@@ -46,7 +46,7 @@ class ChatApiTest extends TestCase
         ]);
 
         $responseType = ResponseType::factory()
-            ->trimText()
+            ->chatApi()
             ->create();
 
         $trim = new ChatApi($source->project, $responseDto);

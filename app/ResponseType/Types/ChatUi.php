@@ -54,7 +54,7 @@ class ChatUi extends BaseResponseType
                 ->first();
 
             /**
-             * Give it hte latest context
+             * Give it the latest context
              */
             $systemMessage->content = ($this->updateSystemPrompt())->format();
             $systemMessage->save();
@@ -68,6 +68,7 @@ class ChatUi extends BaseResponseType
                 ->take(4)
                 ->get()
                 ->reverse();
+
             $messages->prepend($systemMessage);
         }
 
@@ -79,17 +80,18 @@ class ChatUi extends BaseResponseType
             $messages
         );
 
-        $this->makeAssistantMessage($fullResponse);
+        $message = $this->makeAssistantMessage($fullResponse);
 
         return ResponseDto::from(
             [
-                'message' => $this->response_dto->message->refresh(),
+                'message' => $message,
                 'response' => ContentCollection::emptyContent(),
             ]
         );
     }
 
-    protected function chat(Project $project, User $user, array $messages) : string {
+    protected function chat(Project $project, User $user, array $messages): string
+    {
         return ClientWrapper::projectChat(
             $this->project,
             $this->user,
