@@ -5,27 +5,25 @@ namespace Tests\Feature\Http\Controllers;
 use App\Models\Outbound;
 use App\Models\ResponseType;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CloneResponseTypesControllerTest extends TestCase
 {
-
-    public function test_clone() {
+    public function test_clone()
+    {
         $from = Outbound::factory()->chatUi()->create();
         ResponseType::factory()->count(2)->create([
-            'outbound_id' => $from->id
+            'outbound_id' => $from->id,
         ]);
 
         $to = Outbound::factory()->api()->create();
 
         $user = User::factory()->create();
         $this->actingAs($user)
-            ->post(route("outbounds.clone.response_types"), [
+            ->post(route('outbounds.clone.response_types'), [
                 'from' => $from->id,
-                'to' => $to->id
-            ])->assertRedirectToRoute("outbounds.api.show", [
+                'to' => $to->id,
+            ])->assertRedirectToRoute('outbounds.api.show', [
                 'outbound' => $to->id,
                 'project' => $to->project_id,
             ]);

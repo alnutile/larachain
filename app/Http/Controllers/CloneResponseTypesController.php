@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outbound;
-use Illuminate\Http\Request;
 
 class CloneResponseTypesController extends Controller
 {
-
-    public function __invoke() {
+    public function __invoke()
+    {
         request()->validate([
             'from' => ['required'],
             'to' => ['required'],
@@ -17,7 +16,7 @@ class CloneResponseTypesController extends Controller
         $to = Outbound::findOrFail(request()->get('to'));
         $from = Outbound::findOrFail(request()->get('from'));
 
-        foreach($from->response_types as $responseType) {
+        foreach ($from->response_types as $responseType) {
             $new = $responseType->replicate();
             $new->outbound_id = $to->id;
             $new->save();
@@ -25,9 +24,9 @@ class CloneResponseTypesController extends Controller
 
         request()->session()->flash('flash.banner', 'Cloned 👯‍');
 
-        return to_route("outbounds." . $to->type->value .".show", [
+        return to_route('outbounds.'.$to->type->value.'.show', [
             'outbound' => $to->id,
-            'project' => $to->project_id
+            'project' => $to->project_id,
         ]);
     }
 }

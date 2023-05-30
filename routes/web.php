@@ -141,10 +141,10 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function() {
-   Route::get("/projects/{project}/outbounds", function(Project $project) {
+])->group(function () {
+   Route::get('/projects/{project}/outbounds', function (Project $project) {
        return response($project->outbounds);
-   })->name("projects.outbounds");
+   })->name('projects.outbounds');
 });
 
 Route::middleware([
@@ -380,7 +380,6 @@ Route::middleware([
     }
 );
 
-
 Route::post('/outbounds/clone', CloneResponseTypesController::class)
     ->name('outbounds.clone.response_types')
     ->middleware([
@@ -388,7 +387,6 @@ Route::post('/outbounds/clone', CloneResponseTypesController::class)
         config('jetstream.auth_session'),
         'verified',
     ]);
-
 
 Route::middleware([
     'auth:sanctum',
