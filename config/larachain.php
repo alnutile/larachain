@@ -82,8 +82,8 @@ return [
         'api' => [
             'name' => 'Add an API',
             'description' => 'Attach a secure API to communicate with your data from any other app.',
-            'icon' => 'PhoneIcon',
-            'active' => 0,
+            'icon' => 'PhoneArrowUpRightIcon',
+            'active' => 1,
             'background' => 'bg-gray-500',
         ],
     ],
@@ -165,6 +165,16 @@ return [
             'requires' => [
             ],
             'background' => 'bg-red-700',
+            'active' => 1,
+        ],
+        'chatapi' => [
+            'name' => 'ChatApi',
+            'description' => 'Answer questions using LLMs like ChatGPT, PaLM2 and others',
+            'class' => 'App\\ResponseType\\Types\\ChatApi',
+            'icon' => 'PhoneArrowUpRightIcon',
+            'requires' => [
+            ],
+            'background' => 'bg-indigo-500',
             'active' => 1,
         ],
     ],

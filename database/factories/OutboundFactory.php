@@ -25,6 +25,15 @@ class OutboundFactory extends Factory
         ];
     }
 
+    public function api()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => OutboundEnum::Api,
+            ];
+        });
+    }
+
     public function chatUi()
     {
         return $this->state(function (array $attributes) {

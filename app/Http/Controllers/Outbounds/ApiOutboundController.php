@@ -5,25 +5,35 @@ namespace App\Http\Controllers\Outbounds;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
+use App\ResponseType\ResponseTypeEnum;
 
-class ApiiOutboundController extends BaseOutboundController
+class ApiOutboundController extends BaseOutboundController
 {
     public function create(Project $project)
     {
-        Outbound::create([
+        $outbound = Outbound::create([
             'type' => OutboundEnum::Api,
             'active' => 1,
             'project_id' => $project->id,
         ]);
 
-        request()->session()->flash('flash.banner', 'Created API Outbound now to add Response Types Transformers');
+        request()->session()->flash('flash.banner', 'Created Outbound now to add Response Types');
 
-        return to_route('projects.show', ['project' => $project->id]);
+        return to_route('outbounds.api.show',
+            [
+                'project' => $project->id,
+                'outbound' => $outbound->id,
+            ]);
     }
 
     public function show(Project $project, Outbound $outbound)
     {
-        // TODO: Implement show() method.
+        return inertia('Outbounds/Api/Show', [
+            'details' => config('larachain.outbounds.api'),
+            'project' => $project,
+            'outbound' => $outbound->load('response_types'),
+            'response_types' => ResponseTypeEnum::toArray('response_types'),
+        ]);
     }
 
     public function edit(Project $project, Outbound $outbound)

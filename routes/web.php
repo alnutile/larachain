@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Outbounds\ApiiOutboundController;
+use App\Http\Controllers\CloneResponseTypesController;
+use App\Http\Controllers\Outbounds\ApiOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
 use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
 use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Sources\ScrapeWebPageSourceController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Transformers\EmbedTransformerController;
 use App\Http\Controllers\Transformers\PdfTransformerController;
+use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -97,6 +99,27 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+])->controller(ApiOutboundController::class)->group(
+    function () {
+        Route::get('/projects/{project}/outbounds/api/create', 'create')
+            ->name('outbounds.api.create');
+        Route::get('/projects/{project}/outbounds/{outbound}/api', 'show')
+            ->name('outbounds.api.show');
+        Route::get('/projects/{project}/outbounds/{outbound}/api/edit', 'edit')
+            ->name('outbounds.api.edit');
+        Route::post('/projects/{project}/outbounds/api/store', 'store')
+            ->name('outbounds.api.store');
+        Route::put('/projects/{project}/outbounds/{outbound}/api/update', 'update')
+            ->name('outbounds.api.update');
+        Route::post('/projects/{project}/outbounds/{outbound}/api/run', 'run')
+            ->name('outbounds.api.run');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->controller(ChatUiOutboundController::class)->group(
     function () {
         Route::get('/projects/{project}/outbounds/chat_ui/create', 'create')
@@ -118,22 +141,11 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller(ApiiOutboundController::class)->group(
-    function () {
-        Route::get('/projects/{project}/outbounds/api/create', 'create')
-            ->name('outbounds.api.create');
-        Route::get('/projects/{project}/outbounds/{outbound}/api', 'show')
-            ->name('outbounds.api.show');
-        Route::get('/projects/{project}/outbounds/{outbound}/api/edit', 'edit')
-            ->name('outbounds.api.edit');
-        Route::post('/projects/{project}/outbounds/api/store', 'store')
-            ->name('outbounds.api.store');
-        Route::put('/projects/{project}/transformers/{outbound}/api/update', 'update')
-            ->name('outbounds.api.update');
-        Route::post('/projects/{project}/transformers/{outbound}/api/run', 'run')
-            ->name('outbounds.api.run');
-    }
-);
+])->group(function () {
+   Route::get('/projects/{project}/outbounds', function (Project $project) {
+       return response($project->outbounds);
+   })->name('projects.outbounds');
+});
 
 Route::middleware([
     'auth:sanctum',
@@ -368,6 +380,14 @@ Route::middleware([
     }
 );
 
+Route::post('/outbounds/clone', CloneResponseTypesController::class)
+    ->name('outbounds.clone.response_types')
+    ->middleware([
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
+    ]);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -384,5 +404,22 @@ Route::middleware([
             ->name('transformers.html2text.update');
         Route::post('/projects/{project}/transformers/{transformer}/html2text/run', 'run')
             ->name('transformers.html2text.run');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\ChatApiResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/chatapi/create', 'create')
+            ->name('response_types.chatapi.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/chatapi/edit', 'edit')
+            ->name('response_types.chatapi.edit');
+        Route::post('/outbounds/{outbound}/response_types/chatapi/store', 'store')
+            ->name('response_types.chatapi.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/chatapi/update', 'update')
+            ->name('response_types.chatapi.update');
     }
 );

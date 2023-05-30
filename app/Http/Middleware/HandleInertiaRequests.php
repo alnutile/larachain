@@ -39,6 +39,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'features' => $features,
             'app_name' => config('app.name'),
+            'app_url' => config('app.url'),
             'team_label' => 'Organization Name',
             'larachain' => config('larachain'),
         ]);

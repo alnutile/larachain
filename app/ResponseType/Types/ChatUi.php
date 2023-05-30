@@ -3,6 +3,7 @@
 namespace App\ResponseType\Types;
 
 use App\Models\Message;
+use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
 use App\ResponseType\BaseResponseType;
@@ -53,7 +54,7 @@ class ChatUi extends BaseResponseType
                 ->first();
 
             /**
-             * Give it hte latest context
+             * Give it the latest context
              */
             $systemMessage->content = ($this->updateSystemPrompt())->format();
             $systemMessage->save();
@@ -67,23 +68,34 @@ class ChatUi extends BaseResponseType
                 ->take(4)
                 ->get()
                 ->reverse();
+
             $messages->prepend($systemMessage);
         }
 
         $messages = clean_messages($messages->toArray());
-        $fullResponse = ClientWrapper::projectChat(
+
+        $fullResponse = $this->chat(
             $this->project,
             $this->user,
-            $messages);
+            $messages
+        );
 
-        $this->makeAssistantMessage($fullResponse);
+        $message = $this->makeAssistantMessage($fullResponse);
 
         return ResponseDto::from(
             [
-                'message' => $this->response_dto->message->refresh(),
+                'message' => $message,
                 'response' => ContentCollection::emptyContent(),
             ]
         );
+    }
+
+    protected function chat(Project $project, User $user, array $messages): string
+    {
+        return ClientWrapper::projectChat(
+            $this->project,
+            $this->user,
+            $messages);
     }
 
     protected function updateSystemPrompt(): PromptTemplate

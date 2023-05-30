@@ -9,6 +9,7 @@ enum ResponseTypeEnum: string
     use TypeTrait;
 
     //case TemplateType = 'template_type'
+    case ChatApi = 'chatapi';
     case PregReplace = 'preg_replace';
     case StringRemove = 'string_remove';
     case StringReplace = 'string_replace';

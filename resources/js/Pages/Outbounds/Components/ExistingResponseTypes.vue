@@ -10,7 +10,7 @@
                     <div class="draggable" :key="element.id">
                         <ArrowsPointingOutIcon class="w-4 h-4 text-gray-400 hover:cursor-grab"/>
                     </div>
-                    <div>
+                    <div class="w-full">
                         <div class="text-sm">
                             Response Type {{element.type_formatted}}
                             <Link :href="route(`response_types.${element.type}.edit`, {
