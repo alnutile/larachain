@@ -4,7 +4,6 @@
 
             <HeaderArea :project="project"/>
 
-
         </template>
 
         <div class="py-2">
@@ -39,6 +38,20 @@
                                     <div><button @click="refresh" class="underlines text-gray-500 italic" type="button">clear history</button></div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div v-if="project?.sources.length > 1" class="flex justify-center gap-4">
+                        <div v-if="project?.sources.length > 1" class="flex justify-center text-gray-500 text-md mb-2">Limit context to one more more sources</div>
+                        <div class="flex gap-2 justify-center">
+                            <button
+                                @click="toggleFilter(source)"
+                                v-for="source in project?.sources" :key="source.id"
+                                :class="{ 'opacity-100' : sourceFilters.has(source.id), 'opacity-50' : !sourceFilters.has(source.id) }"
+                                type="button" class="
+                                inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                {{source.name}}
+                                <CheckCircleIcon class="-mr-0.5 h-5 w-5" aria-hidden="true" />
+                            </button>
                         </div>
                     </div>
 
@@ -94,6 +107,7 @@ import SourcesToChooseFrom from "./Components/SourcesToChooseFrom.vue";
 import TransformersToChooseFrom from "@/Pages/Transformers/Partials/TransformersToChooseFrom.vue";
 import OutboundsToChooseFrom from "@/Pages/Outbounds/Partials/OutboundsToChooseFrom.vue";
 import HeaderArea from "./Components/HeaderArea.vue";
+import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps({
     project: Object,
@@ -105,10 +119,13 @@ const props = defineProps({
 const settings = ref(true);
 
 const form = useForm({
-    question: ""
+    question: "",
+    filters: []
 })
 
 const response = ref([]);
+
+const sourceFilters = ref(new Set())
 
 onMounted(() => {
     Echo.private(`projects.${props.project.id}`)
@@ -120,8 +137,18 @@ onMounted(() => {
         });
 })
 
+const toggleFilter = (source) => {
+    console.log(source)
+        if(sourceFilters.value.has(source.id)) {
+            sourceFilters.value.delete(source.id)
+        } else {
+            sourceFilters.value.add(source.id)
+        }
+}
+
 const submit = () => {
     form.processing = true;
+    form.filters = [...sourceFilters.value]
     toast("This might take a moment")
     response.value.push({
         type: "user",

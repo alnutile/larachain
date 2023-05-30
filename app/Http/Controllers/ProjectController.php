@@ -31,6 +31,7 @@ class ProjectController extends Controller
     {
         $validated = request()->validate([
             'question' => ['required', 'max:5000'],
+            'filters' => ['nullable'],
         ]);
 
         try {

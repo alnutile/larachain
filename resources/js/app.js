@@ -21,7 +21,7 @@ createInertiaApp({
             .use(plugin)
             .use(Toast, {
                 transition: "Vue-Toastification__bounce",
-                maxToasts: 1,
+                maxToasts: 3,
                 hideProgressBar: true,
                 newestOnTop: true
             })

@@ -143,7 +143,7 @@ class Outbound extends Model
         ]);
     }
 
-    protected function makeResponseDto(Message $message, string $request): ResponseDto
+    protected function makeResponseDto(Message $message, string $request, $filters = []): ResponseDto
     {
         $dto = ResponseDto::from([
             'message' => $message,
