@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae1cf8798d6b8769ca3e45337351e627",
+    "content-hash": "2a40ff1ffcf225fe5e9eaa3ee8de8e34",
     "packages": [
         {
             "name": "alnutile/fixtures",
@@ -5451,6 +5451,78 @@
                 }
             ],
             "time": "2022-05-18T15:14:21+00:00"
+        },
+        {
+            "name": "sundance-solutions/larachain-token-count",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alnutile/larachain-token-count.git",
+                "reference": "6cfc0617825a3c40f900847855bbb09cd1578806"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alnutile/larachain-token-count/zipball/6cfc0617825a3c40f900847855bbb09cd1578806",
+                "reference": "6cfc0617825a3c40f900847855bbb09cd1578806",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SundanceSolutions\\LarachainTokenCount\\LarachainTokenCountServiceProvider"
+                    ],
+                    "aliases": {
+                        "LarachainTokenCount": "SundanceSolutions\\LarachainTokenCount\\Facades\\LarachainTokenCount"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SundanceSolutions\\LarachainTokenCount\\": "src/",
+                    "SundanceSolutions\\LarachainTokenCount\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alfred Nutile",
+                    "email": "365385+alnutile@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Quick helper to count tokens ",
+            "homepage": "https://github.com/sundance-solutions/larachain-token-count",
+            "keywords": [
+                "larachain-token-count",
+                "laravel",
+                "sundance-solutions"
+            ],
+            "support": {
+                "issues": "https://github.com/alnutile/larachain-token-count/issues",
+                "source": "https://github.com/alnutile/larachain-token-count/tree/1.0.0"
+            },
+            "time": "2023-05-31T18:50:48+00:00"
         },
         {
             "name": "sundance/larachain-prompt-templates",
