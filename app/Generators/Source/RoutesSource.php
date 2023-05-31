@@ -2,12 +2,14 @@
 
 namespace App\Generators\Source;
 
+use App\Generators\Base;
+use App\Generators\BaseRepository;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
-class RoutesSource extends BaseSource
+class RoutesSource extends Base
 {
-    public function handle(GeneratorRepository $generatorRepository): void
+    public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
         $routes = <<<'EOD'

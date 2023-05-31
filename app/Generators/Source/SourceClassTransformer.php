@@ -2,11 +2,13 @@
 
 namespace App\Generators\Source;
 
+use App\Generators\Base;
+use App\Generators\BaseRepository;
 use Facades\App\Generators\TokenReplacer;
 
-class SourceClassTransformer extends BaseSource
+class SourceClassTransformer extends Base
 {
-    public function handle(GeneratorRepository $generatorRepository): void
+    public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
 

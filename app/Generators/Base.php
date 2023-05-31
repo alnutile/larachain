@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 abstract class Base
 {
     protected string $generatorName = 'Outbound';
+    protected string $plural = 's';
 
     protected BaseRepository $generatorRepository;
 
@@ -52,7 +53,10 @@ abstract class Base
             $this->generatorRepository->getClassName(),
             $this->generatorName,
         );
-        $destination = base_path(sprintf('app/Http/Controllers/%ss/%s', $this->generatorName, $name));
+        $destination = base_path(sprintf('app/Http/Controllers/%s%s/%s',
+            $this->generatorName,
+            $this->plural,
+            $name));
 
         $this->generatorRepository->putFile($destination, $transformed);
     }
