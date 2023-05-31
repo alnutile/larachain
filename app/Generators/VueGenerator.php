@@ -2,14 +2,13 @@
 
 namespace App\Generators;
 
-use App\Generators\Base;
-use App\Generators\BaseRepository;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
 class VueGenerator extends Base
 {
     protected string $generatorName = 'Outbound';
+
     protected string $plural = 's';
 
     public function handle(BaseRepository $generatorRepository): void
