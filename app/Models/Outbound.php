@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Data\Filters;
 use App\Exceptions\ResponseTypeMissingException;
 use App\Outbound\OutboundEnum;
 use App\ResponseType\BaseResponseType;
@@ -84,12 +85,12 @@ class Outbound extends Model
     /**
      * @throws ResponseTypeMissingException
      */
-    public function run(User $user, string $request): ResponseDto
+    public function run(User $user, string $request, Filters $filters = new Filters()): ResponseDto
     {
         $message = $this->makeMessage($request, $user);
 
         try {
-            $this->makeResponseDto($message, $request);
+            $this->makeResponseDto($message, $request, $filters);
             foreach ($this->response_types as $response_type_model) {
                 $this->processResponseType($response_type_model);
             }
@@ -108,6 +109,7 @@ class Outbound extends Model
                         ]),
                     ],
                 ]),
+                "filters" => $filters
             ]);
         }
     }
@@ -118,7 +120,6 @@ class Outbound extends Model
         $responseType = $response_type_model->type->value;
         $responseType = data_get($responseTypes, $responseType);
         $class = data_get($responseType, 'class', null);
-        logger('Class', [$class]);
 
         if (! $class) {
             throw new \Exception('Response Type Missing Class');
@@ -143,7 +144,7 @@ class Outbound extends Model
         ]);
     }
 
-    protected function makeResponseDto(Message $message, string $request, $filters = []): ResponseDto
+    protected function makeResponseDto(Message $message, string $request, Filters $filters = new Filters()): ResponseDto
     {
         $dto = ResponseDto::from([
             'message' => $message,
@@ -152,6 +153,7 @@ class Outbound extends Model
                     Content::from(['content' => $request]),
                 ],
             ]),
+            'filters' => $filters
         ]);
 
         $this->currentResponseDto = $dto;

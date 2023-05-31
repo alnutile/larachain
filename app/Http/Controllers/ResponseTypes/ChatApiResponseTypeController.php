@@ -55,6 +55,8 @@ EOL;
         ]);
 
         try {
+
+
             $response = $outbound->run(
                 auth()->user(),
                 $validated['question']
