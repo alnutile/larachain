@@ -16,6 +16,4 @@ class TransformerClassGenerator extends ClassBase
         $this->makeClass();
         $this->makeTest();
     }
-
-
 }

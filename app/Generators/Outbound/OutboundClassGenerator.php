@@ -2,9 +2,8 @@
 
 namespace App\Generators\Outbound;
 
-use App\Generators\ClassBase;
 use App\Generators\BaseRepository;
-use Facades\App\Generators\TokenReplacer;
+use App\Generators\ClassBase;
 
 class OutboundClassGenerator extends ClassBase
 {
@@ -17,6 +16,4 @@ class OutboundClassGenerator extends ClassBase
         $this->makeClass();
         $this->makeTest();
     }
-
-
 }

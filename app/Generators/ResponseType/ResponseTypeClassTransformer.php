@@ -16,5 +16,4 @@ class ResponseTypeClassTransformer extends ClassBase
         $this->makeClass();
         $this->makeTest();
     }
-
 }

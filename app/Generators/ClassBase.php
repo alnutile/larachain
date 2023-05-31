@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 abstract class ClassBase
 {
     protected string $generatorName = 'Outbound';
+
     protected string $plural = 's';
 
     protected BaseRepository $generatorRepository;
@@ -51,6 +52,4 @@ abstract class ClassBase
         $destination = $basePath.$name;
         $this->generatorRepository->putFile($destination, $transformed);
     }
-
-
 }
