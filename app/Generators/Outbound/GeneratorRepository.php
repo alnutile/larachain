@@ -4,8 +4,8 @@ namespace App\Generators\Outbound;
 
 use App\Generators\BaseRepository;
 use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
-use Facades\App\Generators\Outbound\VueOutbound;
 use Facades\App\Generators\Outbound\RoutesOutbound;
+use Facades\App\Generators\Outbound\VueOutbound;
 
 //use Facades\App\Generators\Outbound\EnumOutbound;
 //use Facades\App\Generators\Outbound\LarachainConfigOutbound;
