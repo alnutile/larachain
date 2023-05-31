@@ -423,3 +423,20 @@ Route::middleware([
             ->name('response_types.chatapi.update');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\ChatGptRetrievalPluginResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/chatgptretrievalplugin/create', 'create')
+            ->name('response_types.chatgptretrievalplugin.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/chatgptretrievalplugin/edit', 'edit')
+            ->name('response_types.chatgptretrievalplugin.edit');
+        Route::post('/outbounds/{outbound}/response_types/chatgptretrievalplugin/store', 'store')
+            ->name('response_types.chatgptretrievalplugin.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/chatgptretrievalplugin/update', 'update')
+            ->name('response_types.chatgptretrievalplugin.update');
+    }
+);
