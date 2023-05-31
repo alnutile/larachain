@@ -6,7 +6,7 @@ use App\Generators\Outbound\GeneratorRepository;
 use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
 //use Facades\App\Generators\Outbound\EnumOutbound;
 //use Facades\App\Generators\Outbound\LarachainConfigOutbound;
-//use Facades\App\Generators\Outbound\ResponseTypeClassOutbound;
+use Facades\App\Generators\Outbound\OutboundClassGenerator;
 use Facades\App\Generators\Outbound\RoutesOutbound;
 use Facades\App\Generators\Outbound\VueOutbound;
 use Tests\TestCase;
@@ -20,7 +20,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
         RoutesOutbound::shouldReceive('handle')->once();
 //        EnumOutbound::shouldReceive('handle')->once();
 //        LarachainConfigOutbound::shouldReceive('handle')->once();
-//        ResponseTypeClassOutbound::shouldReceive('handle')->once();
+        OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();
@@ -35,7 +35,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
         RoutesOutbound::shouldReceive('handle')->once();
 //        EnumOutbound::shouldReceive('handle')->once();
 //        LarachainConfigOutbound::shouldReceive('handle')->once();
-//        ResponseTypeClassOutbound::shouldReceive('handle')->once();
+        OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();

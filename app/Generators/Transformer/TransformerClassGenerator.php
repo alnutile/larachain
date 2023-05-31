@@ -2,12 +2,13 @@
 
 namespace App\Generators\Transformer;
 
-use App\Generators\Base;
 use App\Generators\BaseRepository;
-use Facades\App\Generators\TokenReplacer;
+use App\Generators\ClassBase;
 
-class TransformerClassGenerator extends Base
+class TransformerClassGenerator extends ClassBase
 {
+    protected string $generatorName = 'Transformer';
+
     public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
@@ -16,25 +17,5 @@ class TransformerClassGenerator extends Base
         $this->makeTest();
     }
 
-    protected function makeTest()
-    {
-        $content = $this->getContents('/Tests/TransformerTest.php');
-        $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
-        $name = sprintf('%sTest.php', $this->generatorRepository->getClassName());
-        $basePath = base_path('tests/Feature/');
-        $destination = $basePath.$name;
-        $this->generatorRepository->putFile($destination, $transformed);
-    }
-
-    protected function makeClass()
-    {
-        $content = $this->getContents('/Transformer/Stub.php');
-        $transformed = TokenReplacer::handle($this->generatorRepository, $content);
-
-        $name = sprintf('%s.php', $this->generatorRepository->getClassName());
-        $basePath = base_path('app/Transformers/Types/');
-        $destination = $basePath.$name;
-        $this->generatorRepository->putFile($destination, $transformed);
-    }
 }

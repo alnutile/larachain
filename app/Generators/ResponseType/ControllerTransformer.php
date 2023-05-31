@@ -7,6 +7,8 @@ use App\Generators\BaseRepository;
 
 class ControllerTransformer extends Base
 {
+    protected string $generatorName = 'ResponseType';
+
     public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;

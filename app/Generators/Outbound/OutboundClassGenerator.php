@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Generators\ResponseType;
+namespace App\Generators\Outbound;
 
-use App\Generators\BaseRepository;
 use App\Generators\ClassBase;
+use App\Generators\BaseRepository;
+use Facades\App\Generators\TokenReplacer;
 
-class ResponseTypeClassTransformer extends ClassBase
+class OutboundClassGenerator extends ClassBase
 {
-    protected string $generatorName = 'ResponseType';
+    protected string $generatorName = 'Outbound';
 
     public function handle(BaseRepository $generatorRepository): void
     {
@@ -16,5 +17,6 @@ class ResponseTypeClassTransformer extends ClassBase
         $this->makeClass();
         $this->makeTest();
     }
+
 
 }
