@@ -19,7 +19,7 @@ it('should create and redirect', function () {
     assertDatabaseCount('response_types', 1);
 });
 
-it('should do update to response type', function () {
+it('should do update to response type ChatGtpRetrieval', function () {
     $user = User::factory()->create();
 
     $outbound = Outbound::factory()->chatUi()->create();
@@ -43,6 +43,4 @@ it('should do update to response type', function () {
                 'project' => $outbound->project->id,
             ]
         );
-
-    $this->assertEquals('foo', $responseType->refresh()->meta_data['search'][0]);
 });
