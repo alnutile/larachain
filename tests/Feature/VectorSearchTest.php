@@ -22,15 +22,15 @@ class VectorSearchTest extends TestCase
         $project = Project::factory()->create();
 
         $source = Source::factory()->create([
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         $document = Document::factory([
-            'source_id' => $source->id
+            'source_id' => $source->id,
         ])->create();
 
         DocumentChunk::factory()->withEmbedData()->create([
-            'document_id' => $document->id
+            'document_id' => $document->id,
         ]);
 
         User::factory()->create();
@@ -53,19 +53,19 @@ class VectorSearchTest extends TestCase
         $project = Project::factory()->create();
 
         $nowSource = Source::factory()->create([
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         $source = Source::factory()->create([
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         $document = Document::factory([
-            'source_id' => $source->id
+            'source_id' => $source->id,
         ])->create();
 
         DocumentChunk::factory()->withEmbedData()->create([
-            'document_id' => $document->id
+            'document_id' => $document->id,
         ]);
 
         User::factory()->create();
@@ -77,8 +77,8 @@ class VectorSearchTest extends TestCase
             'message' => $message,
             'response' => ContentCollection::emptyContent(),
             'filters' => Filters::from([
-                'sources' => [$nowSource->id]
-            ])
+                'sources' => [$nowSource->id],
+            ]),
         ]);
 
         $vector = new VectorSearch($project, $dto);

@@ -8,7 +8,6 @@ use App\Models\ResponseType;
 use App\Models\Team;
 use App\Models\User;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
-use Facades\App\Tools\ChatRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 use Laravel\Sanctum\Sanctum;
@@ -48,14 +47,14 @@ class ProjectControllerTest extends TestCase
     public function test_chat_controller()
     {
         ClientWrapper::shouldReceive('projectChat')
-            ->andReturn("foobar");
+            ->andReturn('foobar');
 
         $user = User::factory()->create();
 
         $project = Project::factory()->create();
 
         Outbound::factory()->chatUi()->create([
-            'project_id' => $project->id
+            'project_id' => $project->id,
         ]);
 
         ResponseType::factory()->chatUi()->create();
@@ -64,7 +63,7 @@ class ProjectControllerTest extends TestCase
             'project' => $project->id,
         ]), [
             'question' => 'foobar',
-            'filters' => []
+            'filters' => [],
         ])->assertStatus(200);
     }
 

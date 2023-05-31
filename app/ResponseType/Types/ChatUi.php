@@ -86,7 +86,7 @@ class ChatUi extends BaseResponseType
             [
                 'message' => $message,
                 'response' => ContentCollection::emptyContent(),
-                'filters' => $this->response_dto->filters
+                'filters' => $this->response_dto->filters,
             ]
         );
     }

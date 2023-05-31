@@ -35,7 +35,7 @@ class CombineContent extends BaseResponseType
                             'content' => $combinedContent,
                         ])],
                 ]),
-                'filters' => $this->response_dto->filters
+                'filters' => $this->response_dto->filters,
             ]
         );
     }

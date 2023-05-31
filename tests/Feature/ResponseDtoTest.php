@@ -7,19 +7,17 @@ use App\Models\Message;
 use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ResponseDtoTest extends TestCase
 {
-
-    public function test_dto() {
+    public function test_dto()
+    {
         $dto = ResponseDto::from([
             'message' => Message::factory()->create(),
             'response' => ContentCollection::from([
                 'contents' => [
-                    Content::from(['content' => "Foobar"]),
+                    Content::from(['content' => 'Foobar']),
                 ],
             ]),
         ]);
@@ -27,15 +25,16 @@ class ResponseDtoTest extends TestCase
         $this->assertNotEmpty($dto->message);
     }
 
-    public function test_dto_with_filter() {
+    public function test_dto_with_filter()
+    {
         $dto = ResponseDto::from([
             'message' => Message::factory()->create(),
             'response' => ContentCollection::from([
                 'contents' => [
-                    Content::from(['content' => "Foobar"]),
+                    Content::from(['content' => 'Foobar']),
                 ],
             ]),
-            'filters' => Filters::from(['sources' => [1,2]])
+            'filters' => Filters::from(['sources' => [1, 2]]),
         ]);
 
         $this->assertNotEmpty($dto->filters);

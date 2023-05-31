@@ -24,7 +24,7 @@ class StringReplace extends BaseResponseType
             [
                 'message' => $this->response_dto->message->refresh(),
                 'response' => $this->response_dto->response,
-                'filters' => $this->response_dto->filters
+                'filters' => $this->response_dto->filters,
             ]
         );
     }

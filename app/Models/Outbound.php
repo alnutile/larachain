@@ -109,7 +109,7 @@ class Outbound extends Model
                         ]),
                     ],
                 ]),
-                "filters" => $filters
+                'filters' => $filters,
             ]);
         }
     }
@@ -153,7 +153,7 @@ class Outbound extends Model
                     Content::from(['content' => $request]),
                 ],
             ]),
-            'filters' => $filters
+            'filters' => $filters,
         ]);
 
         $this->currentResponseDto = $dto;

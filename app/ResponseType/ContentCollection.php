@@ -6,14 +6,14 @@ use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\DataCollection;
 
 class ContentCollection extends \Spatie\LaravelData\Data
-    {
+{
         public function __construct(
             #[DataCollectionOf(Content::class)]
             public DataCollection $contents
         ) {
         }
 
-        public function getFirstContent(): Content | null
+        public function getFirstContent(): Content|null
         {
             return $this->contents->first();
         }
