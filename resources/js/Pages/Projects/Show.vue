@@ -148,7 +148,9 @@ const toggleFilter = (source) => {
 
 const submit = () => {
     form.processing = true;
-    form.filters = [...sourceFilters.value]
+    form.filters = {
+        sources: [...sourceFilters.value]
+    }
     toast("This might take a moment")
     response.value.push({
         type: "user",
