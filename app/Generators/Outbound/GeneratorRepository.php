@@ -4,6 +4,7 @@ namespace App\Generators\Outbound;
 
 use App\Generators\BaseRepository;
 use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
+
 //use Facades\App\Generators\Outbound\EnumOutbound;
 //use Facades\App\Generators\Outbound\LarachainConfigOutbound;
 //use Facades\App\Generators\Outbound\RoutesOutbound;

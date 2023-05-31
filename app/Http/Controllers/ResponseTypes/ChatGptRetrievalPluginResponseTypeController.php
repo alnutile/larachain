@@ -8,9 +8,8 @@ use App\ResponseType\ResponseTypeEnum;
 
 class ChatGptRetrievalPluginResponseTypeController extends BaseResponseTypeController
 {
-
     public function create(Outbound $outbound)
-{
+    {
     $response = ResponseType::create([
         'type' => ResponseTypeEnum::ChatGptRetrievalPlugin,
         'order' => $outbound->response_types->count() + 1,
@@ -28,7 +27,7 @@ class ChatGptRetrievalPluginResponseTypeController extends BaseResponseTypeContr
     }
 
     public function edit(Outbound $outbound, ResponseType $response_type)
-{
+    {
     return inertia('ResponseTypes/ChatGptRetrievalPlugin/Edit', [
         'response_type' => $response_type,
         'outbound' => $outbound,
@@ -37,7 +36,7 @@ class ChatGptRetrievalPluginResponseTypeController extends BaseResponseTypeContr
 }
 
     public function update(Outbound $outbound, ResponseType $response_type)
-{
+    {
     $validated = request()->validate(
         [
             'meta_data.SOMETHING' => ['required'],
@@ -55,11 +54,8 @@ class ChatGptRetrievalPluginResponseTypeController extends BaseResponseTypeContr
     ]);
 }
 
-
     public function store(Outbound $outbound)
     {
         // TODO: Implement store() method.
     }
-
-
 }

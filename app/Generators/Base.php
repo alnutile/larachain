@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 abstract class Base
 {
-    protected string $generatorName = "Outbound";
+    protected string $generatorName = 'Outbound';
 
     protected BaseRepository $generatorRepository;
 
@@ -19,14 +19,12 @@ abstract class Base
         $this->makeTest();
     }
 
-
     protected function getContents(string $relativePathAndFile): string
     {
         $content = $this->generatorRepository->getRootPathOrStubs().$relativePathAndFile;
 
         return File::get($content);
     }
-
 
     protected function makeTest()
     {

@@ -9,8 +9,6 @@ use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
 //use Facades\App\Generators\Outbound\ResponseTypeClassOutbound;
 //use Facades\App\Generators\Outbound\RoutesOutbound;
 //use Facades\App\Generators\Outbound\VueOutbound;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class OutboundGeneratorRepositoryTest extends TestCase
