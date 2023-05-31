@@ -2,12 +2,14 @@
 
 namespace App\Generators\Transformer;
 
+use App\Generators\Base;
+use App\Generators\BaseRepository;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
-class EnumTransformer extends BaseTransformer
+class EnumTransformer extends Base
 {
-    public function handle(GeneratorRepository $generatorRepository): void
+    public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
 
