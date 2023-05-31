@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Models\Outbound;
 use App\Models\Project;
+use App\Models\ResponseType;
 use App\Models\Team;
 use App\Models\User;
+use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Facades\App\Tools\ChatRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -44,14 +47,24 @@ class ProjectControllerTest extends TestCase
 
     public function test_chat_controller()
     {
-        $this->markTestSkipped('@TODO this should not be incharge of this anymore');
-        ChatRepository::shouldReceive('handle')->once();
+        ClientWrapper::shouldReceive('projectChat')
+            ->andReturn("foobar");
+
         $user = User::factory()->create();
+
         $project = Project::factory()->create();
+
+        Outbound::factory()->chatUi()->create([
+            'project_id' => $project->id
+        ]);
+
+        ResponseType::factory()->chatUi()->create();
+
         $this->actingAs($user)->post(route('projects.chat', [
             'project' => $project->id,
         ]), [
             'question' => 'foobar',
+            'filters' => []
         ])->assertStatus(200);
     }
 
