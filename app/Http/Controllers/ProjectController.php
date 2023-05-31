@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\Filters;
 use App\Models\Message;
 use App\Models\Outbound;
 use App\Models\Project;
@@ -38,10 +39,12 @@ class ProjectController extends Controller
             $outbound = $project->outbounds()
                 ->whereType(OutboundEnum::ChatUi->value)
                 ->first();
+
             /** @var Outbound $outbound */
             $outbound->run(
                 auth()->user(),
-                $validated['question']
+                $validated['question'],
+                Filters::from($validated['filters'])
             );
 
             return response()->json([], 200);
