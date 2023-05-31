@@ -20,6 +20,7 @@ class EmbedQuestion extends BaseResponseType
             [
                 'message' => $this->response_dto->message->refresh(),
                 'response' => ContentCollection::emptyContent(),
+                'filters' => $this->response_dto->filters
             ]
         );
     }
