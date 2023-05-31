@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ResponseTypes;
 
+use App\Data\Filters;
 use App\Models\Outbound;
 use App\Models\ResponseType;
 use App\ResponseType\ResponseTypeEnum;
@@ -52,16 +53,16 @@ EOL;
     ) {
         $validated = request()->validate([
             'question' => ['required', 'max:5000'],
+            'filters' => ['nullable'],
         ]);
 
         try {
 
             $response = $outbound->run(
                 auth()->user(),
-                $validated['question']
+                $validated['question'],
+                Filters::from(data_get($validated, 'filters', []))
             );
-
-            logger('### CONTROLLER', $response->toArray());
 
             return response()->json([
                 'data' => $response->message->content,

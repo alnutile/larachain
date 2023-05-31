@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Outbound;
+use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
@@ -26,9 +27,13 @@ it('chat api response', function () {
         ->once()
         ->andReturn('foobar');
 
-    $user = User::factory()->create();
+    $project = Project::factory()->create();
 
-    $outbound = Outbound::factory()->chatUi()->create();
+    $outbound = Outbound::factory()->api()->create([
+        'project_id' => $project->id,
+    ]);
+
+    $user = User::factory()->create();
 
     $responseType = ResponseType::factory()
         ->chatApi()
