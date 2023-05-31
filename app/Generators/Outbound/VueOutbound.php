@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Generators\Source;
+namespace App\Generators\Outbound;
 
 use App\Generators\Base;
 use App\Generators\BaseRepository;
@@ -8,8 +8,9 @@ use App\Generators\VueGenerator;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
 
-class VueSource extends VueGenerator
+class VueOutbound extends VueGenerator
 {
-    protected string $generatorName = 'Source';
-    protected string $plural = 'es';
+    protected string $generatorName = 'Outbound';
+    protected string $plural = 's';
+
 }
