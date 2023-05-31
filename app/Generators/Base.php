@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 abstract class Base
 {
     protected string $generatorName = 'Outbound';
+
     protected string $plural = 's';
 
     protected BaseRepository $generatorRepository;

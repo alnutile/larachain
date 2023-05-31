@@ -4,8 +4,6 @@ namespace App\Generators\Transformer;
 
 use App\Generators\Base;
 use App\Generators\BaseRepository;
-use Facades\App\Generators\TokenReplacer;
-use Illuminate\Support\Facades\File;
 
 class ControllerTransformerGenerator extends Base
 {
@@ -18,5 +16,4 @@ class ControllerTransformerGenerator extends Base
         $this->makeController();
         $this->makeTest();
     }
-
 }

@@ -2,11 +2,10 @@
 
 namespace App\Generators\ResponseType;
 
+use App\Generators\Base;
 use App\Generators\BaseRepository;
 use Facades\App\Generators\TokenReplacer;
 use Illuminate\Support\Facades\File;
-use App\Generators\Base;
-
 
 class EnumTransformer extends Base
 {
