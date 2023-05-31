@@ -7,7 +7,7 @@ use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
 //use Facades\App\Generators\Outbound\EnumOutbound;
 //use Facades\App\Generators\Outbound\LarachainConfigOutbound;
 //use Facades\App\Generators\Outbound\ResponseTypeClassOutbound;
-//use Facades\App\Generators\Outbound\RoutesOutbound;
+use Facades\App\Generators\Outbound\RoutesOutbound;
 use Facades\App\Generators\Outbound\VueOutbound;
 use Tests\TestCase;
 
@@ -17,7 +17,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
     {
         ControllerOutboundGenerator::shouldReceive('handle')->once();
         VueOutbound::shouldReceive('handle')->once();
-//        RoutesOutbound::shouldReceive('handle')->once();
+        RoutesOutbound::shouldReceive('handle')->once();
 //        EnumOutbound::shouldReceive('handle')->once();
 //        LarachainConfigOutbound::shouldReceive('handle')->once();
 //        ResponseTypeClassOutbound::shouldReceive('handle')->once();
@@ -32,7 +32,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
     {
         ControllerOutboundGenerator::shouldReceive('handle')->once();
         VueOutbound::shouldReceive('handle')->once();
-//        RoutesOutbound::shouldReceive('handle')->once();
+        RoutesOutbound::shouldReceive('handle')->once();
 //        EnumOutbound::shouldReceive('handle')->once();
 //        LarachainConfigOutbound::shouldReceive('handle')->once();
 //        ResponseTypeClassOutbound::shouldReceive('handle')->once();
