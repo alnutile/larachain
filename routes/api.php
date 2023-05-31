@@ -18,3 +18,5 @@ Route::middleware('auth:sanctum')
     ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',
     [ChatApiResponseTypeController::class, 'api'])
     ->name('api.outbound.response_types.chat_api');
+
+
