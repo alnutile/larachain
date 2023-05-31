@@ -10,4 +10,8 @@ class Filters extends \Spatie\LaravelData\Data
     )
     {
     }
+
+    public function getSources() {
+        return $this->sources;
+    }
 }
