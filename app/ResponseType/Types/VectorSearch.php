@@ -8,6 +8,7 @@ use App\ResponseType\BaseResponseType;
 use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
+use Illuminate\Support\Facades\File;
 
 class VectorSearch extends BaseResponseType
 {
@@ -19,7 +20,7 @@ class VectorSearch extends BaseResponseType
             ->selectRaw('document_chunks.embedding <-> ? as distance, document_chunks.content',
                 [$this->response_dto->message->embedding])
             ->where('sources.project_id', $this->project->id)
-            ->when($this->response_dto->filters->getSources(), function($query) {
+            ->when(!empty($this->response_dto->filters->getSources()), function($query) {
                 $query->whereIn("sources.id", $this->response_dto->filters->getSources());
             })
             ->limit(20)
