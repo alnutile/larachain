@@ -440,3 +440,22 @@ Route::middleware([
             ->name('response_types.chatgptretrievalplugin.update');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Outbound\ChatGptRetrievalOutboundController::class)->group(
+    function () {
+        Route::get('/projects/{project}/outbounds/chat_gpt_retrieval/create', 'create')
+            ->name('outbounds.chat_gpt_retrieval.create');
+        Route::get('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/edit', 'edit')
+            ->name('outbounds.chat_gpt_retrieval.edit');
+        Route::post('/projects/{project}/outbounds/chat_gpt_retrieval/store', 'store')
+            ->name('outbounds.chat_gpt_retrieval.store');
+        Route::put('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/update', 'update')
+            ->name('outbounds.chat_gpt_retrieval.update');
+        Route::post('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/run', 'run')
+            ->name('outbounds.chat_gpt_retrieval.run');
+    }
+);

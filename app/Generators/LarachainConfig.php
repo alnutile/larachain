@@ -40,6 +40,14 @@ EOD;
 
         $contents = sprintf($template, $config);
 
-        File::put($sourcePath, $contents);
+        File::put($sourcePath, str($contents)->replace(
+            [
+                'array (',
+                ')'
+            ], [
+                "[",
+                "]"
+            ]
+        )->toString());
     }
 }
