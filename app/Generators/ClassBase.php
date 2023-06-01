@@ -42,7 +42,7 @@ abstract class ClassBase
 
     protected function makeClass()
     {
-        $content = $this->getContents(sprintf('/%s/Stub.php', $this->generatorName));
+        $content = $this->getContents(sprintf('%s/Stub.php', $this->generatorName));
         $transformed = TokenReplacer::handle($this->generatorRepository, $content);
 
         $name = sprintf('%s.php', $this->generatorRepository->getClassName());
