@@ -19,7 +19,7 @@ class GeneratorRepository extends BaseRepository
         RoutesOutbound::handle($this);
         EnumOutbound::handle($this);
         LarachainConfigOutbound::handle($this);
-        OutboundClassGenerator::handle($this);
+        //OutboundClassGenerator::handle($this);
 
         return $this;
     }

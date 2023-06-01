@@ -7,7 +7,7 @@ use App\Generators\BaseRepository;
 
 class ControllerOutboundGenerator extends Base
 {
-    protected string $generatorName = 'ResponseType';
+    protected string $generatorName = 'Outbound';
 
     public function handle(BaseRepository $generatorRepository): void
     {
