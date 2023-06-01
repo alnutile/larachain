@@ -7,7 +7,6 @@ use App\Generators\EnumBase;
 class EnumSource extends EnumBase
 {
     protected string $generatorName = 'Source';
+
     protected string $plural = 'es';
-
-
 }

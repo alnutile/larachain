@@ -4,12 +4,11 @@ namespace App\Generators\Outbound;
 
 use App\Generators\BaseRepository;
 use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
+use Facades\App\Generators\Outbound\EnumOutbound;
+use Facades\App\Generators\Outbound\LarachainConfigOutbound;
 use Facades\App\Generators\Outbound\OutboundClassGenerator;
 use Facades\App\Generators\Outbound\RoutesOutbound;
 use Facades\App\Generators\Outbound\VueOutbound;
-
-//use Facades\App\Generators\Outbound\EnumOutbound;
-//use Facades\App\Generators\Outbound\LarachainConfigOutbound;
 
 class GeneratorRepository extends BaseRepository
 {
@@ -18,8 +17,8 @@ class GeneratorRepository extends BaseRepository
         ControllerOutboundGenerator::handle($this);
         VueOutbound::handle($this);
         RoutesOutbound::handle($this);
-        //EnumOutbound::handle($this);
-        //LarachainConfigOutbound::handle($this);
+        EnumOutbound::handle($this);
+        LarachainConfigOutbound::handle($this);
         OutboundClassGenerator::handle($this);
 
         return $this;

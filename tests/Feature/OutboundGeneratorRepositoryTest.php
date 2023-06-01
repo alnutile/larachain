@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Generators\Outbound\GeneratorRepository;
 use Facades\App\Generators\Outbound\ControllerOutboundGenerator;
-//use Facades\App\Generators\Outbound\EnumOutbound;
-//use Facades\App\Generators\Outbound\LarachainConfigOutbound;
+use Facades\App\Generators\Outbound\EnumOutbound;
+use Facades\App\Generators\Outbound\LarachainConfigOutbound;
 use Facades\App\Generators\Outbound\OutboundClassGenerator;
 use Facades\App\Generators\Outbound\RoutesOutbound;
 use Facades\App\Generators\Outbound\VueOutbound;
@@ -18,8 +18,8 @@ class OutboundGeneratorRepositoryTest extends TestCase
         ControllerOutboundGenerator::shouldReceive('handle')->once();
         VueOutbound::shouldReceive('handle')->once();
         RoutesOutbound::shouldReceive('handle')->once();
-//        EnumOutbound::shouldReceive('handle')->once();
-//        LarachainConfigOutbound::shouldReceive('handle')->once();
+        EnumOutbound::shouldReceive('handle')->once();
+        LarachainConfigOutbound::shouldReceive('handle')->once();
         OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
@@ -33,8 +33,8 @@ class OutboundGeneratorRepositoryTest extends TestCase
         ControllerOutboundGenerator::shouldReceive('handle')->once();
         VueOutbound::shouldReceive('handle')->once();
         RoutesOutbound::shouldReceive('handle')->once();
-//        EnumOutbound::shouldReceive('handle')->once();
-//        LarachainConfigOutbound::shouldReceive('handle')->once();
+        EnumOutbound::shouldReceive('handle')->once();
+        LarachainConfigOutbound::shouldReceive('handle')->once();
         OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 

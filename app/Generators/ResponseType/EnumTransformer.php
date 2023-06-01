@@ -7,5 +7,4 @@ use App\Generators\EnumBase;
 class EnumTransformer extends EnumBase
 {
     protected string $generatorName = 'ResponseType';
-
 }
