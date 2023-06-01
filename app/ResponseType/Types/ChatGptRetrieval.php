@@ -4,8 +4,6 @@ namespace App\ResponseType\Types;
 
 use App\Models\ResponseType;
 use App\ResponseType\BaseResponseType;
-use App\ResponseType\Content;
-use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 
 class ChatGptRetrieval extends BaseResponseType
@@ -29,7 +27,7 @@ class ChatGptRetrieval extends BaseResponseType
             [
                 'message' => $this->response_dto->message->refresh(),
                 'response' => $this->response_dto->response,
-                'filters' => $this->response_dto->filters
+                'filters' => $this->response_dto->filters,
             ]
         );
     }

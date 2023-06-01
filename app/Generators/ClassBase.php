@@ -11,7 +11,6 @@ abstract class ClassBase
 
     protected string $plural = 's';
 
-
     protected BaseRepository $generatorRepository;
 
     public function handle(BaseRepository $generatorRepository): void

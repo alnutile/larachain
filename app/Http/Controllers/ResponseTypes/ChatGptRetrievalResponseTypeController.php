@@ -8,9 +8,8 @@ use App\ResponseType\ResponseTypeEnum;
 
 class ChatGptRetrievalResponseTypeController extends BaseResponseTypeController
 {
-
     public function create(Outbound $outbound)
-{
+    {
     ResponseType::create([
         'type' => ResponseTypeEnum::ChatGptRetrieval,
         'order' => $outbound->response_types->count() + 1,
@@ -25,12 +24,12 @@ class ChatGptRetrievalResponseTypeController extends BaseResponseTypeController
     }
 
         public function store(Outbound $outbound)
-    {
+        {
         // TODO: Implement store() method.
     }
 
         public function update(Outbound $outbound, ResponseType $response_type)
-    {
+        {
         // TODO: Implement update() method.
     }
 }

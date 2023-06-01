@@ -39,9 +39,9 @@ it('test show ChatGptRetrieval Outbound', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    $outbound = Outbound::factory()>create([
+    $outbound = Outbound::factory() > create([
         'type' => OutboundEnum::ChatGptRetrieval,
-        'project_id' => $project->id
+        'project_id' => $project->id,
     ]);
 
     $this->actingAs($user)

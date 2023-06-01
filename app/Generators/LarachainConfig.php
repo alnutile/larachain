@@ -43,10 +43,10 @@ EOD;
         File::put($sourcePath, str($contents)->replace(
             [
                 'array (',
-                ')'
+                ')',
             ], [
-                "[",
-                "]"
+                '[',
+                ']',
             ]
         )->toString());
     }
