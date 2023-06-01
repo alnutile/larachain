@@ -39,7 +39,7 @@ it('test show [RESOURCE_NAME] Outbound', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    $outbound = Outbound::factory()>create([
+    $outbound = Outbound::factory()->create([
         'type' => OutboundEnum::[RESOURCE_CLASS_NAME],
         'project_id' => $project->id
     ]);

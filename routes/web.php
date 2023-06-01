@@ -428,12 +428,14 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->controller(\App\Http\Controllers\Outbound\ChatGptRetrievalOutboundController::class)->group(
+])->controller(\App\Http\Controllers\Outbounds\ChatGptRetrievalOutboundController::class)->group(
     function () {
         Route::get('/projects/{project}/outbounds/chat_gpt_retrieval/create', 'create')
             ->name('outbounds.chat_gpt_retrieval.create');
         Route::get('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/edit', 'edit')
             ->name('outbounds.chat_gpt_retrieval.edit');
+        Route::get('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval', 'show')
+            ->name('outbounds.chat_gpt_retrieval.show');
         Route::post('/projects/{project}/outbounds/chat_gpt_retrieval/store', 'store')
             ->name('outbounds.chat_gpt_retrieval.store');
         Route::put('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/update', 'update')

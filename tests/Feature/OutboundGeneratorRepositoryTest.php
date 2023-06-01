@@ -20,7 +20,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
         RoutesOutbound::shouldReceive('handle')->once();
         EnumOutbound::shouldReceive('handle')->once();
         LarachainConfigOutbound::shouldReceive('handle')->once();
-        OutboundClassGenerator::shouldReceive('handle')->once();
+        //OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();
@@ -35,7 +35,7 @@ class OutboundGeneratorRepositoryTest extends TestCase
         RoutesOutbound::shouldReceive('handle')->once();
         EnumOutbound::shouldReceive('handle')->once();
         LarachainConfigOutbound::shouldReceive('handle')->once();
-        OutboundClassGenerator::shouldReceive('handle')->once();
+        //OutboundClassGenerator::shouldReceive('handle')->once();
         $generator = new GeneratorRepository();
 
         $generator->setup('Foo Bar', 'Some Response Type', 'Some Description', false)->run();

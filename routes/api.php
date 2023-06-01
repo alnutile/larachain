@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Outbounds\ChatGptRetrievalOutboundController;
 use App\Http\Controllers\ResponseTypes\ChatApiResponseTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,25 @@ Route::middleware('auth:sanctum')
     ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',
     [ChatApiResponseTypeController::class, 'api'])
     ->name('api.outbound.response_types.chat_api');
+
+Route::middleware('auth:sanctum')->controller(ChatGptRetrievalOutboundController::class)->group(
+    function() {
+        /**
+         * @NOTE taking this in a direction were
+         * I no longer need the last response type since it just does
+         * what the outbound says it does
+         * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
+         */
+        Route::post('/upsert', 'upsert')
+            ->name("api.outbounds.chat_gpt_retrieval.upsert");
+        Route::post('/upsert-file', 'upsertFile')
+            ->name("api.outbounds.chat_gpt_retrieval.upsert_file");
+        Route::get('/query', 'query')
+            ->name("api.outbounds.chat_gpt_retrieval.query");
+        Route::delete('/delete', 'query')
+            ->name("api.outbounds.chat_gpt_retrieval.delete");
+        Route::get('/.well-known/openapi.yaml', 'openApi')
+            ->name("api.outbounds.chat_gpt_retrieval.openapi");
+    }
+);
+

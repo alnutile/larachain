@@ -24,6 +24,8 @@ Route::middleware([
             ->name('outbounds.[RESOURCE_KEY].create');
         Route::get('/projects/{project}/outbounds/{outbound}/[RESOURCE_KEY]/edit', 'edit')
             ->name('outbounds.[RESOURCE_KEY].edit');
+        Route::get('/projects/{project}/outbounds/{outbound}/[RESOURCE_KEY]', 'show')
+            ->name('outbounds.[RESOURCE_KEY].show');
         Route::post('/projects/{project}/outbounds/[RESOURCE_KEY]/store', 'store')
             ->name('outbounds.[RESOURCE_KEY].store');
         Route::put('/projects/{project}/outbounds/{outbound}/[RESOURCE_KEY]/update', 'update')
