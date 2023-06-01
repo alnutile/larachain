@@ -9,7 +9,7 @@ enum ResponseTypeEnum: string
     use TypeTrait;
 
     //case TemplateType = 'template_type'
-    case ChatGptRetrievalPlugin = 'chatgptretrievalplugin';
+    case ChatGptRetrieval = 'chat_gpt_retrieval';
     case ChatApi = 'chatapi';
     case PregReplace = 'preg_replace';
     case StringRemove = 'string_remove';

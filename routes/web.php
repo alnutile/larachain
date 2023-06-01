@@ -424,22 +424,6 @@ Route::middleware([
     }
 );
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->controller(\App\Http\Controllers\ResponseTypes\ChatGptRetrievalPluginResponseTypeController::class)->group(
-    function () {
-        Route::get('/outbounds/{outbound}/response_types/chatgptretrievalplugin/create', 'create')
-            ->name('response_types.chatgptretrievalplugin.create');
-        Route::get('/outbounds/{outbound}/response_types/{response_type}/chatgptretrievalplugin/edit', 'edit')
-            ->name('response_types.chatgptretrievalplugin.edit');
-        Route::post('/outbounds/{outbound}/response_types/chatgptretrievalplugin/store', 'store')
-            ->name('response_types.chatgptretrievalplugin.store');
-        Route::put('/outbounds/{outbound}/response_types/{response_type}/chatgptretrievalplugin/update', 'update')
-            ->name('response_types.chatgptretrievalplugin.update');
-    }
-);
 
 Route::middleware([
     'auth:sanctum',
@@ -457,5 +441,21 @@ Route::middleware([
             ->name('outbounds.chat_gpt_retrieval.update');
         Route::post('/projects/{project}/outbounds/{outbound}/chat_gpt_retrieval/run', 'run')
             ->name('outbounds.chat_gpt_retrieval.run');
+    }
+);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\ResponseTypes\ChatGptRetrievalResponseTypeController::class)->group(
+    function () {
+        Route::get('/outbounds/{outbound}/response_types/chat_gpt_retrieval/create', 'create')
+            ->name('response_types.chat_gpt_retrieval.create');
+        Route::get('/outbounds/{outbound}/response_types/{response_type}/chat_gpt_retrieval/edit', 'edit')
+            ->name('response_types.chat_gpt_retrieval.edit');
+        Route::post('/outbounds/{outbound}/response_types/chat_gpt_retrieval/store', 'store')
+            ->name('response_types.chat_gpt_retrieval.store');
+        Route::put('/outbounds/{outbound}/response_types/{response_type}/chat_gpt_retrieval/update', 'update')
+            ->name('response_types.chat_gpt_retrieval.update');
     }
 );
