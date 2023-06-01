@@ -64,10 +64,10 @@ it('test openapi yaml', function () {
     ]);
 
     $outbound = Outbound::factory()->create([
-            'type' => OutboundEnum::ChatGptRetrieval,
-            'project_id' => $project->id,
-        ]);
-    $openaiApi = File::get(base_path("tests/fixtures/openapi.yaml"));
+        'type' => OutboundEnum::ChatGptRetrieval,
+        'project_id' => $project->id,
+    ]);
+    $openaiApi = File::get(base_path('tests/fixtures/openapi.yaml'));
     $this->actingAs($user)
         ->get(route('api.outbounds.chat_gpt_retrieval.openapi', [
             'project' => $project->id,

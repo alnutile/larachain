@@ -55,38 +55,46 @@ class ChatGptRetrievalOutboundController extends BaseOutboundController
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function upsert() {
-        logger("Upsert", request()->all());
+    public function upsert()
+    {
+        logger('Upsert', request()->all());
+
         return response()->json([], 200);
     }
 
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function upsertFile() {
-        logger("Upsert File", request()->all());
+    public function upsertFile()
+    {
+        logger('Upsert File', request()->all());
+
         return response()->json([], 200);
     }
 
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function query() {
+    public function query()
+    {
         return response()->json([], 200);
     }
 
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function delete() {
+    public function delete()
+    {
         return response()->json([], 200);
     }
 
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function openApi() {
-        $openaiApi = File::get(base_path("tests/fixtures/openapi.yaml"));
+    public function openApi()
+    {
+        $openaiApi = File::get(base_path('tests/fixtures/openapi.yaml'));
+
         return response($openaiApi, 200);
     }
 }
