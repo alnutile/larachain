@@ -25,7 +25,7 @@ abstract class BaseRepository
         $this->requires_settings = $requires_settings;
         $this->description = $description;
         $this->class_name = str($name)->studly()->toString();
-        $this->key = str($name)->lower()->snake()->toString();
+        $this->key = str($name)->snake()->toString();
 
         return $this;
     }
