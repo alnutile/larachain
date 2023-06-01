@@ -11,6 +11,7 @@ abstract class ClassBase
 
     protected string $plural = 's';
 
+
     protected BaseRepository $generatorRepository;
 
     public function handle(BaseRepository $generatorRepository): void
@@ -47,7 +48,7 @@ abstract class ClassBase
 
         $name = sprintf('%s.php', $this->generatorRepository->getClassName());
         $basePath = base_path(sprintf('app/%s/Types/',
-            $this->generatorRepository->getClassName(),
+            $this->generatorName,
         ));
         $destination = $basePath.$name;
         $this->generatorRepository->putFile($destination, $transformed);
