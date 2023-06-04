@@ -2,17 +2,12 @@
 
 use App\Models\Document;
 use App\Models\DocumentChunk;
-use App\Models\Message;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\Source;
 use App\Models\User;
 use App\Outbound\OutboundEnum;
-use App\ResponseType\ContentCollection;
-use App\ResponseType\ResponseDto;
-use App\ResponseType\Types\ChatGptRetrievalPlugin;
-use App\ResponseType\Types\VectorSearch;
 use Illuminate\Support\Facades\File;
 use function Pest\Laravel\assertDatabaseCount;
 
@@ -85,7 +80,6 @@ it('test openapi yaml', function () {
         ->assertOk();
 });
 
-
 it('test query ChatGptRetrieval Outbound', function () {
     $user = User::factory()->withPersonalTeam()
         ->create();
@@ -107,28 +101,28 @@ it('test query ChatGptRetrieval Outbound', function () {
 
     $rt = ResponseType::factory()->vectorSearch()->create(
         [
-            'outbound_id' => $outbound->id
+            'outbound_id' => $outbound->id,
         ]
     );
     $chatGtpRt = ResponseType::factory()->chatGtpRetrieval()->create(
         [
-            'outbound_id' => $outbound->id
+            'outbound_id' => $outbound->id,
         ]
     );
 
     $this->actingAs($user)
         ->post(route('api.outbounds.chat_gpt_retrieval.query', [
-            'outbound' => $outbound->id
+            'outbound' => $outbound->id,
         ]), [
-            "queries" => [
-                "What does WDR stand for?"
-            ]
+            'queries' => [
+                'What does WDR stand for?',
+            ],
         ])
         ->assertOk()
         ->assertJson([
             [
-                'query' => "What does WDR stand for?",
-                "results" => []
-            ]
+                'query' => 'What does WDR stand for?',
+                'results' => [],
+            ],
         ]);
 });

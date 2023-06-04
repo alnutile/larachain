@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CloneResponseTypesController;
 use App\Http\Controllers\Outbounds\ApiOutboundController;
-use App\Http\Controllers\Outbounds\ChatGptRetrievalOutboundController;
 use App\Http\Controllers\Outbounds\ChatUiOutboundController;
 use App\Http\Controllers\ResponseTypes\ChatUiResponseTypeController;
 use App\Http\Controllers\ResponseTypes\CombineContentResponseTypeController;
@@ -461,6 +460,3 @@ Route::middleware([
             ->name('response_types.chat_gpt_retrieval.update');
     }
 );
-
-
-

@@ -81,14 +81,12 @@ class ChatGptRetrievalOutboundController extends BaseOutboundController
     public function query(Outbound $outbound)
     {
         $validated = request()->validate([
-            'queries' => ['required', 'array']
+            'queries' => ['required', 'array'],
         ]);
-
 
         $query = Arr::first($validated['queries']);
 
-        logger("Query request", [$query]);
-
+        logger('Query request', [$query]);
 
         /** @var ResponseDto $results */
         $results = $outbound->run(
@@ -100,8 +98,8 @@ class ChatGptRetrievalOutboundController extends BaseOutboundController
         return response()->json([
             [
                 'query' => $query,
-                'results' => $results->response->raw
-            ]
+                'results' => $results->response->raw,
+            ],
         ], 200);
     }
 

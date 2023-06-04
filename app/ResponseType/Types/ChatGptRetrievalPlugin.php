@@ -13,7 +13,6 @@ class ChatGptRetrievalPlugin extends BaseResponseType
 
         $openApiFormat = [];
 
-
         $this->response_dto->response->raw->map(function ($document) {
 
             $openApiFormat = [];
@@ -21,6 +20,7 @@ class ChatGptRetrievalPlugin extends BaseResponseType
             $openApiFormat['content'] = data_get($document, 'content');
             $openApiFormat['embedding'] = data_get($document, 'embedding');
             $openApiFormat['id'] = data_get($document, 'id');
+
             return $openApiFormat;
         });
 

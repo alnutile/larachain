@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')
     [ChatApiResponseTypeController::class, 'api'])
     ->name('api.outbound.response_types.chat_api');
 
-
 Route::middleware('auth:sanctum')->controller(ChatGptRetrievalOutboundController::class)->group(
     function () {
         /**

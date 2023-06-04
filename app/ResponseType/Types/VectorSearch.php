@@ -11,11 +11,12 @@ use App\ResponseType\ResponseDto;
 
 class VectorSearch extends BaseResponseType
 {
-
     protected int $limit = 20;
 
-    public function setLimit(int $limit) : VectorSearch {
+    public function setLimit(int $limit): VectorSearch
+    {
         $this->limit = $limit;
+
         return $this;
     }
 
@@ -40,7 +41,7 @@ class VectorSearch extends BaseResponseType
                 'message' => $this->response_dto->message->refresh(),
                 'response' => ContentCollection::from([
                     'contents' => Content::collection($results),
-                    'raw' => $results
+                    'raw' => $results,
                 ]),
                 'filters' => $this->response_dto->filters,
             ]

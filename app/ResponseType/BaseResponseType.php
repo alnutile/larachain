@@ -15,7 +15,8 @@ abstract class BaseResponseType
 
     abstract public function handle(ResponseType $responseType): ResponseDto;
 
-    protected function updateRaw() : void {
+    protected function updateRaw(): void
+    {
         $this->response_dto->response->raw = $this->response_dto->response->toArray();
     }
 }

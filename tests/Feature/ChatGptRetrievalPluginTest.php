@@ -7,7 +7,6 @@ use App\Models\DocumentChunk;
 use App\Models\Message;
 use App\Models\ResponseType;
 use App\Models\Source;
-use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\ChatGptRetrievalPlugin;
