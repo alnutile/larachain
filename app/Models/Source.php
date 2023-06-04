@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\SourceTypeMissingException;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 use App\Source\Types\BaseSourceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property array|null $meta_data
  * @property int $project_id
  * @property int $order
- * @property SourceTypeEnum $type
+ * @property SourceEnum $type
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
@@ -26,7 +26,7 @@ class Source extends BaseTypeModel
 
     protected $casts = [
         'meta_data' => 'encrypted:array',
-        'type' => SourceTypeEnum::class,
+        'type' => SourceEnum::class,
     ];
 
     protected $appends = [

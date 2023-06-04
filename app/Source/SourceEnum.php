@@ -7,7 +7,7 @@ use App\Helpers\TypeTrait;
 /**
  * @see settings in config/larachain.php:3
  */
-enum SourceTypeEnum: string
+enum SourceEnum: string
 {
     use TypeTrait;
 

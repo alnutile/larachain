@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Sources;
 
 use App\Models\Project;
 use App\Models\Source;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 
 class ScrapeWebPageSourceController extends BaseSourceController
 {
@@ -42,7 +42,7 @@ class ScrapeWebPageSourceController extends BaseSourceController
             'project_id' => $project->id,
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::ScrapeWebPage,
+            'type' => SourceEnum::ScrapeWebPage,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);
@@ -68,7 +68,7 @@ class ScrapeWebPageSourceController extends BaseSourceController
             'project_id' => $validated['project_id'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::ScrapeWebPage,
+            'type' => SourceEnum::ScrapeWebPage,
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);

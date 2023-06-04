@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,7 +28,7 @@ class SourceFactory extends Factory
             'project_id' => Project::factory(),
             'order' => fake()->numberBetween(1, 10),
             'type' => fake()->randomElement([
-                SourceTypeEnum::WebFile,
+                SourceEnum::WebFile,
             ]),
             'created_at' => fake()->dateTime,
             'updated_at' => fake()->dateTime,
@@ -39,7 +39,7 @@ class SourceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => SourceTypeEnum::ScrapeWebPage,
+                'type' => SourceEnum::ScrapeWebPage,
                 'meta_data' => [
                     'url' => 'https://wikipedia.org/wiki/Laravel',
                 ],
@@ -51,7 +51,7 @@ class SourceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => SourceTypeEnum::WebFile,
+                'type' => SourceEnum::WebFile,
                 'meta_data' => [
                     'url' => 'https://wikipedia.com/foo.pdf',
                     'username' => 'foo',

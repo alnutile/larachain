@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Project;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('meta_data')->nullable();
             $table->foreignIdFor(Project::class);
             $table->integer('order')->default(1);
-            $table->string('type')->default(SourceTypeEnum::WebFile->value);
+            $table->string('type')->default(SourceEnum::WebFile->value);
             $table->timestamps();
         });
     }

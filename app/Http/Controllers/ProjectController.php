@@ -7,7 +7,7 @@ use App\Models\Message;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 use App\Transformers\TransformerTypeEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $sourceTypes = SourceTypeEnum::toArray();
+        $sourceTypes = SourceEnum::toArray();
         $transformerTypes = TransformerTypeEnum::toArray('transformers');
         $outboundTypes = OutboundEnum::toArray('outbounds');
 

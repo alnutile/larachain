@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +58,7 @@ class Document extends Model
     public function directoryForFile(): string|null
     {
         if (in_array($this->source->type, [
-            SourceTypeEnum::WebFile,
+            SourceEnum::WebFile,
         ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d'),
@@ -72,7 +72,7 @@ class Document extends Model
     public function pathToFile(): string|null
     {
         if (in_array($this->source->type, [
-            SourceTypeEnum::WebFile,
+            SourceEnum::WebFile,
         ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d/%s'),

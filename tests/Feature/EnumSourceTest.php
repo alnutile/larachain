@@ -16,7 +16,7 @@ class EnumSourceTest extends TestCase
 
 namespace App\Source;
 
-enum SourceTypeEnum: string
+enum SourceEnum: string
 {
     //case TemplateType = 'template_type'
     case WebFile = 'web_file';

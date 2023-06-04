@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Sources;
 
 use App\Models\Project;
 use App\Models\Source;
-use App\Source\SourceTypeEnum;
+use App\Source\SourceEnum;
 
 class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
 {
@@ -43,7 +43,7 @@ class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
             'project_id' => $project->id,
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => SourceEnum::[RESOURCE_CLASS_NAME],
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);
@@ -69,7 +69,7 @@ class [RESOURCE_CLASS_NAME]SourceController extends BaseSourceController
             'project_id' => $validated['project_id'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'type' => SourceTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => SourceEnum::[RESOURCE_CLASS_NAME],
             'order' => 1,
             'meta_data' => $validated['meta_data'],
         ]);
