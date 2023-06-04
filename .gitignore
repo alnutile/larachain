@@ -23,3 +23,4 @@ yarn-error.log
 /tests/fixtures/larachain_current_dto_EmbedQuestion.json
 /tests/fixtures/larachain_current_dto_VectorSearch.json
 public/.DS_Store
+public/.DS_Store
