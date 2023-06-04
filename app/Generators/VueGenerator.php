@@ -17,15 +17,13 @@ class VueGenerator extends Base
 
     protected function makeVue()
     {
-        $rootPath = base_path(sprintf('resources/js/Pages/%s%s/%s',
-            $this->generatorName,
+        $rootPath = base_path(sprintf('resources/js/Pages/%s/%s',
             str($this->generatorName)->plural()->toString(),
             $this->generatorRepository->getClassName()));
 
         File::makeDirectory(sprintf('%s/Partials', $rootPath), 0755, true, true);
 
-        $path = sprintf($this->generatorRepository->getRootPathOrStubs().'Vue/%s%s/%s',
-        $this->generatorName,
+        $path = sprintf($this->generatorRepository->getRootPathOrStubs().'Vue/%s/%s',
         str($this->generatorName)->plural()->toString(),
         $this->generatorName);
 
