@@ -11,6 +11,7 @@ use App\ResponseType\Content;
 use App\ResponseType\ContentCollection;
 use App\ResponseType\ResponseDto;
 use App\ResponseType\Types\ChatGptRetrievalPlugin;
+use App\ResponseType\Types\VectorSearch;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,32 +28,32 @@ class ChatGptRetrievalPluginTest extends TestCase
             'source_id' => $source->id,
         ]);
 
-        DocumentChunk::factory()->count(10)->create([
+        DocumentChunk::factory()->withEmbedData()->create([
             'document_id' => $document->id,
-            'content' => $example,
-        ]
-        );
-
-        $documents = DocumentChunk::query()
-            ->where('content', 'LIKE', $example)->get();
-
-        $message = Message::factory()->create();
-
-        $responseDto = ResponseDto::from([
-            'message' => $message,
-            'response' => ContentCollection::from([
-                'contents' => Content::collection($documents),
-            ]),
         ]);
 
-        $responseType = ResponseType::factory()
-            ->trimText()
-            ->create();
+        $rt = ResponseType::factory()->vectorSearch()->create();
 
-        $trim = new ChatGptRetrievalPlugin($source->project, $responseDto);
+        $message = Message::factory()->withEmbedData()->create();
 
-        $results = $trim->handle($responseType);
+        $dto = ResponseDto::from([
+            'message' => $message,
+            'response' => ContentCollection::emptyContent(),
+        ]);
 
-        $this->assertInstanceOf(ResponseDto::class, $results);
+        $vector = new VectorSearch($source->project, $dto);
+        $responseDto = $vector->handle($rt);
+
+        $chatGtpRt = ResponseType::factory()->chatGtpRetrieval()->create();
+
+        $results = new ChatGptRetrievalPlugin($source->project, $responseDto);
+        $responseDto = $results->handle($chatGtpRt);
+        $first = $responseDto->response->raw->first();
+
+        $this->assertNotEmpty($first);
+        $this->assertArrayHasKey('distance', $first);
+        $this->assertArrayHasKey('content', $first);
+        $this->assertArrayHasKey('embedding', $first);
+        $this->assertArrayHasKey('id', $first);
     }
 }

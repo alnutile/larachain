@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_model": "retrieval",
+    "name_for_human": "LaraChain ChatGPT Retrieval",
+    "description_for_model": "Data the user imported around California Regional Water Quality Control Board Central Valley Region",
+    "description_for_human": "LaraChain + ChatGPT Retrieval API",
+    "auth": {
+        "type": "user_http",
+        "authorization_type": "bearer"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://larachain.sharedwithexpose.com/.well-known/openapi.yaml"
+    },
+    "logo_url": "https://larachain.sharedwithexpose.com/.well-known/logo.png",
+    "contact_email": "hello@contact.com",
+    "legal_info_url": "hello@legal.com"
+}

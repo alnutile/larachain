@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Outbounds;
 
+use App\Data\Filters;
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
+use App\ResponseType\ResponseDto;
 use App\ResponseType\ResponseTypeEnum;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
 class ChatGptRetrievalOutboundController extends BaseOutboundController
@@ -75,9 +78,31 @@ class ChatGptRetrievalOutboundController extends BaseOutboundController
     /**
      * @see https://github.com/openai/chatgpt-retrieval-plugin/tree/main
      */
-    public function query()
+    public function query(Outbound $outbound)
     {
-        return response()->json([], 200);
+        $validated = request()->validate([
+            'queries' => ['required', 'array']
+        ]);
+
+
+        $query = Arr::first($validated['queries']);
+
+        logger("Query request", [$query]);
+
+
+        /** @var ResponseDto $results */
+        $results = $outbound->run(
+            auth()->user(),
+            $query,
+            Filters::from([])
+        );
+
+        return response()->json([
+            [
+                'query' => $query,
+                'results' => $results->response->raw
+            ]
+        ], 200);
     }
 
     /**

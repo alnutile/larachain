@@ -11,16 +11,17 @@ class ChatGptRetrievalPlugin extends BaseResponseType
     public function handle(ResponseType $responseType): ResponseDto
     {
 
-        /**
-         * @NOTE you can use the meta_data or prompt_token
-         * JSON area for storing encrypted settings
-         */
-        $token_limit = data_get($responseType->meta_data, 'something', 750);
+        $openApiFormat = [];
 
-        $this->response_dto->response->contents->map(function ($document) {
-            $document->content = str($document->content)->toString();
 
-            return $document;
+        $this->response_dto->response->raw->map(function ($document) {
+
+            $openApiFormat = [];
+            $openApiFormat['score'] = data_get($document, 'distance');
+            $openApiFormat['content'] = data_get($document, 'content');
+            $openApiFormat['embedding'] = data_get($document, 'embedding');
+            $openApiFormat['id'] = data_get($document, 'id');
+            return $openApiFormat;
         });
 
         return ResponseDto::from(

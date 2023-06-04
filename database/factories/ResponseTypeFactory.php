@@ -79,6 +79,15 @@ class ResponseTypeFactory extends Factory
         });
     }
 
+    public function chatGtpRetrieval()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => ResponseTypeEnum::ChatGptRetrieval,
+            ];
+        });
+    }
+
     public function vectorSearch()
     {
         return $this->state(function (array $attributes) {

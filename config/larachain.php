@@ -87,7 +87,7 @@ return [
         ],
         'chat_gpt_retrieval' => [
             'name' => 'ChatGptRetrieval',
-            'description' => 'This will help set an api compatible with thier API',
+            'description' => 'This will create a ChatGPT Plugin API for their Retrieval feature',
             'class' => 'App\\Outbound\\Types\\ChatGptRetrieval',
             'requires' => [
             ],

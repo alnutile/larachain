@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')
     [ChatApiResponseTypeController::class, 'api'])
     ->name('api.outbound.response_types.chat_api');
 
+
 Route::middleware('auth:sanctum')->controller(ChatGptRetrievalOutboundController::class)->group(
     function () {
         /**
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->controller(ChatGptRetrievalOutboundController
             ->name('api.outbounds.chat_gpt_retrieval.upsert');
         Route::post('/upsert-file', 'upsertFile')
             ->name('api.outbounds.chat_gpt_retrieval.upsert_file');
-        Route::get('/query', 'query')
+        Route::post('/query/{outbound}', 'query')
             ->name('api.outbounds.chat_gpt_retrieval.query');
         Route::delete('/delete', 'query')
             ->name('api.outbounds.chat_gpt_retrieval.delete');
