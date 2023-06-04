@@ -9,8 +9,6 @@ class SourceClassTransformer extends ClassBase
 {
     protected string $generatorName = 'Source';
 
-    protected string $plural = 'es';
-
     public function handle(BaseRepository $generatorRepository): void
     {
         $this->generatorRepository = $generatorRepository;
