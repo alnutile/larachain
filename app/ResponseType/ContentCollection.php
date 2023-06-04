@@ -9,7 +9,8 @@ class ContentCollection extends \Spatie\LaravelData\Data
 {
         public function __construct(
             #[DataCollectionOf(Content::class)]
-            public DataCollection $contents
+            public DataCollection $contents,
+            public mixed $raw = []
         ) {
         }
 

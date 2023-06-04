@@ -33,6 +33,7 @@ class CombineContent extends BaseResponseType
                     'contents' => [
                         Content::from([
                             'content' => $combinedContent,
+                            'raw' => [$combinedContent]
                         ])],
                 ]),
                 'filters' => $this->response_dto->filters,

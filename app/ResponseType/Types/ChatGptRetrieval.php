@@ -11,12 +11,6 @@ class ChatGptRetrieval extends BaseResponseType
     public function handle(ResponseType $responseType): ResponseDto
     {
 
-        /**
-         * @NOTE you can use the meta_data or prompt_token
-         * JSON area for storing encrypted settings
-         */
-        $token_limit = data_get($responseType->meta_data, 'something', 750);
-
         $this->response_dto->response->contents->map(function ($document) {
             $document->content = str($document->content)->toString();
 

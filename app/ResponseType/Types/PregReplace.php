@@ -29,6 +29,8 @@ class PregReplace extends BaseResponseType
             });
         }
 
+        $this->updateRaw();
+
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),

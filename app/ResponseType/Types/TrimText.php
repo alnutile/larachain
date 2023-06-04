@@ -41,6 +41,8 @@ class TrimText extends BaseResponseType
             return $document;
         });
 
+        $this->updateRaw();
+
         return ResponseDto::from(
             [
                 'message' => $this->response_dto->message->refresh(),
