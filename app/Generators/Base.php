@@ -54,9 +54,8 @@ abstract class Base
             $this->generatorRepository->getClassName(),
             $this->generatorName,
         );
-        $destination = base_path(sprintf('app/Http/Controllers/%s%s/%s',
-            $this->generatorName,
-            $this->plural,
+        $destination = base_path(sprintf('app/Http/Controllers/%s/%s',
+            str($this->generatorName)->plural()->toString(),
             $name));
 
         $this->generatorRepository->putFile($destination, $transformed);

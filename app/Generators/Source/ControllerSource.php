@@ -9,7 +9,7 @@ class ControllerSource extends Base
 {
     protected string $generatorName = 'Source';
 
-    protected string $plural = 'es';
+    protected string $plural = 's';
 
     public function handle(BaseRepository $generatorRepository): void
     {
