@@ -5,7 +5,6 @@ use App\Models\Project;
 use App\Models\Transformer;
 use App\Models\User;
 use Illuminate\Support\Facades\Queue;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('should create', function () {
     $user = User::factory()->withPersonalTeam()
@@ -17,7 +16,7 @@ it('should create', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    assertDatabaseCount('transformers', 0);
+    $this->assertDatabaseCount('transformers', 0);
 
     $this->actingAs($user)
         ->get(route('transformers.embed_transformer.create', [
@@ -26,7 +25,7 @@ it('should create', function () {
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,
         ]);
-    assertDatabaseCount('transformers', 1);
+    $this->assertDatabaseCount('transformers', 1);
 });
 
 it('should run transformer', function () {

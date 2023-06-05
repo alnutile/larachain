@@ -3,7 +3,6 @@
 use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\User;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('test shows create page', function () {
     $user = User::factory()->withPersonalTeam()
@@ -15,7 +14,7 @@ it('test shows create page', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    assertDatabaseCount('outbounds', 0);
+    $this->assertDatabaseCount('outbounds', 0);
 
     $this->actingAs($user)
         ->get(route('outbounds.chat_ui.create', [
@@ -25,7 +24,7 @@ it('test shows create page', function () {
             'project' => $project->id,
             'outbound' => Outbound::first()->id,
         ]);
-    assertDatabaseCount('outbounds', 1);
+    $this->assertDatabaseCount('outbounds', 1);
 });
 
 it('test show outbound', function () {

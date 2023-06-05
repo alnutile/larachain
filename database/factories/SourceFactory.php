@@ -35,6 +35,18 @@ class SourceFactory extends Factory
         ];
     }
 
+    public function fileUpload()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => SourceEnum::FileUploadSource,
+                'meta_data' => [
+                    'file_name' => 'test.csv',
+                ],
+            ];
+        });
+    }
+
     public function scrapeWebPage()
     {
         return $this->state(function (array $attributes) {

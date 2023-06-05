@@ -460,3 +460,22 @@ Route::middleware([
             ->name('response_types.chat_gpt_retrieval.update');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Sources\FileUploadSourceSourceController::class)->group(
+    function () {
+        Route::get('/projects/{project}/sources/file_upload_source/create', 'create')
+            ->name('sources.file_upload_source.create');
+        Route::get('/projects/{project}/sources/{source}/file_upload_source/edit', 'edit')
+            ->name('sources.file_upload_source.edit');
+        Route::post('/projects/{project}/sources/file_upload_source/store', 'store')
+            ->name('sources.file_upload_source.store');
+        Route::put('/projects/{project}/sources/{source}/file_upload_source/update', 'update')
+            ->name('sources.file_upload_source.update');
+        Route::post('/projects/{project}/sources/{source}/file_upload_source/run', 'run')
+            ->name('sources.file_upload_source.run');
+    }
+);

@@ -14,4 +14,10 @@ abstract class BaseSourceType
     }
 
     abstract public function handle();
+
+    protected function getPath($fileName): string
+    {
+        return sprintf('%d/sources/%d/%s',
+            $this->source->project_id, $this->source->id, $fileName);
+    }
 }

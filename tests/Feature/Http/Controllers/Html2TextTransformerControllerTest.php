@@ -4,7 +4,6 @@ use App\Models\Project;
 use App\Models\Transformer;
 use App\Models\User;
 use Illuminate\Support\Facades\Queue;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('should create Html2Text', function () {
     $user = User::factory()->withPersonalTeam()
@@ -16,7 +15,7 @@ it('should create Html2Text', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    assertDatabaseCount('transformers', 0);
+    $this->assertDatabaseCount('transformers', 0);
 
     $this->actingAs($user)
         ->get(route('transformers.html2text.create', [
@@ -25,7 +24,7 @@ it('should create Html2Text', function () {
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,
         ]);
-    assertDatabaseCount('transformers', 1);
+    $this->assertDatabaseCount('transformers', 1);
 });
 
 it('should run transformer Html2Text', function () {

@@ -39,10 +39,4 @@ class WebFile extends BaseSourceType
                 ]
             );
     }
-
-    protected function getPath($fileName)
-    {
-        return sprintf('%d/sources/%d/%s',
-        $this->source->project_id, $this->source->id, $fileName);
-    }
 }

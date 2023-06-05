@@ -9,7 +9,6 @@ use App\Models\Source;
 use App\Models\User;
 use App\Outbound\OutboundEnum;
 use Illuminate\Support\Facades\File;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('test shows create page ChatGptRetrieval Outbound', function () {
     $user = User::factory()->withPersonalTeam()
@@ -21,7 +20,7 @@ it('test shows create page ChatGptRetrieval Outbound', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    assertDatabaseCount('outbounds', 0);
+    $this->assertDatabaseCount('outbounds', 0);
 
     $this->actingAs($user)
         ->get(route('outbounds.chat_gpt_retrieval.create', [
@@ -31,7 +30,7 @@ it('test shows create page ChatGptRetrieval Outbound', function () {
             'project' => $project->id,
             'outbound' => Outbound::first()->id,
         ]);
-    assertDatabaseCount('outbounds', 1);
+    $this->assertDatabaseCount('outbounds', 1);
 });
 
 it('test show ChatGptRetrieval Outbound', function () {

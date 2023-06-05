@@ -5,7 +5,6 @@ use App\Models\Project;
 use App\Models\Source;
 use App\Models\User;
 use Illuminate\Support\Facades\Queue;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('should show the form for URL Source Web Site Document', function () {
     $user = User::factory()->withPersonalTeam()
@@ -115,7 +114,7 @@ it('should create Web Site Document', function () {
         'team_id' => $user->current_team_id,
     ]);
 
-    assertDatabaseCount('sources', 0);
+    $this->assertDatabaseCount('sources', 0);
 
     $this->actingAs($user)
         ->post(route('sources.scrape_web_page.store', [
@@ -130,5 +129,5 @@ it('should create Web Site Document', function () {
         ->assertRedirectToRoute('projects.show', [
             'project' => $project->id,
         ]);
-    assertDatabaseCount('sources', 1);
+    $this->assertDatabaseCount('sources', 1);
 });

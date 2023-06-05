@@ -2,25 +2,18 @@
 
 namespace App\Source\Types;
 
-use App\Exceptions\SourceMissingRequiredMetaDataException;
 use App\Ingress\StatusEnum;
 use App\Models\Document;
-use Illuminate\Support\Facades\Http;
 
-class ScrapeWebPage extends BaseSourceType
+class FileUploadSource extends BaseSourceType
 {
     public function handle(): Document
     {
-
-        $url = data_get($this->source->meta_data, 'url');
-
-        $fileName = file_name_from_url($url);
-
-        if (! $url) {
-            throw new SourceMissingRequiredMetaDataException();
-        }
-
-        $fileContents = Http::get($url)->body();
+        /**
+         * @NOTE
+         * The Controller uploaded the file already
+         */
+        $fileName = $this->source->meta_data['file_name'];
 
         return Document::where('guid', $fileName)
             ->where('source_id', $this->source->id)
@@ -31,7 +24,6 @@ class ScrapeWebPage extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
-                    'content' => $fileContents,
                 ]
             );
     }

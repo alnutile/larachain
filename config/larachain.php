@@ -41,6 +41,16 @@ return [
             'icon' => 'ViewColumnsIcon',
             'background' => 'bg-red-500',
         ],
+        'file_upload_source' => [
+            'name' => 'FileUploadSource',
+            'description' => 'Upload a PDF, CSV even audio file for later transformation',
+            'class' => 'App\\Source\\Types\\FileUploadSource',
+            'icon' => 'ArrowUpTrayIcon',
+            'background' => 'bg-slate-800',
+            'requires' => [
+            ],
+            'active' => 1,
+        ],
     ],
     'transformers' => [
         'pdf_transformer' => [

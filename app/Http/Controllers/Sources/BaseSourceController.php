@@ -27,4 +27,10 @@ abstract class BaseSourceController extends Controller
             'project' => $project->id,
         ]);
     }
+
+    protected function getPath(Source $source, $fileName): string
+    {
+        return sprintf('%d/sources/%d/%s',
+            $source->project_id, $source->id, $fileName);
+    }
 }

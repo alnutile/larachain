@@ -4,7 +4,6 @@ use App\Models\Outbound;
 use App\Models\Project;
 use App\Models\ResponseType;
 use App\Models\User;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('should create', function () {
 
@@ -21,7 +20,7 @@ it('should create', function () {
         ['project_id' => $project->id]
     );
 
-    assertDatabaseCount('response_types', 0);
+    $this->assertDatabaseCount('response_types', 0);
 
     $this->actingAs($user)
         ->get(route('response_types.chat_ui.create', [
@@ -32,7 +31,7 @@ it('should create', function () {
                 'outbound' => $outbound->id,
             ]
         );
-    assertDatabaseCount('response_types', 1);
+    $this->assertDatabaseCount('response_types', 1);
 });
 
 it('can update prompt', function () {
