@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Transformers;
 
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 
 class Html2TextTransformerController extends BaseTransformerController
 {
     public function create(Project $project)
     {
         Transformer::create([
-            'type' => TransformerTypeEnum::Html2Text,
+            'type' => TransformerEnum::Html2Text,
             'order' => $project->transformers->count() + 1,
             'project_id' => $project->id,
         ]);

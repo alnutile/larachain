@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Document;
 use App\Models\Transformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 use App\Transformer\Types\Html2Text;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class Html2TextTest extends TestCase
         $document = Document::factory()->html()->create();
 
         $transformerModel = Transformer::factory()->create([
-            'type' => TransformerTypeEnum::Html2Text,
+            'type' => TransformerEnum::Html2Text,
         ]);
 
         Storage::fake('projects');

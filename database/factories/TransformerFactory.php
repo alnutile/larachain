@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class TransformerFactory extends Factory
         return [
             'order' => fake()->randomDigitNotZero(),
             'prompt_token' => [],
-            'type' => TransformerTypeEnum::PdfTransformer,
+            'type' => TransformerEnum::PdfTransformer,
             'project_id' => Project::factory(),
         ];
     }
@@ -30,7 +30,7 @@ class TransformerFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => TransformerTypeEnum::PdfTransformer,
+                'type' => TransformerEnum::PdfTransformer,
             ];
         });
     }
@@ -39,7 +39,7 @@ class TransformerFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => TransformerTypeEnum::Html2Text,
+                'type' => TransformerEnum::Html2Text,
             ];
         });
     }

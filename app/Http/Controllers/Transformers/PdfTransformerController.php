@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Transformers;
 
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 
 class PdfTransformerController extends BaseTransformerController
 {
@@ -12,7 +12,7 @@ class PdfTransformerController extends BaseTransformerController
     public function create(Project $project)
     {
         Transformer::create([
-            'type' => TransformerTypeEnum::PdfTransformer,
+            'type' => TransformerEnum::PdfTransformer,
             'order' => $project->transformers->count() + 1,
             'project_id' => $project->id,
         ]);

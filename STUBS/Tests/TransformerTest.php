@@ -8,7 +8,7 @@ use App\Models\Document;
 use App\Models\Transformer;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 use App\Transformer\Types\[RESOURCE_CLASS_NAME];
 
 class [RESOURCE_CLASS_NAME]Test extends TestCase
@@ -20,7 +20,7 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
         $document = Document::factory()->html()->create();
 
         $transformerModel = Transformer::factory()->create([
-            'type' => TransformerTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => TransformerEnum::[RESOURCE_CLASS_NAME],
         ]);
 
         Storage::fake('projects');

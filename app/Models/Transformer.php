@@ -4,14 +4,14 @@ namespace App\Models;
 
 use App\Exceptions\TransformerTypeMissingException;
 use App\Transformer\BaseTransformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id;
  * @property int $order;
  * @property int $project_id;
- * @property TransformerTypeEnum $type;
+ * @property TransformerEnum $type;
  * @property Project $project;
  *
  * @method Project project()
@@ -28,7 +28,7 @@ class Transformer extends BaseTypeModel
 
     protected $casts = [
         'prompt_token' => 'encrypted:array',
-        'type' => TransformerTypeEnum::class,
+        'type' => TransformerEnum::class,
     ];
 
     public function project()

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Transformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 use Tests\Feature\SharedSetupForPdfFile;
 use Tests\TestCase;
 
@@ -17,7 +17,7 @@ class TransformerTest extends TestCase
         $model = Transformer::factory()->create();
         $this->assertNotNull($model->project->id);
         $this->assertNotNull($model->project->transformers->first()->id);
-        $this->assertEquals(TransformerTypeEnum::PdfTransformer, $model->type);
+        $this->assertEquals(TransformerEnum::PdfTransformer, $model->type);
     }
 
     public function test_runs_transformers()

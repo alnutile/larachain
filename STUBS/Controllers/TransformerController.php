@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Transformers;
 
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Transformer\TransformerTypeEnum;
+use App\Transformer\TransformerEnum;
 
 class [RESOURCE_CLASS_NAME]TransformerController extends BaseTransformerController
 {
@@ -12,7 +12,7 @@ class [RESOURCE_CLASS_NAME]TransformerController extends BaseTransformerControll
     public function create(Project $project)
     {
         Transformer::create([
-            'type' => TransformerTypeEnum::[RESOURCE_CLASS_NAME],
+            'type' => TransformerEnum::[RESOURCE_CLASS_NAME],
             'order' => $project->transformers->count() + 1,
             'project_id' => $project->id,
         ]);

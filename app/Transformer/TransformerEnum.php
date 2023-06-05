@@ -4,7 +4,7 @@ namespace App\Transformer;
 
 use App\Helpers\TypeTrait;
 
-enum TransformerTypeEnum: string
+enum TransformerEnum: string
 {
     use TypeTrait;
 
