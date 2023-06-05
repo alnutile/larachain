@@ -23,7 +23,7 @@
                                         <TextInput
                                             v-model="form.question"
                                             class="h-16 w-full"
-                                            type="text" placeholder="What was the most common tag in 1920s"></TextInput>
+                                            type="text" placeholder="What recipes have the tag 15-minutes-or-less"></TextInput>
 
                                         <PrimaryButton :disabled="form.processing || form.question.length === 0"
                                                        class="disabled:opacity-50">
@@ -60,12 +60,12 @@
                             Responses will show here
                         </div>
                         <span v-else v-for="(message, index) in response" :key="index" class="flex items-center gap-4 w-full">
-                            <span v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2">
-                                    {{ message.content }}
+                            <span v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2" >
+                                {{ message.content }}
                             </span>
                             <span v-else class="flex w-full justify-end mt-1 mb-1 ">
-                                <span class="bg-blue-500 text-white rounded-md px-4 py-2 inline-block">
-                                    {{ message.content }}
+                                <span class="bg-blue-500 text-white rounded-md px-4 py-2 inline-block" v-html="message.content">
+
                                 </span>
                             </span>
                         </span>

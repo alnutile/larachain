@@ -50,6 +50,9 @@
             <div class="flex justify-start gap-2 items-center">
                 📺
                 <a class="underline" href="https://www.youtube.com/playlist?list=PLL8JVuiFkO9IvRPfwH4p2UFhvj7UJxiNv">YouTube </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
+            <div class="flex justify-start gap-2 items-center">
+                🗺️
+                <a class="underline" href="https://github.com/users/alnutile/projects/2/views/1?layout=board">Road Map </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
         </div>
         <div class="relative overflow-hidden pt-16">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
