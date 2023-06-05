@@ -479,3 +479,22 @@ Route::middleware([
             ->name('sources.file_upload_source.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Transformers\CsvTransformerTransformerController::class)->group(
+    function () {
+        Route::get('/projects/{project}/transformers/csv_transformer/create', 'create')
+            ->name('transformers.csv_transformer.create');
+        Route::get('/projects/{project}/transformers/{transformer}/csv_transformer/edit', 'edit')
+            ->name('transformers.csv_transformer.edit');
+        Route::post('/projects/{project}/transformers/csv_transformer/store', 'store')
+            ->name('transformers.csv_transformer.store');
+        Route::put('/projects/{project}/transformers/{transformer}/csv_transformer/update', 'update')
+            ->name('transformers.csv_transformer.update');
+        Route::post('/projects/{project}/transformers/{transformer}/csv_transformer/run', 'run')
+            ->name('transformers.csv_transformer.run');
+    }
+);

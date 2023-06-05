@@ -26,6 +26,15 @@ class TransformerFactory extends Factory
         ];
     }
 
+    public function csvTransformer()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => TransformerEnum::CsvTransformer,
+            ];
+        });
+    }
+
     public function pdfTranformer()
     {
         return $this->state(function (array $attributes) {

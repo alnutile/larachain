@@ -116,7 +116,6 @@ EOD;
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
-
             return data_get($data, 'choices.0.text');
         }
 
@@ -140,7 +139,7 @@ EOD;
 
                 $data[] = $content;
                 $reply = $reply.$content;
-                if ($count >= 50) {
+                if ($count >= 25) {
                     logger($reply); //make this pusher
                     ChatReplyEvent::dispatch($project, $user, $reply);
                     $count = 0;

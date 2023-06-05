@@ -79,6 +79,14 @@ return [
             'icon' => 'GlobeAltIcon',
             'background' => 'bg-slate-800',
         ],
+        'csv_transformer' => [
+            'name' => 'CsvTransformer',
+            'description' => 'Transform CSV Source to Document Chunks',
+            'class' => 'App\\Transformer\\Types\\CsvTransformer',
+            'requires' => [
+            ],
+            'active' => 1,
+        ],
     ],
     'outbounds' => [
         'chat_ui' => [
@@ -200,6 +208,8 @@ return [
             'class' => 'App\\ResponseType\\Types\\ChatGptRetrieval',
             'requires' => [
             ],
+            'icon' => 'DocumentIcon',
+            'background' => 'bg-indigo-500',
             'active' => 1,
         ],
     ],

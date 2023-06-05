@@ -9,6 +9,7 @@ enum TransformerEnum: string
     use TypeTrait;
 
     //case TemplateType = 'template_type'
+    case CsvTransformer = 'csv_transformer';
     case Html2Text = 'html2text';
     case EmbedTransformer = 'embed_transformer';
     case PdfTransformer = 'pdf_transformer';

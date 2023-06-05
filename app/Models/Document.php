@@ -15,6 +15,7 @@ use Pgvector\Laravel\Vector;
  * @property string $content
  * @property int $id;
  * @property int $token_count;
+ * @property int $source_id;
  * @property array $embedding
  * @property array $meta_data
  * @property Source $source
