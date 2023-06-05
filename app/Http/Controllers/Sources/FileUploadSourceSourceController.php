@@ -46,9 +46,9 @@ class FileUploadSourceSourceController extends BaseSourceController
             'order' => 1,
         ]);
 
-        $path = $this->getPath($source, $fileName);
+        $path = $this->getPathNoName($source);
 
-        request()->file('file')->store($path, 'projects');
+        request()->file('file')->storeAs($path, $fileName, 'projects');
 
         request()->session()->flash('flash.banner', 'Source Created 🤘');
 
@@ -79,9 +79,9 @@ class FileUploadSourceSourceController extends BaseSourceController
             ],
         ]);
 
-        $path = $this->getPath($source, $fileName);
+        $path = $this->getPathNoName($source);
 
-        request()->file('file')->store($path, 'projects');
+        request()->file('file')->storeAs($path, $fileName, 'projects');
 
         request()->session()->flash('flash.banner', 'Source Updated ✅');
 

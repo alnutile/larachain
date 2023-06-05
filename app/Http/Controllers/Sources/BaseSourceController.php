@@ -28,6 +28,12 @@ abstract class BaseSourceController extends Controller
         ]);
     }
 
+    protected function getPathNoName(Source $source): string
+    {
+        return sprintf('%d/sources/%d',
+            $source->project_id, $source->id);
+    }
+
     protected function getPath(Source $source, $fileName): string
     {
         return sprintf('%d/sources/%d/%s',
