@@ -8,13 +8,13 @@ use App\Models\Document;
 use App\Models\Transformer;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use App\Transformers\TransformerTypeEnum;
-use App\Transformers\Types\[RESOURCE_CLASS_NAME];
+use App\Transformer\TransformerTypeEnum;
+use App\Transformer\Types\[RESOURCE_CLASS_NAME];
 
 class [RESOURCE_CLASS_NAME]Test extends TestCase
 {
     use SharedSetupForPdfFile;
-    
+
     public function test_parses()
     {
         $document = Document::factory()->html()->create();
@@ -22,7 +22,7 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
         $transformerModel = Transformer::factory()->create([
             'type' => TransformerTypeEnum::[RESOURCE_CLASS_NAME],
         ]);
-        
+
         Storage::fake('projects');
 
         $transformer = new [RESOURCE_CLASS_NAME]($document);
@@ -36,5 +36,5 @@ class [RESOURCE_CLASS_NAME]Test extends TestCase
         $this->assertNotNull($content);
 
     }
-  
+
 }

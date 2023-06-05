@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Archive;
 
 use App\Models\Project;
-use Facades\App\Transformers\HtmlToTextTransformer;
+use Facades\App\Transformer\HtmlToTextTransformer;
 use Illuminate\Console\Command;
 
 class LarachainTransform extends Command

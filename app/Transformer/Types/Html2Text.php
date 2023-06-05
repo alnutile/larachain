@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Transformers\Types;
+namespace App\Transformer\Types;
 
 use App\Models\Document;
 use App\Models\DocumentChunk;
 use App\Models\Transformer;
-use App\Transformers\BaseTransformer;
+use App\Transformer\BaseTransformer;
 use Soundasleep\Html2Text as Helper;
 
 class Html2Text extends BaseTransformer

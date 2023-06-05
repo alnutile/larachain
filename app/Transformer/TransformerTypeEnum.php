@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers;
+namespace App\Transformer;
 
 use App\Helpers\TypeTrait;
 

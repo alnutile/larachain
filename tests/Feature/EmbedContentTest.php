@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;
-use App\Transformers\EmbedContent;
+use App\Transformer\EmbedContent;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Tests\TestCase;
 

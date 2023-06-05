@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Transformers\Types;
+namespace App\Transformer\Types;
 
 use App\Jobs\EmbedJob;
 use App\Models\Document;
 use App\Models\Transformer;
-use App\Transformers\BaseTransformer;
+use App\Transformer\BaseTransformer;
 use Illuminate\Bus\Batch;
 use Illuminate\Support\Facades\Bus;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Transformers\Types;
+namespace App\Transformer\Types;
 
 use App\Models\Document;
 use App\Models\Transformer;
 use App\Models\DocumentChunk;
 use Soundasleep\Html2Text as Helper;
-use App\Transformers\BaseTransformer;
+use App\Transformer\BaseTransformer;
 
 class [RESOURCE_CLASS_NAME] extends BaseTransformer
 {
@@ -20,7 +20,7 @@ class [RESOURCE_CLASS_NAME] extends BaseTransformer
                 $fileContents = Helper::convert($this->document->content, [
                     'ignore_errors' => true,
                 ]);
-    
+
                 DocumentChunk::create([
                     'guid' => str($filePath)->afterLast("/"),
                     'content' => $fileContents,

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Transformer;
-use App\Transformers\TransformerTypeEnum;
+use App\Transformer\TransformerTypeEnum;
 use Tests\Feature\SharedSetupForPdfFile;
 use Tests\TestCase;
 

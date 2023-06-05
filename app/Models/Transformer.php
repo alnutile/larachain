@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Exceptions\TransformerTypeMissingException;
-use App\Transformers\BaseTransformer;
-use App\Transformers\TransformerTypeEnum;
+use App\Transformer\BaseTransformer;
+use App\Transformer\TransformerTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**

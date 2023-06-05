@@ -1,6 +1,6 @@
 <?php
 
-use App\Transformers\TransformerTypeEnum;
+use App\Transformer\TransformerTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

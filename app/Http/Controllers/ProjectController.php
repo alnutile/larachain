@@ -8,7 +8,7 @@ use App\Models\Outbound;
 use App\Models\Project;
 use App\Outbound\OutboundEnum;
 use App\Source\SourceEnum;
-use App\Transformers\TransformerTypeEnum;
+use App\Transformer\TransformerTypeEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

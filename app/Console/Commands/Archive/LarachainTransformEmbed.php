@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Archive;
 
 use App\Models\Project;
-use Facades\App\Transformers\EmbedContent;
+use Facades\App\Transformer\EmbedContent;
 use Illuminate\Console\Command;
 
 class LarachainTransformEmbed extends Command

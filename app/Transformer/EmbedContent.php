@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers;
+namespace App\Transformer;
 
 use App\LLMModels\OpenAi\EmbeddingsResponseDto;
 use App\Models\Document;

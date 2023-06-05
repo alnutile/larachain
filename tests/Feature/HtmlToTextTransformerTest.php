@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Document;
-use App\Transformers\HtmlToTextTransformer;
+use App\Transformer\HtmlToTextTransformer;
 use Facades\App\LLMModels\OpenAi\ClientWrapper;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;

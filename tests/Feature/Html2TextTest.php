@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Document;
 use App\Models\Transformer;
-use App\Transformers\TransformerTypeEnum;
-use App\Transformers\Types\Html2Text;
+use App\Transformer\TransformerTypeEnum;
+use App\Transformer\Types\Html2Text;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 

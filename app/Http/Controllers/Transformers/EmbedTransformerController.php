@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Transformers;
 
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Transformers\TransformerTypeEnum;
+use App\Transformer\TransformerTypeEnum;
 
 class EmbedTransformerController extends BaseTransformerController
 {

@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Transformer;
-use App\Transformers\Types\PdfTransformer;
+use App\Transformer\Types\PdfTransformer;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
