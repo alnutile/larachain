@@ -116,6 +116,7 @@ EOD;
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
+
             return data_get($data, 'choices.0.text');
         }
 

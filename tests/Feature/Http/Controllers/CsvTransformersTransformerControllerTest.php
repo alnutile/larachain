@@ -40,8 +40,8 @@ class CsvTransformersTransformerControllerTest extends TestCase
         $transformer = Transformer::factory()
             ->csvTransformer()
             ->create([
-            'project_id' => $project->id,
-        ]);
+                'project_id' => $project->id,
+            ]);
 
         $response = $this->actingAs($user)->post(route('transformers.csv_transformer.run', [
             'project' => $project->id,
@@ -52,6 +52,4 @@ class CsvTransformersTransformerControllerTest extends TestCase
             'project' => $project->id,
         ]));
     }
-
-
 }
