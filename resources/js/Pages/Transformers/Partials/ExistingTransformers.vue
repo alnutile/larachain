@@ -21,15 +21,6 @@
                         </div>
                     </Link>
                     <div class="flex justify-end w-full">
-
-                        <RunButton
-                            type="button"
-                            @click="run(element)">
-                            <Spinner
-                                class="mr-0"
-                                v-if="formRun.processing&& running === element.id"/>
-                            <PlayIcon v-else class="w-4 h-4"/></RunButton>
-
                         <DeleteButton
                             type="button"
                             @click="deleteTransformer(element)">
@@ -40,6 +31,17 @@
                 </div>
             </div>
         </VueDraggableNext>
+
+        <div class="flex justify-between items-center mt-4">
+            <div>Run all Transformers</div>
+            <RunButton
+                type="button"
+                @click="runAll()">
+                    <Spinner
+                    class="mr-0"
+                    v-if="formRunAll.processing || transformersRunning.length > transformersComlete.length"/>
+                <PlayIcon v-else class="w-4 h-4"/></RunButton>
+        </div>
 
     </div>
     <div v-else class="text-gray-400">👇Choose a Transformer below to get started</div>
@@ -65,6 +67,17 @@ const props = defineProps({
     project: Object
 })
 
+
+onMounted(() => {
+    Echo.private(`projects.${props.project.id}`)
+        .listen('.transformers.done', (e) => {
+            console.log(e)
+            toast(e.transformer_name + " Run Complete 🥂");
+            //remove one item from transformersRunning array and do not worry about the id right now    
+            transformersRunning.value.shift();  
+        });
+})
+
 const form = useForm({});
 
 const items = ref([])
@@ -75,6 +88,28 @@ onMounted(() => {
     items.value = props.project.transformers;
 })
 
+const transformersRunning = ref([])
+const transformersComlete = ref([])
+
+const formRunAll = useForm({})
+
+const runAll = () => {
+    transformersRunning.value = items.value;
+    transformersComlete.value = [];
+    formRunAll.post(route('transformers.run', {
+        project: props.project.id
+    }), {
+        errorBag: "transformerEmbedTransformer",
+        preserveScroll: true,
+        onError: params => {
+            toast.error("Error running job 🤦🏻‍")
+        },
+        onSuccess: params => {  
+            toast("All Transformers Batched up 🏃‍♂️")
+            router.reload()
+        }
+    });
+}
 
 const deleteTransformer = (transformers) => {
     form.delete(route('transformers.delete', {

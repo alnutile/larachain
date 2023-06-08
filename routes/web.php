@@ -13,6 +13,7 @@ use App\Http\Controllers\Sources\ScrapeWebPageSourceController;
 use App\Http\Controllers\Sources\WebFileSourceController;
 use App\Http\Controllers\Transformers\EmbedTransformerController;
 use App\Http\Controllers\Transformers\PdfTransformerController;
+use App\Http\Controllers\TransformersRunController;
 use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,17 @@ Route::middleware([
             ->name('transformers.embed_transformer.update');
         Route::post('/projects/{project}/transformers/{transformer}/embed_transformer/run', 'run')
             ->name('transformers.embed_transformer.run');
+    }
+);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(TransformersRunController::class)->group(
+    function () {
+        Route::post('/projects/{project}/transformers/run', 'run')
+            ->name('transformers.run');
     }
 );
 
