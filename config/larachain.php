@@ -83,6 +83,8 @@ return [
             'name' => 'CsvTransformer',
             'description' => 'Transform CSV Source to Document Chunks',
             'class' => 'App\\Transformer\\Types\\CsvTransformer',
+            'background' => 'bg-gray-500',
+            'icon' => 'PhoneIcon',
             'requires' => [
             ],
             'active' => 1,
