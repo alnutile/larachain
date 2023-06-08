@@ -74,6 +74,7 @@ class Document extends Model
     {
         if (in_array($this->source->type, [
             SourceEnum::WebFile,
+            SourceEnum::FileUploadSource,
         ])) {
             return sprintf(
                 storage_path('app/projects/%d/sources/%d/%s'),

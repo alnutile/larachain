@@ -73,8 +73,8 @@ onMounted(() => {
         .listen('.transformers.done', (e) => {
             console.log(e)
             toast(e.transformer_name + " Run Complete 🥂");
-            //remove one item from transformersRunning array and do not worry about the id right now    
-            transformersRunning.value.shift();  
+            //remove one item from transformersRunning array and do not worry about the id right now
+            transformersRunning.value.shift();
         });
 })
 
@@ -94,7 +94,7 @@ const transformersComlete = ref([])
 const formRunAll = useForm({})
 
 const runAll = () => {
-    transformersRunning.value = items.value;
+    transformersRunning.value = _.clone(items.value);
     transformersComlete.value = [];
     formRunAll.post(route('transformers.run', {
         project: props.project.id
@@ -104,7 +104,7 @@ const runAll = () => {
         onError: params => {
             toast.error("Error running job 🤦🏻‍")
         },
-        onSuccess: params => {  
+        onSuccess: params => {
             toast("All Transformers Batched up 🏃‍♂️")
             router.reload()
         }

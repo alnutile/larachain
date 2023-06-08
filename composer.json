@@ -81,6 +81,7 @@
         "fix": "vendor/bin/pint",
         "test": "vendor/bin/pest --bail --retry",
         "horizon": "php artisan horizon:watch",
+        "tail": "tail -f storage/logs/laravel.log",
         "stan": "vendor/bin/phpstan analyse --memory-limit 2G"
     },
     "extra": {

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Jobs\RunTransformerJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Models\Transformer;
@@ -27,7 +28,10 @@ class TransformersRunControllerTest extends TestCase
             'order' => 2,
         ]);
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('transformers.run', $project));
-        Bus::assertBatchCount(1);
+        $this->actingAs($user)->post(route('transformers.run', $project));
+        Bus::assertChained([
+            new RunTransformerJob($transformer1),
+            new RunTransformerJob($transformer2),
+        ]);
     }
 }

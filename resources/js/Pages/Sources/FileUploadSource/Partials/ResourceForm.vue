@@ -4,7 +4,7 @@
         <TextInput
             class="p-2 border border-gray-300 w-full"
             type="text"
-            placeholder="Web File About"
+            placeholder="Human Friendly Name for the File"
             v-model="modelValue.name"
         />
         <InputError :message="modelValue.errors.name" class="mt-2" />

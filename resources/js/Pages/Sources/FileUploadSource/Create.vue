@@ -54,7 +54,7 @@ const props = defineProps({
 
 const form = useForm({
     description: "Some info",
-    name: "Web File",
+    name: "Some Human Readable Name",
     file: null,
 })
 
