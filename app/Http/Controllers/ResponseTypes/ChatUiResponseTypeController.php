@@ -15,8 +15,11 @@ As a helpful historian, I have been asked the question below. I will provide som
 collection database using a vector query. Please help me reply with a well-formatted answer and offer to get more information
 if needed.
 Context: {context}
+\n
+\n
 ###
-
+\n
+\n
 
 EOL;
 

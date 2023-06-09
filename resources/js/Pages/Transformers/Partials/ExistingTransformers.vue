@@ -32,7 +32,7 @@
             </div>
         </VueDraggableNext>
 
-        <div class="flex justify-between items-center mt-4">
+        <div class="flex justify-between items-center mt-4" v-if="items.length > 0">
             <div>Run all Transformers</div>
             <RunButton
                 type="button"
