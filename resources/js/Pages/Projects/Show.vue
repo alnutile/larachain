@@ -55,12 +55,15 @@
                         </div>
                     </div>
 
-                    <div class="max-w-7xl mt-8 bg-slate-800 text-gray-200 p-4 overflow-auto flex-col  mx-auto text-xl min-h-[200px] ring ring-slate-600">
+                    <div 
+                    ref="scrollingDiv"
+                    class="max-w-7xl mt-8 bg-slate-800 text-gray-200 p-4 overflow-auto flex-col  mx-auto text-xl min-h-[200px] ring ring-slate-600 first-letter:first-line:#header
+                    max-h-[600px]">
                         <div v-if="response.length === 0" class="text-xl text-gray-400">
                             Responses will show here
                         </div>
                         <span v-else v-for="(message, index) in response" :key="index" class="flex items-center gap-4 w-full">
-                            <span v-if="message.type === 'system'" class="flex w-full justify-start mb-1 mt-2" >
+                            <span v-if="message.type === 'system' || message.type === 'assistant'" class="flex w-full justify-start mb-1 mt-2" >
                                 {{ message.content }}
                             </span>
                             <span v-else class="flex w-full justify-end mt-1 mb-1 ">
@@ -102,7 +105,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 const toast = useToast();
 import pickBy from 'lodash/pickBy'
 import { MagnifyingGlassIcon} from "@heroicons/vue/24/outline";
-import {computed, onMounted, ref} from "vue";
+import {computed, nextTick, onMounted, ref} from "vue";
 import SourcesToChooseFrom from "./Components/SourcesToChooseFrom.vue";
 import TransformersToChooseFrom from "@/Pages/Transformers/Partials/TransformersToChooseFrom.vue";
 import OutboundsToChooseFrom from "@/Pages/Outbounds/Partials/OutboundsToChooseFrom.vue";
@@ -112,6 +115,7 @@ import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 const props = defineProps({
     project: Object,
     outbound_types: Object,
+    messages: Array,
     source_types: Object,
     transformer_types: Object,
 })
@@ -127,6 +131,8 @@ const response = ref([]);
 
 const sourceFilters = ref(new Set())
 
+const scrollingDiv = ref(null)
+
 onMounted(() => {
     Echo.private(`projects.${props.project.id}`)
         .listen('.chat', (e) => {
@@ -134,7 +140,13 @@ onMounted(() => {
                 type: "system",
                 content: e.response
             })
+            scrollToBottom()
         });
+
+    if(props.messages.length > 0) {
+        response.value = props.messages
+        scrollToBottom()
+    }
 })
 
 const toggleFilter = (source) => {
@@ -145,6 +157,12 @@ const toggleFilter = (source) => {
             sourceFilters.value.add(source.id)
         }
 }
+
+const scrollToBottom = () => {
+      nextTick(() => {
+        scrollingDiv.value.scrollTop = scrollingDiv.value.scrollHeight;
+      });
+    }
 
 const submit = () => {
     form.processing = true;

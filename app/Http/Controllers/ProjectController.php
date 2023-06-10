@@ -93,9 +93,17 @@ class ProjectController extends Controller
         $sourceTypes = SourceEnum::toArray();
         $transformerTypes = TransformerEnum::toArray('transformers');
         $outboundTypes = OutboundEnum::toArray('outbounds');
+        $messages = Message::query()
+            ->select('id', 'content', 'created_at', 'user_id', 'project_id', 'role as type')
+            ->where('project_id', $project->id)
+            ->where('user_id', auth()->user()->id)
+            ->where('role', '!=', 'system')
+            ->orderBy('id', 'ASC')
+            ->get();
 
         return Inertia::render('Projects/Show', [
             'source_types' => $sourceTypes,
+            'messages' => $messages,
             'transformer_types' => $transformerTypes,
             'outbound_types' => $outboundTypes,
             'project' => $project->load('documents', 'sources', 'transformers', 'outbounds')
