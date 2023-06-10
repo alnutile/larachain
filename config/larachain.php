@@ -112,6 +112,8 @@ return [
             'requires' => [
             ],
             'active' => 1,
+            'icon' => 'MegaphoneIcon',
+            'background' => 'bg-blue-500',
         ],
     ],
     'response_types' => [

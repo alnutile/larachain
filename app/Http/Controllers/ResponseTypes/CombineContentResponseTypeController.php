@@ -16,7 +16,7 @@ class CombineContentResponseTypeController extends BaseResponseTypeController
             'order' => $outbound->response_types->count() + 1,
             'outbound_id' => $outbound->id,
             'meta_data' => [
-                'token_limit' => 2000,
+                'token_limit' => 1000,
             ],
             'prompt_token' => [],
         ]);
