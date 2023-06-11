@@ -22,7 +22,7 @@ it('should show the form for URL Source WebHook', function () {
             'project' => $project->id,
         ]))
         ->assertOk();
-})->todo("generator made this and not ready yet to finish this part");
+})->todo('generator made this and not ready yet to finish this part');
 
 it('should allow you to edit WebHook', function () {
     $user = User::factory()->withPersonalTeam()
@@ -44,7 +44,7 @@ it('should allow you to edit WebHook', function () {
             'source' => $source->id,
         ]))
         ->assertOk();
-})->todo("generator made this and not ready yet to finish this part");;
+})->todo('generator made this and not ready yet to finish this part');
 
 it('should run WebHook', function () {
     Queue::fake();
@@ -71,7 +71,7 @@ it('should run WebHook', function () {
         ]);
 
     Queue::assertPushed(ProcessSourceJob::class);
-})->todo("generator made this and not ready yet to finish this part");;
+})->todo('generator made this and not ready yet to finish this part');
 
 it('should allow you to update WebHook', function () {
     $user = User::factory()->withPersonalTeam()
@@ -103,7 +103,7 @@ it('should allow you to update WebHook', function () {
         ]);
 
     expect($source->refresh()->name)->toBe('Foo');
-})->todo("generator made this and not ready yet to finish this part");;
+})->todo('generator made this and not ready yet to finish this part');
 
 it('should create WebHook', function () {
     $user = User::factory()->withPersonalTeam()
@@ -131,4 +131,4 @@ it('should create WebHook', function () {
             'project' => $project->id,
         ]);
     assertDatabaseCount('sources', 1);
-})->todo("generator made this and not ready yet to finish this part");;
+})->todo('generator made this and not ready yet to finish this part');

@@ -46,9 +46,9 @@ class Source extends BaseTypeModel
     public function runSource(BaseSourceType $sourceType, array $payload = [])
     {
         try {
-            logger('Running Source Type id'.$sourceType->id);
+            logger('Running Source Type');
 
-            return $sourceType->handle($payload);
+            return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
             //@TODO This exception needs to be more specific
             logger($e);
