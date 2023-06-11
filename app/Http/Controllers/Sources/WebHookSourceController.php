@@ -31,9 +31,9 @@ class WebHookSourceController extends BaseSourceController
     public function store(Project $project)
     {
         $validated = request()->validate([
-            'meta_data.url' => ['required', 'url'],
             'name' => ['required'],
             'description' => ['nullable'],
+            'meta_data' => ['nullable'],
         ]);
 
         Source::create([
@@ -42,7 +42,7 @@ class WebHookSourceController extends BaseSourceController
             'description' => $validated['description'],
             'type' => SourceEnum::WebHook,
             'order' => 1,
-            'meta_data' => $validated['meta_data'],
+            'meta_data' => data_get($validated, 'meta_data'),
         ]);
 
         request()->session()->flash('flash.banner', 'Source Created 🤘');
@@ -55,7 +55,7 @@ class WebHookSourceController extends BaseSourceController
     public function update(Project $project, Source $source)
     {
         $validated = request()->validate([
-            'meta_data.url' => ['required', 'url'],
+            'meta_data' => ['nullable'],
             'name' => ['required'],
             'description' => ['nullable'],
         ]);
@@ -68,7 +68,7 @@ class WebHookSourceController extends BaseSourceController
             'description' => $validated['description'],
             'type' => SourceEnum::WebHook,
             'order' => 1,
-            'meta_data' => $validated['meta_data'],
+            'meta_data' => data_get($validated, 'meta_data'),
         ]);
 
         request()->session()->flash('flash.banner', 'Source Updated ✅');

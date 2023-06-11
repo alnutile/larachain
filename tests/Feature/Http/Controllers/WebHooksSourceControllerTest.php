@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Http\Controllers;
+
 use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
@@ -63,7 +65,8 @@ class WebHooksSourceControllerTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-        $response = $this->actingAs($user)->post(route('sources.web_hook.run', ['project' => $project->id, 'source' => $source->id]));
+        $response = $this->actingAs($user)
+            ->post(route('sources.web_hook.run', ['project' => $project->id, 'source' => $source->id]));
 
         $response->assertRedirect(route('projects.show', ['project' => $project->id]));
 
@@ -85,7 +88,9 @@ class WebHooksSourceControllerTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-        $response = $this->actingAs($user)->put(route('sources.web_hook.update', ['project' => $project->id, 'source' => $source->id]), ['name' => 'Foo', 'meta_data' => ['url' => 'https://foo.bar'], 'description' => 'Bar']);
+        $response = $this->actingAs($user)
+            ->put(route('sources.web_hook.update', ['project' => $project->id, 'source' => $source->id]),
+                ['name' => 'Foo',  'description' => 'Bar']);
 
         $response->assertRedirect(route('projects.show', ['project' => $project->id]));
 
