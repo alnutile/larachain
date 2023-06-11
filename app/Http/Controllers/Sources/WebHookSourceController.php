@@ -14,9 +14,7 @@ class WebHookSourceController extends BaseSourceController
             'details' => config('larachain.sources.web_hook'),
             'project' => $project,
             'source' => [
-                'meta_data' => [
-                    'url' => 'https://foo.com/some.pdf',
-                ],
+                'meta_data' => [],
             ],
         ]);
     }

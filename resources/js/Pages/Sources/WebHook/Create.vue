@@ -49,13 +49,12 @@ const toast = useToast();
 const props = defineProps({
     details: Object,
     project: Object,
-    source: Object
 })
 
 const form = useForm({
     meta_data: props.source.meta_data,
     description: "Some info",
-    name: "Web File"
+    name: "What is the name of the webhook"
 })
 
 const submit = () => {
