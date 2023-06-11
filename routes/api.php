@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Outbounds\ChatGptRetrievalOutboundController;
 use App\Http\Controllers\ResponseTypes\ChatApiResponseTypeController;
+use App\Http\Controllers\Sources\WebHookSourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/projects/{project}/sources/{source}/webhook',
+        [WebHookSourceController::class, 'webhook'])
+    ->name('api.sources.webhook');
+
 
 Route::middleware('auth:sanctum')
     ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',

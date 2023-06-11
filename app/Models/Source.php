@@ -43,42 +43,15 @@ class Source extends BaseTypeModel
         return $this->hasMany(Document::class);
     }
 
-    public function runSource(BaseSourceType $sourceType, array $payload = [])
-    {
-        try {
-            logger('Running Source Type');
-
-            return $sourceType->setPayload($payload)->handle();
-        } catch (\Exception $e) {
-            //@TODO This exception needs to be more specific
-            logger($e);
-            throw new SourceTypeMissingException();
-        }
-    }
-
     /**
      * @throws SourceTypeMissingException
      */
-    public function run()
+    public function run(array $payload = [])
     {
         try {
-            $statusTypes = config('larachain.sources');
-            $statusType = $this->type->value;
-            $statusType = data_get($statusTypes, $statusType);
-            $class = data_get($statusType, 'class', null);
-            if (! $class) {
-                throw new \Exception('Source Missing Class');
-            }
-
-            logger('Running Source '.$class);
-            //@TODO make this check in uses BaseSourceType
-            $sourceType = app($class, [
-                'source' => $this,
-            ]);
-            /** @var BaseSourceType $sourceType */
-            return $sourceType->handle();
+            $sourceType = $this->getSourceTypeClass();
+            return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
-            //@TODO This exception needs to be more specific
             logger($e);
             throw new SourceTypeMissingException();
         }
@@ -87,5 +60,24 @@ class Source extends BaseTypeModel
     public function getTypeFormattedAttribute()
     {
         return str($this->type->value)->headline();
+    }
+
+    protected function getSourceTypeClass() : BaseSourceType | \Exception
+    {
+        $statusTypes = config('larachain.sources');
+        $statusType = $this->type->value;
+        $statusType = data_get($statusTypes, $statusType);
+        $class = data_get($statusType, 'class', null);
+
+        if (! $class) {
+            throw new \Exception('Source Missing Class');
+        }
+
+        /** @var BaseSourceType $sourceType */
+        $sourceType = app($class, [
+            'source' => $this,
+        ]);
+
+        return $sourceType;
     }
 }

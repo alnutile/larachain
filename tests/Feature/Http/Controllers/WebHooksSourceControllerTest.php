@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Source;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
@@ -114,5 +115,18 @@ class WebHooksSourceControllerTest extends TestCase
         $response->assertRedirect(route('projects.show', ['project' => $project->id]));
 
         $this->assertDatabaseCount('sources', 1);
+    }
+
+    public function test_api() {
+        Http::fake();
+        $data = get_fixture("github_webhook.json");
+        $source = Source::factory()->webFileMetaData()->create();
+        $this->post(route('api.sources.webhook', [
+            'project' => $source->project_id,
+            'source' => $source->id
+        ]), $data)
+            ->assertStatus(200);
+
+        Http::assertSentCount(1);
     }
 }

@@ -77,4 +77,21 @@ class WebHookSourceController extends BaseSourceController
             'project' => $project->id,
         ]);
     }
+
+    public function webhook(Project $project, Source $source) {
+        /**
+         * @TODO
+         * Security
+         * Allow to dump into queue
+         * Allow to return any response
+         */
+        $payload = request()->all();
+        logger("Webhook coming in", $payload);
+        /**
+         * Do something with the incoming data
+         */
+        $response = $source->run($payload);
+
+        return response()->json("OK", 200);
+    }
 }
