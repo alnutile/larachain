@@ -4,8 +4,8 @@ use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Models\User;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class WebHooksSourceControllerTest extends TestCase
