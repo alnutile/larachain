@@ -117,13 +117,14 @@ class WebHooksSourceControllerTest extends TestCase
         $this->assertDatabaseCount('sources', 1);
     }
 
-    public function test_api() {
+    public function test_api()
+    {
         Http::fake();
-        $data = get_fixture("github_webhook.json");
+        $data = get_fixture('github_webhook.json');
         $source = Source::factory()->webFileMetaData()->create();
         $this->post(route('api.sources.webhook', [
             'project' => $source->project_id,
-            'source' => $source->id
+            'source' => $source->id,
         ]), $data)
             ->assertStatus(200);
 

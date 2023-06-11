@@ -78,7 +78,8 @@ class WebHookSourceController extends BaseSourceController
         ]);
     }
 
-    public function webhook(Project $project, Source $source) {
+    public function webhook(Project $project, Source $source)
+    {
         /**
          * @TODO
          * Security
@@ -86,12 +87,12 @@ class WebHookSourceController extends BaseSourceController
          * Allow to return any response
          */
         $payload = request()->all();
-        logger("Webhook coming in", $payload);
+        logger('Webhook coming in', $payload);
         /**
          * Do something with the incoming data
          */
         $response = $source->run($payload);
 
-        return response()->json("OK", 200);
+        return response()->json('OK', 200);
     }
 }

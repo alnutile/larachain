@@ -50,6 +50,7 @@ class Source extends BaseTypeModel
     {
         try {
             $sourceType = $this->getSourceTypeClass();
+
             return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
             logger($e);
@@ -62,7 +63,7 @@ class Source extends BaseTypeModel
         return str($this->type->value)->headline();
     }
 
-    protected function getSourceTypeClass() : BaseSourceType | \Exception
+    protected function getSourceTypeClass(): BaseSourceType|\Exception
     {
         $statusTypes = config('larachain.sources');
         $statusType = $this->type->value;

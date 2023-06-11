@@ -20,7 +20,6 @@ Route::post('/projects/{project}/sources/{source}/webhook',
         [WebHookSourceController::class, 'webhook'])
     ->name('api.sources.webhook');
 
-
 Route::middleware('auth:sanctum')
     ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',
     [ChatApiResponseTypeController::class, 'api'])
