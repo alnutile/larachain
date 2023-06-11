@@ -8,9 +8,13 @@ abstract class BaseSourceType
 {
     protected Source $source;
 
-    public function __construct(Source $source)
+    protected array $payload = [];
+
+    public function __construct(
+        Source $source, array $payload = [])
     {
         $this->source = $source;
+        $this->payload = $payload;
     }
 
     abstract public function handle();

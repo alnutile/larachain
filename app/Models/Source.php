@@ -43,6 +43,19 @@ class Source extends BaseTypeModel
         return $this->hasMany(Document::class);
     }
 
+    public function runSource(BaseSourceType $sourceType, array $payload = [])
+    {
+        try {
+            logger('Running Source Type id'.$sourceType->id);
+
+            return $sourceType->handle($payload);
+        } catch (\Exception $e) {
+            //@TODO This exception needs to be more specific
+            logger($e);
+            throw new SourceTypeMissingException();
+        }
+    }
+
     /**
      * @throws SourceTypeMissingException
      */

@@ -121,3 +121,9 @@ git push origin main
 ```
 
 That's it! This will allow you to have a private "fork" of a public repository and to merge updates from the public repository into your private one.
+
+## Test
+
+```bash
+composer test
+```

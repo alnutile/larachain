@@ -18,11 +18,12 @@ return [
             'background' => 'bg-blue-500',
         ],
         'web_hook' => [
-            'name' => 'Create a Webhook to Send Data',
-            'description' => 'Add a webhook here to send logs or other data.',
-            'icon' => 'Bars4Icon',
-            'active' => 0,
-            'background' => 'bg-blue-500',
+            'name' => 'WebHook',
+            'description' => 'You can take data from a webhook or trigger a listener',
+            'class' => 'App\\Source\\Types\\WebHook',
+            'requires' => [
+            ],
+            'active' => 1,
         ],
         's3_directory' => [
             'name' => 'S3 Directory to Get Files From',
