@@ -5,20 +5,16 @@ namespace Tests\Feature;
 use App\Jobs\ProcessSourceListeners;
 use App\Models\Source;
 use App\Source\Types\WebHook;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
-use Illuminate\Support\Facades\Storage;
-use Mockery;
 use Tests\TestCase;
 
 class WebHookTest extends TestCase
 {
-
     public function test_makes_document()
     {
 
         Queue::fake();
-        $data = get_fixture("github_webhook.json");
+        $data = get_fixture('github_webhook.json');
 
         $source = Source::factory()
             ->webHook()
@@ -34,5 +30,4 @@ class WebHookTest extends TestCase
 
         Queue::assertPushed(ProcessSourceListeners::class);
     }
-
 }

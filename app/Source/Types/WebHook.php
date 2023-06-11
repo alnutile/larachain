@@ -18,13 +18,12 @@ class WebHook extends BaseSourceType
                     'status' => StatusEnum::Complete,
                     'content' => json_encode($this->payload),
                     'meta_data' => [
-                        'original_payload' => $this->payload
-                    ]
+                        'original_payload' => $this->payload,
+                    ],
                 ]
             );
 
         ProcessSourceListeners::dispatch($document);
-
 
         return $document;
     }
