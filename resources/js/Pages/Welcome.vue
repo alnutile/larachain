@@ -33,8 +33,8 @@
         <div class="absolute w-full h-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"></div>
         <svg class="absolute bottom-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,96L60,106.7C120,117,240,139,360,144C480,149,600,139,720,128C840,117,960,107,1080,106.7C1200,107,1320,117,1380,122.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </div>
-    <div class="py-10 sm:py-12 -mt-[400px] bg-white bg-opacity-50 rounded-lg m-10 shadow-lg">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="py-10 sm:py-12 sm:-mt-[400px] -mt-[450px] bg-white bg-opacity-50 rounded-lg m-2 shadow-lg">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl sm:text-center">
                 <h2 class="text-base font-semibold leading-7 text-xl text-indigo-600">Laravel + Large Language Models (LLMs) + Your Data = ❤️</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Do you want to start using Laravel and Large Language Models with your data?</p>
