@@ -2,11 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Events\SourceRunCompleteEvent;
 use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
@@ -120,6 +122,7 @@ class WebHooksSourceControllerTest extends TestCase
     public function test_api()
     {
         Http::fake();
+        Event::fake();
         $data = get_fixture('github_webhook.json');
         $source = Source::factory()->webFileMetaData()->create();
         $this->post(route('api.sources.webhook', [
@@ -129,5 +132,6 @@ class WebHooksSourceControllerTest extends TestCase
             ->assertStatus(200);
 
         Http::assertSentCount(1);
+        Event::assertDispatched(SourceRunCompleteEvent::class);
     }
 }

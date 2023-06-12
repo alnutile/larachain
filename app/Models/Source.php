@@ -46,7 +46,7 @@ class Source extends BaseTypeModel
     /**
      * @throws SourceTypeMissingException
      */
-    public function run(array $payload = []) : Document
+    public function run(array $payload = []): Document
     {
         try {
             $sourceType = $this->getSourceTypeClass();
