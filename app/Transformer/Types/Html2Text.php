@@ -16,17 +16,18 @@ class Html2Text extends BaseTransformer
 
         if (str($this->document->guid)->endsWith('.html')) {
             $guid = str($filePath)->afterLast('/');
+
+            $text = Helper::convert($this->document->content, [
+                'ignore_errors' => true,
+            ]);
+            $textUnicodeRemoved = preg_replace('/[^\x20-\x7E]/u', '', $text);
             if (! DocumentChunk::query()
                 ->where('document_id', $this->document->id)
                 ->where('guid', $guid)
                 ->exists()) {
-                $fileContents = Helper::convert($this->document->content, [
-                    'ignore_errors' => true,
-                ]);
-
                 DocumentChunk::create([
                     'guid' => $guid,
-                    'content' => $fileContents,
+                    'content' => $textUnicodeRemoved,
                     'document_id' => $this->document->id,
                 ]);
             }

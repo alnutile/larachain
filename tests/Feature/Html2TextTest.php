@@ -34,4 +34,35 @@ class Html2TextTest extends TestCase
         $this->assertNotNull($content);
 
     }
+
+    public function test_remove_unicode()
+    {
+        $contentBefore = <<<EOD
+This should be here
+
+This should be here
+EOD;
+
+
+        $contentAfter = <<<EOD
+This should be here  This should be here
+EOD;
+
+        $document = Document::factory()->html()->create([
+            'content' => $contentBefore,
+            'guid' => fake()->uuid . ".html"
+        ]);
+
+        $transformerModel = Transformer::factory()->create([
+            'type' => TransformerEnum::Html2Text,
+        ]);
+
+        Storage::fake('projects');
+
+        $transformer = new Html2Text($document);
+        $document = $transformer->handle($transformerModel);
+        $documentChunk = $document->refresh()->document_chunks->first();
+        $this->assertEquals($contentAfter, $documentChunk->content);
+
+    }
 }
