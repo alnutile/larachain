@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sources;
 
+use App\Events\SourceRunCompleteEvent;
 use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceEnum;
@@ -90,7 +91,9 @@ class WebHookSourceController extends BaseSourceController
 
         logger('Webhook coming in', $payload);
 
-        $response = $source->run($payload);
+        $source->run($payload);
+
+        SourceRunCompleteEvent::dispatch($source);
 
         return response()->json('OK', 200);
     }
