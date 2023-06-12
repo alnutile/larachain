@@ -37,20 +37,19 @@ class Html2TextTest extends TestCase
 
     public function test_remove_unicode()
     {
-        $contentBefore = <<<EOD
+        $contentBefore = <<<'EOD'
 This should be here
 
 This should be here
 EOD;
 
-
-        $contentAfter = <<<EOD
+        $contentAfter = <<<'EOD'
 This should be here  This should be here
 EOD;
 
         $document = Document::factory()->html()->create([
             'content' => $contentBefore,
-            'guid' => fake()->uuid . ".html"
+            'guid' => fake()->uuid.'.html',
         ]);
 
         $transformerModel = Transformer::factory()->create([

@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class ScrapeWebPageTest extends TestCase
 {
-
     public function test_deals_with_index_naming()
     {
         $source = Source::factory()->scrapeWebPage()->create(
@@ -33,9 +32,10 @@ class ScrapeWebPageTest extends TestCase
 
         $document = Document::first();
 
-        $this->assertEquals("index.html", $document->guid);
+        $this->assertEquals('index.html', $document->guid);
 
     }
+
     public function test_saves_content()
     {
         $source = Source::factory()->scrapeWebPage()->create();
