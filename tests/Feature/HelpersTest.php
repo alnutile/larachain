@@ -14,6 +14,12 @@ it('test makes filename from url', function () {
     expect($out)->toEqual('codes_displaySection.xhtml.html');
 });
 
+it('test makes filename from root page', function () {
+    $url = '/';
+    $out = file_name_from_url($url);
+    expect($out)->toEqual('index.html');
+});
+
 it('test appends html once', function () {
     $url = 'codes_displaySection.html';
     $out = file_name_from_url($url);

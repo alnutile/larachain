@@ -10,6 +10,32 @@ use Tests\TestCase;
 
 class ScrapeWebPageTest extends TestCase
 {
+
+    public function test_deals_with_index_naming()
+    {
+        $source = Source::factory()->scrapeWebPage()->create(
+            [
+                'meta_data' => [
+                    'url' => 'https://wikipedia.org/wiki/',
+                ],
+            ]
+        );
+
+        $webFileSourceType = new ScrapeWebPage($source);
+
+        $html = 'Foo bar';
+
+        Http::fake([
+            'wikipedia.org/*' => Http::response($html, 200),
+        ]);
+
+        $webFileSourceType->handle();
+
+        $document = Document::first();
+
+        $this->assertEquals("index.html", $document->guid);
+
+    }
     public function test_saves_content()
     {
         $source = Source::factory()->scrapeWebPage()->create();

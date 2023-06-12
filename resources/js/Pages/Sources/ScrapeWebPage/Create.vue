@@ -55,7 +55,7 @@ const props = defineProps({
 const form = useForm({
     meta_data: props.source.meta_data,
     description: "Some info",
-    name: "Web File"
+    name: "Web Site to Scrape"
 })
 
 const submit = () => {

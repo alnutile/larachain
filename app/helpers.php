@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 
 if (! function_exists('remove_ascii')) {
@@ -28,6 +29,9 @@ if (! function_exists('file_name_from_url')) {
         ->when(! str($url)->endsWith('.html'), function (Stringable $string) {
             return $string->append('.html');
         })
-        ->toString();
+        ->whenStartsWith(".", function($item) {
+            /** @var Stringable $item */
+            return $item->prepend('index');
+        })->toString();
     }
 }
