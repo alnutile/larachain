@@ -510,3 +510,22 @@ Route::middleware([
             ->name('transformers.csv_transformer.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Sources\WebHookSourceController::class)->group(
+    function () {
+        Route::get('/projects/{project}/sources/web_hook/create', 'create')
+            ->name('sources.web_hook.create');
+        Route::get('/projects/{project}/sources/{source}/web_hook/edit', 'edit')
+            ->name('sources.web_hook.edit');
+        Route::post('/projects/{project}/sources/web_hook/store', 'store')
+            ->name('sources.web_hook.store');
+        Route::put('/projects/{project}/sources/{source}/web_hook/update', 'update')
+            ->name('sources.web_hook.update');
+        Route::post('/projects/{project}/sources/{source}/web_hook/run', 'run')
+            ->name('sources.web_hook.run');
+    }
+);

@@ -47,6 +47,16 @@ class SourceFactory extends Factory
         });
     }
 
+    public function webHook()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => SourceEnum::WebHook,
+                'meta_data' => [],
+            ];
+        });
+    }
+
     public function scrapeWebPage()
     {
         return $this->state(function (array $attributes) {

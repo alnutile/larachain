@@ -46,26 +46,13 @@ class Source extends BaseTypeModel
     /**
      * @throws SourceTypeMissingException
      */
-    public function run()
+    public function run(array $payload = []): Document
     {
         try {
-            $statusTypes = config('larachain.sources');
-            $statusType = $this->type->value;
-            $statusType = data_get($statusTypes, $statusType);
-            $class = data_get($statusType, 'class', null);
-            if (! $class) {
-                throw new \Exception('Source Missing Class');
-            }
+            $sourceType = $this->getSourceTypeClass();
 
-            logger('Running Source '.$class);
-            //@TODO make this check in uses BaseSourceType
-            $sourceType = app($class, [
-                'source' => $this,
-            ]);
-            /** @var BaseSourceType $sourceType */
-            return $sourceType->handle();
+            return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
-            //@TODO This exception needs to be more specific
             logger($e);
             throw new SourceTypeMissingException();
         }
@@ -74,5 +61,24 @@ class Source extends BaseTypeModel
     public function getTypeFormattedAttribute()
     {
         return str($this->type->value)->headline();
+    }
+
+    protected function getSourceTypeClass(): BaseSourceType|\Exception
+    {
+        $statusTypes = config('larachain.sources');
+        $statusType = $this->type->value;
+        $statusType = data_get($statusTypes, $statusType);
+        $class = data_get($statusType, 'class', null);
+
+        if (! $class) {
+            throw new \Exception('Source Missing Class');
+        }
+
+        /** @var BaseSourceType $sourceType */
+        $sourceType = app($class, [
+            'source' => $this,
+        ]);
+
+        return $sourceType;
     }
 }
