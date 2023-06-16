@@ -97,7 +97,6 @@ class WebHookSourceController extends BaseSourceController
         $payload = request()->all();
 
         logger('Webhook coming in', $payload);
-
         $source->run($payload);
 
         SourceRunCompleteEvent::dispatch($source);

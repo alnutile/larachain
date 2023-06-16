@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/projects/{project}/sources/{source}/webhook',
+Route::any('/projects/{project}/sources/{source}/webhook',
         [WebHookSourceController::class, 'webhook'])
     ->name('api.sources.webhook');
 
