@@ -27,9 +27,13 @@ class WebHooksSourceControllerTest extends TestCase
             'team_id' => $user->current_team_id,
         ]);
 
+        $this->assertDatabaseCount('sources', 0);
+
         $response = $this->actingAs($user)->get(route('sources.web_hook.create', ['project' => $project->id]));
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
+
+        $this->assertDatabaseCount('sources', 1);
     }
 
     public function testAllowToEditWebHook()

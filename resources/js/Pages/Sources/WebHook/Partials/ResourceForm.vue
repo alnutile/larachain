@@ -1,4 +1,7 @@
 <template>
+
+
+
     <div class="col-span-6 sm:col-span-6 ">
         <InputLabel for="Name" >Name</InputLabel>
         <TextInput
@@ -26,6 +29,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextArea from '@/Components/TextArea.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { usePage } from "@inertiajs/vue3";
 
 const emit = defineEmits(['update:modeValue']);
 const props = defineProps({

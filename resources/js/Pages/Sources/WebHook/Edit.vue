@@ -17,6 +17,18 @@
                                     {{ details.description }}
                                 </template>
 
+                                <template #form_description>
+                                    <div>
+                                        The URL you can use for this API is:
+                                        <div class="bg-gray-100 p-2">
+                                            <ul>
+                                                <li><span class="font-semibold">url to send webhooks:</span> {{ usePage().props.app_url }}/api/projects/{{source.project_id}}/sources/{{source.id}}/webhook</li>
+                                                <li><span class="font-semibold">method:</span> 'ANY'</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </template>
+
                                 <template #form>
                                    <ResourceForm v-model="form"/>
                                 </template>
@@ -42,7 +54,7 @@ import FormSection from "@/Components/FormSection.vue";
 
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-import { useForm } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
 import ResourceForm from "./Partials/ResourceForm.vue";
 const toast = useToast();

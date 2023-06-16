@@ -11,12 +11,19 @@ class WebHookSourceController extends BaseSourceController
 {
     public function create(Project $project)
     {
-        return inertia('Sources/WebHook/Create', [
-            'details' => config('larachain.sources.web_hook'),
-            'project' => $project,
-            'source' => [
-                'meta_data' => [],
+
+        $source = Source::create([
+            'name' => 'Your webhook',
+            'description' => 'Some info',
+            'project_id' => $project->id,
+            'meta_data' => [
+                'auth' => 'coming soon....',
             ],
+        ]);
+
+        return to_route('sources.web_hook.edit', [
+            'source' => $source->id,
+            'project' => $project->id,
         ]);
     }
 
