@@ -11,7 +11,7 @@
                     <div class="draggable" :key="element.id">
                         <ArrowsPointingOutIcon class="w-4 h-4 text-gray-400 hover:cursor-grab"/>
                     </div>
-                    <Link :href="route('sources.web_file.edit', {
+                    <Link :href="route('sources.' + element.type + '.edit', {
                             project: project.id,
                             source: element.id
                         })">
