@@ -25,14 +25,15 @@ class JsonTransformersTransformerControllerTest extends TestCase
             ->get(route('transformers.json_transformer.create', [
                 'project' => $project->id,
             ]))
-            ->assertRedirect(route('projects.show', [
-                'project' => $project->id,
-            ]));
+            ->assertRedirect(route('transformers.json_transformer.edit',
+                [
+                    'project' => $project->id,
+                    'transformer' => Transformer::first()->id
+                ]));
     }
 
     public function test_allow_edit_json_transformer()
     {
-        $this->markTestSkipped('@TODO there will be a mapping edit soon');
         $user = User::factory()->withPersonalTeam()->create();
         $user = $this->createTeam($user);
 
@@ -40,7 +41,7 @@ class JsonTransformersTransformerControllerTest extends TestCase
             'team_id' => $user->current_team_id,
         ]);
 
-        $transformer = Transformer::factory()->create([
+        $transformer = Transformer::factory()->json()->create([
             'project_id' => $project->id,
         ]);
 

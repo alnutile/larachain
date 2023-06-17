@@ -23,6 +23,12 @@ class TransformerFactory extends Factory
             'prompt_token' => [],
             'type' => TransformerEnum::PdfTransformer,
             'project_id' => Project::factory(),
+            'meta_data' => [
+                'mappings' => [
+                    'optional.path.to.store_one',
+                    'optional.path.to.store_two',
+                ]
+            ]
         ];
     }
 
@@ -40,6 +46,12 @@ class TransformerFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'type' => TransformerEnum::JsonTransformer,
+                'meta_data' => [
+                    'mappings' => [
+                        'optional.path.to.store_one',
+                        'optional.path.to.store_two',
+                    ]
+                ]
             ];
         });
     }

@@ -29,6 +29,7 @@ class Transformer extends BaseTypeModel
     protected $casts = [
         'prompt_token' => 'encrypted:array',
         'type' => TransformerEnum::class,
+        'meta_data' => "encrypted:array"
     ];
 
     public function project()

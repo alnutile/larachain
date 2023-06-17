@@ -13,11 +13,20 @@ class TransformerTest extends TestCase
 
     public function test_transformer_factory()
     {
-        $this->webFileDownloadSetup();
-        $model = Transformer::factory()->create();
+        $model = Transformer::factory()->json()->create();
         $this->assertNotNull($model->project->id);
         $this->assertNotNull($model->project->transformers->first()->id);
-        $this->assertEquals(TransformerEnum::PdfTransformer, $model->type);
+        $this->assertEquals(TransformerEnum::JsonTransformer, $model->type);
+
+        $this->assertEquals(
+            [
+                'mappings' => [
+                    'optional.path.to.store_one',
+                    'optional.path.to.store_two',
+                ]
+            ],
+            $model->meta_data
+        );
     }
 
     public function test_runs_transformers()
