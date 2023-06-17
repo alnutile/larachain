@@ -15,7 +15,7 @@ class WebHookTest extends TestCase
     {
         Queue::fake();
         $data = [
-            'test' => Uuid::uuid4()->toString()
+            'test' => Uuid::uuid4()->toString(),
         ];
 
         $source = Source::factory()
