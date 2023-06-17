@@ -68,7 +68,7 @@ return [
                     'web_file',
                     'file_upload_source',
                     's3_directory',
-                ]
+                ],
             ],
         ],
         'embed_transformer' => [
@@ -77,7 +77,7 @@ return [
             'icon' => 'ArrowsRightLeftIcon',
             'class' => 'App\\Transformer\\Types\\EmbedTransformer',
             'active' => 1,
-            "global" => true,
+            'global' => true,
             'background' => 'bg-red-700',
         ],
         'html2text' => [
@@ -86,8 +86,8 @@ return [
             'class' => 'App\\Transformer\\Types\\Html2Text',
             'requires' => [
                 'sources' => [
-                    'scrape_web_page'
-                ]
+                    'scrape_web_page',
+                ],
             ],
             'active' => 1,
             'icon' => 'GlobeAltIcon',
@@ -104,7 +104,7 @@ return [
                     'web_file',
                     'file_upload_source',
                     's3_directory',
-                ]
+                ],
             ],
             'active' => 1,
         ],
@@ -120,7 +120,7 @@ return [
                     'web_file',
                     'file_upload_source',
                     's3_directory',
-                ]
+                ],
             ],
             'active' => 1,
         ],

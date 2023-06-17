@@ -28,24 +28,24 @@ class ProcessSourceTransformers implements ShouldQueue
      */
     public function handle(): void
     {
-        logger("Job ProcessSourceTransformers");
+        logger('Job ProcessSourceTransformers');
 
         /** @var Transformer $transformerModel */
-        foreach($this->document->source->project->transformers as $transformerModel) {
+        foreach ($this->document->source->project->transformers as $transformerModel) {
             $transformerType = $transformerModel->type->value;
             $sourceType = $this->document->source->type->value;
             $requires = config('larachain.transformers.'.$transformerType.'.requires.sources', []);
             $needsToRun = in_array($sourceType, $requires);
-            if(!$needsToRun) {
+            if (! $needsToRun) {
                 $needsToRun = config('larachain.transformers.'.$transformerType.'.global', false);
             }
 
             $transformer = config('larachain.transformers.'.$transformerType);
 
-            if($needsToRun) {
+            if ($needsToRun) {
                 /** @var BaseTransformer $transformer */
                 $transformer = app()->make($transformer['class'], [
-                    'document' => $this->document
+                    'document' => $this->document,
                 ]);
                 $transformer->handle($transformerModel);
             }

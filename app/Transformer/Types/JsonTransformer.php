@@ -17,8 +17,8 @@ class JsonTransformer extends BaseTransformer
             $fileContents = $this->document->content;
             $guid = md5($fileContents);
 
-            logger("Running JsonTransformer");
-            if (!DocumentChunk::query()
+            logger('Running JsonTransformer');
+            if (! DocumentChunk::query()
                 ->where('document_id', $this->document->id)
                 ->where('guid', $guid)
                 ->exists()) {

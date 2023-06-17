@@ -51,6 +51,7 @@ class Source extends BaseTypeModel
     {
         try {
             $sourceType = $this->getSourceTypeClass();
+
             return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
             logger($e);

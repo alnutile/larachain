@@ -29,7 +29,7 @@ class WebHookTest extends TestCase
 
         $document = $webFileSourceType->handle();
         $this->assertDatabaseCount('documents', 1);
-        $this->assertStringContainsString(".json", $document->guid);
+        $this->assertStringContainsString('.json', $document->guid);
 
         Queue::assertPushed(ProcessSourceTransformers::class);
 

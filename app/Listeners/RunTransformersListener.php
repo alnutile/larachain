@@ -24,7 +24,5 @@ class RunTransformersListener implements ShouldQueue
          * @TODO
          * Not sure I need this
          */
-
-
     }
 }

@@ -3,9 +3,7 @@
 namespace App\Source\Types;
 
 use App\Ingress\StatusEnum;
-use App\Jobs\ProcessSourceTransformers;
 use App\Models\Document;
-use Ramsey\Uuid\Uuid;
 
 class WebHook extends BaseSourceType
 {
@@ -13,12 +11,12 @@ class WebHook extends BaseSourceType
     {
         $content = json_encode($this->payload);
         $contentId = md5($content);
-        $contentId = $contentId . ".json";
+        $contentId = $contentId.'.json';
 
         $document = Document::query()
-            ->where("guid", $contentId)
-            ->where("source_id", $this->source->id)
-            ->firstOr(function() use ($content, $contentId) {
+            ->where('guid', $contentId)
+            ->where('source_id', $this->source->id)
+            ->firstOr(function () use ($content, $contentId) {
                 $document = Document::create(
                     [
                         'guid' => $contentId,

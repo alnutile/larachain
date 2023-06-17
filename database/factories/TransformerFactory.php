@@ -26,7 +26,6 @@ class TransformerFactory extends Factory
         ];
     }
 
-
     public function embed()
     {
         return $this->state(function (array $attributes) {
