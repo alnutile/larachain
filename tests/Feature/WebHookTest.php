@@ -6,6 +6,7 @@ use App\Jobs\ProcessSourceTransformers;
 use App\Models\Source;
 use App\Source\Types\WebHook;
 use Illuminate\Support\Facades\Queue;
+use Ramsey\Uuid\Uuid;
 use Tests\TestCase;
 
 class WebHookTest extends TestCase
@@ -13,7 +14,9 @@ class WebHookTest extends TestCase
     public function test_makes_document()
     {
         Queue::fake();
-        $data = get_fixture('github_webhook.json');
+        $data = [
+            'test' => Uuid::uuid4()->toString()
+        ];
 
         $source = Source::factory()
             ->webHook()
