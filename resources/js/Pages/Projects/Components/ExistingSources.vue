@@ -158,7 +158,7 @@ const emit = defineEmits(['runComplete'])
 const run = (source) => {
     running.value = source.id;
     toast(`Running Source ${source.name}`)
-    formRun.post(route('sources.web_file.run', {
+    formRun.post(route('sources.' + source.type + '.run', {
         project: props.project.id,
         source: source.id
     }), {

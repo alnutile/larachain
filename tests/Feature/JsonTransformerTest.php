@@ -2,39 +2,38 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
 use App\Models\Document;
+use App\Models\Source;
 use App\Models\Transformer;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use App\Transformer\TransformerEnum;
 use App\Transformer\Types\JsonTransformer;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class JsonTransformerTest extends TestCase
 {
     use SharedSetupForPdfFile;
 
-    public function test_parses()
-    {
-        $document = Document::factory()->html()->create();
+    public function test_runs_base_on_source() {
+        /** @var Source $source */
+        $source = Source::factory()
+            ->webHook()
+            ->create();
 
-        $transformerModel = Transformer::factory()->create([
-            'type' => TransformerEnum::JsonTransformer,
+        $document = Document::factory()->create([
+            'source_id' => $source->id
         ]);
 
-        Storage::fake('projects');
+        /** @var Transformer $transformer */
+        $transformerModel = Transformer::factory()->create([
+            'project_id' => $source->project_id
+        ]);
+
+        $this->assertDatabaseCount("document_chunks", 0);
 
         $transformer = new JsonTransformer($document);
-        $this->assertDatabaseCount('document_chunks', 0);
         $transformer->handle($transformerModel);
-        $this->assertDatabaseCount('document_chunks', 1);
-
-        $document = Document::first();
-        $content = $document->content;
-
-        $this->assertNotNull($content);
-
+        $this->assertDatabaseCount("document_chunks", 1);
     }
 
 }

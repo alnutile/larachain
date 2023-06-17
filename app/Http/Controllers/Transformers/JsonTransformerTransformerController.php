@@ -8,7 +8,6 @@ use App\Transformer\TransformerEnum;
 
 class JsonTransformerTransformerController extends BaseTransformerController
 {
-
     public function create(Project $project)
     {
         Transformer::create([

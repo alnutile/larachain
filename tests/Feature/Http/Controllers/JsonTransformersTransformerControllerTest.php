@@ -2,11 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Project;
 use App\Models\Transformer;
-use App\Jobs\ProcessSourceJob;
-use Illuminate\Support\Facades\Queue;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -28,13 +26,13 @@ class JsonTransformersTransformerControllerTest extends TestCase
                 'project' => $project->id,
             ]))
             ->assertRedirect(route('projects.show', [
-                'project' => $project->id
+                'project' => $project->id,
             ]));
     }
 
     public function test_allow_edit_json_transformer()
     {
-        $this->markTestSkipped("@TODO there will be a mapping edit soon");
+        $this->markTestSkipped('@TODO there will be a mapping edit soon');
         $user = User::factory()->withPersonalTeam()->create();
         $user = $this->createTeam($user);
 
@@ -54,10 +52,9 @@ class JsonTransformersTransformerControllerTest extends TestCase
             ->assertOk();
     }
 
-
     public function test_allow_update_json_transformer()
     {
-        $this->markTestSkipped("@TODO there will be a mapping edit soon");
+        $this->markTestSkipped('@TODO there will be a mapping edit soon');
         $user = User::factory()->withPersonalTeam()->create();
         $user = $this->createTeam($user);
 
@@ -86,6 +83,4 @@ class JsonTransformersTransformerControllerTest extends TestCase
 
         $this->assertEquals('Foo', $transformer->refresh()->name);
     }
-
-
 }
