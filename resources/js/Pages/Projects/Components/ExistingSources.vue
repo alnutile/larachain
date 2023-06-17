@@ -169,7 +169,6 @@ const run = (source) => {
         },
         onSuccess: params => {
             emit("runComplete")
-            router.reload()
         }
     });
 }

@@ -43,7 +43,7 @@ class Source extends BaseTypeModel
         return $this->hasMany(Document::class);
     }
 
-    /**
+    /**WebHook
      * @throws SourceTypeMissingException
      */
     public function run(array $payload = []): Document

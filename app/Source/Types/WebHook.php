@@ -16,6 +16,7 @@ class WebHook extends BaseSourceType
                     'guid' => Uuid::uuid4()->toString(),
                     'source_id' => $this->source->id,
                     'status' => StatusEnum::Complete,
+                    'type' => $this->source->type->value,
                     'content' => json_encode($this->payload),
                     'meta_data' => [
                         'original_payload' => $this->payload,

@@ -35,6 +35,7 @@ class [RESOURCE_CLASS_NAME] extends BaseSourceType
 
         return Document::where('guid', $fileName)
             ->where('source_id', $this->source->id)
+            ->where('type', $this->source->type->value)
             ->firstOrCreate(
                 [
                     'guid' => $fileName,
@@ -42,6 +43,7 @@ class [RESOURCE_CLASS_NAME] extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
+                    'type' => $this->source->type->value,
                 ]
             );
     }

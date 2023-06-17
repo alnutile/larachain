@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sources;
 
 use App\Events\SourceRunCompleteEvent;
+use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceEnum;
@@ -97,10 +98,21 @@ class WebHookSourceController extends BaseSourceController
         $payload = request()->all();
 
         logger('Webhook coming in', $payload);
+
         $source->run($payload);
 
         SourceRunCompleteEvent::dispatch($source);
 
         return response()->json('OK', 200);
+    }
+
+    public function run(Project $project, Source $source)
+    {
+
+        request()->session()->flash('flash.banner', 'This Transformer has no run it just takes data as it comes ✅');
+
+        return to_route('projects.show', [
+            'project' => $project->id,
+        ]);
     }
 }
