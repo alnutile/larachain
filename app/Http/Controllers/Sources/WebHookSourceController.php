@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Sources;
 
 use App\Events\SourceRunCompleteEvent;
-use App\Jobs\ProcessSourceJob;
 use App\Models\Project;
 use App\Models\Source;
 use App\Source\SourceEnum;

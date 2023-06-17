@@ -7,22 +7,21 @@ use App\Models\DocumentChunk;
 use App\Models\Transformer;
 use App\Transformer\BaseTransformer;
 use Ramsey\Uuid\Uuid;
-use Soundasleep\Html2Text as Helper;
 
 class JsonTransformer extends BaseTransformer
 {
     public function handle(Transformer $transformer): Document
     {
 
-        $config = config('larachain.sources.' . $this->document->source->type->value . '.transformers', null);
+        $config = config('larachain.sources.'.$this->document->source->type->value.'.transformers', null);
 
-        if($config && in_array('App\\Transformer\\Types\\JsonTransformer', $config)) {
+        if ($config && in_array('App\\Transformer\\Types\\JsonTransformer', $config)) {
             $fileContents = $this->document->content;
             $guid = md5($fileContents);
 
             if (! DocumentChunk::query()
                 ->where('document_id', $this->document->id)
-                ->where("guid", $guid)
+                ->where('guid', $guid)
                 ->exists()) {
                 DocumentChunk::create([
                     'guid' => Uuid::uuid4()->toString(),

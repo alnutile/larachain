@@ -77,7 +77,7 @@ class WebHooksSourceControllerTest extends TestCase
 
         $response->assertRedirect(route('projects.show', ['project' => $project->id]));
 
-        Queue::assertPushed(ProcessSourceJob::class);
+        Queue::assertNotPushed(ProcessSourceJob::class);
     }
 
     public function testUpdateWebHook()

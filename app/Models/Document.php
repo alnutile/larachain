@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Ingress\IngressTypeEnum;
 use App\Ingress\StatusEnum;
 use App\Source\SourceEnum;
 use Illuminate\Database\Eloquent\Collection;
@@ -21,6 +20,7 @@ use Pgvector\Laravel\Vector;
  * @property Source $source
  * @property Project $project
  * @property Collection $document_chunks
+ * @property SourceEnum $type
  *
  * @method Source source()
  * @method Project project()
@@ -34,7 +34,7 @@ class Document extends Model
 
     protected $casts = [
         'status' => StatusEnum::class,
-        'type' => IngressTypeEnum::class,
+        'type' => SourceEnum::class,
         'meta_data' => 'array',
         'embedding' => Vector::class,
     ];

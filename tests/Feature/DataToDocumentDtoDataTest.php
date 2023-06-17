@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Data\DataToDocumentDtoData;
-use App\Ingress\IngressTypeEnum;
+use App\Source\SourceEnum;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -13,7 +13,7 @@ class DataToDocumentDtoDataTest extends TestCase
     {
         $dto = new DataToDocumentDtoData(
             'foobar',
-            IngressTypeEnum::WebScrape,
+            SourceEnum::ScrapeWebPage,
             'foobaz',
             'project_id_'.Str::random(),
             [

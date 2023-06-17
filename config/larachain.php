@@ -22,7 +22,7 @@ return [
             'description' => 'You can take data from a webhook or trigger a listener',
             'class' => 'App\\Source\\Types\\WebHook',
             'transformers' => [
-                'App\\Transformer\\Types\\JsonTransformer'
+                'App\\Transformer\\Types\\JsonTransformer',
             ],
             'requires' => [
             ],

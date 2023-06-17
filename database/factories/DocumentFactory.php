@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Ingress\StatusEnum;
 use App\Models\Source;
+use App\Source\SourceEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
 
@@ -24,6 +25,7 @@ class DocumentFactory extends Factory
         return [
             'token_count' => fake()->randomDigitNotZero(),
             'status' => StatusEnum::Pending,
+            'type' => SourceEnum::WebHook,
             'guid' => fake()->uuid(),
             'content' => fake()->sentence(10),
             'source_id' => Source::factory(),
