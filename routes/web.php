@@ -529,3 +529,22 @@ Route::middleware([
             ->name('sources.web_hook.run');
     }
 );
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->controller(\App\Http\Controllers\Transformers\JsonTransformerTransformerController::class)->group(
+    function () {
+        Route::get('/projects/{project}/transformers/json_transformer/create', 'create')
+            ->name('transformers.json_transformer.create');
+        Route::get('/projects/{project}/transformers/{transformer}/json_transformer/edit', 'edit')
+            ->name('transformers.json_transformer.edit');
+        Route::post('/projects/{project}/transformers/json_transformer/store', 'store')
+            ->name('transformers.json_transformer.store');
+        Route::put('/projects/{project}/transformers/{transformer}/json_transformer/update', 'update')
+            ->name('transformers.json_transformer.update');
+        Route::post('/projects/{project}/transformers/{transformer}/json_transformer/run', 'run')
+            ->name('transformers.json_transformer.run');
+    }
+);
