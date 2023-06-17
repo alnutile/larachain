@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class JsonTransformerTest extends TestCase
 {
-    use SharedSetupForPdfFile;
-
     public function test_runs_base_on_source()
     {
         /** @var Source $source */
@@ -21,6 +19,7 @@ class JsonTransformerTest extends TestCase
 
         $document = Document::factory()->create([
             'source_id' => $source->id,
+            'guid' => 'foo.json',
         ]);
 
         /** @var Transformer $transformer */
