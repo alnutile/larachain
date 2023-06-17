@@ -4,6 +4,7 @@ namespace App\Source\Types;
 
 use App\Ingress\StatusEnum;
 use App\Models\Document;
+use App\Source\SourceEnum;
 
 class FileUploadSource extends BaseSourceType
 {
@@ -24,6 +25,7 @@ class FileUploadSource extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
+                    'type' => SourceEnum::FileUploadSource
                 ]
             );
     }

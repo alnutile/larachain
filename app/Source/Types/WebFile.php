@@ -5,6 +5,7 @@ namespace App\Source\Types;
 use App\Exceptions\SourceMissingRequiredMetaDataException;
 use App\Ingress\StatusEnum;
 use App\Models\Document;
+use App\Source\SourceEnum;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,6 +37,7 @@ class WebFile extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
+                    'type' => SourceEnum::WebFile
                 ]
             );
     }

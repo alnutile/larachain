@@ -5,6 +5,7 @@ namespace App\Source\Types;
 use App\Exceptions\SourceMissingRequiredMetaDataException;
 use App\Ingress\StatusEnum;
 use App\Models\Document;
+use App\Source\SourceEnum;
 use Illuminate\Support\Facades\Http;
 
 class ScrapeWebPage extends BaseSourceType
@@ -32,6 +33,7 @@ class ScrapeWebPage extends BaseSourceType
                 [
                     'status' => StatusEnum::Complete,
                     'content' => $fileContents,
+                    'type' => SourceEnum::ScrapeWebPage
                 ]
             );
     }

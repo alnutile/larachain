@@ -22,7 +22,7 @@ class WebHook extends BaseSourceType
                         'guid' => $contentId,
                         'source_id' => $this->source->id,
                         'status' => StatusEnum::Complete,
-                        'type' => $this->source->type->value,
+                        'type' => $this->source->type,
                         'content' => $content,
                         'meta_data' => [
                             'original_payload' => $this->payload,

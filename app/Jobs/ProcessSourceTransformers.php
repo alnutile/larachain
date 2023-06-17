@@ -28,7 +28,6 @@ class ProcessSourceTransformers implements ShouldQueue
      */
     public function handle(): void
     {
-        logger('Job ProcessSourceTransformers');
 
         /** @var Transformer $transformerModel */
         foreach ($this->document->source->project->transformers as $transformerModel) {
