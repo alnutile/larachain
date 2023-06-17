@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         SourceRunCompleteEvent::class => [
-            RunTransformersListener::class,
+            //RunTransformersListener::class,
         ],
     ];
 

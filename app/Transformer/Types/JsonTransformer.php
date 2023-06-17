@@ -13,13 +13,12 @@ class JsonTransformer extends BaseTransformer
     public function handle(Transformer $transformer): Document
     {
 
-        $config = config('larachain.sources.'.$this->document->source->type->value.'.transformers', null);
-
-        if ($config && in_array('App\\Transformer\\Types\\JsonTransformer', $config)) {
+        if (str($this->document->guid)->endsWith('.json')) {
             $fileContents = $this->document->content;
             $guid = md5($fileContents);
 
-            if (! DocumentChunk::query()
+            logger("Running JsonTransformer");
+            if (!DocumentChunk::query()
                 ->where('document_id', $this->document->id)
                 ->where('guid', $guid)
                 ->exists()) {

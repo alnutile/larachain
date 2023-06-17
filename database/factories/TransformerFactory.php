@@ -26,6 +26,25 @@ class TransformerFactory extends Factory
         ];
     }
 
+
+    public function embed()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => TransformerEnum::EmbedTransformer,
+            ];
+        });
+    }
+
+    public function json()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => TransformerEnum::JsonTransformer,
+            ];
+        });
+    }
+
     public function csvTransformer()
     {
         return $this->state(function (array $attributes) {

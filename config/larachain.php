@@ -21,9 +21,8 @@ return [
             'name' => 'WebHook',
             'description' => 'You can take data from a webhook or trigger a listener',
             'class' => 'App\\Source\\Types\\WebHook',
-            'transformers' => [
-                'App\\Transformer\\Types\\JsonTransformer',
-            ],
+            'icon' => 'GlobeAltIcon',
+            'background' => 'bg-slate-800',
             'requires' => [
             ],
             'active' => 1,
@@ -64,6 +63,13 @@ return [
             'class' => 'App\\Transformer\\Types\\PdfTransformer',
             'active' => 1,
             'background' => 'bg-blue-500',
+            'requires' => [
+                'sources' => [
+                    'web_file',
+                    'file_upload_source',
+                    's3_directory',
+                ]
+            ],
         ],
         'embed_transformer' => [
             'name' => 'Vectorize Your Data',
@@ -71,6 +77,7 @@ return [
             'icon' => 'ArrowsRightLeftIcon',
             'class' => 'App\\Transformer\\Types\\EmbedTransformer',
             'active' => 1,
+            "global" => true,
             'background' => 'bg-red-700',
         ],
         'html2text' => [
@@ -78,6 +85,9 @@ return [
             'description' => 'Simple transformer to strip html tags',
             'class' => 'App\\Transformer\\Types\\Html2Text',
             'requires' => [
+                'sources' => [
+                    'scrape_web_page'
+                ]
             ],
             'active' => 1,
             'icon' => 'GlobeAltIcon',
@@ -90,6 +100,11 @@ return [
             'background' => 'bg-gray-500',
             'icon' => 'PhoneIcon',
             'requires' => [
+                'sources' => [
+                    'web_file',
+                    'file_upload_source',
+                    's3_directory',
+                ]
             ],
             'active' => 1,
         ],
@@ -97,7 +112,15 @@ return [
             'name' => 'JsonTransformer',
             'description' => 'Will take Json Documents and make chunks',
             'class' => 'App\\Transformer\\Types\\JsonTransformer',
+            'background' => 'bg-blue-500',
+            'icon' => 'Bars3CenterLeftIcon',
             'requires' => [
+                'sources' => [
+                    'web_hook',
+                    'web_file',
+                    'file_upload_source',
+                    's3_directory',
+                ]
             ],
             'active' => 1,
         ],

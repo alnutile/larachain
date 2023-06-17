@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Ingress\StatusEnum;
+use App\Jobs\ProcessSourceTransformers;
 use App\Source\SourceEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -68,6 +69,22 @@ class Document extends Model
         }
 
         return null;
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::updated(function ($document) {
+            ProcessSourceTransformers::dispatch($document);
+        });
+
+        static::created(function ($document) {
+            ProcessSourceTransformers::dispatch($document);
+        });
     }
 
     public function pathToFile(): string|null

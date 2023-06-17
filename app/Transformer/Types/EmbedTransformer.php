@@ -13,7 +13,6 @@ class EmbedTransformer extends BaseTransformer
 {
     public function handle(Transformer $transformer): Document
     {
-
         $batch = Bus::batch([])
             ->then(function (Batch $batch) {
                 logger('All batch jobs done for document '.$this->document->id);

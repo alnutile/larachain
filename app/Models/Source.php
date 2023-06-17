@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $project_id
  * @property int $order
  * @property SourceEnum $type
+ * @property Project $project
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
@@ -50,7 +51,6 @@ class Source extends BaseTypeModel
     {
         try {
             $sourceType = $this->getSourceTypeClass();
-
             return $sourceType->setPayload($payload)->handle();
         } catch (\Exception $e) {
             logger($e);

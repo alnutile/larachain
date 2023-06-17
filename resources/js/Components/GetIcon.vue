@@ -6,6 +6,7 @@
 import { resolveComponent } from "vue";
 import {
     ArrowDownTrayIcon,
+    Bars3CenterLeftIcon,
     ArrowsPointingInIcon,
     ArrowsRightLeftIcon,
     PhoneArrowUpRightIcon,
@@ -23,6 +24,7 @@ export default {
     name: "GetIcon",
     components: {
         Bars4Icon,
+        Bars3CenterLeftIcon,
         DocumentIcon,
         GlobeAltIcon,
         PhoneIcon,
