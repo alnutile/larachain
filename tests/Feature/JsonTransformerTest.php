@@ -17,14 +17,32 @@ class JsonTransformerTest extends TestCase
             ->webHook()
             ->create();
 
+        $data = [
+            'foo' => [
+                'baz' => [
+                    1,
+                    2,
+                    3,
+                ],
+            ],
+            'boo' => [
+                'foo',
+                'bar',
+            ],
+        ];
+
         $document = Document::factory()->create([
             'source_id' => $source->id,
             'guid' => 'foo.json',
+            'content' => json_encode($data)
         ]);
 
         /** @var Transformer $transformer */
         $transformerModel = Transformer::factory()->create([
             'project_id' => $source->project_id,
+            'meta_data' => [
+                'mappings' => ['foo.baz', 'boo']
+            ]
         ]);
 
         $this->assertDatabaseCount('document_chunks', 0);
@@ -32,5 +50,14 @@ class JsonTransformerTest extends TestCase
         $transformer = new JsonTransformer($document);
         $transformer->handle($transformerModel);
         $this->assertDatabaseCount('document_chunks', 1);
+
+        $document_chunk = $document->refresh()->document_chunks->first();
+
+        $this->assertEquals(
+            json_encode([
+                'baz' => [1, 2, 3], 'boo' => ['foo', 'bar'],
+            ]),
+            $document_chunk->content
+        );
     }
 }
