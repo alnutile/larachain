@@ -23,7 +23,7 @@ class JsonTransformer extends BaseTransformer
                 ->where('guid', $guid)
                 ->exists()) {
 
-                if($mappings = data_get($transformer->meta_data, 'mappings')) {
+                if ($mappings = data_get($transformer->meta_data, 'mappings')) {
                     $content = json_decode($this->document->content, true);
                     $mapped = DataMapping::map($mappings, $content);
                     $fileContents = json_encode($mapped);

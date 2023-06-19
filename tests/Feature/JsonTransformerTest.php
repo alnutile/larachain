@@ -34,15 +34,15 @@ class JsonTransformerTest extends TestCase
         $document = Document::factory()->create([
             'source_id' => $source->id,
             'guid' => 'foo.json',
-            'content' => json_encode($data)
+            'content' => json_encode($data),
         ]);
 
         /** @var Transformer $transformer */
         $transformerModel = Transformer::factory()->create([
             'project_id' => $source->project_id,
             'meta_data' => [
-                'mappings' => ['foo.baz', 'boo']
-            ]
+                'mappings' => ['foo.baz', 'boo'],
+            ],
         ]);
 
         $this->assertDatabaseCount('document_chunks', 0);
