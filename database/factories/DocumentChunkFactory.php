@@ -22,6 +22,7 @@ class DocumentChunkFactory extends Factory
         return [
             'guid' => fake()->uuid(),
             'content' => fake()->sentence(10),
+            'original_content' => fake()->sentence(10),
             'token_count' => fake()->randomDigitNotZero(),
             'document_id' => Document::factory(),
         ];

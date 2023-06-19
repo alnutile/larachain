@@ -33,7 +33,7 @@ class ScrapeWebPage extends BaseSourceType
                 [
                     'status' => StatusEnum::Complete,
                     'content' => $fileContents,
-                    'type' => SourceEnum::ScrapeWebPage
+                    'type' => SourceEnum::ScrapeWebPage,
                 ]
             );
     }

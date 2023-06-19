@@ -110,7 +110,7 @@ return [
         ],
         'json_transformer' => [
             'name' => 'JsonTransformer',
-            'description' => 'Will take Json Documents and make chunks',
+            'description' => 'Will take Json Documents and make document chunks. You can use mapping to grab just some keys and data',
             'class' => 'App\\Transformer\\Types\\JsonTransformer',
             'background' => 'bg-blue-500',
             'icon' => 'Bars3CenterLeftIcon',

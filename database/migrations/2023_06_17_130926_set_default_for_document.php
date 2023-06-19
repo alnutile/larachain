@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->string("type")->default(SourceEnum::WebFile->value)->change();
+            $table->string('type')->default(SourceEnum::WebFile->value)->change();
         });
     }
 

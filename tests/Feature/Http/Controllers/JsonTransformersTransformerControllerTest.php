@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Transformer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class JsonTransformersTransformerControllerTest extends TestCase
@@ -28,7 +29,7 @@ class JsonTransformersTransformerControllerTest extends TestCase
             ->assertRedirect(route('transformers.json_transformer.edit',
                 [
                     'project' => $project->id,
-                    'transformer' => Transformer::first()->id
+                    'transformer' => Transformer::first()->id,
                 ]));
     }
 
@@ -50,12 +51,13 @@ class JsonTransformersTransformerControllerTest extends TestCase
                 'project' => $project->id,
                 'transformer' => $transformer->id,
             ]))
-            ->assertOk();
+            ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+        ->has('transformer'));
     }
 
     public function test_allow_update_json_transformer()
     {
-        $this->markTestSkipped('@TODO there will be a mapping edit soon');
         $user = User::factory()->withPersonalTeam()->create();
         $user = $this->createTeam($user);
 
@@ -63,18 +65,18 @@ class JsonTransformersTransformerControllerTest extends TestCase
             'team_id' => $user->current_team_id,
         ]);
 
-        $transformer = Transformer::factory()->create([
+        $transformer = Transformer::factory()->json()->create([
             'project_id' => $project->id,
         ]);
 
         $this->actingAs($user)
-            ->put(route('sources.json_transformer.update', [
+            ->put(route('transformers.json_transformer.update', [
                 'project' => $project->id,
                 'transformer' => $transformer->id,
             ]), [
                 'name' => 'Foo',
-                'meta_data' => [
-                    'url' => 'https://foo.bar',
+                'mappings' => [
+                    'foo.bar',
                 ],
                 'description' => 'Bar',
             ])
@@ -82,6 +84,8 @@ class JsonTransformersTransformerControllerTest extends TestCase
                 'project' => $project->id,
             ]));
 
-        $this->assertEquals('Foo', $transformer->refresh()->name);
+        $this->assertEquals([
+            'foo.bar',
+        ], $transformer->refresh()->meta_data['mappings']);
     }
 }

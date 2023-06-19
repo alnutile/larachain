@@ -25,7 +25,7 @@ class FileUploadSource extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
-                    'type' => SourceEnum::FileUploadSource
+                    'type' => SourceEnum::FileUploadSource,
                 ]
             );
     }

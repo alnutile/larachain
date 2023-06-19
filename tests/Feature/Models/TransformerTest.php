@@ -23,7 +23,7 @@ class TransformerTest extends TestCase
                 'mappings' => [
                     'optional.path.to.store_one',
                     'optional.path.to.store_two',
-                ]
+                ],
             ],
             $model->meta_data
         );

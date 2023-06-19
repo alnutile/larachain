@@ -18,8 +18,8 @@ class JsonTransformerTransformerController extends BaseTransformerController
                 'mappings' => [
                     'optional.path.to.store_one',
                     'optional.path.to.store_two',
-                ]
-            ]
+                ],
+            ],
         ]);
 
         request()->session()->flash('flash.banner', 'Created, you can sort the order using drag and drop');
@@ -27,16 +27,17 @@ class JsonTransformerTransformerController extends BaseTransformerController
         return to_route('transformers.json_transformer.edit',
             [
                 'project' => $project->id,
-                'transformer' => $transformer->id
+                'transformer' => $transformer->id,
             ]
         );
     }
 
     public function edit(Project $project, Transformer $transformer)
     {
-        request()->session()->flash('flash.banner', 'There is no edit for this');
-
-        return to_route('projects.show', ['project' => $project->id]);
+        return inertia('Transformers/JsonTransformer/Edit', [
+            'details' => config('larachain.transformers.'.$transformer->type->value),
+            'transformer' => $transformer,
+        ]);
     }
 
     public function store(Project $project)
@@ -46,6 +47,17 @@ class JsonTransformerTransformerController extends BaseTransformerController
 
     public function update(Project $project, Transformer $transformer)
     {
-        // TODO: Implement update() method.
+        $validate = request()->validate([
+            'mappings' => ['nullable'],
+        ]);
+
+        $meta_data = $transformer->meta_data;
+        $meta_data['mappings'] = data_get($validate, 'mappings', []);
+        $transformer->meta_data = $meta_data;
+        $transformer->save();
+
+        return to_route('projects.show', [
+            'project' => $project->id,
+        ]);
     }
 }

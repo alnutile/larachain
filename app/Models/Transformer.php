@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $id;
  * @property int $order;
  * @property int $project_id;
+ * @property array $meta_data;
  * @property TransformerEnum $type;
  * @property Project $project;
  *
@@ -29,7 +30,7 @@ class Transformer extends BaseTypeModel
     protected $casts = [
         'prompt_token' => 'encrypted:array',
         'type' => TransformerEnum::class,
-        'meta_data' => "encrypted:array"
+        'meta_data' => 'encrypted:array',
     ];
 
     public function project()

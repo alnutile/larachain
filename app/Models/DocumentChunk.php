@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
 
 /**
+ * @property string $original_content;
+ * @property string $content;
  * @property int $token_count
  * @property array $embedding
  */
@@ -23,5 +25,18 @@ class DocumentChunk extends Model
     public function document()
     {
         return $this->belongsTo(Document::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saved(function ($document_chunk) {
+            $document_chunk->original_content = $document_chunk->getOriginal('content');
+            $document_chunk->saveQuietly();
+        });
     }
 }

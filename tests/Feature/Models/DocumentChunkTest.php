@@ -13,6 +13,17 @@ class DocumentChunkTest extends TestCase
         $this->assertNotNull($model->content);
     }
 
+    public function test_original_boot()
+    {
+        $model = DocumentChunk::factory()->create([
+            'content' => 'baz boo',
+        ]);
+        $model->update([
+            'content' => 'foo bar',
+        ]);
+        $this->assertEquals('baz boo', $model->original_content);
+    }
+
     public function test_dc_rel()
     {
         $model = DocumentChunk::factory()->create();

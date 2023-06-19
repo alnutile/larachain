@@ -37,7 +37,7 @@ class WebFile extends BaseSourceType
                 ],
                 [
                     'status' => StatusEnum::Complete,
-                    'type' => SourceEnum::WebFile
+                    'type' => SourceEnum::WebFile,
                 ]
             );
     }

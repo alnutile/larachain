@@ -27,8 +27,8 @@ class TransformerFactory extends Factory
                 'mappings' => [
                     'optional.path.to.store_one',
                     'optional.path.to.store_two',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 
@@ -50,8 +50,8 @@ class TransformerFactory extends Factory
                     'mappings' => [
                         'optional.path.to.store_one',
                         'optional.path.to.store_two',
-                    ]
-                ]
+                    ],
+                ],
             ];
         });
     }

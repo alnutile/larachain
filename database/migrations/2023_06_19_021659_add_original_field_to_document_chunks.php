@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('transformers', function (Blueprint $table) {
-            $table->longText('meta_data')->nullable();
+        Schema::table('document_chunks', function (Blueprint $table) {
+            $table->longText('original_content')->nullable();
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('transformers', function (Blueprint $table) {
+        Schema::table('document_chunks', function (Blueprint $table) {
             //
         });
     }
