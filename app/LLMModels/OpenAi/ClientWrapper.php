@@ -48,7 +48,7 @@ class ClientWrapper
         }
 
         $response = OpenAI::embeddings()->create([
-            'model' => 'text-embedding-ada-002',
+            'model' => config('openai.embedding_model'),
             'input' => $content,
         ]);
 
