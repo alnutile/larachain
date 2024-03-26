@@ -104,9 +104,9 @@ Label Text: O’Keeffe is considered a pioneer of American modernism. She was am
 Tags: flowers; abstract; symbolism
 EOL;
 
-    $response = ClientWrapper::getEmbedding($fixture);
+        $response = ClientWrapper::getEmbedding($fixture);
 
-    $this->assertInstanceOf(EmbeddingsResponseDto::class, $response);
+        $this->assertInstanceOf(EmbeddingsResponseDto::class, $response);
 
     }
 

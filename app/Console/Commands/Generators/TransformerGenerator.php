@@ -17,9 +17,9 @@ class TransformerGenerator extends Command
         $description = $this->ask('A description to let the user know what it is for');
 
         $results = sprintf("Does this look right, the name is %s, the description is %s and requires settings '%s'.",
-        $name,
-        $description,
-        false);
+            $name,
+            $description,
+            false);
 
         if (! $this->confirm($results)) {
             $this->error('Ok try again');

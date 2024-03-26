@@ -21,8 +21,8 @@ class ContentCollectionTest extends TestCase
             'contents' => Content::collection(DocumentChunk::get()),
         ]);
 
-         expect($collection->contents)->toBeInstanceOf(DataCollection::class);
-         expect($collection->contents->first())->toBeInstanceOf(Content::class);
+        expect($collection->contents)->toBeInstanceOf(DataCollection::class);
+        expect($collection->contents->first())->toBeInstanceOf(Content::class);
     }
 
     public function test_converts()

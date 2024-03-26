@@ -21,9 +21,9 @@ class ResponseTypeGenerator extends Command
         ]);
 
         $results = sprintf("Does this look right, the name is %s, the description is %s and requires settings '%s'.",
-        $name,
-        $description,
-        $requires_settings);
+            $name,
+            $description,
+            $requires_settings);
 
         if (! $this->confirm($results)) {
             $this->error('Ok try again');

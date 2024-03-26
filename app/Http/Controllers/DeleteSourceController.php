@@ -16,8 +16,8 @@ class DeleteSourceController extends Controller
         DB::transaction(function () use ($source) {
             /** @phpstan-ignore-next-line */
             $source->documents->each(function (Document $document) {
-               $document->document_chunks()->delete();
-               $document->delete();
+                $document->document_chunks()->delete();
+                $document->delete();
             });
 
             $source->delete();

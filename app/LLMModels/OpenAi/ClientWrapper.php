@@ -110,9 +110,9 @@ EOD;
     }
 
     public function projectChat(Project $project,
-                                User $user,
-                                array $messages,
-                                        $tries = 1): string|\Exception
+        User $user,
+        array $messages,
+        $tries = 1): string|\Exception
     {
         if (config('openai.mock')) {
             $data = get_fixture('completion_response.json');
@@ -177,9 +177,9 @@ EOD;
     }
 
     public function nonStreamProjectChat(Project $project,
-                                         User $user,
-                                         array $messages,
-                                                 $tries = 1): string|\Exception
+        User $user,
+        array $messages,
+        $tries = 1): string|\Exception
     {
 
         $messages = clean_messages($messages);

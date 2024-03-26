@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::any('/projects/{project}/sources/{source}/webhook',
-        [WebHookSourceController::class, 'webhook'])
+    [WebHookSourceController::class, 'webhook'])
     ->name('api.sources.webhook');
 
 Route::middleware('auth:sanctum')
     ->get('/outbounds/{outbound}/response_types/{response_type}/chat_api',
-    [ChatApiResponseTypeController::class, 'api'])
+        [ChatApiResponseTypeController::class, 'api'])
     ->name('api.outbound.response_types.chat_api');
 
 Route::middleware('auth:sanctum')->controller(ChatGptRetrievalOutboundController::class)->group(

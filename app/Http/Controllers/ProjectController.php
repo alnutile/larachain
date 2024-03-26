@@ -21,7 +21,7 @@ class ProjectController extends Controller
             'projects' => Project::query()
                 ->with('sources', 'outbounds')
                 ->where('team_id',
-                auth()->user()->current_team_id)
+                    auth()->user()->current_team_id)
                 ->orderBy('updated_at', 'DESC')
                 ->simplePaginate(10)
                 ->withQueryString(),

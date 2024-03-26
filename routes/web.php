@@ -154,9 +154,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-   Route::get('/projects/{project}/outbounds', function (Project $project) {
-       return response($project->outbounds);
-   })->name('projects.outbounds');
+    Route::get('/projects/{project}/outbounds', function (Project $project) {
+        return response($project->outbounds);
+    })->name('projects.outbounds');
 });
 
 Route::middleware([

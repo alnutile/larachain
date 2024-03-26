@@ -57,7 +57,7 @@ class Document extends Model
         );
     }
 
-    public function directoryForFile(): string|null
+    public function directoryForFile(): ?string
     {
         if (in_array($this->source->type, [
             SourceEnum::WebFile,
@@ -87,7 +87,7 @@ class Document extends Model
         });
     }
 
-    public function pathToFile(): string|null
+    public function pathToFile(): ?string
     {
         if (in_array($this->source->type, [
             SourceEnum::WebFile,

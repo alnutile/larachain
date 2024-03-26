@@ -144,8 +144,7 @@ class ChatUi extends BaseResponseType
     private function noSystemMessage(): bool
     {
         return ! Message::query()
-
-             ->select(['role', 'content'])
+            ->select(['role', 'content'])
             ->where('user_id', $this->user->id)
             ->where('project_id', $this->project->id)
             ->where('role', 'system')

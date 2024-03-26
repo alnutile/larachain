@@ -72,15 +72,15 @@ EOL;
         $reply = '';
 
         foreach ($stream as $response) {
-                $step = $response->choices[0]->toArray();
-                $reply = $reply.' '.data_get($step, 'delta.content');
-                if ($count >= 20) {
-                    $this->info($reply);
-                    $count = 0;
-                    $reply = '';
-                } else {
-                    $count = $count + 1;
-                }
+            $step = $response->choices[0]->toArray();
+            $reply = $reply.' '.data_get($step, 'delta.content');
+            if ($count >= 20) {
+                $this->info($reply);
+                $count = 0;
+                $reply = '';
+            } else {
+                $count = $count + 1;
+            }
         }
 
     }

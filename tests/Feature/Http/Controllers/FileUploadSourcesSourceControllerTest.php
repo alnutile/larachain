@@ -15,18 +15,18 @@ class FileUploadSourcesSourceControllerTest extends TestCase
 {
     public function test_shows_form()
     {
-            $user = User::factory()->withPersonalTeam()->create();
+        $user = User::factory()->withPersonalTeam()->create();
 
-            $user = $this->createTeam($user);
+        $user = $this->createTeam($user);
 
-            $project = Project::factory()->create([
-                'team_id' => $user->current_team_id,
-            ]);
+        $project = Project::factory()->create([
+            'team_id' => $user->current_team_id,
+        ]);
 
-            $this->actingAs($user)
-                ->get(route('sources.file_upload_source.create', [
-                    'project' => $project->id,
-                ]))->assertOk();
+        $this->actingAs($user)
+            ->get(route('sources.file_upload_source.create', [
+                'project' => $project->id,
+            ]))->assertOk();
     }
 
     public function test_create_file_upload()

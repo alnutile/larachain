@@ -53,9 +53,9 @@ class ProcessSourceTransformersTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-       Transformer::factory()->json()->create([
-           'project_id' => $project->id,
-       ]);
+        Transformer::factory()->json()->create([
+            'project_id' => $project->id,
+        ]);
 
         $document = Document::factory()->create([
             'source_id' => $source->id,

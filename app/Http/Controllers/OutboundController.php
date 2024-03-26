@@ -21,8 +21,8 @@ class OutboundController extends Controller
         $user = auth()->user();
         $request = $validated['question'];
 
-         /** @var ResponseDto $response */
-         $response = $outbound->run($user, $request);
+        /** @var ResponseDto $response */
+        $response = $outbound->run($user, $request);
 
         return response($response->response->contents->toArray(), $response->status);
     }

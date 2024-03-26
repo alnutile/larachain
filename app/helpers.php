@@ -25,12 +25,12 @@ if (! function_exists('file_name_from_url')) {
     function file_name_from_url(string $url): string
     {
         return str($url)->beforeLast('?')->afterLast('/')
-        ->when(! str($url)->endsWith('.html'), function (Stringable $string) {
-            return $string->append('.html');
-        })
-        ->whenStartsWith('.', function ($item) {
-            /** @var Stringable $item */
-            return $item->prepend('index');
-        })->toString();
+            ->when(! str($url)->endsWith('.html'), function (Stringable $string) {
+                return $string->append('.html');
+            })
+            ->whenStartsWith('.', function ($item) {
+                /** @var Stringable $item */
+                return $item->prepend('index');
+            })->toString();
     }
 }

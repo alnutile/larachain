@@ -52,8 +52,8 @@ class JsonTransformersTransformerControllerTest extends TestCase
                 'transformer' => $transformer->id,
             ]))
             ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-        ->has('transformer'));
+            ->assertInertia(fn (Assert $page) => $page
+                ->has('transformer'));
     }
 
     public function test_allow_update_json_transformer()

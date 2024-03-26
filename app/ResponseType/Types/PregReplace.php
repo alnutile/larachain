@@ -22,7 +22,7 @@ class PregReplace extends BaseResponseType
         }
 
         if ($preg_replace_pattern) {
-                $this->response_dto->response->contents->map(function ($document) use ($preg_replace_pattern, $preg_replace_replacement) {
+            $this->response_dto->response->contents->map(function ($document) use ($preg_replace_pattern, $preg_replace_replacement) {
                 $document->content = preg_replace($preg_replace_pattern, $preg_replace_replacement, $document->content);
 
                 return $document;
