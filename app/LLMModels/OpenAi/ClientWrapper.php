@@ -48,7 +48,7 @@ class ClientWrapper
         }
 
         $response = OpenAI::embeddings()->create([
-            'model' => 'text-similarity-babbage-001',
+            'model' => 'text-embedding-ada-002',
             'input' => $content,
         ]);
 
