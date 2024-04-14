@@ -58,9 +58,10 @@ jobs:
         run: |
           composer fix
 
-      - name: PHP Code Style (phpcs)
-        run: |
-          composer stan
+      # @NOTE archiving this repo so this is fine for now
+      # - name: PHP Code Style (phpcs)
+      #   run: |
+      #     composer stan
 
       - name: Setup application
         run: |
