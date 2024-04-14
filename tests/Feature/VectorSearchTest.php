@@ -38,6 +38,7 @@ class VectorSearchTest extends TestCase
         $rt = ResponseType::factory()->vectorSearch()->create();
 
         $message = Message::factory()->withEmbedData()->create();
+        
         $dto = ResponseDto::from([
             'message' => $message,
             'response' => ContentCollection::emptyContent(),
