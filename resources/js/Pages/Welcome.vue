@@ -46,7 +46,7 @@
         <div class="flex sm:flex-row flex-col justify-center gap-8 mt-4 items-center text-xl max-w-7xl mx-auto">
             <div class="flex justify-start gap-2 items-center">
                 💪
-                <a class="underline" href="https://github.com/alnutile/larachain">OpenSource </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
+                <a class="underline" href="https://github.com/LlmLaraHub/llmlarahub">OpenSource </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
             <div class="flex justify-start gap-2 items-center">
                 🧠
                 <a class="underline" href="https://github.com/alnutile/larachain/wiki">Wiki Learn More </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
@@ -55,7 +55,7 @@
                 <a class="underline" href="https://www.youtube.com/playlist?list=PLL8JVuiFkO9IvRPfwH4p2UFhvj7UJxiNv">YouTube </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
             <div class="flex justify-start gap-2 items-center">
                 🗺️
-                <a class="underline" href="https://github.com/users/alnutile/projects/2/views/1?layout=board">Road Map </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
+                <a class="underline" href="https://github.com/orgs/LlmLaraHub/projects/1">Road Map </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
         </div>
         <div class="relative overflow-hidden pt-16">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
