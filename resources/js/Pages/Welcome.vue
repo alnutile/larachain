@@ -49,7 +49,7 @@
                 <a class="underline" href="https://github.com/LlmLaraHub/llmlarahub">OpenSource</a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
             <div class="flex justify-start gap-2 items-center">
                 🧠
-                <a class="underline" href="https://laralamma-docs.readthedocs.io/en/latest/overview.html">Docs</a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
+                <a class="underline" href="https://laralamma-docs.readthedocs.io/en/latest/index.html">Docs</a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/></div>
             <div class="flex justify-start gap-2 items-center">
                 📺
                 <a class="underline" href="https://www.youtube.com/playlist?list=PLL8JVuiFkO9IvRPfwH4p2UFhvj7UJxiNv">YouTube </a><ArrowTopRightOnSquareIcon class="text-gray-500 w-4"/> </div>
